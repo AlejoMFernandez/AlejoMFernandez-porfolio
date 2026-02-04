@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "work": "Proyectos",
+    "info": "Info"
+  },
+  "home": {
+    "subtitle": "Creo experiencias digitales únicas y funcionales",
+    "featuredTitle": "Proyectos Destacados",
+    "featuredSubtitle": "Una selección de mis mejores trabajos",
+    "moreTitle": "Más Proyectos"
+  },
+  "project": {
+    "back": "Volver",
+    "about": "Sobre el proyecto",
+    "gallery": "Galería",
+    "demo": "Demo en video",
+    "links": "Links",
+    "viewSite": "Ver sitio web",
+    "viewCode": "Ver código",
+    "client": "Cliente",
+    "technologies": "Tecnologías",
+    "features": "Características",
+    "role": "Rol"
+  },
+  "info": {
+    "aboutMe": "Sobre mí",
+    "aspirations": "A lo que aspiro",
+    "gallery": "Galería",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "contact": "¿Trabajamos juntos?",
+    "contactSubtitle": "Estoy disponible para proyectos freelance y oportunidades laborales"
+  },
+  "footer": {
+    "version": "Versión",
+    "localTime": "Hora local",
+    "socials": "Redes",
+    "designedBy": "Diseñado y desarrollado por"
+  },
+  "common": {
+    "present": "Actualidad"
+  }
+}

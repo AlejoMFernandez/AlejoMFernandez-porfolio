@@ -1,0 +1,44 @@
+{
+  "nombre": "Alejo Martin",
+  "apellido": "Fernandez",
+  "titulo": "Desarrollador Web",
+  "subtitulo": "Creo experiencias digitales únicas y funcionales",
+  "ubicacion": "Buenos Aires, Argentina",
+  "email": "fernandezmalejo@email.com",
+  "telefono": "+54 11 2523-7915",
+  "bio": "Soy un desarrollador web apasionado por crear soluciones digitales que combinan diseño atractivo con funcionalidad robusta. Me especializo en tecnologías modernas como Vue.js, React y Node.js. Siempre busco aprender nuevas herramientas y mejorar mis habilidades para entregar productos de alta calidad.",
+  "aspiraciones": "Mi objetivo es seguir creciendo como profesional, trabajando en proyectos desafiantes que me permitan expandir mis conocimientos. Aspiro a formar parte de equipos innovadores donde pueda aportar mi creatividad y experiencia técnica.",
+  "experiencia": [
+    {
+      "empresa": "Empresa Ejemplo",
+      "puesto": "Desarrollador Frontend",
+      "fechaInicio": "2024-01",
+      "fechaFin": "Actualidad",
+      "descripcion": "Desarrollo de aplicaciones web con Vue.js y React"
+    }
+  ],
+  "habilidades": [
+    "JavaScript",
+    "Vue.js",
+    "React",
+    "Node.js",
+    "HTML5/CSS3",
+    "Git",
+    "SQL",
+    "MongoDB"
+  ],
+  "redes": {
+    "github": "https://github.com/AlejoMFernandez",
+    "linkedin": "https://www.linkedin.com/in/alejo-fernandez-87b387254",
+    "instagram": "https://instagram.com/alefernandez0.0"
+  },
+  "imagenes": {
+    "perfil": "/images/profilephoto.JPEG",
+    "hero": "/images/profilephoto.JPEG",
+    "galeria": [
+      "/images/galeria/foto1.jpg",
+      "/images/galeria/foto2.jpg",
+      "/images/galeria/foto3.jpg"
+    ]
+  }
+}

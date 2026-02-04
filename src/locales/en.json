@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "work": "Work",
+    "info": "Info"
+  },
+  "home": {
+    "subtitle": "I create unique and functional digital experiences",
+    "featuredTitle": "Featured Projects",
+    "featuredSubtitle": "A selection of my best work",
+    "moreTitle": "More Projects"
+  },
+  "project": {
+    "back": "Back",
+    "about": "About the project",
+    "gallery": "Gallery",
+    "demo": "Video demo",
+    "links": "Links",
+    "viewSite": "View website",
+    "viewCode": "View code",
+    "client": "Client",
+    "technologies": "Technologies",
+    "features": "Features",
+    "role": "Role"
+  },
+  "info": {
+    "aboutMe": "About me",
+    "aspirations": "What I aspire to",
+    "gallery": "Gallery",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Let's work together",
+    "contactSubtitle": "I'm available for freelance projects and job opportunities"
+  },
+  "footer": {
+    "version": "Version",
+    "localTime": "Local time",
+    "socials": "Socials",
+    "designedBy": "Designed and developed by"
+  },
+  "common": {
+    "present": "Present"
+  }
+}
