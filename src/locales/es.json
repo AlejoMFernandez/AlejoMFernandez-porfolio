@@ -1,7 +1,8 @@
 {
   "nav": {
     "work": "Proyectos",
-    "info": "Info"
+    "info": "Info",
+    "contact": "Contacto"
   },
   "home": {
     "subtitle": "Creo experiencias digitales únicas y funcionales",
@@ -27,7 +28,12 @@
     "aspirations": "A lo que aspiro",
     "gallery": "Galería",
     "skills": "Habilidades",
+    "skillsDev": "Desarrollo WEB",
+    "skillsInfra": "Infraestructura",
     "experience": "Experiencia",
+    "education": "Educación",
+    "courses": "Cursos",
+    "languages": "Idiomas",
     "contact": "¿Trabajamos juntos?",
     "contactSubtitle": "Estoy disponible para proyectos freelance y oportunidades laborales"
   },
@@ -39,5 +45,13 @@
   },
   "common": {
     "present": "Actualidad"
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "¿Trabajamos juntos?",
+    "subtitle": "Estoy disponible para proyectos freelance y oportunidades laborales.",
+    "socials": "Redes",
+    "location": "Ubicación",
+    "phone": "Teléfono"
   }
 }

@@ -2,12 +2,14 @@
 import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
+import { useLocalized } from '../composables/useLocalized.js'
 import projects from '../data/projects.json'
 import personal from '../data/personal.json'
 import ProjectCard from '../components/ProjectCard.vue'
 import Footer from '../components/Footer.vue'
 
 const { t } = useI18n()
+const { l } = useLocalized()
 
 const sortedProjects = computed(() => {
   return [...projects].sort((a, b) => a.orden - b.orden)
@@ -42,12 +44,16 @@ onMounted(() => {
     duration: 0.8,
     ease: 'power3.out'
   }, '-=0.5')
-  .from('.project-card', {
+  .fromTo('.project-card', {
     y: 80,
-    opacity: 0,
+    opacity: 0
+  }, {
+    y: 0,
+    opacity: 1,
     duration: 0.6,
     stagger: 0.15,
-    ease: 'power3.out'
+    ease: 'power3.out',
+    clearProps: 'transform'
   }, '-=0.3')
 })
 </script>
@@ -61,10 +67,10 @@ onMounted(() => {
           {{ personal.nombre }} {{ personal.apellido }}
         </h1>
         <p ref="subtitleRef" class="hero-subtitle">
-          {{ personal.subtitulo }}
+          {{ l(personal.subtitulo) }}
         </p>
         <div class="hero-info">
-          <span class="hero-role">{{ personal.titulo }}</span>
+          <span class="hero-role">{{ l(personal.titulo) }}</span>
           <span class="hero-divider">•</span>
           <span class="hero-location">{{ personal.ubicacion }}</span>
         </div>
@@ -188,12 +194,12 @@ onMounted(() => {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 24px;
+  gap: 20px;
 }
 
 .projects-grid.featured {
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 20px;
 }
 
 @media (max-width: 768px) {

@@ -1,31 +1,81 @@
 {
   "nombre": "Alejo Martin",
   "apellido": "Fernandez",
-  "titulo": "Desarrollador Web",
-  "subtitulo": "Creo experiencias digitales únicas y funcionales",
-  "ubicacion": "Buenos Aires, Argentina",
-  "email": "fernandezmalejo@email.com",
+  "titulo": { "es": "Desarrollador Web", "en": "Web Developer" },
+  "subtitulo": { "es": "Creo experiencias digitales únicas y funcionales", "en": "I create unique and functional digital experiences" },
+  "ubicacion": "Villa Bosch, Argentina",
+  "email": "fernandezmalejo@gmail.com",
   "telefono": "+54 11 2523-7915",
-  "bio": "Soy un desarrollador web apasionado por crear soluciones digitales que combinan diseño atractivo con funcionalidad robusta. Me especializo en tecnologías modernas como Vue.js, React y Node.js. Siempre busco aprender nuevas herramientas y mejorar mis habilidades para entregar productos de alta calidad.",
-  "aspiraciones": "Mi objetivo es seguir creciendo como profesional, trabajando en proyectos desafiantes que me permitan expandir mis conocimientos. Aspiro a formar parte de equipos innovadores donde pueda aportar mi creatividad y experiencia técnica.",
+  "bio": { "es": "Deseo crecer profesionalmente y desarrollarme en la programación web full-stack y como analista en infraestructura. Enfrentarme a nuevos desafíos y adquirir herramientas.", "en": "I want to grow professionally and develop my skills in full-stack web development and infrastructure analysis. I thrive on facing new challenges and acquiring new tools." },
+  "aspiraciones": { "es": "Mi objetivo es seguir creciendo como profesional, trabajando en proyectos desafiantes que me permitan expandir mis conocimientos. Aspiro a formar parte de equipos innovadores donde pueda aportar mi creatividad y experiencia técnica.", "en": "My goal is to keep growing as a professional, working on challenging projects that expand my knowledge. I aspire to be part of innovative teams where I can contribute my creativity and technical experience." },
   "experiencia": [
     {
-      "empresa": "Empresa Ejemplo",
-      "puesto": "Desarrollador Frontend",
+      "empresa": "Freelance",
+      "puesto": { "es": "Desarrollador Web", "en": "Web Developer" },
+      "fechaInicio": "2026-02",
+      "fechaFin": "Actualidad",
+      "ubicacion": { "es": "Remoto", "en": "Remote" },
+      "descripcion": { "es": "Desarrollo de sitios web personalizados para clientes, incluyendo diseño, implementación y mantenimiento.", "en": "Development of custom websites for clients, including design, implementation and maintenance." }
+    },
+    {
+      "empresa": "BINIT",
+      "puesto": { "es": "Analista en Infraestructura Jr.", "en": "Jr. Infrastructure Analyst" },
       "fechaInicio": "2024-01",
       "fechaFin": "Actualidad",
-      "descripcion": "Desarrollo de aplicaciones web con Vue.js y React"
+      "ubicacion": "Vicente López",
+      "descripcion": { "es": "Azure DevOps, Portal Azure, Portal 365, Herramienta de tickets & monitoreo, Administración de servidores, Automatización de procesos, ABM de usuarios", "en": "Azure DevOps, Azure Portal, Portal 365, Ticketing & monitoring tools, Server administration, Process automation, User management" }
+    },
+    {
+      "empresa": "ITALNET",
+      "puesto": { "es": "Pasante como asistente técnico", "en": "Technical Assistant Intern" },
+      "fechaInicio": "2023-08",
+      "fechaFin": "2023-12",
+      "ubicacion": "San Martín",
+      "descripcion": { "es": "Trabajos informáticos y de electricidad", "en": "IT and electrical work" }
+    },
+    {
+      "empresa": "Instituto Leonardo Murialdo",
+      "puesto": { "es": "Pasantía en los laboratorios del instituto", "en": "Lab Internship" },
+      "fechaInicio": "2023-04",
+      "fechaFin": "2023-08",
+      "ubicacion": "Villa Bosch",
+      "descripcion": { "es": "Reparación de computadoras, clonación de computadoras, solución de problemas, etc.", "en": "Computer repair, computer cloning, troubleshooting, etc." }
     }
   ],
-  "habilidades": [
-    "JavaScript",
-    "Vue.js",
-    "React",
-    "Node.js",
-    "HTML5/CSS3",
-    "Git",
-    "SQL",
-    "MongoDB"
+  "educacion": [
+    {
+      "institucion": "Escuela Da Vinci",
+      "titulo": { "es": "Diseño y Desarrollo Web", "en": "Web Design and Development" },
+      "fechaInicio": "2024",
+      "fechaFin": "Actualidad"
+    },
+    {
+      "institucion": "Instituto Leonardo Murialdo",
+      "titulo": { "es": "Técnico en Informática", "en": "IT Technician" },
+      "fechaInicio": "2020",
+      "fechaFin": "2023"
+    }
+  ],
+  "cursos": [
+    {
+      "nombre": { "es": "Desarrollo Web - Front End", "en": "Web Development - Front End" },
+      "institucion": "CoderHouse"
+    },
+    {
+      "nombre": "CS50's Web Programming with Python and JavaScript",
+      "institucion": "Harvard"
+    }
+  ],
+  "habilidades": {
+    "desarrollo": ["HTML", "CSS", "SASS", "JavaScript", "GitHub", "PHP/SQL", "Python", "APIs (Postman)"],
+    "infraestructura": {
+      "es": ["ABM", "Azure / DevOps", "Portal 365", "Herramienta de tickets", "Zabbix", "Servidores", "Administración de SQL", "Automatización de procesos (PowerShell)", "Documentación de procesos y proyectos"],
+      "en": ["User Management", "Azure / DevOps", "Portal 365", "Ticketing tools", "Zabbix", "Servers", "SQL Administration", "Process automation (PowerShell)", "Process & project documentation"]
+    }
+  },
+  "idiomas": [
+    { "idioma": { "es": "Español", "en": "Spanish" }, "nivel": { "es": "Nativo", "en": "Native" } },
+    { "idioma": { "es": "Inglés", "en": "English" }, "nivel": { "es": "Intermedio", "en": "Intermediate" } }
   ],
   "redes": {
     "github": "https://github.com/AlejoMFernandez",

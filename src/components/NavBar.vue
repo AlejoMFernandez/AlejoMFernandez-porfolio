@@ -4,9 +4,11 @@ import { RouterLink, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
 import { toggleLanguage as switchLang } from '../locales'
+import { useLocalized } from '../composables/useLocalized.js'
 import personal from '../data/personal.json'
 
 const { t, locale } = useI18n()
+const { l } = useLocalized()
 
 const handleToggleLanguage = () => {
   switchLang()
@@ -76,17 +78,35 @@ onUnmounted(() => {
       <!-- Logo / Name - Left side -->
       <RouterLink to="/" class="nav-brand" @click="closeMenu">
         <span class="brand-name">{{ personal.nombre }} {{ personal.apellido }}</span>
-        <span class="brand-title">{{ personal.titulo }}</span>
+        <span class="brand-title">{{ l(personal.titulo) }}</span>
       </RouterLink>
 
       <!-- Center Navigation - Desktop -->
       <div class="nav-center desktop">
         <div class="nav-links-wrapper">
-          <RouterLink to="/" class="nav-link" :class="{ active: route.path === '/' }">
+          <RouterLink 
+            v-magnetic="{ strength: 0.3, scale: 1.05 }"
+            to="/" 
+            class="nav-link magnetic-btn" 
+            :class="{ active: route.path === '/' }"
+          >
             {{ t('nav.work') }}
           </RouterLink>
-          <RouterLink to="/info" class="nav-link" :class="{ active: route.path === '/info' }">
+          <RouterLink 
+            v-magnetic="{ strength: 0.3, scale: 1.05 }"
+            to="/info" 
+            class="nav-link magnetic-btn" 
+            :class="{ active: route.path === '/info' }"
+          >
             {{ t('nav.info') }}
+          </RouterLink>
+          <RouterLink 
+            v-magnetic="{ strength: 0.3, scale: 1.05 }"
+            to="/contacto" 
+            class="nav-link magnetic-btn" 
+            :class="{ active: route.path === '/contacto' }"
+          >
+            {{ t('nav.contact') }}
           </RouterLink>
         </div>
       </div>
@@ -94,7 +114,12 @@ onUnmounted(() => {
       <!-- Right side - Language + Menu -->
       <div class="nav-right">
         <!-- Language Toggle -->
-        <button class="lang-toggle" @click="handleToggleLanguage" :title="locale === 'es' ? 'Switch to English' : 'Cambiar a Español'">
+        <button 
+          v-magnetic="{ strength: 0.25, scale: 1.08 }"
+          class="lang-toggle magnetic-btn" 
+          @click="handleToggleLanguage" 
+          :title="locale === 'es' ? 'Switch to English' : 'Cambiar a Español'"
+        >
           <span class="lang-option" :class="{ active: locale === 'es' }">ES</span>
           <span class="lang-divider">/</span>
           <span class="lang-option" :class="{ active: locale === 'en' }">EN</span>
@@ -132,6 +157,14 @@ onUnmounted(() => {
           >
             <span class="menu-link-number">02</span>
             <span class="menu-link-text">{{ t('nav.info') }}</span>
+          </RouterLink>
+          <RouterLink 
+            to="/contacto" 
+            class="menu-link" 
+            @click="closeMenu"
+          >
+            <span class="menu-link-number">03</span>
+            <span class="menu-link-text">{{ t('nav.contact') }}</span>
           </RouterLink>
         </nav>
 

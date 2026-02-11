@@ -1,110 +1,221 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { RouterLink } from 'vue-router'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLocalized } from '../composables/useLocalized.js'
 import personal from '../data/personal.json'
 import Footer from '../components/Footer.vue'
 
+gsap.registerPlugin(ScrollTrigger)
+
 const { t, locale } = useI18n()
+const { l } = useLocalized()
 
 const formatDate = (dateStr) => {
   if (!dateStr) return ''
   if (dateStr === 'Actualidad' || dateStr === 'Present') {
     return t('common.present')
   }
+  // Si solo es un año
+  if (dateStr.length === 4) return dateStr
+  
   const [year, month] = dateStr.split('-')
-  const monthsEs = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-  const monthsEn = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  const monthsEs = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+  const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const months = locale.value === 'es' ? monthsEs : monthsEn
   return `${months[parseInt(month) - 1]} ${year}`
 }
 
 onMounted(() => {
+  // Hero animation
   gsap.from('.info-hero-content > *', {
-    y: 60,
+    y: 80,
     opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
+    duration: 1,
+    stagger: 0.12,
     ease: 'power3.out'
   })
 
-  gsap.from('.info-section', {
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power3.out',
-    delay: 0.4
+  // Reveal animations on scroll
+  gsap.utils.toArray('.reveal-section').forEach((section) => {
+    gsap.from(section, {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      y: 60,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    })
   })
+
+  // Parallax images
+  gsap.utils.toArray('.parallax-image').forEach((img) => {
+    gsap.to(img, {
+      scrollTrigger: {
+        trigger: img,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1
+      },
+      y: -50,
+      ease: 'none'
+    })
+  })
+
+  // Text reveal with stagger
+  gsap.utils.toArray('.stagger-reveal').forEach((container) => {
+    gsap.from(container.children, {
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 85%'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power3.out'
+    })
+  })
+})
+
+onUnmounted(() => {
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill())
 })
 </script>
 
 <template>
   <div class="info-view">
-    <!-- Hero Section -->
+    <!-- Hero Section - Large name -->
     <section class="info-hero">
       <div class="info-hero-content">
-        <div class="profile-image-container">
-          <div class="profile-image">
-            <img :src="personal.imagenes.perfil" :alt="personal.nombre" />
-          </div>
+        <h1 class="hero-name">
+          <span class="name-line">{{ personal.nombre }}</span>
+          <span class="name-line">{{ personal.apellido }}</span>
+        </h1>
+        <div class="hero-meta">
+          <span class="meta-item role">{{ personal.titulo }}</span>
+          <span class="meta-divider">—</span>
+          <span class="meta-item location">{{ personal.ubicacion }}</span>
         </div>
-        
-        <h1 class="info-title">{{ personal.nombre }} {{ personal.apellido }}</h1>
-        <p class="info-role">{{ personal.titulo }}</p>
-        <p class="info-location">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-          {{ personal.ubicacion }}
-        </p>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section class="info-section">
+    <!-- About Section with Image -->
+    <section class="content-section">
       <div class="section-container">
-        <div class="section-grid">
-          <div class="section-header-side">
-            <h2 class="section-label">{{ t('info.aboutMe') }}</h2>
+        <div class="about-grid reveal-section">
+          <div class="about-text">
+            <h2 class="section-eyebrow">{{ t('info.aboutMe') }}</h2>
+            <p class="large-text">{{ l(personal.bio) }}</p>
           </div>
-          <div class="section-content">
-            <p class="bio-text">{{ personal.bio }}</p>
+          <div class="about-image">
+            <div class="image-wrapper parallax-image">
+              <img :src="personal.imagenes.perfil" :alt="personal.nombre" />
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Aspiraciones Section -->
-    <section class="info-section alt-bg">
+    <!-- Gallery Section - Perry Wang style -->
+    <section class="content-section gallery-section" v-if="personal.imagenes.galeria?.length">
       <div class="section-container">
-        <div class="section-grid">
-          <div class="section-header-side">
-            <h2 class="section-label">{{ t('info.aspirations') }}</h2>
-          </div>
-          <div class="section-content">
-            <p class="bio-text">{{ personal.aspiraciones }}</p>
+        <h2 class="section-eyebrow reveal-section">{{ t('info.gallery') }}</h2>
+        <div class="gallery-grid reveal-section">
+          <div 
+            v-for="(foto, index) in personal.imagenes.galeria" 
+            :key="index"
+            class="gallery-item"
+            :class="`gallery-item-${index + 1}`"
+          >
+            <div class="image-wrapper parallax-image">
+              <img :src="foto" :alt="`Gallery photo ${index + 1}`" />
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="info-section gallery-section" v-if="personal.imagenes.galeria?.length">
+    <!-- Aspirations -->
+    <section class="content-section alt-bg">
       <div class="section-container">
-        <div class="section-grid">
-          <div class="section-header-side">
-            <h2 class="section-label">{{ t('info.gallery') }}</h2>
+        <div class="about-grid reverse reveal-section">
+          <div class="about-image">
+            <div class="image-wrapper parallax-image" v-if="personal.imagenes.galeria?.[0]">
+              <img :src="personal.imagenes.galeria[0]" alt="Foto personal" />
+            </div>
           </div>
-          <div class="section-content">
-            <div class="image-gallery">
+          <div class="about-text">
+            <h2 class="section-eyebrow">{{ t('info.aspirations') }}</h2>
+            <p class="large-text">{{ l(personal.aspiraciones) }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="content-section">
+      <div class="section-container">
+        <div class="experience-section reveal-section">
+          <h2 class="section-title-large">{{ t('info.experience') }}</h2>
+          <div class="experience-timeline stagger-reveal">
+            <div 
+              v-for="(exp, index) in personal.experiencia" 
+              :key="index"
+              class="timeline-item"
+            >
+              <div class="timeline-date">
+                <span class="date-range">
+                  {{ formatDate(exp.fechaInicio) }} — {{ formatDate(exp.fechaFin) }}
+                </span>
+                <span class="date-location" v-if="exp.ubicacion">{{ l(exp.ubicacion) }}</span>
+              </div>
+              <div class="timeline-content">
+                <h3 class="timeline-company">{{ exp.empresa }}</h3>
+                <p class="timeline-role">{{ l(exp.puesto) }}</p>
+                <p class="timeline-description">{{ l(exp.descripcion) }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="content-section alt-bg">
+      <div class="section-container">
+        <div class="two-column-grid reveal-section">
+          <!-- Education -->
+          <div class="column">
+            <h2 class="section-title-medium">{{ t('info.education') }}</h2>
+            <div class="stagger-reveal">
               <div 
-                v-for="(img, index) in personal.imagenes.galeria" 
+                v-for="(edu, index) in personal.educacion" 
                 :key="index"
-                class="gallery-image"
+                class="edu-item"
               >
-                <img :src="img" :alt="`Foto ${index + 1}`" />
+                <span class="edu-date">{{ edu.fechaInicio }} — {{ edu.fechaFin === 'Actualidad' ? t('common.present') : edu.fechaFin }}</span>
+                <h4 class="edu-title">{{ l(edu.titulo) }}</h4>
+                <p class="edu-institution">{{ edu.institucion }}</p>
+              </div>
+            </div>
+          </div>
+          <!-- Courses -->
+          <div class="column">
+            <h2 class="section-title-medium">{{ t('info.courses') }}</h2>
+            <div class="stagger-reveal">
+              <div 
+                v-for="(curso, index) in personal.cursos" 
+                :key="index"
+                class="edu-item"
+              >
+                <h4 class="edu-title">{{ l(curso.nombre) }}</h4>
+                <p class="edu-institution">{{ curso.institucion }}</p>
               </div>
             </div>
           </div>
@@ -113,45 +224,27 @@ onMounted(() => {
     </section>
 
     <!-- Skills Section -->
-    <section class="info-section">
+    <section class="content-section">
       <div class="section-container">
-        <div class="section-grid">
-          <div class="section-header-side">
-            <h2 class="section-label">{{ t('info.skills') }}</h2>
-          </div>
-          <div class="section-content">
-            <div class="skills-grid">
-              <span v-for="skill in personal.habilidades" :key="skill" class="skill-tag">
-                {{ skill }}
-              </span>
+        <div class="skills-section reveal-section">
+          <h2 class="section-title-large">{{ t('info.skills') }}</h2>
+          <div class="skills-categories stagger-reveal">
+            <!-- Desarrollo -->
+            <div class="skill-category">
+              <h3 class="category-title">{{ t('info.skillsDev') }}</h3>
+              <div class="skills-list">
+                <span v-for="skill in personal.habilidades.desarrollo" :key="skill" class="skill-tag">
+                  {{ skill }}
+                </span>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section class="info-section alt-bg" v-if="personal.experiencia?.length">
-      <div class="section-container">
-        <div class="section-grid">
-          <div class="section-header-side">
-            <h2 class="section-label">{{ t('info.experience') }}</h2>
-          </div>
-          <div class="section-content">
-            <div class="experience-list">
-              <div 
-                v-for="(exp, index) in personal.experiencia" 
-                :key="index"
-                class="experience-item"
-              >
-                <div class="exp-header">
-                  <h3 class="exp-company">{{ exp.empresa }}</h3>
-                  <span class="exp-dates">
-                    {{ formatDate(exp.fechaInicio) }} — {{ formatDate(exp.fechaFin) }}
-                  </span>
-                </div>
-                <p class="exp-role">{{ exp.puesto }}</p>
-                <p class="exp-description">{{ exp.descripcion }}</p>
+            <!-- Infraestructura -->
+            <div class="skill-category">
+              <h3 class="category-title">{{ t('info.skillsInfra') }}</h3>
+              <div class="skills-list">
+                <span v-for="skill in l(personal.habilidades.infraestructura)" :key="skill" class="skill-tag">
+                  {{ skill }}
+                </span>
               </div>
             </div>
           </div>
@@ -159,74 +252,28 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="info-section contact-section">
+    <!-- Contact CTA -->
+    <section class="contact-section">
       <div class="section-container">
-        <div class="contact-content">
+        <div class="contact-content reveal-section">
           <h2 class="contact-title">{{ t('info.contact') }}</h2>
           <p class="contact-subtitle">{{ t('info.contactSubtitle') }}</p>
           
-          <div class="contact-links">
-            <a :href="`mailto:${personal.email}`" class="contact-link primary">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-              {{ personal.email }}
-            </a>
-          </div>
-
-          <div class="social-links">
-            <a 
-              v-if="personal.redes.github"
-              :href="personal.redes.github" 
-              target="_blank"
-              class="social-link"
-              title="GitHub"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
-            <a 
-              v-if="personal.redes.linkedin"
-              :href="personal.redes.linkedin" 
-              target="_blank"
-              class="social-link"
-              title="LinkedIn"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a 
-              v-if="personal.redes.twitter"
-              :href="personal.redes.twitter" 
-              target="_blank"
-              class="social-link"
-              title="Twitter"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <a 
-              v-if="personal.redes.instagram"
-              :href="personal.redes.instagram" 
-              target="_blank"
-              class="social-link"
-              title="Instagram"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </a>
-          </div>
+          <RouterLink 
+            v-magnetic="{ strength: 0.2, scale: 1.03 }"
+            to="/contacto" 
+            class="contact-cta magnetic-btn"
+          >
+            {{ t('nav.contact') }}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"/>
+              <polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </RouterLink>
         </div>
       </div>
     </section>
 
-    <Footer />
   </div>
 </template>
 
@@ -235,121 +282,276 @@ onMounted(() => {
   min-height: 100vh;
 }
 
+/* Hero */
 .info-hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 160px 24px 80px;
-  text-align: center;
 }
 
 .info-hero-content {
-  max-width: 600px;
-  margin: 0 auto;
+  text-align: center;
 }
 
-.profile-image-container {
+.hero-name {
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   margin-bottom: 32px;
 }
 
-.profile-image {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto;
-  background: var(--bg-secondary);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+.name-line {
+  display: block;
 }
 
-.profile-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hero-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
 }
 
-.info-title {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 700;
-  margin-bottom: 12px;
-  letter-spacing: -0.03em;
-}
-
-.info-role {
-  font-size: 1.25rem;
+.meta-item.role {
   color: var(--accent-color);
   font-weight: 500;
-  margin-bottom: 16px;
 }
 
-.info-location {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-tertiary);
-  font-size: 1rem;
+.meta-divider {
+  opacity: 0.4;
 }
 
-/* Sections */
-.info-section {
-  padding: 80px 24px;
+/* Content Sections */
+.content-section {
+  padding: 100px 24px;
 }
 
-.info-section.alt-bg {
+.content-section.alt-bg {
   background: var(--bg-secondary);
 }
 
 .section-container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.section-grid {
+/* About Grid - Perry Wang style */
+.about-grid {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 60px;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
 }
 
-.section-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-tertiary);
-  position: sticky;
-  top: 100px;
+.about-grid.reverse {
+  direction: rtl;
 }
 
-.bio-text {
-  font-size: 1.25rem;
-  line-height: 1.8;
-  color: var(--text-secondary);
+.about-grid.reverse > * {
+  direction: ltr;
 }
 
-/* Gallery */
-.image-gallery {
+/* Gallery Grid - Perry Wang style */
+.gallery-section {
+  padding-top: 40px;
+}
+
+.gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  margin-top: 32px;
 }
 
-.gallery-image {
-  aspect-ratio: 1;
-  border-radius: 16px;
+.gallery-item {
   overflow: hidden;
+  border-radius: 16px;
   background: var(--bg-tertiary);
 }
 
-.gallery-image img {
+.gallery-item-1 {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+}
+
+.gallery-item-2 {
+  aspect-ratio: 3 / 4;
+}
+
+.gallery-item-3 {
+  aspect-ratio: 3 / 4;
+}
+
+.gallery-item .image-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.gallery-item .image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.gallery-image:hover img {
-  transform: scale(1.05);
+.gallery-item:hover .image-wrapper img {
+  transform: scale(1.03);
+}
+
+.section-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-color);
+  margin-bottom: 24px;
+}
+
+.large-text {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.image-wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--bg-tertiary);
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Section Titles */
+.section-title-large {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 60px;
+}
+
+.section-title-medium {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+
+/* Experience Timeline */
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.timeline-date {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date-range {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.date-location {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.timeline-company {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.timeline-role {
+  font-size: 1.1rem;
+  color: var(--accent-color);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.timeline-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Two Column Grid */
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.edu-item {
+  margin-bottom: 32px;
+}
+
+.edu-item:last-child {
+  margin-bottom: 0;
+}
+
+.edu-date {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.edu-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.edu-institution {
+  color: var(--accent-color);
+  font-weight: 500;
 }
 
 /* Skills */
-.skills-grid {
+.skills-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.category-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.skills-list {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -357,12 +559,13 @@ onMounted(() => {
 
 .skill-tag {
   background: var(--bg-secondary);
-  padding: 12px 20px;
+  padding: 12px 24px;
   border-radius: 50px;
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
 }
 
 .alt-bg .skill-tag {
@@ -372,160 +575,158 @@ onMounted(() => {
 .skill-tag:hover {
   background: var(--accent-color);
   color: white;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
-/* Experience */
-.experience-list {
+/* Languages */
+.languages-grid {
+  display: flex;
+  gap: 48px;
+}
+
+.language-item {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 4px;
 }
 
-.experience-item {
-  padding-left: 24px;
-  border-left: 2px solid var(--accent-color);
-}
-
-.exp-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.exp-company {
+.language-name {
   font-size: 1.25rem;
   font-weight: 600;
 }
 
-.exp-dates {
+.language-level {
   color: var(--text-tertiary);
-  font-size: 0.9rem;
-}
-
-.exp-role {
-  color: var(--accent-color);
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.exp-description {
-  color: var(--text-secondary);
-  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 /* Contact */
 .contact-section {
-  background: linear-gradient(135deg, var(--accent-color) 0%, #8b5cf6 100%);
-  color: white;
+  padding: 120px 24px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
 }
 
 .contact-content {
   text-align: center;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
 .contact-title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 700;
+  letter-spacing: -0.03em;
   margin-bottom: 16px;
 }
 
 .contact-subtitle {
-  font-size: 1.125rem;
-  opacity: 0.9;
-  margin-bottom: 40px;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  margin-bottom: 48px;
 }
 
-.contact-links {
-  margin-bottom: 32px;
-}
-
-.contact-link {
+.contact-cta {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 28px;
-  border-radius: 50px;
-  text-decoration: none;
+  font-size: 1.25rem;
   font-weight: 500;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.contact-link.primary {
-  background: white;
-  color: var(--accent-color);
-}
-
-.contact-link.primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.social-link {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  color: inherit;
   text-decoration: none;
-  transition: all 0.3s ease;
+  padding: 18px 36px;
+  border: 2px solid currentColor;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.social-link:hover {
-  background: rgba(255, 255, 255, 0.25);
+.contact-cta:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
   transform: translateY(-3px);
 }
 
-@media (max-width: 768px) {
+.contact-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.contact-cta:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-grid.reverse {
+    direction: ltr;
+  }
+
+  .about-grid .about-image {
+    order: -1;
+  }
+
+  .image-wrapper {
+    aspect-ratio: 16/10;
+    max-height: 400px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .two-column-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-item-1 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
   .info-hero {
     padding: 120px 20px 60px;
+    min-height: auto;
   }
 
-  .profile-image {
-    width: 140px;
-    height: 140px;
+  .hero-meta {
+    flex-direction: column;
+    gap: 8px;
   }
 
-  .info-section {
+  .meta-divider {
+    display: none;
+  }
+
+  .content-section {
     padding: 60px 20px;
   }
 
-  .section-grid {
-    grid-template-columns: 1fr;
+  .contact-section {
+    padding: 80px 20px;
+  }
+
+  .languages-grid {
+    flex-direction: column;
     gap: 24px;
   }
 
-  .section-label {
-    position: static;
+  .gallery-grid {
+    grid-template-columns: 1fr;
   }
 
-  .bio-text {
-    font-size: 1.1rem;
-  }
-
-  .exp-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .contact-link {
-    width: 100%;
-    justify-content: center;
+  .gallery-item-1 {
+    grid-column: span 1;
   }
 }
 </style>

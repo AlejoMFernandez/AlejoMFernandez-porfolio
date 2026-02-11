@@ -10,8 +10,8 @@
   --text-secondary: #515154;
   --text-tertiary: #86868b;
   
-  --accent-color: #6366f1;
-  --accent-hover: #4f46e5;
+  --accent-color: #f97316;
+  --accent-hover: #ea580c;
   
   --border-color: rgba(0, 0, 0, 0.08);
   
@@ -146,6 +146,13 @@ ul, ol {
 :focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+/* ===== Magnetic Buttons ===== */
+.magnetic-btn {
+  display: inline-block;
+  will-change: transform;
+  transition: color 0.3s ease;
 }
 
 /* ===== Loading Animation ===== */

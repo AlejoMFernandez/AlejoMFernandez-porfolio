@@ -1,13 +1,13 @@
 [
   {
     "id": "goaldemy",
-    "nombre": "Goaldemy",
-    "descripcionCorta": "La academia digital de fútbol más divertida de todas.",
-    "descripcionLarga": "Goaldemy es una aplicación web que transforma el cumplimiento de metas en una experiencia similar a la de un videojuego. Combina planificación con mecánicas de juego (misiones, XP, logros y niveles) para volver la productividad visual y entretenida. Incluye estadísticas, recompensas y recordatorios.",
+    "nombre": "GOALDEMY",
+    "descripcionCorta": { "es": "La academia digital de fútbol más divertida de todas.", "en": "The most fun digital football academy ever." },
+    "descripcionLarga": { "es": "Goaldemy es una aplicación web que transforma el cumplimiento de metas en una experiencia similar a la de un videojuego. Combina planificación con mecánicas de juego (misiones, XP, logros y niveles) para volver la productividad visual y entretenida. Incluye estadísticas, recompensas y recordatorios.", "en": "Goaldemy is a web application that transforms goal achievement into a video game-like experience. It combines planning with game mechanics (missions, XP, achievements, and levels) to make productivity visual and entertaining. Includes statistics, rewards, and reminders." },
     "fechaInicio": "2025-09",
-    "fechaFin": null,
+    "fechaFin": "Actualidad",
     "cliente": null,
-    "rol": "Desarrollador Full-Stack",
+    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer" },
     "tecnologias": ["Vite", "Vue.js", "Tailwind CSS", "JavaScript", "Supabase", "MongoDB"],
     "linkDemo": "https://goaldemy.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/Goaldemy",
@@ -16,28 +16,24 @@
     "isotipo": "/images/projects/goaldemyisotipo.png",
     "imagenes": [],
     "video": null,
-    "colorFondo": "#050d20",
+    "colorFondo": "linear-gradient(135deg, #03081A 0%, #162035 100%)",
     "colorTexto": "#ffffff",
-    "features": [
-      "Sistema de misiones y XP",
-      "Logros desbloqueables",
-      "Sistema de niveles",
-      "Estadísticas de progreso",
-      "Recordatorios personalizados",
-      "Gamificación completa"
-    ],
+    "features": {
+      "es": ["Sistema de misiones y XP", "Logros desbloqueables", "Sistema de niveles", "Estadísticas de progreso", "Recordatorios personalizados", "Gamificación completa"],
+      "en": ["Mission and XP system", "Unlockable achievements", "Level system", "Progress statistics", "Custom reminders", "Full gamification"]
+    },
     "destacado": true,
     "orden": 1
   },
   {
     "id": "franza",
-    "nombre": "Franza",
-    "descripcionCorta": "Tu constructora de confianza",
-    "descripcionLarga": "Sitio moderno para una constructora con sistema automatizado que genera páginas índice y detalle de obras a partir de carpetas de un banco de fotos estandarizado. Facilita la actualización del portfolio y mantiene consistencia visual.",
+    "nombre": "FRANZA",
+    "descripcionCorta": { "es": "Tu constructora de confianza", "en": "Your trusted construction company" },
+    "descripcionLarga": { "es": "Sitio moderno para una constructora con sistema automatizado que genera páginas índice y detalle de obras a partir de carpetas de un banco de fotos estandarizado. Facilita la actualización del portfolio y mantiene consistencia visual.", "en": "Modern website for a construction company with an automated system that generates index and project detail pages from standardized photo bank folders. Makes portfolio updates easy and maintains visual consistency." },
     "fechaInicio": "2025-03",
     "fechaFin": "2025-05",
     "cliente": "Franza Constructora",
-    "rol": "Desarrollador Full-Stack",
+    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer" },
     "tecnologias": ["PHP", "Bootstrap", "CSS", "JavaScript", "MySQL"],
     "linkDemo": "https://Franza.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/Franza",
@@ -47,25 +43,22 @@
     "video": null,
     "colorFondo": "#b38839",
     "colorTexto": "#ffffff",
-    "features": [
-      "Generación automática de páginas",
-      "Sistema de banco de fotos",
-      "Portfolio de obras dinámico",
-      "Panel de administración",
-      "Diseño responsive"
-    ],
+    "features": {
+      "es": ["Generación automática de páginas", "Sistema de banco de fotos", "Portfolio de obras dinámico", "Panel de administración", "Diseño responsive"],
+      "en": ["Automatic page generation", "Photo bank system", "Dynamic project portfolio", "Admin panel", "Responsive design"]
+    },
     "destacado": true,
     "orden": 2
   },
   {
     "id": "champions-dle",
     "nombre": "Champions.dle",
-    "descripcionCorta": "¡Jugá aprendiendo de la Champions 2024!",
-    "descripcionLarga": "PWA centrada en la UEFA Champions League con exploración de equipos y jugadores históricos y un juego diario de adivinanzas estilo futbol-11.com. Interfaz mobile-friendly, instalable, con favoritos y notificaciones (en desarrollo).",
+    "descripcionCorta": { "es": "¡Jugá aprendiendo de la Champions 2024!", "en": "Play and learn about the 2024 Champions League!" },
+    "descripcionLarga": { "es": "PWA centrada en la UEFA Champions League con exploración de equipos y jugadores históricos y un juego diario de adivinanzas estilo futbol-11.com. Interfaz mobile-friendly, instalable, con favoritos y notificaciones (en desarrollo).", "en": "PWA focused on the UEFA Champions League featuring team and historic player exploration plus a daily guessing game inspired by futbol-11.com. Mobile-friendly interface, installable, with favorites and notifications (in development)." },
     "fechaInicio": "2025-05",
     "fechaFin": "2025-06",
     "cliente": null,
-    "rol": "Desarrollador Frontend",
+    "rol": { "es": "Desarrollador Frontend", "en": "Frontend Developer" },
     "tecnologias": ["PWA", "JavaScript", "API REST", "CSS"],
     "linkDemo": "https://championsdle.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/CHAMPIONS.dle",
@@ -75,26 +68,22 @@
     "video": null,
     "colorFondo": "#1a2636",
     "colorTexto": "#ffffff",
-    "features": [
-      "Progressive Web App",
-      "Juego diario de adivinanzas",
-      "Exploración de equipos",
-      "Base de datos de jugadores",
-      "Instalable en móvil",
-      "Diseño mobile-first"
-    ],
+    "features": {
+      "es": ["Progressive Web App", "Juego diario de adivinanzas", "Exploración de equipos", "Base de datos de jugadores", "Instalable en móvil", "Diseño mobile-first"],
+      "en": ["Progressive Web App", "Daily guessing game", "Team exploration", "Player database", "Mobile installable", "Mobile-first design"]
+    },
     "destacado": false,
     "orden": 6
   },
   {
     "id": "italnet",
-    "nombre": "ITALNET",
-    "descripcionCorta": "Soluciones informáticas y electrónicas.",
-    "descripcionLarga": "Empresa dedicada a soluciones tecnológicas integrales. Sitio informativo claro y ligero para comunicar servicios y presencia de marca.",
+    "nombre": "Italnet",
+    "descripcionCorta": { "es": "Soluciones informáticas y electrónicas.", "en": "IT and electronic solutions." },
+    "descripcionLarga": { "es": "Empresa dedicada a soluciones tecnológicas integrales. Sitio informativo claro y ligero para comunicar servicios y presencia de marca.", "en": "Company dedicated to comprehensive technology solutions. Clean, lightweight informational site to communicate services and brand presence." },
     "fechaInicio": "2024-04",
     "fechaFin": "2024-05",
     "cliente": "ITALNET",
-    "rol": "Desarrollador Web",
+    "rol": { "es": "Desarrollador Web", "en": "Web Developer" },
     "tecnologias": ["HTML", "CSS"],
     "linkDemo": "https://italnetweb.com.ar/",
     "linkGithub": null,
@@ -104,24 +93,22 @@
     "video": null,
     "colorFondo": "#0b0c11",
     "colorTexto": "#ffffff",
-    "features": [
-      "Diseño limpio y profesional",
-      "Información de servicios",
-      "Formulario de contacto",
-      "Responsive design"
-    ],
+    "features": {
+      "es": ["Diseño limpio y profesional", "Información de servicios", "Formulario de contacto", "Responsive design"],
+      "en": ["Clean and professional design", "Service information", "Contact form", "Responsive design"]
+    },
     "destacado": false,
     "orden": 4
   },
   {
     "id": "fenalix",
     "nombre": "FENALIX",
-    "descripcionCorta": "¡La mejor plataforma para tus series favoritas!",
-    "descripcionLarga": "Proyecto de Coderhouse orientado a front-end para una experiencia de streaming con UI impactante y usable. La visión evoluciona hacia una plataforma completa con back-end.",
+    "descripcionCorta": { "es": "¡La mejor plataforma para tus series favoritas!", "en": "The best platform for your favorite shows!" },
+    "descripcionLarga": { "es": "Proyecto de Coderhouse orientado a front-end para una experiencia de streaming con UI impactante y usable. La visión evoluciona hacia una plataforma completa con back-end.", "en": "Coderhouse front-end project for a streaming experience with striking and usable UI. The vision evolves toward a full platform with back-end." },
     "fechaInicio": "2023-10",
     "fechaFin": "2023-12",
     "cliente": "Proyecto Coderhouse",
-    "rol": "Desarrollador Frontend",
+    "rol": { "es": "Desarrollador Frontend", "en": "Frontend Developer" },
     "tecnologias": ["HTML", "SASS", "CSS"],
     "linkDemo": "https://fenalix.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/FENALIX",
@@ -131,24 +118,22 @@
     "video": null,
     "colorFondo": "#000000",
     "colorTexto": "#ffffff",
-    "features": [
-      "UI estilo streaming",
-      "Catálogo de series",
-      "Diseño impactante",
-      "Animaciones CSS"
-    ],
+    "features": {
+      "es": ["UI estilo streaming", "Catálogo de series", "Diseño impactante", "Animaciones CSS"],
+      "en": ["Streaming-style UI", "Series catalog", "Striking design", "CSS animations"]
+    },
     "destacado": false,
     "orden": 5
   },
   {
     "id": "hardlab",
     "nombre": "HARDLAB",
-    "descripcionCorta": "Inventario visual y dinámico de PCs por sectores.",
-    "descripcionLarga": "Proyecto que recolecta HW/SW de computadoras vía programa en Python, asigna cada equipo a una sección según su ubicación a partir de un JSON y lo persiste con clave MAC en SQL. Genera secciones dinámicas y vista agregada tipo 'computadora por área'.",
+    "descripcionCorta": { "es": "Inventario visual y dinámico de PCs por sectores.", "en": "Visual and dynamic PC inventory by sector." },
+    "descripcionLarga": { "es": "Proyecto que recolecta HW/SW de computadoras vía programa en Python, asigna cada equipo a una sección según su ubicación a partir de un JSON y lo persiste con clave MAC en SQL. Genera secciones dinámicas y vista agregada tipo 'computadora por área'.", "en": "Project that collects computer HW/SW via a Python program, assigns each machine to a section based on its location from a JSON file, and persists it with MAC key in SQL. Generates dynamic sections and an aggregated 'computer by area' view." },
     "fechaInicio": "2023-03",
     "fechaFin": "2023-11",
     "cliente": null,
-    "rol": "Desarrollador Full-Stack",
+    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer" },
     "tecnologias": ["JavaScript", "PHP", "SQL", "Python", "CSS", "JSON"],
     "linkDemo": "",
     "linkGithub": "https://github.com/AlejoMFernandez/HARDLAB",
@@ -158,14 +143,10 @@
     "video": null,
     "colorFondo": "#1A1A1A",
     "colorTexto": "#ffffff",
-    "features": [
-      "Recolección automática de HW/SW",
-      "Persistencia con clave MAC",
-      "Secciones dinámicas",
-      "Vista agregada por área",
-      "Script Python de inventario",
-      "Base de datos SQL"
-    ],
+    "features": {
+      "es": ["Recolección automática de HW/SW", "Persistencia con clave MAC", "Secciones dinámicas", "Vista agregada por área", "Script Python de inventario", "Base de datos SQL"],
+      "en": ["Automatic HW/SW collection", "MAC-key persistence", "Dynamic sections", "Aggregated area view", "Python inventory script", "SQL database"]
+    },
     "destacado": true,
     "orden": 3
   }

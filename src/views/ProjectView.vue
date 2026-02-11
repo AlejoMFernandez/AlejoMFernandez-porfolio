@@ -3,10 +3,12 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
+import { useLocalized } from '../composables/useLocalized.js'
 import projects from '../data/projects.json'
 import Footer from '../components/Footer.vue'
 
 const { t, locale } = useI18n()
+const { l } = useLocalized()
 const route = useRoute()
 const router = useRouter()
 
@@ -23,6 +25,9 @@ watch(project, (newProject) => {
 
 const formatDate = (dateStr) => {
   if (!dateStr) return ''
+  if (dateStr === 'Actualidad' || dateStr === 'Present') {
+    return t('common.present')
+  }
   const [year, month] = dateStr.split('-')
   const monthsEs = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
   const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -85,7 +90,7 @@ onMounted(() => {
     <!-- Hero del proyecto -->
     <section 
       class="project-hero" 
-      :style="{ backgroundColor: project.colorFondo }"
+      :style="{ background: project.colorFondo }"
     >
       <div class="hero-content">
         <h1 class="project-title" :style="{ color: project.colorTexto }">
@@ -93,7 +98,7 @@ onMounted(() => {
         </h1>
         
         <p class="project-tagline" :style="{ color: project.colorTexto }">
-          {{ project.descripcionCorta }}
+          {{ l(project.descripcionCorta) }}
         </p>
         
         <div class="project-meta" :style="{ color: project.colorTexto }">
@@ -101,7 +106,7 @@ onMounted(() => {
             {{ formatDate(project.fechaInicio) }} — {{ formatDate(project.fechaFin) }}
           </span>
           <span class="meta-divider">|</span>
-          <span class="meta-item">{{ project.rol }}</span>
+          <span class="meta-item">{{ l(project.rol) }}</span>
         </div>
       </div>
     </section>
@@ -114,7 +119,7 @@ onMounted(() => {
           <!-- Descripción -->
           <div class="content-block">
             <h2 class="block-title">{{ t('project.about') }}</h2>
-            <p class="description">{{ project.descripcionLarga }}</p>
+            <p class="description">{{ l(project.descripcionLarga) }}</p>
           </div>
 
           <!-- Imágenes -->
@@ -196,10 +201,10 @@ onMounted(() => {
           </div>
 
           <!-- Features -->
-          <div class="sidebar-block" v-if="project.features?.length">
+          <div class="sidebar-block" v-if="l(project.features)?.length">
             <h3 class="sidebar-title">{{ t('project.features') }}</h3>
             <ul class="features-list">
-              <li v-for="feature in project.features" :key="feature" class="feature-item">
+              <li v-for="feature in l(project.features)" :key="feature" class="feature-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
