@@ -431,6 +431,7 @@ onUnmounted(() => {
   .nav-container {
     display: flex;
     justify-content: space-between;
+    gap: 12px;
   }
 
   .nav-center.desktop {
@@ -446,11 +447,19 @@ onUnmounted(() => {
   }
 
   .brand-name {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .brand-title {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .nav-right {
+    flex-shrink: 0;
   }
 }
 </style>

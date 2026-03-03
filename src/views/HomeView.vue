@@ -44,7 +44,7 @@ onMounted(() => {
     duration: 0.8,
     ease: 'power3.out'
   }, '-=0.5')
-  .fromTo('.project-card', {
+  .fromTo('.project-row', {
     y: 80,
     opacity: 0
   }, {
@@ -77,18 +77,19 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Featured Projects Section -->
+    <!-- Projects Section -->
     <section ref="projectsRef" class="projects-section">
       <div class="section-header">
         <h2 class="section-title">{{ t('home.featuredTitle') }}</h2>
         <p class="section-subtitle">{{ t('home.featuredSubtitle') }}</p>
       </div>
       
-      <div class="projects-grid featured">
+      <div class="projects-list">
         <ProjectCard 
-          v-for="project in featuredProjects" 
+          v-for="(project, index) in featuredProjects" 
           :key="project.id" 
           :project="project"
+          :reverse="index % 2 !== 0"
           class="project-card"
         />
       </div>
@@ -100,11 +101,12 @@ onMounted(() => {
         <h2 class="section-title">{{ t('home.moreTitle') }}</h2>
       </div>
       
-      <div class="projects-grid">
+      <div class="projects-list">
         <ProjectCard 
-          v-for="project in otherProjects" 
+          v-for="(project, index) in otherProjects" 
           :key="project.id" 
           :project="project"
+          :reverse="index % 2 !== 0"
           class="project-card"
         />
       </div>
@@ -167,7 +169,7 @@ onMounted(() => {
 
 .projects-section {
   padding: 80px 24px;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -176,7 +178,7 @@ onMounted(() => {
 }
 
 .section-header {
-  margin-bottom: 28px;
+  margin-bottom: 48px;
 }
 
 .section-title {
@@ -191,15 +193,10 @@ onMounted(() => {
   color: var(--text-secondary);
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 20px;
-}
-
-.projects-grid.featured {
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 20px;
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }
 
 @media (max-width: 768px) {
@@ -221,10 +218,8 @@ onMounted(() => {
     padding: 60px 20px;
   }
 
-  .projects-grid,
-  .projects-grid.featured {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .projects-list {
+    gap: 48px;
   }
 }
 </style>
