@@ -22,6 +22,7 @@
       "es": ["Sistema de misiones y XP", "Logros desbloqueables", "Sistema de niveles", "Estadísticas de progreso", "Recordatorios personalizados", "Gamificación completa"],
       "en": ["Mission and XP system", "Unlockable achievements", "Level system", "Progress statistics", "Custom reminders", "Full gamification"]
     },
+    "tipo": "WEBAPP",
     "destacado": true,
     "orden": 1
   },
@@ -47,6 +48,7 @@
       "es": ["Generación automática de páginas", "Sistema de banco de fotos", "Portfolio de obras dinámico", "Panel de administración", "Diseño responsive"],
       "en": ["Automatic page generation", "Photo bank system", "Dynamic project portfolio", "Admin panel", "Responsive design"]
     },
+    "tipo": "ABM",
     "destacado": true,
     "orden": 2
   },
@@ -72,6 +74,7 @@
       "es": ["Progressive Web App", "Juego diario de adivinanzas", "Exploración de equipos", "Base de datos de jugadores", "Instalable en móvil", "Diseño mobile-first"],
       "en": ["Progressive Web App", "Daily guessing game", "Team exploration", "Player database", "Mobile installable", "Mobile-first design"]
     },
+    "tipo": "PWA",
     "destacado": false,
     "orden": 6
   },
@@ -97,6 +100,7 @@
       "es": ["Diseño limpio y profesional", "Información de servicios", "Formulario de contacto", "Responsive design"],
       "en": ["Clean and professional design", "Service information", "Contact form", "Responsive design"]
     },
+    "tipo": "LANDING",
     "destacado": false,
     "orden": 4
   },
@@ -122,6 +126,7 @@
       "es": ["UI estilo streaming", "Catálogo de series", "Diseño impactante", "Animaciones CSS"],
       "en": ["Streaming-style UI", "Series catalog", "Striking design", "CSS animations"]
     },
+    "tipo": "FRONTEND",
     "destacado": false,
     "orden": 5
   },
@@ -147,6 +152,7 @@
       "es": ["Recolección automática de HW/SW", "Persistencia con clave MAC", "Secciones dinámicas", "Vista agregada por área", "Script Python de inventario", "Base de datos SQL"],
       "en": ["Automatic HW/SW collection", "MAC-key persistence", "Dynamic sections", "Aggregated area view", "Python inventory script", "SQL database"]
     },
+    "tipo": "INTRANET",
     "destacado": true,
     "orden": 3
   }

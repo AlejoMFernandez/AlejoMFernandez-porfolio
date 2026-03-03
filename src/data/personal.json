@@ -8,6 +8,30 @@
   "telefono": "+54 11 2523-7915",
   "bio": { "es": "Deseo crecer profesionalmente y desarrollarme en la programación web full-stack y como analista en infraestructura. Enfrentarme a nuevos desafíos y adquirir herramientas.", "en": "I want to grow professionally and develop my skills in full-stack web development and infrastructure analysis. I thrive on facing new challenges and acquiring new tools." },
   "aspiraciones": { "es": "Mi objetivo es seguir creciendo como profesional, trabajando en proyectos desafiantes que me permitan expandir mis conocimientos. Aspiro a formar parte de equipos innovadores donde pueda aportar mi creatividad y experiencia técnica.", "en": "My goal is to keep growing as a professional, working on challenging projects that expand my knowledge. I aspire to be part of innovative teams where I can contribute my creativity and technical experience." },
+  "about": {
+    "whoAmI": { "es": "Soy Alejo, desarrollador web de Villa Bosch, Argentina. Me apasiona construir cosas en la web que se vean bien y funcionen todavía mejor.", "en": "I'm Alejo, a web developer from Villa Bosch, Argentina. I'm passionate about building things on the web that look great and work even better." },
+    "whereImFrom": { "es": "Soy del Gran Buenos Aires. Crecí en el conurbano bonaerense, rodeado del ritmo del fútbol argentino y de una cultura que me formó.", "en": "I'm from Greater Buenos Aires. I grew up in the suburbs surrounded by the rhythm of Argentine football and a culture that shaped who I am." },
+    "hobbies": { "es": "Me apasionan el fútbol y el piano. Cuando no estoy programando, estoy tocando algún tema o siguiendo el partido. También paso tiempo con mi pareja, que es gran parte de mi vida cotidiana.", "en": "I'm passionate about football and piano. When I'm not coding, I'm playing some tune or following a match. I also spend time with my partner, who is a big part of my daily life." },
+    "whatIDoNow": { "es": "Trabajo como Analista en Infraestructura Jr. en BINIT y en paralelo desarrollo proyectos web como freelance, siempre buscando mejorar el detalle y la experiencia de usuario.", "en": "I work as a Jr. Infrastructure Analyst at BINIT and in parallel develop web projects as a freelance developer, always looking to improve detail and user experience." },
+    "whatImLookingFor": { "es": "Busco oportunidades que me permitan crecer como desarrollador full-stack, integrarme a equipos creativos y participar en proyectos con impacto real.", "en": "I'm looking for opportunities to grow as a full-stack developer, join creative teams, and work on projects with real impact." }
+  },
+  "cancionFavorita": {
+    "titulo": "Ama de mi sol",
+    "artista": "Milo J",
+    "album": "La vida era más corta",
+    "portada": "/images/aboutme/fotoalbum.webp",
+    "mp3": "/audio/cancion.mp3",
+    "applemusic": "https://music.apple.com/us/album/ama-de-mi-sol/1839970139?i=1839970297"
+  },
+  "fotosAboutMe": {
+    "perfil": "/images/aboutme/profilephoto.JPEG",
+    "galeria": [
+      { "src": "/images/aboutme/galeriaargentina.JPEG", "label": { "es": "Argentina", "en": "Argentina" } },
+      { "src": "/images/aboutme/galeriahobbie.JPEG", "label": { "es": "Hobbie", "en": "Hobby" } },
+      { "src": "/images/aboutme/galeriapareja.JPEG", "label": { "es": "<3", "en": "<3" } },
+      { "src": "/images/aboutme/galeriaprogramacion.JPEG", "label": { "es": "Espacio de trabajo", "en": "My workspace" } }
+    ]
+  },
   "experiencia": [
     {
       "empresa": "Freelance",
@@ -67,7 +91,7 @@
     }
   ],
   "habilidades": {
-    "desarrollo": ["HTML", "CSS", "SASS", "JavaScript", "GitHub", "PHP/SQL", "Python", "APIs (Postman)"],
+    "desarrollo": ["Vue.js", "Vite", "CSS", "Tailwind", "JavaScript", "Laravel", "PHP/SQL", "APIs REST"],
     "infraestructura": {
       "es": ["ABM", "Azure / DevOps", "Portal 365", "Herramienta de tickets", "Zabbix", "Servidores", "Administración de SQL", "Automatización de procesos (PowerShell)", "Documentación de procesos y proyectos"],
       "en": ["User Management", "Azure / DevOps", "Portal 365", "Ticketing tools", "Zabbix", "Servers", "SQL Administration", "Process automation (PowerShell)", "Process & project documentation"]
@@ -80,7 +104,9 @@
   "redes": {
     "github": "https://github.com/AlejoMFernandez",
     "linkedin": "https://www.linkedin.com/in/alejo-fernandez-87b387254",
-    "instagram": "https://instagram.com/alefernandez0.0"
+    "instagram": "https://instagram.com/alefernandez0.0",
+    "upwork": "https://www.upwork.com/freelancers/~01e8d851df8352ed57",
+    "whatsapp": "https://wa.me/5491125237915"
   },
   "imagenes": {
     "perfil": "/images/profilephoto.JPEG",

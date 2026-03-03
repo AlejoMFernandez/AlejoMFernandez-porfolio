@@ -72,6 +72,22 @@ onUnmounted(() => {
             >
               Twitter
             </a>
+            <a 
+              v-if="personal.redes.upwork"
+              :href="personal.redes.upwork" 
+              target="_blank"
+              class="footer-link footer-link--upwork"
+            >
+              UpWork
+            </a>
+            <a 
+              v-if="personal.redes.whatsapp"
+              :href="personal.redes.whatsapp" 
+              target="_blank"
+              class="footer-link footer-link--whatsapp"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
       </div>
@@ -87,13 +103,13 @@ onUnmounted(() => {
 
 <style scoped>
 .footer {
-  padding: 60px 24px 40px;
+  padding: 60px 48px 40px;
   border-top: 1px solid var(--border-color);
   margin-top: 80px;
 }
 
 .footer-container {
-  max-width: 1400px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 

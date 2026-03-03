@@ -1,7 +1,7 @@
 {
   "nav": {
     "work": "Proyectos",
-    "info": "Info",
+    "info": "Sobre mí",
     "contact": "Contacto"
   },
   "home": {
@@ -25,6 +25,13 @@
   },
   "info": {
     "aboutMe": "Sobre mí",
+    "whoAmI": "Quién soy",
+    "whereImFrom": "De dónde soy",
+    "hobbies": "Qué me gusta",
+    "whatIDoNow": "Qué hago",
+    "whatImLookingFor": "Qué busco",
+    "listenOn": "Escuchar en Spotify",
+    "favoriteTrack": "Canción favorita ahora",
     "aspirations": "A lo que aspiro",
     "gallery": "Galería",
     "skills": "Habilidades",
