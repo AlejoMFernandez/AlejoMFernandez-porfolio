@@ -71,7 +71,9 @@
     "submit": "Send message",
     "submitting": "Sending...",
     "submitted": "Message sent!",
-    "msgSent": "Done! Your mail client opened with the message pre-filled.",
-    "msgError": "Something went wrong. You can reach me directly at fernandezmalejo{'@'}gmail.com"
+    "msgSent": "Thanks! I'll get back to you shortly.",
+    "msgError": "Something went wrong. You can reach me directly at fernandezmalejo{'@'}gmail.com",
+    "wizardTrigger": "Not sure what you need? →",
+    "validationError": "Please fill in all fields before sending."
   }
 }

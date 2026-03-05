@@ -1,18 +1,22 @@
 <script setup>
-import { ref, onMounted, onUnmounted, computed, useTemplateRef } from 'vue'
+import { ref, onMounted, onUnmounted, computed, useTemplateRef, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
 import personal from '../data/personal.json'
 import { useLocalized } from '../composables/useLocalized.js'
 import Footer from '../components/Footer.vue'
+import ServiceWizard from '../components/ServiceWizard.vue'
 
 const { t, tm } = useI18n()
 const { l } = useLocalized()
 
 const form = ref({ name: '', email: '', service: '', message: '' })
-// status: 'idle' | 'sent'
+// status: 'idle' | 'sending' | 'sent' | 'error'
 const status = ref('idle')
 const dropdownOpen = ref(false)
+const wizardOpen = ref(false)
+const showCelebration = ref(false)
+const validationError = ref('')
 
 const services = computed(() => tm('contact.services'))
 
@@ -25,29 +29,54 @@ function handleClickOutside(e) {
   if (!e.target.closest('.custom-select')) dropdownOpen.value = false
 }
 
+function onWizardResult(svc) {
+  form.value.service = svc
+}
+
+watch(form, () => { validationError.value = '' }, { deep: true })
+
 const contactLeft = useTemplateRef('contactLeft')
 const contactRight = useTemplateRef('contactRight')
 
 const triggers = []
 
-// ── Form submission via mailto ────────────────────────────────────────────────
-// Construye un mailto: con todos los campos y lo abre en el cliente de correo
-// del visitante. Sin intermediarios — el mail llega desde su propio email.
-function handleSubmit() {
-  if (status.value === 'sent') return
+// ── Form submission via Formspree ────────────────────────────────────────────
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwvrerwl'
 
-  const subject = encodeURIComponent(`Portfolio | ${form.value.service} — ${form.value.name}`)
-  const body = encodeURIComponent(
-    `Nombre: ${form.value.name}\n` +
-    `Email: ${form.value.email}\n` +
-    `Servicio: ${form.value.service}\n\n` +
-    `Mensaje:\n${form.value.message}`
-  )
+async function handleSubmit() {
+  if (status.value === 'sending' || status.value === 'sent') return
 
-  window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`
+  // Validación manual (el form tiene novalidate por el custom dropdown)
+  validationError.value = ''
+  if (!form.value.name.trim() || !form.value.email.trim() || !form.value.service || !form.value.message.trim()) {
+    validationError.value = t('contact.validationError')
+    return
+  }
 
-  status.value = 'sent'
-  form.value = { name: '', email: '', service: '', message: '' }
+  status.value = 'sending'
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: `[Portfolio] ${form.value.service} — ${form.value.name}`,
+        name: form.value.name,
+        email: form.value.email,
+        service: form.value.service,
+        message: form.value.message,
+      }),
+    })
+    if (res.ok) {
+      status.value = 'sent'
+      form.value = { name: '', email: '', service: '', message: '' }
+      showCelebration.value = true
+      setTimeout(() => { showCelebration.value = false }, 7000)
+    } else {
+      status.value = 'error'
+    }
+  } catch {
+    status.value = 'error'
+  }
 }
 
 onMounted(() => {
@@ -163,6 +192,10 @@ onUnmounted(() => {
               </div>
             </div>
 
+            <button type="button" class="wizard-trigger" @click="wizardOpen = true">
+              {{ t('contact.wizardTrigger') }}
+            </button>
+
             <div class="field">
               <label class="field-label">{{ t('contact.fieldMessage') }}</label>
               <textarea
@@ -175,19 +208,27 @@ onUnmounted(() => {
             </div>
 
             <!-- Status feedback -->
+            <p v-if="validationError" class="form-feedback form-error">
+              {{ validationError }}
+            </p>
             <p v-if="status === 'sent'" class="form-feedback form-success">
               {{ t('contact.msgSent') }}
+            </p>
+            <p v-if="status === 'error'" class="form-feedback form-error">
+              {{ t('contact.msgError') }}
             </p>
 
             <button
               type="submit"
               class="submit-btn"
-              :class="{ sent: status === 'sent' }"
-              :disabled="status === 'sent'"
+              :class="{ sending: status === 'sending', sent: status === 'sent' }"
+              :disabled="status === 'sending' || status === 'sent'"
             >
               <span v-if="status === 'idle'">{{ t('contact.submit') }}</span>
-              <span v-else>{{ t('contact.submitted') }}</span>
-              <svg v-if="status === 'idle'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <span v-else-if="status === 'sending'">{{ t('contact.submitting') }}</span>
+              <span v-else-if="status === 'sent'">{{ t('contact.submitted') }}</span>
+              <span v-else>{{ t('contact.submit') }}</span>
+              <svg v-if="status !== 'sending' && status !== 'sent'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="7" y1="17" x2="17" y2="7"/>
                 <polyline points="7 7 17 7 17 17"/>
               </svg>
@@ -198,6 +239,32 @@ onUnmounted(() => {
 
       </div>
     </section>
+
+    <ServiceWizard v-model:open="wizardOpen" @result="onWizardResult" />
+
+    <Teleport to="body">
+      <Transition name="celebration-fade">
+        <div v-if="showCelebration" class="celebration-overlay" @click.self="showCelebration = false">
+          <div class="celebration-card">
+            <div class="confetti-wrap" aria-hidden="true">
+              <span v-for="i in 18" :key="i" class="confetti-piece" :style="`--i:${i}`"></span>
+            </div>
+            <div class="celebration-sticker">
+              <img
+                :src="'/images/stickercontento.png'"
+                alt="sticker"
+                class="sticker-img"
+                width="100%"
+                @error="e => e.target.style.display = 'none'"
+              />
+            </div>
+            <p class="celebration-title">{{ t('contact.submitted') }}</p>
+            <p class="celebration-body">{{ t('contact.msgSent') }}</p>
+            <button class="celebration-close" @click="showCelebration = false">OK!</button>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
 
     <Footer />
   </div>
@@ -546,6 +613,157 @@ onUnmounted(() => {
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
+/* ── Wizard trigger ─────────────────────────────────────── */
+.wizard-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: none;
+  border: 1px dashed var(--border-color);
+  border-radius: 100px;
+  padding: 6px 16px 6px 16px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.wizard-trigger:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* ── Celebration overlay ─────────────────────────────────── */
+.celebration-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.celebration-card {
+  position: relative;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 48px 40px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+}
+
+/* Confetti */
+.confetti-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10%;
+  left: calc(var(--i) * 5.5% + 3%);
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  background: hsl(calc(var(--i) * 20), 80%, 60%);
+  animation: confetti-fall 1.6s ease-in calc(var(--i) * 0.07s) both;
+}
+
+@keyframes confetti-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(500px) rotate(720deg); opacity: 0; }
+}
+
+.celebration-sticker {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto 20px;
+}
+
+.sticker-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.celebration-emoji {
+  font-size: 5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.celebration-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.celebration-body {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: -5px;
+  margin-bottom: 30px;
+  line-height: 1.55;
+}
+
+.celebration-close {
+  display: inline-block;
+  padding: 12px 36px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.celebration-close:hover {
+  opacity: 0.85;
+  transform: scale(1.04);
+}
+
+/* Transitions */
+.celebration-fade-enter-active,
+.celebration-fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.celebration-fade-enter-from,
+.celebration-fade-leave-to {
+  opacity: 0;
+}
+
+.celebration-fade-enter-active .celebration-card {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.celebration-fade-enter-from .celebration-card {
+  transform: scale(0.75);
+}
+
 @media (max-width: 820px) {
   .contact-section {
     padding: 120px 24px 80px;

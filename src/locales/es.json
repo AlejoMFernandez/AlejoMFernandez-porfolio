@@ -71,7 +71,9 @@
     "submit": "Enviar mensaje",
     "submitting": "Enviando...",
     "submitted": "¡Mensaje enviado!",
-    "msgSent": "¡Listo! Se abrió tu cliente de correo con el mensaje pre-cargado.",
-    "msgError": "Algo salió mal. Podés escribirme directo a fernandezmalejo{'@'}gmail.com"
+    "msgSent": "¡Gracias! Te respondo a la brevedad.",
+    "msgError": "Algo salió mal. Podés escribirme directo a fernandezmalejo{'@'}gmail.com",
+    "wizardTrigger": "¿No sabés bien qué necesitás? →",
+    "validationError": "Por favor completá todos los campos antes de enviar."
   }
 }
