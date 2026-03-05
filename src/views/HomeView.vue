@@ -277,7 +277,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 20px;
   padding: 0 48px;
-  margin-bottom: 32px;
+  margin-bottom: 45px;
 }
 
 .section-divider-line {

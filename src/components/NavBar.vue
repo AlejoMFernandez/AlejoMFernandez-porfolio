@@ -219,7 +219,7 @@ onUnmounted(() => {
 }
 
 .brand-logo {
-  height: 38px;
+  height: 32px;
   width: auto;
   display: block;
 }

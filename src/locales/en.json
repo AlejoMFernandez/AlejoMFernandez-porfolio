@@ -56,10 +56,22 @@
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Let's work together",
-    "subtitle": "I'm available for freelance projects and job opportunities.",
-    "socials": "Socials",
-    "location": "Location",
-    "phone": "Phone"
+    "heading": "What can we build together?",
+    "description": "I'm available for freelance projects, collaborations, and new opportunities. Tell me your idea and let's talk.",
+    "labelLocation": "Location",
+    "fieldName": "Name",
+    "fieldEmail": "Email",
+    "fieldService": "Service",
+    "fieldMessage": "Message",
+    "placeholderName": "Your name",
+    "placeholderEmail": "you@email.com",
+    "placeholderService": "What do you need?",
+    "placeholderMessage": "Tell me about your project, what you have in mind...",
+    "services": ["Landing Page", "ABM", "Web App", "Intranet", "E-commerce", "Other"],
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "submitted": "Message sent!",
+    "msgSent": "Done! Your mail client opened with the message pre-filled.",
+    "msgError": "Something went wrong. You can reach me directly at fernandezmalejo@gmail.com"
   }
 }
