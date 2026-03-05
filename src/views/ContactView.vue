@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
 import personal from '../data/personal.json'
@@ -25,6 +25,9 @@ function handleClickOutside(e) {
   if (!e.target.closest('.custom-select')) dropdownOpen.value = false
 }
 
+const contactLeft = useTemplateRef('contactLeft')
+const contactRight = useTemplateRef('contactRight')
+
 const triggers = []
 
 // ── Form submission via mailto ────────────────────────────────────────────────
@@ -48,9 +51,11 @@ function handleSubmit() {
 }
 
 onMounted(() => {
+  const leftChildren = contactLeft.value ? Array.from(contactLeft.value.children) : []
+  const rightChildren = contactRight.value ? Array.from(contactRight.value.children) : []
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-  tl.from('.contact-left > *', { y: 70, opacity: 0, duration: 0.9, stagger: 0.13 })
-    .from('.contact-right > *', { y: 60, opacity: 0, duration: 0.85, stagger: 0.1 }, '-=0.55')
+  if (leftChildren.length)  tl.from(leftChildren,  { y: 70, opacity: 0, duration: 0.9, stagger: 0.13 })
+  if (rightChildren.length) tl.from(rightChildren, { y: 60, opacity: 0, duration: 0.85, stagger: 0.1 }, '-=0.55')
   triggers.push(tl)
   document.addEventListener('click', handleClickOutside)
 })
@@ -67,7 +72,7 @@ onUnmounted(() => {
       <div class="contact-container" style="margin-top: 40px;">
 
         <!-- ── LEFT ─────────────────────────────────────── -->
-        <div class="contact-left">
+        <div class="contact-left" ref="contactLeft">
 
           <h1 class="contact-heading">{{ t('contact.heading') }}</h1>
 
@@ -103,7 +108,7 @@ onUnmounted(() => {
         <div class="contact-divider" aria-hidden="true"></div>
 
         <!-- ── RIGHT ────────────────────────────────────── -->
-        <div class="contact-right">
+        <div class="contact-right" ref="contactRight">
           <form class="contact-form" @submit.prevent="handleSubmit" novalidate>
 
             <div class="form-row">

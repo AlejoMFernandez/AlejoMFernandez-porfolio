@@ -64,7 +64,7 @@
     "fieldService": "Servicio",
     "fieldMessage": "Mensaje",
     "placeholderName": "Tu nombre",
-    "placeholderEmail": "tu@email.com",
+    "placeholderEmail": "tu{'@'}email.com",
     "placeholderService": "¿Qué necesitás?",
     "placeholderMessage": "Contame tu proyecto, qué tenés en mente...",
     "services": ["Landing Page", "ABM", "Web App", "Intranet", "E-commerce", "Otro"],
@@ -72,6 +72,6 @@
     "submitting": "Enviando...",
     "submitted": "¡Mensaje enviado!",
     "msgSent": "¡Listo! Se abrió tu cliente de correo con el mensaje pre-cargado.",
-    "msgError": "Algo salió mal. Podés escribirme directo a fernandezmalejo@gmail.com"
+    "msgError": "Algo salió mal. Podés escribirme directo a fernandezmalejo{'@'}gmail.com"
   }
 }

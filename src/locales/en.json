@@ -64,7 +64,7 @@
     "fieldService": "Service",
     "fieldMessage": "Message",
     "placeholderName": "Your name",
-    "placeholderEmail": "you@email.com",
+    "placeholderEmail": "you{'@'}email.com",
     "placeholderService": "What do you need?",
     "placeholderMessage": "Tell me about your project, what you have in mind...",
     "services": ["Landing Page", "ABM", "Web App", "Intranet", "E-commerce", "Other"],
@@ -72,6 +72,6 @@
     "submitting": "Sending...",
     "submitted": "Message sent!",
     "msgSent": "Done! Your mail client opened with the message pre-filled.",
-    "msgError": "Something went wrong. You can reach me directly at fernandezmalejo@gmail.com"
+    "msgError": "Something went wrong. You can reach me directly at fernandezmalejo{'@'}gmail.com"
   }
 }
