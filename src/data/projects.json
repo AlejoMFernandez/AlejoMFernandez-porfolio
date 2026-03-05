@@ -2,7 +2,7 @@
   {
     "id": "goaldemy",
     "nombre": "GOALDEMY",
-    "descripcionCorta": { "es": "WebApp que transforma el cumplimiento de metas en una experiencia similar a la de un videojuego.", "en": "" },
+    "descripcionCorta": { "es": "WebApp que transforma el cumplimiento de metas en una experiencia similar a la de un videojuego.", "en": "WebApp that transforms goal achievement into a video game-like experience." },
     "descripcionLarga": { "es": "Goaldemy es una aplicación web que transforma el cumplimiento de metas en una experiencia similar a la de un videojuego. Combina planificación con mecánicas de juego (misiones, XP, logros y niveles) para volver la productividad visual y entretenida. Incluye estadísticas, recompensas y recordatorios.", "en": "Goaldemy is a web application that transforms goal achievement into a video game-like experience. It combines planning with game mechanics (missions, XP, achievements, and levels) to make productivity visual and entertaining. Includes statistics, rewards, and reminders." },
     "fechaInicio": "2025-09",
     "fechaFin": "Actualidad",

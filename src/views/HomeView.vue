@@ -48,7 +48,34 @@ onMounted(() => {
     clearProps: 'transform'
   }, '-=0.5')
 
+  // Featured cards scroll reveal
+  gsap.utils.toArray('.featured-card').forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%',
+        toggleActions: 'play none none none'
+      },
+      y: 70,
+      opacity: 0,
+      duration: 0.85,
+      ease: 'power3.out',
+      delay: i * 0.05
+    })
+  })
 
+  // Other cards scroll reveal
+  gsap.from('.other-grid', {
+    scrollTrigger: {
+      trigger: '.other-grid',
+      start: 'top 88%',
+      toggleActions: 'play none none none'
+    },
+    y: 60,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power3.out'
+  })
 })
 
 onUnmounted(() => {
@@ -74,17 +101,17 @@ onUnmounted(() => {
 
         <!-- Bottom: massive name -->
         <div class="hero-bottom">
-          <p class="hero-role-label">{{ l(personal.titulo) }}</p>
           <h1 ref="nameRef" class="hero-name">
             <span class="name-line">ALEJO M.</span>
             <span class="name-line">FERNANDEZ</span>
           </h1>
+          <span class="hero-carrer">{{ t('home.carrer') }}</span>
         </div>
       </div>
     </section>
 
     <!-- ===== PROYECTOS DESTACADOS ===== -->
-    <section class="featured-section">
+    <section class="featured-section" style="margin-top: 120px;">
       <div class="section-divider">
         <span class="section-divider-line"></span>
         <span class="section-divider-label">{{ t('home.featuredTitle').toUpperCase() }}</span>
@@ -93,12 +120,27 @@ onUnmounted(() => {
 
       <div class="featured-list">
         <RouterLink
-          v-for="(project) in featuredProjects"
+          v-for="(project, index) in featuredProjects"
           :key="project.id"
           :to="`/proyecto/${project.id}`"
           class="featured-card"
+          :class="{ reverse: index % 2 !== 0 }"
         >
-          <!-- Visual: landscape image -->
+          <!-- Info side -->
+          <div class="feat-info">
+            <div class="feat-info-body">
+              <h3 class="feat-name">{{ project.nombre }}</h3>
+              <p class="feat-desc">{{ l(project.descripcionCorta) }}</p>
+            </div>
+            <div class="feat-info-foot">
+              <div class="feat-techs">
+                <span v-for="tech in project.tecnologias.slice(0, 4)" :key="tech" class="feat-tech">{{ tech }}</span>
+              </div>
+              <span class="feat-arrow">→</span>
+            </div>
+          </div>
+
+          <!-- Visual side -->
           <div class="feat-visual" :style="{ background: project.colorFondo }">
             <img
               v-if="project.imagenPrincipal"
@@ -107,12 +149,6 @@ onUnmounted(() => {
               class="feat-image"
             />
             <span class="feat-badge">{{ project.tipo }}</span>
-          </div>
-
-          <!-- Info: centered below, overlapping image -->
-          <div class="feat-info">
-            <h3 class="feat-name">{{ project.nombre }}</h3>
-            <p class="feat-desc">{{ l(project.descripcionCorta) }}</p>
           </div>
         </RouterLink>
       </div>
@@ -203,25 +239,19 @@ onUnmounted(() => {
   font-size: 0px;
 }
 
+.hero-carrer {
+  margin-left: 10px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
 .hero-dot {
   opacity: 0.4;
 }
 
 .hero-bottom {
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.hero-role-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  opacity: 0.55;
-  padding-left: 4px;
 }
 
 .hero-name {
@@ -266,86 +296,131 @@ onUnmounted(() => {
 
 /* ===== FEATURED SECTION ===== */
 .featured-section {
-  padding-top: 100px;
   padding-bottom: 80px;
 }
 
 .featured-list {
   display: flex;
   flex-direction: column;
-  padding: 0 40px;
-  max-width: 1400px;
+  gap: 24px;
+  padding: 0 48px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
 .featured-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 56px 0 80px;
-  border-bottom: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  height: 300px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   text-decoration: none;
   color: inherit;
-  transition: opacity 0.35s ease;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease;
+  will-change: transform;
 }
 
-.featured-card:last-child {
-  border-bottom: none;
+.featured-card.reverse {
+  direction: rtl;
+}
+
+.featured-card.reverse > * {
+  direction: ltr;
 }
 
 .featured-card:hover {
-  opacity: 0.75;
+  transform: translateY(-5px);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.2);
+  border-color: rgba(56, 189, 248, 0.28);
 }
 
-/* Info: centered, overlaps image bottom */
+/* Info side */
 .feat-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
-  width: 100%;
-  margin-top: -56px;
-  position: relative;
-  z-index: 2;
+  padding: 32px 36px;
+  justify-content: space-between;
+}
+
+.feat-info-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .feat-name {
-  font-size: clamp(3.5rem, 7vw, 9rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.88;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
   color: var(--text-primary);
-  text-transform: uppercase;
 }
 
 .feat-desc {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 520px;
+  max-width: 260px;
 }
 
-/* Visual: wide landscape */
+.feat-info-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.feat-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.feat-tech {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+
+.feat-arrow {
+  font-size: 1.4rem;
+  color: var(--text-tertiary);
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.featured-card:hover .feat-arrow {
+  transform: translate(4px, -4px);
+  color: var(--accent-color);
+}
+
+/* Visual side */
 .feat-visual {
   position: relative;
-  border-radius: 20px;
   overflow: hidden;
-  width: 100%;
-  aspect-ratio: 16 / 7;
+  min-height: 300px;
 }
 
 .feat-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  display: block;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .featured-card:hover .feat-image {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .feat-badge {
@@ -459,6 +534,12 @@ onUnmounted(() => {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .featured-card {
+    grid-template-columns: 260px 1fr;
+  }
+}
+
 @media (max-width: 900px) {
   .hero {
     padding: 110px 24px 48px;
@@ -469,24 +550,20 @@ onUnmounted(() => {
   }
 
   .featured-list {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 
   .featured-card {
-    padding: 40px 0 56px;
-  }
-
-  .feat-info {
-    margin-top: -36px;
-  }
-
-  .feat-name {
-    font-size: clamp(2.4rem, 10vw, 4rem);
+    grid-template-columns: 1fr;
   }
 
   .feat-visual {
     aspect-ratio: 16/9;
-    border-radius: 14px;
+    min-height: 220px;
+  }
+
+  .feat-name {
+    font-size: 2rem;
   }
 
   .other-grid {
