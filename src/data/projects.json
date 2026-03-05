@@ -2,7 +2,7 @@
   {
     "id": "goaldemy",
     "nombre": "GOALDEMY",
-    "descripcionCorta": { "es": "La academia digital de fútbol más divertida de todas.", "en": "The most fun digital football academy ever." },
+    "descripcionCorta": { "es": "WebApp que transforma el cumplimiento de metas en una experiencia similar a la de un videojuego.", "en": "" },
     "descripcionLarga": { "es": "Goaldemy es una aplicación web que transforma el cumplimiento de metas en una experiencia similar a la de un videojuego. Combina planificación con mecánicas de juego (misiones, XP, logros y niveles) para volver la productividad visual y entretenida. Incluye estadísticas, recompensas y recordatorios.", "en": "Goaldemy is a web application that transforms goal achievement into a video game-like experience. It combines planning with game mechanics (missions, XP, achievements, and levels) to make productivity visual and entertaining. Includes statistics, rewards, and reminders." },
     "fechaInicio": "2025-09",
     "fechaFin": "Actualidad",
@@ -29,7 +29,7 @@
   {
     "id": "franza",
     "nombre": "FRANZA",
-    "descripcionCorta": { "es": "Tu constructora de confianza", "en": "Your trusted construction company" },
+    "descripcionCorta": { "es": "Sitio moderno para una constructora con sistema automatizado de ABM.", "en": "Modern website for a construction company with an automated CRUD system." },
     "descripcionLarga": { "es": "Sitio moderno para una constructora con sistema automatizado que genera páginas índice y detalle de obras a partir de carpetas de un banco de fotos estandarizado. Facilita la actualización del portfolio y mantiene consistencia visual.", "en": "Modern website for a construction company with an automated system that generates index and project detail pages from standardized photo bank folders. Makes portfolio updates easy and maintains visual consistency." },
     "fechaInicio": "2025-03",
     "fechaFin": "2025-05",
@@ -38,7 +38,7 @@
     "tecnologias": ["PHP", "Bootstrap", "CSS", "JavaScript", "MySQL"],
     "linkDemo": "https://Franza.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/Franza",
-    "imagenPrincipal": "/images/projects/franzamain.jpeg",
+    "imagenPrincipal": "/images/projects/franzamain.png",
     "logo": "/images/projects/franzalogo.png",
     "imagenes": [],
     "video": null,

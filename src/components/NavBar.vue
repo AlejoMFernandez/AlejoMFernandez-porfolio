@@ -77,8 +77,10 @@ onUnmounted(() => {
     <nav class="nav-container">
       <!-- Logo / Name - Left side -->
       <RouterLink to="/" class="nav-brand" @click="closeMenu">
-        <span class="brand-name">{{ personal.nombre }} {{ personal.apellido }}</span>
-        <span class="brand-title">{{ l(personal.titulo) }}</span>
+        <picture>
+          <source srcset="/logoAFwhite.png" media="(prefers-color-scheme: dark)">
+          <img src="/logoAFblack.png" alt="AF" class="brand-logo" />
+        </picture>
       </RouterLink>
 
       <!-- Center Navigation - Desktop -->
@@ -216,12 +218,10 @@ onUnmounted(() => {
   z-index: 101;
 }
 
-.brand-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
+.brand-logo {
+  height: 38px;
+  width: auto;
+  display: block;
 }
 
 .brand-title {
@@ -446,12 +446,8 @@ onUnmounted(() => {
     display: none;
   }
 
-  .brand-name {
-    font-size: 0.85rem;
-    max-width: 160px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .brand-logo {
+    height: 26px;
   }
 
   .brand-title {

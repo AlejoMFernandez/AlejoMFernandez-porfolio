@@ -320,7 +320,7 @@ onUnmounted(() => {
 }
 
 .about-container {
-  max-width: 1080px;
+  max-width: 1400px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -647,7 +647,7 @@ onUnmounted(() => {
 }
 
 .section-container {
-  max-width: 1080px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
