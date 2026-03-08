@@ -1,10 +1,11 @@
-<script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+﻿<script setup>
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
 import { useLocalized } from '../composables/useLocalized.js'
 import projects from '../data/projects.json'
+import galleries from '../data/galleries.json'
 import Footer from '../components/Footer.vue'
 
 const { t, locale } = useI18n()
@@ -14,6 +15,14 @@ const router = useRouter()
 
 const project = computed(() => {
   return projects.find(p => p.id === route.params.id)
+})
+
+// Galería: usa imagenes del JSON si están definidas, si no auto-carga desde galleries.json
+const projectGallery = computed(() => {
+  if (!project.value) return []
+  const manual = project.value.imagenes
+  if (manual && manual.length > 0) return manual
+  return galleries[project.value.id] || []
 })
 
 // Si no existe el proyecto, redirigir a home
@@ -35,21 +44,39 @@ const formatDate = (dateStr) => {
   return `${months[parseInt(month) - 1]} ${year}`
 }
 
-const selectedImage = ref(null)
+const selectedIndex = ref(null)
+const selectedImage = computed(() =>
+  selectedIndex.value !== null ? projectGallery.value[selectedIndex.value] : null
+)
 
-const openLightbox = (img) => {
-  selectedImage.value = img
+const openLightbox = (index) => { selectedIndex.value = index }
+const closeLightbox = () => { selectedIndex.value = null }
+
+const prevImage = () => {
+  if (selectedIndex.value === null) return
+  selectedIndex.value = (selectedIndex.value - 1 + projectGallery.value.length) % projectGallery.value.length
+}
+const nextImage = () => {
+  if (selectedIndex.value === null) return
+  selectedIndex.value = (selectedIndex.value + 1) % projectGallery.value.length
 }
 
-const closeLightbox = () => {
-  selectedImage.value = null
+const handleKey = (e) => {
+  if (e.key === 'Escape') closeLightbox()
+  if (e.key === 'ArrowLeft') prevImage()
+  if (e.key === 'ArrowRight') nextImage()
 }
 
 const goBack = () => {
   router.push('/')
 }
 
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKey)
+})
+
 onMounted(() => {
+  window.addEventListener('keydown', handleKey)
   // Animación de entrada
   gsap.from('.back-button-fixed', {
     opacity: 0,
@@ -123,14 +150,14 @@ onMounted(() => {
           </div>
 
           <!-- Imágenes -->
-          <div class="content-block" v-if="project.imagenes?.length">
+          <div class="content-block" v-if="projectGallery.length">
             <h2 class="block-title">{{ t('project.gallery') }}</h2>
             <div class="gallery">
               <div 
-                v-for="(img, index) in project.imagenes" 
+                v-for="(img, index) in projectGallery" 
                 :key="index"
                 class="gallery-item"
-                @click="openLightbox(img)"
+                @click="openLightbox(index)"
               >
                 <img :src="img" :alt="`Screenshot ${index + 1} de ${project.nombre}`" />
                 <div class="gallery-overlay">
@@ -220,14 +247,25 @@ onMounted(() => {
 
     <!-- Lightbox -->
     <Teleport to="body">
-      <div v-if="selectedImage" class="lightbox" @click="closeLightbox">
+      <div v-if="selectedImage" class="lightbox" @click.self="closeLightbox">
         <button class="lightbox-close" @click="closeLightbox">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
+        <button class="lightbox-prev" @click="prevImage">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
         <img :src="selectedImage" @click.stop />
+        <button class="lightbox-next" @click="nextImage">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+        <div class="lightbox-counter">{{ selectedIndex + 1 }} / {{ projectGallery.length }}</div>
       </div>
     </Teleport>
   </div>
@@ -354,10 +392,12 @@ onMounted(() => {
 }
 
 .block-title {
-  font-size: 1.25rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 20px;
-  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
 }
 
 .description {
@@ -468,12 +508,13 @@ onMounted(() => {
 }
 
 .link-button.primary {
-  background: var(--accent-color);
-  color: white;
+  background: transparent;
+  color: var(--accent-color);
+  border: 1.5px solid var(--accent-color);
 }
 
 .link-button.primary:hover {
-  background: var(--accent-hover);
+  background: rgba(56, 189, 248, 0.08);
   transform: translateY(-2px);
 }
 
@@ -554,10 +595,52 @@ onMounted(() => {
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 10;
 }
 
 .lightbox-close:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 14px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+
+.lightbox-prev:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) translateX(-2px);
+}
+.lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) translateX(2px);
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 968px) {

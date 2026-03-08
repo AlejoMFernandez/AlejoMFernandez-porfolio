@@ -47,7 +47,7 @@
     "logo": "/images/projects/franzalogo.png",
     "imagenes": [],
     "video": null,
-    "colorFondo": "#b38839",
+    "colorFondo": "linear-gradient(135deg, #b38838 0%, #d4af37 100%)",
     "colorTexto": "#ffffff",
     "features": {
       "es": ["Generación automática de páginas", "Sistema de banco de fotos", "Portfolio de obras dinámico", "Panel de administración", "Diseño responsive"],

@@ -48,22 +48,6 @@ onMounted(() => {
     clearProps: 'transform'
   }, '-=0.5')
 
-  // Featured cards scroll reveal
-  gsap.utils.toArray('.featured-card').forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      },
-      y: 70,
-      opacity: 0,
-      duration: 0.85,
-      ease: 'power3.out',
-      delay: i * 0.05
-    })
-  })
-
   // Other cards scroll reveal
   gsap.from('.other-grid', {
     scrollTrigger: {
@@ -161,36 +145,31 @@ onUnmounted(() => {
           </div>
         </RouterLink>
       </div>
+
+      <!-- Ver más CTA -->
+      <div class="featured-cta">
+        <RouterLink to="/proyectos" class="see-all-btn">
+          {{ t('home.seeAll') }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </RouterLink>
+      </div>
     </section>
 
-    <!-- ===== MÁS PROYECTOS ===== -->
-    <section v-if="otherProjects.length > 0" class="other-section">
-      <div class="section-divider">
-        <span class="section-divider-line"></span>
-        <span class="section-divider-label">+ {{ t('home.moreTitle').toUpperCase() }}</span>
-        <span class="section-divider-line"></span>
-      </div>
-
-      <div class="other-grid">
-        <RouterLink
-          v-for="project in otherProjects"
-          :key="project.id"
-          :to="`/proyecto/${project.id}`"
-          class="other-card"
-        >
-          <div class="other-image-wrap" :style="{ background: project.colorFondo }">
-            <img
-              v-if="project.imagenPrincipal"
-              :src="project.imagenPrincipal"
-              :alt="project.nombre"
-              class="other-image"
-            />
-            <span class="other-badge">{{ project.tipo }}</span>
-          </div>
-          <div class="other-info">
-            <h4 class="other-name">{{ project.nombre }}</h4>
-            <p class="other-desc">{{ l(project.descripcionCorta) }}</p>
-          </div>
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-section">
+      <div class="cta-inner">
+        <span class="cta-eyebrow">{{ t('home.ctaEyebrow') }}</span>
+        <h2 class="cta-title">{{ t('home.ctaTitle') }}</h2>
+        <p class="cta-subtitle">{{ t('home.ctaSubtitle') }}</p>
+        <RouterLink to="/contacto" class="cta-link">
+          {{ t('home.ctaBtn') }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
         </RouterLink>
       </div>
     </section>
@@ -357,7 +336,7 @@ onUnmounted(() => {
 
 .featured-card {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 500px 1fr;
   height: 300px;
   border-radius: 22px;
   overflow: hidden;
@@ -457,12 +436,11 @@ onUnmounted(() => {
 }
 
 .feat-image {
-  position: absolute;
+  position: absolute; 
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -578,6 +556,113 @@ onUnmounted(() => {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* ===== VER TODOS BOTÓN ===== */
+.featured-cta {
+  display: flex;
+  justify-content: center;
+  padding: 48px 48px 0;
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.see-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease,
+              background 0.3s ease;
+}
+
+.see-all-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateX(4px);
+}
+
+.see-all-btn svg {
+  transition: transform 0.3s ease;
+}
+.see-all-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  padding: 120px 48px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 80px;
+}
+
+.cta-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.cta-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+.cta-title {
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.cta-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 520px;
+}
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 16px 36px;
+  border-radius: 14px;
+  background: var(--accent-color);
+  color: #000;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(56, 189, 248, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(56, 189, 248, 0.5);
+}
+
+.cta-link svg {
+  transition: transform 0.3s ease;
+}
+.cta-link:hover svg {
+  transform: translateX(4px);
 }
 
 /* ===== RESPONSIVE ===== */

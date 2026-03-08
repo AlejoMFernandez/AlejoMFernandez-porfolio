@@ -88,6 +88,41 @@ onUnmounted(() => {
               <p class="blurb-text">{{ l(personal.about.whatImLookingFor) }}</p>
             </div>
           </div>
+
+          <!-- Skills + CV side by side -->
+          <div class="left-bottom-row">
+            <div class="bento-card skills-card">
+              <span class="skills-card-label">{{ t('info.skillsDev') }}</span>
+              <div class="skills-pills">
+                <span v-for="skill in personal.habilidades.desarrollo" :key="skill" class="skill-pill">{{ skill }}</span>
+              </div>
+            </div>
+
+            <a
+              href="/images/aboutme/Alejo-Martin-Fernandez-CV.pdf"
+              download
+              class="bento-card cv-card"
+              style="flex-direction: column; align-items: flex-start;"
+            >
+              <div class="cv-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="30" height="30">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="12" y1="18" x2="12" y2="12"/>
+                  <polyline points="9 15 12 18 15 15"/>
+                </svg>
+              </div>
+              <div class="cv-info">
+                <p class="cv-title">Curriculum Vitae</p>
+                <p class="cv-sub">{{ t('info.downloadCV') }}</p>
+              </div>
+              <svg class="cv-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
         <!-- Right: bento grid -->
@@ -186,40 +221,6 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <!-- Skills + CV side by side below the about glass card -->
-        <div class="left-bottom-row">
-          <div class="bento-card skills-card">
-            <span class="skills-card-label">{{ t('info.skillsDev') }}</span>
-            <div class="skills-pills">
-              <span v-for="skill in personal.habilidades.desarrollo" :key="skill" class="skill-pill">{{ skill }}</span>
-            </div>
-          </div>
-
-          <a
-            href="/images/aboutme/Alejo-Martin-Fernandez-CV.pdf"
-            download
-            class="bento-card cv-card"
-            style="flex-direction: column; align-items: flex-start;"
-          >
-            <div class="cv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="30" height="30">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="12" y1="18" x2="12" y2="12"/>
-                <polyline points="9 15 12 18 15 15"/>
-              </svg>
-            </div>
-            <div class="cv-info">
-              <p class="cv-title">Curriculum Vitae</p>
-              <p class="cv-sub">{{ t('info.downloadCV') }}</p>
-            </div>
-            <svg class="cv-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-          </a>
-        </div>
 
       </div>
     </section>
@@ -245,24 +246,25 @@ onUnmounted(() => {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   gap: 12px 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 /* ---- Left column: glass card + skills + cv ---- */
 .about-text-col {
-  display: contents;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .glass-card {
-  grid-column: 1;
-  grid-row: 1;
+  flex: 1;
+  min-height: 0;
   background: rgba(245, 245, 247, 0.55);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 22px;
   padding: 40px 36px;
-  height: 100%;
   box-sizing: border-box;
 }
 
@@ -315,7 +317,6 @@ onUnmounted(() => {
 
 /* Left bottom: skills + CV side by side */
 .left-bottom-row {
-  grid-column: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
@@ -325,7 +326,6 @@ onUnmounted(() => {
 /* ---- Right: bento grid ---- */
 .about-cards-col {
   grid-column: 2;
-  grid-row: 1 / span 2;
   width: 100%;
 }
 
@@ -444,7 +444,7 @@ onUnmounted(() => {
   position: absolute;
   bottom: 10px;
   left: 14px;
-  font-size: 0.6rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -499,15 +499,16 @@ onUnmounted(() => {
 .sticker-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
 
 .sticker-img {
+  position: absolute;
+  inset: 0 0 52px 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 52px);
   object-fit: contain;
-  object-position: center 40%;
-  display: block;
-  padding: 16px 16px 52px;
+  object-position: bottom center;
+  padding: 12px 12px 0;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.sticker-card:hover .sticker-img { transform: scale(1.05); }
+.sticker-card:hover .sticker-img { transform: scale(1.05) translateY(-5px); }
 
 .sticker-overlay {
   position: absolute;
@@ -612,10 +613,9 @@ onUnmounted(() => {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .about-section { padding: 100px 24px 60px; }
-  .about-container { grid-template-columns: 1fr; gap: 12px; }
-  .about-text-col { display: block; }
-  .glass-card { grid-column: auto; grid-row: auto; height: auto; }
-  .about-cards-col { grid-column: auto; grid-row: auto; }
+  .about-container { grid-template-columns: 1fr; gap: 12px; align-items: start; }
+  .glass-card { flex: none; }
+  .about-cards-col { grid-column: auto; }
   .left-bottom-row { grid-column: auto; }
 }
 

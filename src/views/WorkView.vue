@@ -14,7 +14,7 @@ const allProjects = computed(() =>
 )
 
 onMounted(() => {
-  gsap.from('.project-card', { y: 40, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out', delay: 0.15 })
+  gsap.from('.project-row', { y: 24, opacity: 0, duration: 0.6, stagger: 0.07, ease: 'power3.out', delay: 0.15 })
 })
 </script>
 
@@ -29,31 +29,30 @@ onMounted(() => {
           <span class="section-divider-line"></span>
         </div>
 
-        <div class="projects-grid">
-          <RouterLink
-            v-for="project in allProjects"
+        <ul class="projects-list">
+          <li
+            v-for="(project, i) in allProjects"
             :key="project.id"
-            :to="`/proyecto/${project.id}`"
-            class="project-card"
+            class="project-row"
           >
-            <div class="project-image-wrap" :style="{ background: project.colorFondo }">
-              <img
-                v-if="project.imagenPrincipal"
-                :src="project.imagenPrincipal"
-                :alt="project.nombre"
-                class="project-image"
-              />
-              <span class="project-badge">{{ project.tipo }}</span>
-            </div>
-            <div class="project-info">
-              <h3 class="project-name">{{ project.nombre }}</h3>
-              <p class="project-desc">{{ l(project.descripcionCorta) }}</p>
-              <div class="project-techs">
-                <span v-for="tech in project.tecnologias.slice(0, 3)" :key="tech" class="project-tech">{{ tech }}</span>
+            <RouterLink :to="`/proyecto/${project.id}`" class="project-link">
+              <span class="project-index">{{ String(i + 1).padStart(2, '0') }}</span>
+              <div class="project-center">
+                <h3 class="project-name">{{ project.nombre }}</h3>
+                <p class="project-desc">{{ l(project.descripcionCorta) }}</p>
               </div>
-            </div>
-          </RouterLink>
-        </div>
+              <div class="project-meta">
+                <span class="project-tipo">{{ project.tipo }}</span>
+                <div class="project-techs">
+                  <span v-for="tech in project.tecnologias.slice(0, 3)" :key="tech">{{ tech }}</span>
+                </div>
+              </div>
+              <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </RouterLink>
+          </li>
+        </ul>
       </section>
 
     </div>
@@ -94,110 +93,132 @@ onMounted(() => {
   white-space: nowrap;
 }
 
-/* ---- Unified square project grid ---- */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+/* ---- Project list (typographic minimalist) ---- */
+.projects-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.project-card {
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
+.project-row {
+  border-bottom: 1px solid var(--border-color);
+}
+.project-row:first-child {
+  border-top: 1px solid var(--border-color);
+}
+
+.project-link {
+  display: grid;
+  grid-template-columns: 48px 1fr auto 30px;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 0;
   text-decoration: none;
   color: var(--text-primary);
-  background: var(--bg-secondary);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+  transition: gap 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.project-link:hover {
+  gap: 44px;
+}
+.project-link:hover .project-name {
+  color: var(--accent-color);
+}
+.project-link:hover .project-arrow {
+  transform: translateX(6px);
+  color: var(--accent-color);
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.2);
+.project-index {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  line-height: 1;
 }
 
-.project-image-wrap {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
-
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-card:hover .project-image {
-  transform: scale(1.05);
-}
-
-.project-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: rgba(0, 0, 0, 0.45);
-  color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-
-.project-info {
-  padding: 20px 22px 22px;
+.project-center {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
 }
 
 .project-name {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  transition: color 0.2s;
 }
 
 .project-desc {
-  font-size: 0.82rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  margin-bottom: 14px;
+  line-height: 1.45;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.project-techs {
+.project-meta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
 }
 
-.project-tech {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  padding: 3px 9px;
-  border-radius: 50px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-color);
-  color: var(--text-secondary);
+.project-tipo {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+.project-techs {
+  display: flex;
+  gap: 10px;
+}
+.project-techs span {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+.project-techs span + span::before {
+  content: '/';
+  margin-right: 10px;
+  opacity: 0.35;
+}
+
+.project-arrow {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s;
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .work-inner { padding: 120px 32px 60px; }
-  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .project-link { gap: 24px; }
+  .project-link:hover { gap: 32px; }
 }
 
-@media (max-width: 600px) {
-  .work-inner { padding: 100px 16px 48px; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .project-image-wrap { aspect-ratio: 4 / 3; }
+@media (max-width: 768px) {
+  .project-link {
+    grid-template-columns: 36px 1fr 26px;
+    gap: 18px;
+    padding: 24px 0;
+  }
+  .project-link:hover { gap: 24px; }
+  .project-meta { display: none; }
+  .project-name { font-size: clamp(1.4rem, 5vw, 2rem); }
+}
+
+@media (max-width: 480px) {
+  .work-inner { padding: 90px 20px 48px; }
+  .project-link { grid-template-columns: 32px 1fr 22px; gap: 14px; }
+  .project-index { font-size: 0.72rem; }
 }
 </style>

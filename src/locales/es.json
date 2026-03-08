@@ -9,7 +9,12 @@
     "subtitle": "Creo experiencias digitales únicas y funcionales",
     "featuredTitle": "Proyectos Destacados",
     "featuredSubtitle": "Una selección de mis mejores trabajos",
-    "moreTitle": "Más Proyectos"
+    "moreTitle": "Más Proyectos",
+    "seeAll": "Ver todos los proyectos",
+    "ctaEyebrow": "Trabajemos juntos",
+    "ctaTitle": "¿Tenés un proyecto en mente?",
+    "ctaSubtitle": "Estoy disponible para proyectos freelance y colaboraciones. Contáme tu idea y construyamos algo juntos.",
+    "ctaBtn": "Contáctame"
   },
   "project": {
     "back": "Volver",
