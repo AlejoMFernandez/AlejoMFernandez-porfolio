@@ -106,9 +106,18 @@ onUnmounted(() => {
             <span class="name-line">FERNANDEZ</span>
           </h1>
           <span class="hero-carrer">{{ t('home.carrer') }}</span>
+          <img src="/images/stickersaludando.png" alt="sticker" class="hero-sticker" />
         </div>
       </div>
     </section>
+
+    <!-- Scroll arrow -->
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <polyline points="19 12 12 19 5 12"/>
+      </svg>
+    </div>
 
     <!-- ===== PROYECTOS DESTACADOS ===== -->
     <section class="featured-section" style="margin-top: 120px;">
@@ -251,7 +260,45 @@ onUnmounted(() => {
 }
 
 .hero-bottom {
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
+}
+
+.hero-sticker {
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+  width: clamp(520px, 12vw, 200px);
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+  pointer-events: none;
+  user-select: none;
+  transform-origin: bottom right;
+  z-index: -1;
+}
+
+@keyframes sticker-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Scroll hint arrow */
+.scroll-hint {
+  position: fixed;
+  bottom: 32px;
+  right: 40px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scroll-bounce 2s ease-in-out infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%       { transform: translateY(7px); opacity: 1; }
 }
 
 .hero-name {

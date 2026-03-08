@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ProjectView from '../views/ProjectView.vue'
 import InfoView from '../views/InfoView.vue'
 import ContactView from '../views/ContactView.vue'
+import WorkView from '../views/WorkView.vue'
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
     path: '/proyecto/:id',
     name: 'project',
     component: ProjectView
+  },
+  {
+    path: '/proyectos',
+    name: 'work',
+    component: WorkView
   },
   {
     path: '/info',

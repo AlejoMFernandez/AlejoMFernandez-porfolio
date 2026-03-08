@@ -88,9 +88,9 @@ onUnmounted(() => {
         <div class="nav-links-wrapper">
           <RouterLink 
             v-magnetic="{ strength: 0.3, scale: 1.05 }"
-            to="/" 
+            to="/proyectos" 
             class="nav-link magnetic-btn" 
-            :class="{ active: route.path === '/' }"
+            :class="{ active: route.path === '/proyectos' }"
           >
             {{ t('nav.work') }}
           </RouterLink>
@@ -145,7 +145,7 @@ onUnmounted(() => {
       <div class="menu-content">
         <nav class="menu-nav">
           <RouterLink 
-            to="/" 
+            to="/proyectos" 
             class="menu-link" 
             @click="closeMenu"
           >

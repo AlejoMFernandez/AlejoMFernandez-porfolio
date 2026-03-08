@@ -24,7 +24,12 @@
     },
     "tipo": "WEBAPP",
     "destacado": true,
-    "orden": 1
+    "orden": 1,
+    "gallery": [
+      "/images/projects/goaldemy/gallery1.png",
+      "/images/projects/goaldemy/gallery2.png",
+      "/images/projects/goaldemy/gallery3.png"
+    ]
   },
   {
     "id": "franza",
@@ -142,7 +147,7 @@
     "tecnologias": ["JavaScript", "PHP", "SQL", "Python", "CSS", "JSON"],
     "linkDemo": "",
     "linkGithub": "https://github.com/AlejoMFernandez/HARDLAB",
-    "imagenPrincipal": "/images/projects/hardlabmain.jpeg",
+    "imagenPrincipal": "/images/projects/hardlabmain.png",
     "logo": null,
     "imagenes": [],
     "video": null,
