@@ -73,7 +73,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="navbar" :class="{ scrolled: isScrolled }">
+  <header class="navbar" :class="{ scrolled: isScrolled && !isMenuOpen }">
     <nav class="nav-container">
       <!-- Logo / Name - Left side -->
       <RouterLink to="/" class="nav-brand" @click="closeMenu">

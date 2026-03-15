@@ -38,6 +38,7 @@ function galleryManifestPlugin() {
       // Re-generar cuando se agregan/eliminan imágenes en dev
       server.watcher.on('add',    f => { if (f.includes('images/projects')) build() })
       server.watcher.on('unlink', f => { if (f.includes('images/projects')) build() })
+      server.watcher.on('rename', f => { if (f.includes('images/projects')) build() })
     }
   }
 }

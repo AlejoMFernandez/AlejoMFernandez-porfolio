@@ -103,8 +103,8 @@ onMounted(() => {
 .project-row {
   border-bottom: 1px solid var(--border-color);
 }
-.project-row:first-child {
-  border-top: 1px solid var(--border-color);
+.project-row:last-child {
+  border-bottom: none;
 }
 
 .project-link {

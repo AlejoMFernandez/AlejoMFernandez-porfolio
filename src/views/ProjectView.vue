@@ -68,7 +68,11 @@ const handleKey = (e) => {
 }
 
 const goBack = () => {
-  router.push('/')
+  if (window.history.state?.back) {
+    router.back()
+  } else {
+    router.push('/proyectos')
+  }
 }
 
 onUnmounted(() => {
@@ -106,7 +110,7 @@ onMounted(() => {
 
 <template>
   <div class="project-view" v-if="project">
-    <!-- Botón Back fijo estilo Perry Wang -->
+    <!-- Back button fijo -->
     <button @click="goBack" class="back-button-fixed">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -114,134 +118,93 @@ onMounted(() => {
       {{ t('project.back') }}
     </button>
     
-    <!-- Hero del proyecto -->
-    <section 
-      class="project-hero" 
-      :style="{ background: project.colorFondo }"
-    >
-      <div class="hero-content">
-        <h1 class="project-title" :style="{ color: project.colorTexto }">
-          {{ project.nombre }}
-        </h1>
-        
-        <p class="project-tagline" :style="{ color: project.colorTexto }">
-          {{ l(project.descripcionCorta) }}
-        </p>
-        
-        <div class="project-meta" :style="{ color: project.colorTexto }">
-          <span class="meta-item">
-            {{ formatDate(project.fechaInicio) }} — {{ formatDate(project.fechaFin) }}
-          </span>
-          <span class="meta-divider">|</span>
-          <span class="meta-item">{{ l(project.rol) }}</span>
-        </div>
-      </div>
-    </section>
+    <!-- Bento Dashboard Layout -->
+    <div class="bento-container">
+      <div class="bento-wrap">
 
-    <!-- Contenido del proyecto -->
-    <section class="project-content">
-      <div class="content-grid">
-        <!-- Columna principal -->
-        <div class="main-content">
-          <!-- Descripción -->
-          <div class="content-block">
-            <h2 class="block-title">{{ t('project.about') }}</h2>
-            <p class="description">{{ l(project.descripcionLarga) }}</p>
-          </div>
+        <!-- Grid bento superior -->
+        <div class="bento-grid">
 
-          <!-- Imágenes -->
-          <div class="content-block" v-if="projectGallery.length">
-            <h2 class="block-title">{{ t('project.gallery') }}</h2>
-            <div class="gallery">
-              <div 
-                v-for="(img, index) in projectGallery" 
-                :key="index"
-                class="gallery-item"
-                @click="openLightbox(index)"
-              >
-                <img :src="img" :alt="`Screenshot ${index + 1} de ${project.nombre}`" />
-                <div class="gallery-overlay">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-                  </svg>
-                </div>
-              </div>
+          <!-- Celda nombre + tipo: col 1, rows 1+2 -->
+          <div class="b-cell b-name-cell" :style="{ background: project.colorFondo }">
+            <span class="b-tipo" :style="{ color: project.colorTexto }">
+              {{ String(project.orden).padStart(2, '0') }} — {{ project.tipo }}
+            </span>
+            <h1 class="b-title" :style="{ color: project.colorTexto }">{{ project.nombre }}</h1>
+            <p class="b-tagline" :style="{ color: project.colorTexto }">{{ l(project.descripcionCorta) }}</p>
+            <div class="b-links">
+              <a v-if="project.linkDemo" :href="project.linkDemo" target="_blank" :style="{ color: project.colorTexto }">{{ t('project.viewSite') }} ↗</a>
+              <a v-if="project.linkGithub" :href="project.linkGithub" target="_blank" :style="{ color: project.colorTexto }">GitHub ↗</a>
             </div>
           </div>
 
-          <!-- Video -->
-          <div class="content-block" v-if="project.video">
-            <h2 class="block-title">{{ t('project.demo') }}</h2>
-            <div class="video-container">
-              <video :src="project.video" controls></video>
-            </div>
+          <!-- Celda imagen: col 2, rows 1+2 -->
+          <div class="b-cell b-img-cell" :style="{ background: project.colorFondo }">
+            <img v-if="project.imagenPrincipal" :src="project.imagenPrincipal" :alt="project.nombre" />
           </div>
-        </div>
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
-          <!-- Links -->
-          <div class="sidebar-block">
-            <h3 class="sidebar-title">{{ t('project.links') }}</h3>
-            <div class="links">
-              <a 
-                v-if="project.linkDemo" 
-                :href="project.linkDemo" 
-                target="_blank" 
-                class="link-button primary"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-                {{ t('project.viewSite') }}
-              </a>
-              <a 
-                v-if="project.linkGithub" 
-                :href="project.linkGithub" 
-                target="_blank" 
-                class="link-button secondary"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                {{ t('project.viewCode') }}
-              </a>
+          <!-- Celda meta: col 3, row 1 -->
+          <div class="b-cell b-meta-cell">
+            <div v-if="project.cliente">
+              <p class="b-ml">{{ t('project.client') }}</p>
+              <p class="b-mv">{{ project.cliente }}</p>
+            </div>
+            <div>
+              <p class="b-ml" :style="project.cliente ? 'margin-top:16px' : ''">Período</p>
+              <p class="b-mv">{{ formatDate(project.fechaInicio) }} — {{ formatDate(project.fechaFin) }}</p>
+            </div>
+            <div>
+              <p class="b-ml" style="margin-top:16px">Rol</p>
+              <p class="b-mv">{{ l(project.rol) }}</p>
             </div>
           </div>
 
-          <!-- Cliente -->
-          <div class="sidebar-block" v-if="project.cliente">
-            <h3 class="sidebar-title">{{ t('project.client') }}</h3>
-            <p class="sidebar-text">{{ project.cliente }}</p>
-          </div>
-
-          <!-- Tecnologías -->
-          <div class="sidebar-block">
-            <h3 class="sidebar-title">{{ t('project.technologies') }}</h3>
-            <div class="tech-tags">
-              <span v-for="tech in project.tecnologias" :key="tech" class="tech-tag">
-                {{ tech }}
-              </span>
+          <!-- Celda tecnologías: col 3, row 2 -->
+          <div class="b-cell b-tech-cell">
+            <p class="b-ml">Stack</p>
+            <div class="b-techs">
+              <span v-for="tech in project.tecnologias" :key="tech">{{ tech }}</span>
             </div>
           </div>
 
-          <!-- Features -->
-          <div class="sidebar-block" v-if="l(project.features)?.length">
-            <h3 class="sidebar-title">{{ t('project.features') }}</h3>
-            <ul class="features-list">
-              <li v-for="feature in l(project.features)" :key="feature" class="feature-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Celda features: full width row 3 -->
+          <div class="b-cell b-feat-cell" v-if="l(project.features)?.length">
+            <p class="b-ml">{{ t('project.features') }}</p>
+            <ul class="b-features">
+              <li v-for="feature in l(project.features)" :key="feature">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
                 {{ feature }}
               </li>
             </ul>
           </div>
-        </aside>
+
+        </div>
+
+        <!-- Descripción -->
+        <div class="b-desc-section">
+          <h3 class="b-block-title">{{ t('project.about') }}</h3>
+          <p class="b-desc">{{ l(project.descripcionLarga) }}</p>
+        </div>
+
+        <!-- Galería masonry -->
+        <div v-if="projectGallery.length">
+          <h3 class="b-block-title">{{ t('project.gallery') }}</h3>
+          <div class="b-gallery">
+            <div
+              v-for="(img, index) in projectGallery"
+              :key="index"
+              class="b-gallery-item"
+              @click="openLightbox(index)"
+            >
+              <img :src="img" :alt="`Screenshot ${index + 1}`" />
+            </div>
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div><!-- end bento-container -->
 
     <Footer />
 
@@ -276,7 +239,7 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-/* Fixed Back Button - Perry Wang Style */
+/* ─── Back button fijo ─── */
 .back-button-fixed {
   position: fixed;
   top: 24px;
@@ -313,257 +276,300 @@ onMounted(() => {
   transform: translateX(-3px);
 }
 
-.project-hero {
-  padding: 140px 24px 80px;
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-}
-
-.hero-content {
-  max-width: 900px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.back-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  padding: 10px 16px;
-  border-radius: 50px;
-  color: inherit;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 32px;
-  backdrop-filter: blur(10px);
-}
-
-.back-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateX(-4px);
-}
-
-.project-title {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  letter-spacing: -0.03em;
-}
-
-.project-tagline {
-  font-size: clamp(1.125rem, 3vw, 1.5rem);
-  opacity: 0.9;
-  margin-bottom: 24px;
-  line-height: 1.5;
-}
-
-.project-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 0.95rem;
-  opacity: 0.8;
-}
-
-.meta-divider {
-  opacity: 0.5;
-}
-
-.project-content {
-  padding: 80px 24px;
-  max-width: 1200px;
+/* ─── Bento Dashboard ─── */
+.bento-container {
+  padding: 100px 48px 80px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 60px;
-}
-
-.content-block {
-  margin-bottom: 48px;
-}
-
-.block-title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-tertiary);
-  margin-bottom: 16px;
-}
-
-.description {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: var(--text-secondary);
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
-}
-
-.gallery-item {
-  position: relative;
-  border-radius: 16px;
+.bento-wrap {
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
   overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 16/10;
+  background: var(--bg-primary);
+  padding: 32px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.b-cell {
+  border-radius: 14px;
+  padding: 28px;
+  border: 1px solid var(--border-color);
   background: var(--bg-secondary);
 }
 
-.gallery-item img {
+/* col 1, rows 1+2 */
+.b-name-cell {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* col 2, rows 1+2 */
+.b-img-cell {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  padding: 0;
+  overflow: hidden;
+}
+
+.b-img-cell img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.gallery-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  color: white;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.05);
-}
-
-.gallery-item:hover .gallery-overlay {
-  opacity: 1;
-}
-
-.video-container {
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.video-container video {
-  width: 100%;
+  object-position: top;
   display: block;
 }
 
-/* Sidebar */
-.sidebar {
-  position: sticky;
-  top: 100px;
-  height: fit-content;
+/* col 3, row 1 */
+.b-meta-cell {
+  grid-column: 3;
+  grid-row: 1;
 }
 
-.sidebar-block {
-  margin-bottom: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--border-color);
+/* col 3, row 2 */
+.b-tech-cell {
+  grid-column: 3;
+  grid-row: 2;
 }
 
-.sidebar-block:last-child {
-  border-bottom: none;
+/* row 3: full width */
+.b-feat-cell {
+  grid-column: 1 / 4;
+  padding: 20px 28px;
 }
 
-.sidebar-title {
-  font-size: 0.85rem;
-  font-weight: 600;
+.b-tipo {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-tertiary);
-  margin-bottom: 16px;
+  opacity: 0.65;
 }
 
-.sidebar-text {
-  color: var(--text-secondary);
+.b-title {
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin: 4px 0 8px;
 }
 
-.links {
+.b-tagline {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.b-links {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.link-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 20px;
-  border-radius: 12px;
-  font-weight: 500;
-  font-size: 0.95rem;
+.b-links a {
+  flex: 1;
+  text-align: center;
+  padding: 9px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.2s;
 }
 
-.link-button.primary {
-  background: transparent;
-  color: var(--accent-color);
-  border: 1.5px solid var(--accent-color);
+.b-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
-.link-button.primary:hover {
-  background: rgba(56, 189, 248, 0.08);
-  transform: translateY(-2px);
+.b-ml {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 3px;
 }
 
-.link-button.secondary {
-  background: var(--bg-secondary);
+.b-mv {
+  font-size: 0.88rem;
   color: var(--text-primary);
+  font-weight: 500;
 }
 
-.link-button.secondary:hover {
-  background: var(--bg-tertiary);
-  transform: translateY(-2px);
-}
-
-.tech-tags {
+.b-techs {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
+  margin-top: 8px;
 }
 
-.tech-tag {
-  background: var(--bg-secondary);
-  padding: 8px 14px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
+.b-techs span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
   color: var(--text-secondary);
+  padding: 3px 10px;
+  border-radius: 50px;
 }
 
-.features-list {
+.b-features {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
 }
 
-.feature-item {
+.b-features li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 0;
+  gap: 7px;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  font-size: 0.95rem;
 }
 
-.feature-item svg {
+.b-features svg {
   color: var(--accent-color);
   flex-shrink: 0;
 }
 
-/* Lightbox */
+.b-desc-section {
+  padding: 32px 0 24px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 20px;
+}
+
+.b-block-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 14px;
+}
+
+.b-desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 760px;
+}
+
+/* Galería masonry */
+.b-gallery {
+  columns: 4;
+  column-gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.b-gallery-item {
+  break-inside: avoid;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--bg-secondary);
+}
+
+.b-gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s, filter 0.4s;
+}
+
+.b-gallery-item:hover img {
+  transform: scale(1.03);
+  filter: brightness(1.08);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .bento-container {
+    padding: 80px 24px 60px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .b-name-cell {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .b-img-cell {
+    grid-column: 2;
+    grid-row: auto;
+    height: 280px;
+  }
+
+  .b-meta-cell,
+  .b-tech-cell {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .b-feat-cell {
+    grid-column: 1 / 3;
+  }
+
+  .b-gallery {
+    columns: 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-container {
+    padding: 70px 16px 48px;
+  }
+
+  .bento-wrap {
+    padding: 16px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .b-img-cell {
+    grid-column: auto;
+    height: 200px;
+  }
+
+  .b-img-cell img {
+    object-position: center;
+  }
+
+  .b-feat-cell {
+    grid-column: auto;
+  }
+
+  .b-gallery {
+    columns: 2;
+  }
+}
+
+/* ─── Lightbox ─── */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -627,6 +633,7 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-50%) translateX(-2px);
 }
+
 .lightbox-next:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-50%) translateX(2px);
@@ -641,54 +648,5 @@ onMounted(() => {
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.05em;
-}
-
-@media (max-width: 968px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .sidebar {
-    position: static;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 24px;
-  }
-
-  .sidebar-block {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .project-hero {
-    padding: 120px 20px 60px;
-    min-height: auto;
-  }
-
-  .project-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .meta-divider {
-    display: none;
-  }
-
-  .project-content {
-    padding: 60px 20px;
-  }
-
-  .sidebar {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery {
-    grid-template-columns: 1fr;
-  }
 }
 </style>

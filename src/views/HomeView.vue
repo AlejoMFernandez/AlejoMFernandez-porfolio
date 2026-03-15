@@ -246,14 +246,15 @@ onUnmounted(() => {
 .hero-sticker {
   position: absolute;
   right: 0;
-  bottom: 50px;
-  width: clamp(520px, 12vw, 200px);
+  bottom: 0;
+  width: clamp(320px, 42vw, 680px);
   object-fit: contain;
   filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
   pointer-events: none;
   user-select: none;
   transform-origin: bottom right;
   z-index: -1;
+  animation: sticker-float 4s ease-in-out infinite;
 }
 
 @keyframes sticker-float {
@@ -283,7 +284,7 @@ onUnmounted(() => {
 .hero-name {
   display: flex;
   flex-direction: column;
-  font-size: clamp(5rem, 13.5vw, 15rem);
+  font-size: clamp(5rem, 10.5vw, 13rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 0.88;
@@ -707,12 +708,29 @@ onUnmounted(() => {
 
 @media (max-width: 600px) {
   .hero {
-    padding: 100px 20px 40px;
-    gap: 40px;
+    padding: 90px 20px 80px;
   }
 
   .hero-name {
-    font-size: clamp(3.8rem, 16vw, 6rem);
+    font-size: clamp(3rem, 13vw, 5rem);
+  }
+
+  .hero-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-sticker {
+    position: relative;
+    order: -1;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 68vw;
+    align-self: center;
+    margin-top: 12px;
+    margin-bottom: -60px;
   }
 
   .hero-meta {
@@ -731,6 +749,14 @@ onUnmounted(() => {
 
   .feat-info {
     padding: 24px 24px;
+  }
+
+  .feat-visual {
+    display: none;
+  }
+
+  .featured-card {
+    height: auto;
   }
 }
 </style>

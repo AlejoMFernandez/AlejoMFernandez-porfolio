@@ -102,7 +102,6 @@ onUnmounted(() => {
               href="/images/aboutme/Alejo-Martin-Fernandez-CV.pdf"
               download
               class="bento-card cv-card"
-              style="flex-direction: column; align-items: flex-start;"
             >
               <div class="cv-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="30" height="30">
@@ -624,5 +623,19 @@ onUnmounted(() => {
   .glass-card { padding: 28px 22px; }
   .bento-grid { gap: 8px; }
   .social-card { height: 60px; }
+  /* Skills pills more compact */
+  .skill-pill { font-size: 0.64rem; padding: 3px 7px; }
+  /* Left-bottom-row: stack vertically on mobile, equal heights */
+  .left-bottom-row { grid-template-columns: 1fr; }
+  .skills-card, .cv-card { flex: none; }
+  /* CV card: explicit row layout (overrides any inline style) */
+  .cv-card { flex-direction: row !important; align-items: center !important; }
+  /* Song card: smaller album art, stays column, everything fits */
+  .song-card { padding: 12px; gap: 6px; }
+  .song-cover { width: 100px !important; height: 100px !important; }
+  .song-ctrl { padding: 3px 4px; }
+  /* Carousel spans full width, sticker card hidden */
+  .carousel-card { grid-column: 1 / -1; }
+  .sticker-card { display: none; }
 }
 </style>
