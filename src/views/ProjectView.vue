@@ -17,6 +17,11 @@ const project = computed(() => {
   return projects.find(p => p.id === route.params.id)
 })
 
+const isLogoMain = computed(() => {
+  if (!project.value) return false
+  return Boolean(project.value.logo && project.value.imagenPrincipal === project.value.logo)
+})
+
 // Galería: usa imagenes del JSON si están definidas, si no auto-carga desde galleries.json
 const projectGallery = computed(() => {
   if (!project.value) return []
@@ -140,7 +145,12 @@ onMounted(() => {
 
           <!-- Celda imagen: col 2, rows 1+2 -->
           <div class="b-cell b-img-cell" :style="{ background: project.colorFondo }">
-            <img v-if="project.imagenPrincipal" :src="project.imagenPrincipal" :alt="project.nombre" />
+            <img
+              v-if="project.imagenPrincipal"
+              :src="project.imagenPrincipal"
+              :alt="project.nombre"
+              :class="{ 'b-img-logo': isLogoMain }"
+            />
           </div>
 
           <!-- Celda meta: col 3, row 1 -->
@@ -329,6 +339,12 @@ onMounted(() => {
   object-fit: cover;
   object-position: top;
   display: block;
+}
+
+.b-img-cell img.b-img-logo {
+  object-fit: contain;
+  object-position: center;
+  padding: 24px;
 }
 
 /* col 3, row 1 */
@@ -558,6 +574,10 @@ onMounted(() => {
 
   .b-img-cell img {
     object-position: center;
+  }
+
+  .b-img-cell img.b-img-logo {
+    padding: 14px;
   }
 
   .b-feat-cell {

@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "work": "Projetos",
+    "info": "Sobre mim",
+    "contact": "Contato"
+  },
+  "home": {
+    "carrer": "Desenvolvedor Web",
+    "subtitle": "Crio experiencias digitais unicas e funcionais",
+    "featuredTitle": "Projetos em Destaque",
+    "featuredSubtitle": "Uma selecao dos meus melhores trabalhos",
+    "moreTitle": "Mais Projetos",
+    "seeAll": "Ver todos os projetos",
+    "ctaEyebrow": "Vamos trabalhar juntos",
+    "ctaTitle": "Tem um projeto em mente?",
+    "ctaSubtitle": "Estou disponivel para trabalhos freelance e colaboracoes. Conte sua ideia e vamos construir algo incrivel juntos.",
+    "ctaBtn": "Entrar em contato"
+  },
+  "project": {
+    "back": "Voltar",
+    "about": "Sobre o projeto",
+    "gallery": "Galeria",
+    "demo": "Demo em video",
+    "links": "Links",
+    "viewSite": "Ver site",
+    "viewCode": "Ver codigo",
+    "client": "Cliente",
+    "technologies": "Tecnologias",
+    "features": "Recursos",
+    "role": "Papel"
+  },
+  "info": {
+    "aboutMe": "Sobre mim",
+    "whoAmI": "Quem sou",
+    "whereImFrom": "De onde sou",
+    "hobbies": "Do que gosto",
+    "whatIDoNow": "O que faco",
+    "whatImLookingFor": "O que procuro",
+    "listenOn": "Ouvir no Spotify",
+    "favoriteTrack": "Musica favorita agora",
+    "aspirations": "Ao que aspiro",
+    "gallery": "Galeria",
+    "skills": "Habilidades",
+    "skillsDev": "Desenvolvimento WEB",
+    "downloadCV": "Baixar CV",
+    "letsConnect": "Vamos nos conectar",
+    "skillsInfra": "Infraestrutura",
+    "experience": "Experiencia",
+    "education": "Educacao",
+    "courses": "Cursos",
+    "languages": "Idiomas",
+    "contact": "Vamos trabalhar juntos?",
+    "contactSubtitle": "Estou disponivel para projetos freelance e oportunidades de trabalho"
+  },
+  "footer": {
+    "version": "Versao",
+    "localTime": "Hora local",
+    "socials": "Redes",
+    "designedBy": "Projetado e desenvolvido por"
+  },
+  "common": {
+    "present": "Atual"
+  },
+  "contact": {
+    "eyebrow": "Contato",
+    "heading": "O que podemos construir juntos?",
+    "description": "Estou disponivel para projetos freelance, colaboracoes e novas oportunidades. Conte sua ideia e vamos conversar.",
+    "labelLocation": "Localizacao",
+    "fieldName": "Nome",
+    "fieldEmail": "Email",
+    "fieldService": "Servico",
+    "fieldMessage": "Mensagem",
+    "placeholderName": "Seu nome",
+    "placeholderEmail": "voce{'@'}email.com",
+    "placeholderService": "O que voce precisa?",
+    "placeholderMessage": "Conte seu projeto, o que voce tem em mente...",
+    "services": ["Landing Page", "ABM", "Web App", "Intranet", "E-commerce", "Outro"],
+    "submit": "Enviar mensagem",
+    "submitting": "Enviando...",
+    "submitted": "Mensagem enviada!",
+    "msgSent": "Obrigado! Vou responder em breve.",
+    "msgError": "Algo deu errado. Voce pode me escrever direto para fernandezmalejo{'@'}gmail.com",
+    "wizardTrigger": "Nao sabe bem o que precisa? ->",
+    "validationError": "Por favor, preencha todos os campos antes de enviar."
+  }
+}

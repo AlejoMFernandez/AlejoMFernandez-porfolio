@@ -1,11 +1,14 @@
 import { createI18n } from 'vue-i18n'
 import es from './es.json'
 import en from './en.json'
+import pt from './pt.json'
+
+const supportedLanguages = ['es', 'en', 'pt']
 
 // Detectar idioma del navegador o usar español por defecto
 const getBrowserLanguage = () => {
   const browserLang = navigator.language.split('-')[0]
-  return ['es', 'en'].includes(browserLang) ? browserLang : 'es'
+  return supportedLanguages.includes(browserLang) ? browserLang : 'es'
 }
 
 // Obtener idioma guardado o usar el del navegador
@@ -17,7 +20,8 @@ const i18n = createI18n({
   fallbackLocale: 'es',
   messages: {
     es,
-    en
+    en,
+    pt
   }
 })
 
@@ -33,7 +37,9 @@ export const getCurrentLanguage = () => i18n.global.locale.value
 
 // Función para alternar entre idiomas
 export const toggleLanguage = () => {
-  const newLang = i18n.global.locale.value === 'es' ? 'en' : 'es'
+  const currentIndex = supportedLanguages.indexOf(i18n.global.locale.value)
+  const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % supportedLanguages.length
+  const newLang = supportedLanguages[nextIndex]
   setLanguage(newLang)
 }
 

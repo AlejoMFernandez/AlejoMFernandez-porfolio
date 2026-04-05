@@ -26,6 +26,10 @@ const otherProjects = computed(() => {
   return sortedProjects.value.filter(p => !p.destacado)
 })
 
+const isLogoMain = (project) => {
+  return Boolean(project?.logo && project?.imagenPrincipal && project.imagenPrincipal === project.logo)
+}
+
 const heroRef = ref(null)
 const nameRef = ref(null)
 const descRef = ref(null)
@@ -139,7 +143,7 @@ onUnmounted(() => {
               v-if="project.imagenPrincipal"
               :src="project.imagenPrincipal"
               :alt="project.nombre"
-              class="feat-image"
+              :class="['feat-image', { 'logo-main': isLogoMain(project) }]"
             />
             <span class="feat-badge">{{ project.tipo }}</span>
           </div>
@@ -443,6 +447,12 @@ onUnmounted(() => {
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feat-image.logo-main {
+  object-fit: contain;
+  object-position: center;
+  padding: 24px;
 }
 
 .featured-card:hover .feat-image {

@@ -1,19 +1,19 @@
 {
   "nombre": "Alejo Martin",
   "apellido": "Fernandez",
-  "titulo": { "es": "Desarrollador Web", "en": "Web Developer" },
-  "subtitulo": { "es": "Creo experiencias digitales únicas y funcionales", "en": "I create unique and functional digital experiences" },
+  "titulo": { "es": "Desarrollador Web", "en": "Web Developer", "pt": "Desenvolvedor Web" },
+  "subtitulo": { "es": "Creo experiencias digitales únicas y funcionales", "en": "I create unique and functional digital experiences", "pt": "Crio experiencias digitais unicas e funcionais" },
   "ubicacion": "Villa Bosch, Argentina",
   "email": "fernandezmalejo@gmail.com",
   "telefono": "+54 11 2523-7915",
-  "bio": { "es": "Deseo crecer profesionalmente y desarrollarme en la programación web full-stack y como analista en infraestructura. Enfrentarme a nuevos desafíos y adquirir herramientas.", "en": "I want to grow professionally and develop my skills in full-stack web development and infrastructure analysis. I thrive on facing new challenges and acquiring new tools." },
-  "aspiraciones": { "es": "Mi objetivo es seguir creciendo como profesional, trabajando en proyectos desafiantes que me permitan expandir mis conocimientos. Aspiro a formar parte de equipos innovadores donde pueda aportar mi creatividad y experiencia técnica.", "en": "My goal is to keep growing as a professional, working on challenging projects that expand my knowledge. I aspire to be part of innovative teams where I can contribute my creativity and technical experience." },
+  "bio": { "es": "Deseo crecer profesionalmente y desarrollarme en la programación web full-stack y como analista en infraestructura. Enfrentarme a nuevos desafíos y adquirir herramientas.", "en": "I want to grow professionally and develop my skills in full-stack web development and infrastructure analysis. I thrive on facing new challenges and acquiring new tools.", "pt": "Quero crescer profissionalmente e desenvolver minhas habilidades em desenvolvimento web full-stack e analise de infraestrutura. Gosto de enfrentar novos desafios e adquirir novas ferramentas." },
+  "aspiraciones": { "es": "Mi objetivo es seguir creciendo como profesional, trabajando en proyectos desafiantes que me permitan expandir mis conocimientos. Aspiro a formar parte de equipos innovadores donde pueda aportar mi creatividad y experiencia técnica.", "en": "My goal is to keep growing as a professional, working on challenging projects that expand my knowledge. I aspire to be part of innovative teams where I can contribute my creativity and technical experience.", "pt": "Meu objetivo e continuar crescendo como profissional, trabalhando em projetos desafiadores que ampliem meus conhecimentos. Quero fazer parte de equipes inovadoras onde eu possa contribuir com minha criatividade e experiencia tecnica." },
   "about": {
-    "whoAmI": { "es": "Soy Alejo, desarrollador web de Villa Bosch, Argentina. Me apasiona construir cosas en la web que se vean bien y funcionen todavía mejor.", "en": "I'm Alejo, a web developer from Villa Bosch, Argentina. I'm passionate about building things on the web that look great and work even better." },
-    "whereImFrom": { "es": "Soy del Gran Buenos Aires. Crecí en el conurbano bonaerense, rodeado del ritmo del fútbol argentino y de una cultura que me formó.", "en": "I'm from Greater Buenos Aires. I grew up in the suburbs surrounded by the rhythm of Argentine football and a culture that shaped who I am." },
-    "hobbies": { "es": "Me apasionan el fútbol y el piano. Cuando no estoy programando, estoy tocando algún tema o siguiendo el partido. También paso tiempo con mi pareja, que es gran parte de mi vida cotidiana.", "en": "I'm passionate about football and piano. When I'm not coding, I'm playing some tune or following a match. I also spend time with my partner, who is a big part of my daily life." },
-    "whatIDoNow": { "es": "Trabajo como Analista en Infraestructura Jr. en BINIT y en paralelo desarrollo proyectos web como freelance, siempre buscando mejorar el detalle y la experiencia de usuario.", "en": "I work as a Jr. Infrastructure Analyst at BINIT and in parallel develop web projects as a freelance developer, always looking to improve detail and user experience." },
-    "whatImLookingFor": { "es": "Busco oportunidades que me permitan crecer como desarrollador full-stack, integrarme a equipos creativos y participar en proyectos con impacto real.", "en": "I'm looking for opportunities to grow as a full-stack developer, join creative teams, and work on projects with real impact." }
+    "whoAmI": { "es": "Soy Alejo, desarrollador web de Villa Bosch, Argentina. Me apasiona construir cosas en la web que se vean bien y funcionen todavía mejor.", "en": "I'm Alejo, a web developer from Villa Bosch, Argentina. I'm passionate about building things on the web that look great and work even better.", "pt": "Sou Alejo, desenvolvedor web de Villa Bosch, Argentina. Sou apaixonado por construir coisas na web que tenham boa aparencia e funcionem ainda melhor." },
+    "whereImFrom": { "es": "Soy del Gran Buenos Aires. Crecí en el conurbano bonaerense, rodeado del ritmo del fútbol argentino y de una cultura que me formó.", "en": "I'm from Greater Buenos Aires. I grew up in the suburbs surrounded by the rhythm of Argentine football and a culture that shaped who I am.", "pt": "Sou da Grande Buenos Aires. Cresci no conurbano bonaerense, cercado pelo ritmo do futebol argentino e por uma cultura que me formou." },
+    "hobbies": { "es": "Me apasionan el fútbol y el piano. Cuando no estoy programando, estoy tocando algún tema o siguiendo el partido. También paso tiempo con mi pareja, que es gran parte de mi vida cotidiana.", "en": "I'm passionate about football and piano. When I'm not coding, I'm playing some tune or following a match. I also spend time with my partner, who is a big part of my daily life.", "pt": "Sou apaixonado por futebol e piano. Quando nao estou programando, estou tocando alguma musica ou acompanhando um jogo. Tambem passo tempo com minha parceira, que e uma parte importante da minha rotina." },
+    "whatIDoNow": { "es": "Trabajo como Analista en Infraestructura Jr. en BINIT y en paralelo desarrollo proyectos web como freelance, siempre buscando mejorar el detalle y la experiencia de usuario.", "en": "I work as a Jr. Infrastructure Analyst at BINIT and in parallel develop web projects as a freelance developer, always looking to improve detail and user experience.", "pt": "Trabalho como Analista de Infraestrutura Jr. na BINIT e, em paralelo, desenvolvo projetos web como freelancer, sempre buscando melhorar os detalhes e a experiencia do usuario." },
+    "whatImLookingFor": { "es": "Busco oportunidades que me permitan crecer como desarrollador full-stack, integrarme a equipos creativos y participar en proyectos con impacto real.", "en": "I'm looking for opportunities to grow as a full-stack developer, join creative teams, and work on projects with real impact.", "pt": "Busco oportunidades que me permitam crescer como desenvolvedor full-stack, integrar equipes criativas e participar de projetos com impacto real." }
   },
   "cancionFavorita": {
     "titulo": "Ama de mi sol",
@@ -26,63 +26,63 @@
   "fotosAboutMe": {
     "perfil": "/images/aboutme/profilephoto.JPEG",
     "galeria": [
-      { "src": "/images/aboutme/galeriaargentina.JPEG", "label": { "es": "Argentina", "en": "Argentina" } },
-      { "src": "/images/aboutme/galeriahobbie.JPEG", "label": { "es": "Hobbie", "en": "Hobby" } },
-      { "src": "/images/aboutme/galeriapareja.JPEG", "label": { "es": "<3", "en": "<3" } },
-      { "src": "/images/aboutme/galeriaprogramacion.JPEG", "label": { "es": "Espacio de trabajo", "en": "My workspace" } }
+      { "src": "/images/aboutme/galeriaargentina.JPEG", "label": { "es": "Argentina", "en": "Argentina", "pt": "Argentina" } },
+      { "src": "/images/aboutme/galeriahobbie.JPEG", "label": { "es": "Hobbie", "en": "Hobby", "pt": "Hobby" } },
+      { "src": "/images/aboutme/galeriapareja.JPEG", "label": { "es": "<3", "en": "<3", "pt": "<3" } },
+      { "src": "/images/aboutme/galeriaprogramacion.JPEG", "label": { "es": "Espacio de trabajo", "en": "My workspace", "pt": "Meu espaco de trabalho" } }
     ]
   },
   "experiencia": [
     {
       "empresa": "Freelance",
-      "puesto": { "es": "Desarrollador Web", "en": "Web Developer" },
+      "puesto": { "es": "Desarrollador Web", "en": "Web Developer", "pt": "Desenvolvedor Web" },
       "fechaInicio": "2026-02",
       "fechaFin": "Actualidad",
-      "ubicacion": { "es": "Remoto", "en": "Remote" },
-      "descripcion": { "es": "Desarrollo de sitios web personalizados para clientes, incluyendo diseño, implementación y mantenimiento.", "en": "Development of custom websites for clients, including design, implementation and maintenance." }
+      "ubicacion": { "es": "Remoto", "en": "Remote", "pt": "Remoto" },
+      "descripcion": { "es": "Desarrollo de sitios web personalizados para clientes, incluyendo diseño, implementación y mantenimiento.", "en": "Development of custom websites for clients, including design, implementation and maintenance.", "pt": "Desenvolvimento de sites personalizados para clientes, incluindo design, implementacao e manutencao." }
     },
     {
       "empresa": "BINIT",
-      "puesto": { "es": "Analista en Infraestructura Jr.", "en": "Jr. Infrastructure Analyst" },
+      "puesto": { "es": "Analista en Infraestructura Jr.", "en": "Jr. Infrastructure Analyst", "pt": "Analista de Infraestrutura Jr." },
       "fechaInicio": "2024-01",
       "fechaFin": "Actualidad",
       "ubicacion": "Vicente López",
-      "descripcion": { "es": "Azure DevOps, Portal Azure, Portal 365, Herramienta de tickets & monitoreo, Administración de servidores, Automatización de procesos, ABM de usuarios", "en": "Azure DevOps, Azure Portal, Portal 365, Ticketing & monitoring tools, Server administration, Process automation, User management" }
+      "descripcion": { "es": "Azure DevOps, Portal Azure, Portal 365, Herramienta de tickets & monitoreo, Administración de servidores, Automatización de procesos, ABM de usuarios", "en": "Azure DevOps, Azure Portal, Portal 365, Ticketing & monitoring tools, Server administration, Process automation, User management", "pt": "Azure DevOps, Portal Azure, Portal 365, Ferramentas de chamados e monitoramento, Administracao de servidores, Automacao de processos, Gestao de usuarios" }
     },
     {
       "empresa": "ITALNET",
-      "puesto": { "es": "Pasante como asistente técnico", "en": "Technical Assistant Intern" },
+      "puesto": { "es": "Pasante como asistente técnico", "en": "Technical Assistant Intern", "pt": "Estagiario como assistente tecnico" },
       "fechaInicio": "2023-08",
       "fechaFin": "2023-12",
       "ubicacion": "San Martín",
-      "descripcion": { "es": "Trabajos informáticos y de electricidad", "en": "IT and electrical work" }
+      "descripcion": { "es": "Trabajos informáticos y de electricidad", "en": "IT and electrical work", "pt": "Trabalhos de TI e eletrica" }
     },
     {
       "empresa": "Instituto Leonardo Murialdo",
-      "puesto": { "es": "Pasantía en los laboratorios del instituto", "en": "Lab Internship" },
+      "puesto": { "es": "Pasantía en los laboratorios del instituto", "en": "Lab Internship", "pt": "Estagio nos laboratorios do instituto" },
       "fechaInicio": "2023-04",
       "fechaFin": "2023-08",
       "ubicacion": "Villa Bosch",
-      "descripcion": { "es": "Reparación de computadoras, clonación de computadoras, solución de problemas, etc.", "en": "Computer repair, computer cloning, troubleshooting, etc." }
+      "descripcion": { "es": "Reparación de computadoras, clonación de computadoras, solución de problemas, etc.", "en": "Computer repair, computer cloning, troubleshooting, etc.", "pt": "Reparo de computadores, clonagem de computadores, resolucao de problemas, etc." }
     }
   ],
   "educacion": [
     {
       "institucion": "Escuela Da Vinci",
-      "titulo": { "es": "Diseño y Desarrollo Web", "en": "Web Design and Development" },
+      "titulo": { "es": "Diseño y Desarrollo Web", "en": "Web Design and Development", "pt": "Design e Desenvolvimento Web" },
       "fechaInicio": "2024",
       "fechaFin": "Actualidad"
     },
     {
       "institucion": "Instituto Leonardo Murialdo",
-      "titulo": { "es": "Técnico en Informática", "en": "IT Technician" },
+      "titulo": { "es": "Técnico en Informática", "en": "IT Technician", "pt": "Tecnico em Informatica" },
       "fechaInicio": "2020",
       "fechaFin": "2023"
     }
   ],
   "cursos": [
     {
-      "nombre": { "es": "Desarrollo Web - Front End", "en": "Web Development - Front End" },
+      "nombre": { "es": "Desarrollo Web - Front End", "en": "Web Development - Front End", "pt": "Desenvolvimento Web - Front End" },
       "institucion": "CoderHouse"
     },
     {
@@ -94,12 +94,13 @@
     "desarrollo": ["Vue.js", "Vite", "CSS", "Tailwind", "JavaScript", "Laravel", "PHP/SQL", "APIs REST"],
     "infraestructura": {
       "es": ["ABM", "Azure / DevOps", "Portal 365", "Herramienta de tickets", "Zabbix", "Servidores", "Administración de SQL", "Automatización de procesos (PowerShell)", "Documentación de procesos y proyectos"],
-      "en": ["User Management", "Azure / DevOps", "Portal 365", "Ticketing tools", "Zabbix", "Servers", "SQL Administration", "Process automation (PowerShell)", "Process & project documentation"]
+      "en": ["User Management", "Azure / DevOps", "Portal 365", "Ticketing tools", "Zabbix", "Servers", "SQL Administration", "Process automation (PowerShell)", "Process & project documentation"],
+      "pt": ["Gestao de usuarios", "Azure / DevOps", "Portal 365", "Ferramentas de chamados", "Zabbix", "Servidores", "Administracao de SQL", "Automacao de processos (PowerShell)", "Documentacao de processos e projetos"]
     }
   },
   "idiomas": [
-    { "idioma": { "es": "Español", "en": "Spanish" }, "nivel": { "es": "Nativo", "en": "Native" } },
-    { "idioma": { "es": "Inglés", "en": "English" }, "nivel": { "es": "Intermedio", "en": "Intermediate" } }
+    { "idioma": { "es": "Español", "en": "Spanish", "pt": "Espanhol" }, "nivel": { "es": "Nativo", "en": "Native", "pt": "Nativo" } },
+    { "idioma": { "es": "Inglés", "en": "English", "pt": "Ingles" }, "nivel": { "es": "Intermedio", "en": "Intermediate", "pt": "Intermediario" } }
   ],
   "redes": {
     "github": "https://github.com/AlejoMFernandez",

@@ -10,6 +10,12 @@ import personal from '../data/personal.json'
 const { t, locale } = useI18n()
 const { l } = useLocalized()
 
+const languageToggleTitle = {
+  es: 'Switch to English',
+  en: 'Mudar para Portugues',
+  pt: 'Cambiar a Espanol'
+}
+
 const handleToggleLanguage = () => {
   switchLang()
 }
@@ -120,11 +126,13 @@ onUnmounted(() => {
           v-magnetic="{ strength: 0.25, scale: 1.08 }"
           class="lang-toggle magnetic-btn" 
           @click="handleToggleLanguage" 
-          :title="locale === 'es' ? 'Switch to English' : 'Cambiar a Español'"
+          :title="languageToggleTitle[locale] || 'Switch language'"
         >
           <span class="lang-option" :class="{ active: locale === 'es' }">ES</span>
           <span class="lang-divider">/</span>
           <span class="lang-option" :class="{ active: locale === 'en' }">EN</span>
+          <span class="lang-divider">/</span>
+          <span class="lang-option" :class="{ active: locale === 'pt' }">PT</span>
         </button>
 
         <!-- Menu Button (Mobile) -->
@@ -175,6 +183,8 @@ onUnmounted(() => {
             <span :class="{ active: locale === 'es' }">Español</span>
             <span class="lang-divider-mobile">|</span>
             <span :class="{ active: locale === 'en' }">English</span>
+            <span class="lang-divider-mobile">|</span>
+            <span :class="{ active: locale === 'pt' }">Portugues</span>
           </button>
         </div>
       </div>

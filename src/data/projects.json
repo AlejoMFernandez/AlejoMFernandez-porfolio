@@ -2,12 +2,12 @@
   {
     "id": "goaldemy",
     "nombre": "GOALDEMY",
-    "descripcionCorta": { "es": "App web de minijuegos de fútbol con rachas, logros y tablas de posición gamificadas.", "en": "Football-themed gaming app with streaks, achievements, and gamified leaderboards." },
-    "descripcionLarga": { "es": "Goaldemy es una plataforma de aprendizaje gamificada centrada en el fútbol. Incluye 8 minijuegos únicos para poner a prueba tu conocimiento (jugadores, clubes, posiciones y valores de mercado), un sistema de rachas y logros desbloqueables, tablas de posición competitivas y perfiles públicos. La autenticación y los datos en tiempo real están gestionados por Supabase, con estadísticas visualizadas mediante Chart.js.", "en": "Goaldemy is a gamified learning platform centered around football. It features 8 unique mini-games to test your knowledge (players, clubs, positions, and market values), a streaks and unlockable achievements system, competitive leaderboards, and public profiles. Authentication and real-time data are managed by Supabase, with statistics visualized via Chart.js." },
+    "descripcionCorta": { "es": "App web de minijuegos de fútbol con rachas, logros y tablas de posición gamificadas.", "en": "Football-themed gaming app with streaks, achievements, and gamified leaderboards.", "pt": "Aplicativo web de minijogos de futebol com sequencias, conquistas e rankings gamificados." },
+    "descripcionLarga": { "es": "Goaldemy es una plataforma de aprendizaje gamificada centrada en el fútbol. Incluye 8 minijuegos únicos para poner a prueba tu conocimiento (jugadores, clubes, posiciones y valores de mercado), un sistema de rachas y logros desbloqueables, tablas de posición competitivas y perfiles públicos. La autenticación y los datos en tiempo real están gestionados por Supabase, con estadísticas visualizadas mediante Chart.js.", "en": "Goaldemy is a gamified learning platform centered around football. It features 8 unique mini-games to test your knowledge (players, clubs, positions, and market values), a streaks and unlockable achievements system, competitive leaderboards, and public profiles. Authentication and real-time data are managed by Supabase, with statistics visualized via Chart.js.", "pt": "Goaldemy e uma plataforma de aprendizado gamificada focada em futebol. Inclui 8 minijogos unicos para testar seu conhecimento (jogadores, clubes, posicoes e valores de mercado), um sistema de sequencias e conquistas desbloqueaveis, rankings competitivos e perfis publicos. A autenticacao e os dados em tempo real sao gerenciados pelo Supabase, com estatisticas exibidas com Chart.js." },
     "fechaInicio": "2025-09",
     "fechaFin": "Actualidad",
     "cliente": null,
-    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer" },
+    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer", "pt": "Desenvolvedor Full-Stack" },
     "tecnologias": ["Vite", "Vue.js", "Tailwind CSS", "JavaScript", "Supabase", "MongoDB"],
     "linkDemo": "https://goaldemy.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/Goaldemy",
@@ -20,7 +20,8 @@
     "colorTexto": "#ffffff",
     "features": {
       "es": ["Sistema de misiones y XP", "Logros desbloqueables", "Sistema de niveles", "Estadísticas de progreso", "Recordatorios personalizados", "Gamificación completa"],
-      "en": ["Mission and XP system", "Unlockable achievements", "Level system", "Progress statistics", "Custom reminders", "Full gamification"]
+      "en": ["Mission and XP system", "Unlockable achievements", "Level system", "Progress statistics", "Custom reminders", "Full gamification"],
+      "pt": ["Sistema de missoes e XP", "Conquistas desbloqueaveis", "Sistema de niveis", "Estatisticas de progresso", "Lembretes personalizados", "Gamificacao completa"]
     },
     "tipo": "WEBAPP",
     "destacado": true,
@@ -34,12 +35,12 @@
   {
     "id": "franza",
     "nombre": "FRANZA",
-    "descripcionCorta": { "es": "Sistema web MVC para gestionar el portfolio de obras de una constructora con más de 15 años de experiencia.", "en": "MVC web system to manage a construction company's project portfolio with over 15 years of experience." },
-    "descripcionLarga": { "es": "FRANZA es un sistema de gestión desarrollado en PHP nativo con arquitectura MVC para una empresa constructora con más de 15 años de experiencia en obras civiles e industriales. Incluye un panel de administración completo con ABM de obras (imágenes, galerías, descripción y ubicación), autenticación con roles, protección CSRF mediante tokens, URLs amigables con Apache mod_rewrite y contacto directo vía WhatsApp para solicitar presupuestos.", "en": "FRANZA is a management system built in native PHP with MVC architecture for a construction company with over 15 years of experience in civil and industrial projects. It includes a full admin panel with project CRUD (images, galleries, description, and location), role-based authentication, CSRF token protection, clean URLs via Apache mod_rewrite, and direct WhatsApp contact for budget requests." },
+    "descripcionCorta": { "es": "Sistema web MVC para gestionar el portfolio de obras de una constructora con más de 15 años de experiencia.", "en": "MVC web system to manage a construction company's project portfolio with over 15 years of experience.", "pt": "Sistema web MVC para gerenciar o portfolio de obras de uma construtora com mais de 15 anos de experiencia." },
+    "descripcionLarga": { "es": "FRANZA es un sistema de gestión desarrollado en PHP nativo con arquitectura MVC para una empresa constructora con más de 15 años de experiencia en obras civiles e industriales. Incluye un panel de administración completo con ABM de obras (imágenes, galerías, descripción y ubicación), autenticación con roles, protección CSRF mediante tokens, URLs amigables con Apache mod_rewrite y contacto directo vía WhatsApp para solicitar presupuestos.", "en": "FRANZA is a management system built in native PHP with MVC architecture for a construction company with over 15 years of experience in civil and industrial projects. It includes a full admin panel with project CRUD (images, galleries, description, and location), role-based authentication, CSRF token protection, clean URLs via Apache mod_rewrite, and direct WhatsApp contact for budget requests.", "pt": "FRANZA e um sistema de gestao desenvolvido em PHP nativo com arquitetura MVC para uma empresa de construcao com mais de 15 anos de experiencia em obras civis e industriais. Inclui um painel administrativo completo com CRUD de obras (imagens, galerias, descricao e localizacao), autenticacao por papeis, protecao CSRF com tokens, URLs amigaveis com Apache mod_rewrite e contato direto por WhatsApp para solicitar orcamentos." },
     "fechaInicio": "2025-03",
     "fechaFin": "2025-05",
     "cliente": "Franza Constructora",
-    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer" },
+    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer", "pt": "Desenvolvedor Full-Stack" },
     "tecnologias": ["PHP", "Bootstrap", "CSS", "JavaScript", "MySQL"],
     "linkDemo": "https://Franza.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/Franza",
@@ -51,7 +52,8 @@
     "colorTexto": "#ffffff",
     "features": {
       "es": ["Generación automática de páginas", "Sistema de banco de fotos", "Portfolio de obras dinámico", "Panel de administración", "Diseño responsive"],
-      "en": ["Automatic page generation", "Photo bank system", "Dynamic project portfolio", "Admin panel", "Responsive design"]
+      "en": ["Automatic page generation", "Photo bank system", "Dynamic project portfolio", "Admin panel", "Responsive design"],
+      "pt": ["Geracao automatica de paginas", "Sistema de banco de fotos", "Portfolio dinamico de obras", "Painel administrativo", "Design responsivo"]
     },
     "tipo": "ABM",
     "destacado": true,
@@ -60,12 +62,12 @@
   {
     "id": "champions-dle",
     "nombre": "Champions.dle",
-    "descripcionCorta": { "es": "PWA de juegos interactivos sobre la Champions League con modos de adivinanzas y sistema de rachas.", "en": "Champions League PWA with interactive guessing games and a streak system." },
-    "descripcionLarga": { "es": "Champions.dle es una Progressive Web App dedicada a la UEFA Champions League. Incluye exploración de los Top 9 equipos y sus plantillas, tres modos de juego (adivinar jugador por foto, identificar su nombre, y qué jugadores pertenecen a un club), sistema de rachas con best streak, lista de favoritos y soporte offline mediante Service Worker. Totalmente instalable en dispositivos móviles.", "en": "Champions.dle is a Progressive Web App dedicated to the UEFA Champions League. It features Top 9 team and squad exploration, three game modes (guess the player by photo, identify their name, and which players belong to a club), a streak and best-streak system, favorites list, and offline support via Service Worker. Fully installable on mobile devices." },
+    "descripcionCorta": { "es": "PWA de juegos interactivos sobre la Champions League con modos de adivinanzas y sistema de rachas.", "en": "Champions League PWA with interactive guessing games and a streak system.", "pt": "PWA de jogos interativos sobre a Champions League com modos de adivinhacao e sistema de sequencias." },
+    "descripcionLarga": { "es": "Champions.dle es una Progressive Web App dedicada a la UEFA Champions League. Incluye exploración de los Top 9 equipos y sus plantillas, tres modos de juego (adivinar jugador por foto, identificar su nombre, y qué jugadores pertenecen a un club), sistema de rachas con best streak, lista de favoritos y soporte offline mediante Service Worker. Totalmente instalable en dispositivos móviles.", "en": "Champions.dle is a Progressive Web App dedicated to the UEFA Champions League. It features Top 9 team and squad exploration, three game modes (guess the player by photo, identify their name, and which players belong to a club), a streak and best-streak system, favorites list, and offline support via Service Worker. Fully installable on mobile devices.", "pt": "Champions.dle e uma Progressive Web App dedicada a UEFA Champions League. Inclui exploracao dos Top 9 times e seus elencos, tres modos de jogo (adivinhar jogador pela foto, identificar seu nome e quais jogadores pertencem a um clube), sistema de sequencias com best streak, lista de favoritos e suporte offline via Service Worker. Totalmente instalavel em dispositivos moveis." },
     "fechaInicio": "2025-05",
     "fechaFin": "2025-06",
     "cliente": null,
-    "rol": { "es": "Desarrollador Frontend", "en": "Frontend Developer" },
+    "rol": { "es": "Desarrollador Frontend", "en": "Frontend Developer", "pt": "Desenvolvedor Frontend" },
     "tecnologias": ["PWA", "JavaScript", "API REST", "CSS"],
     "linkDemo": "https://championsdle.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/CHAMPIONS.dle",
@@ -77,7 +79,8 @@
     "colorTexto": "#ffffff",
     "features": {
       "es": ["Progressive Web App", "Juego diario de adivinanzas", "Exploración de equipos", "Base de datos de jugadores", "Instalable en móvil", "Diseño mobile-first"],
-      "en": ["Progressive Web App", "Daily guessing game", "Team exploration", "Player database", "Mobile installable", "Mobile-first design"]
+      "en": ["Progressive Web App", "Daily guessing game", "Team exploration", "Player database", "Mobile installable", "Mobile-first design"],
+      "pt": ["Progressive Web App", "Jogo diario de adivinhacao", "Exploracao de times", "Base de dados de jogadores", "Instalavel no celular", "Design mobile-first"]
     },
     "tipo": "PWA",
     "destacado": false,
@@ -86,12 +89,12 @@
   {
     "id": "italnet",
     "nombre": "Italnet",
-    "descripcionCorta": { "es": "Soluciones informáticas y electrónicas.", "en": "IT and electronic solutions." },
-    "descripcionLarga": { "es": "Empresa dedicada a soluciones tecnológicas integrales. Sitio informativo claro y ligero para comunicar servicios y presencia de marca.", "en": "Company dedicated to comprehensive technology solutions. Clean, lightweight informational site to communicate services and brand presence." },
+    "descripcionCorta": { "es": "Soluciones informáticas y electrónicas.", "en": "IT and electronic solutions.", "pt": "Solucoes de TI e eletronica." },
+    "descripcionLarga": { "es": "Empresa dedicada a soluciones tecnológicas integrales. Sitio informativo claro y ligero para comunicar servicios y presencia de marca.", "en": "Company dedicated to comprehensive technology solutions. Clean, lightweight informational site to communicate services and brand presence.", "pt": "Empresa dedicada a solucoes tecnologicas integradas. Site informativo claro e leve para comunicar servicos e presenca de marca." },
     "fechaInicio": "2024-04",
     "fechaFin": "2024-05",
     "cliente": "ITALNET",
-    "rol": { "es": "Desarrollador Web", "en": "Web Developer" },
+    "rol": { "es": "Desarrollador Web", "en": "Web Developer", "pt": "Desenvolvedor Web" },
     "tecnologias": ["HTML", "CSS"],
     "linkDemo": "https://italnetweb.com.ar/",
     "linkGithub": null,
@@ -103,21 +106,76 @@
     "colorTexto": "#ffffff",
     "features": {
       "es": ["Diseño limpio y profesional", "Información de servicios", "Formulario de contacto", "Responsive design"],
-      "en": ["Clean and professional design", "Service information", "Contact form", "Responsive design"]
+      "en": ["Clean and professional design", "Service information", "Contact form", "Responsive design"],
+      "pt": ["Design limpo e profissional", "Informacoes de servicos", "Formulario de contato", "Design responsivo"]
     },
     "tipo": "LANDING",
     "destacado": false,
     "orden": 4
   },
   {
+    "id": "arianadeviaje",
+    "nombre": "ArianaDeViaje",
+    "descripcionCorta": { "es": "Sitio web de viajes con identidad visual personalizada y enfoque en experiencia mobile-first.", "en": "Travel website with custom visual identity and a mobile-first user experience.", "pt": "Site de viagens com identidade visual personalizada e foco em experiencia mobile-first." },
+    "descripcionLarga": { "es": "ArianaDeViaje es un sitio web orientado a fortalecer la presencia digital de la marca y comunicar su propuesta de valor de forma clara y visual. Se trabajó en una estructura enfocada en conversión, navegación simple y experiencia responsive para facilitar el contacto desde cualquier dispositivo.", "en": "ArianaDeViaje is a website focused on strengthening the brand's digital presence and clearly communicating its value proposition in a visual way. The project was built with a conversion-oriented structure, simple navigation, and a responsive experience to make contact easier from any device.", "pt": "ArianaDeViaje e um site focado em fortalecer a presenca digital da marca e comunicar sua proposta de valor de forma clara e visual. O projeto foi desenvolvido com estrutura orientada a conversao, navegacao simples e experiencia responsiva para facilitar o contato em qualquer dispositivo." },
+    "fechaInicio": "2026-02",
+    "fechaFin": "2026-03",
+    "cliente": "ArianaDeViaje",
+    "rol": { "es": "Desarrollador Web Freelance", "en": "Freelance Web Developer", "pt": "Desenvolvedor Web Freelance" },
+    "tecnologias": ["Vue", "TypeScript", "PLpgSQL", "CSS"],
+    "linkDemo": "https://arianadeviaje.com/",
+    "linkGithub": "https://github.com/AlejoMFernandez/arianadeviaje",
+    "imagenPrincipal": "/images/projects/arianalogo.png",
+    "logo": "/images/projects/arianalogo.png",
+    "imagenes": ["/images/projects/arianamain.png"],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #012526 0%, #02b6b0 100%)",
+    "colorTexto": "#ffffff",
+    "features": {
+      "es": ["Diseño orientado a marca", "Experiencia mobile-first", "Arquitectura de contenido clara", "Optimización para conversión"],
+      "en": ["Brand-oriented design", "Mobile-first experience", "Clear content architecture", "Conversion-focused optimization"],
+      "pt": ["Design orientado a marca", "Experiencia mobile-first", "Arquitetura de conteudo clara", "Otimizacao para conversao"]
+    },
+    "tipo": "WEBAPP",
+    "destacado": false,
+    "orden": 7
+  },
+  {
+    "id": "puraa",
+    "nombre": "PURAA",
+    "descripcionCorta": { "es": "E-commerce/landing de cosmética natural con enfoque en bienestar integral, bioconsciencia y alquimia vegetal.", "en": "Natural cosmetics e-commerce/landing focused on holistic wellness, bio-consciousness, and plant-based alchemy.", "pt": "E-commerce/landing de cosmetica natural com foco em bem-estar integral, bioconsciencia e alquimia vegetal." },
+    "descripcionLarga": { "es": "PURAA nace desde una búsqueda personal y profesional para crear productos que acompañen el cuidado del cuerpo y el bienestar integral. El sitio comunica una propuesta centrada en cosmética natural, alquimia vegetal y consumo consciente, resaltando calidad artesanal, respeto por la biología y procesos realizados con intención y presencia.", "en": "PURAA was born from a personal and professional journey to create products that support body care and holistic well-being. The website communicates a proposal centered on natural cosmetics, plant-based alchemy, and conscious consumption, highlighting artisanal quality, respect for biology, and mindful production processes.", "pt": "PURAA nasceu de uma busca pessoal e profissional para criar produtos que acompanhem o cuidado do corpo e o bem-estar integral. O site comunica uma proposta centrada em cosmetica natural, alquimia vegetal e consumo consciente, destacando qualidade artesanal, respeito pela biologia e processos realizados com intencao e presenca." },
+    "fechaInicio": "2026-03",
+    "fechaFin": "2026-04",
+    "cliente": "PURAA",
+    "rol": { "es": "Desarrollador Web Freelance", "en": "Freelance Web Developer", "pt": "Desenvolvedor Web Freelance" },
+    "tecnologias": ["WordPress", "Elementor", "WooCommerce", "CSS"],
+    "linkDemo": "https://puraa.com.ar/",
+    "linkGithub": null,
+    "imagenPrincipal": "/images/projects/puraalogoclaro.png",
+    "logo": "/images/projects/puraalogoclaro.png",
+    "imagenes": ["/images/projects/puraamain.png"],
+    "video": null,
+    "colorFondo": "#2d6a4f",
+    "colorTexto": "#ffffff",
+    "features": {
+      "es": ["Branding natural y holístico", "Estructura de contenido educativa", "Comunicación de valores de marca", "Diseño visual limpio y orgánico"],
+      "en": ["Natural and holistic branding", "Educational content structure", "Brand-value communication", "Clean and organic visual design"],
+      "pt": ["Branding natural e holistico", "Estrutura de conteudo educativa", "Comunicacao dos valores da marca", "Design visual limpo e organico"]
+    },
+    "tipo": "WORDPRESS",
+    "destacado": true,
+    "orden": 8
+  },
+  {
     "id": "fenalix",
     "nombre": "FENALIX",
-    "descripcionCorta": { "es": "Frontend de plataforma de streaming de anime con catálogo, diseño responsive y animaciones.", "en": "Anime streaming frontend with catalog, responsive design, and animations." },
-    "descripcionLarga": { "es": "FENALIX es un proyecto front-end orientado a crear una experiencia de streaming similar a Netflix pero enfocada en anime. Desarrollado con HTML, SASS y Bootstrap, permite explorar un catálogo de series y películas (Jujutsu Kaisen, Mushoku Tensei, Demon Slayer, entre otros), con páginas de detalle por título, diseño responsive, animaciones con animate.css y AOS, e interfaz de reproducción de episodios.", "en": "FENALIX is a front-end project aimed at creating a Netflix-like streaming experience focused on anime. Built with HTML, SASS, and Bootstrap, it features a browsable catalog of series and movies (Jujutsu Kaisen, Mushoku Tensei, Demon Slayer, among others), per-title detail pages, responsive design, animate.css and AOS animations, and an episode playback interface." },
+    "descripcionCorta": { "es": "Frontend de plataforma de streaming de anime con catálogo, diseño responsive y animaciones.", "en": "Anime streaming frontend with catalog, responsive design, and animations.", "pt": "Frontend de plataforma de streaming de anime com catalogo, design responsivo e animacoes." },
+    "descripcionLarga": { "es": "FENALIX es un proyecto front-end orientado a crear una experiencia de streaming similar a Netflix pero enfocada en anime. Desarrollado con HTML, SASS y Bootstrap, permite explorar un catálogo de series y películas (Jujutsu Kaisen, Mushoku Tensei, Demon Slayer, entre otros), con páginas de detalle por título, diseño responsive, animaciones con animate.css y AOS, e interfaz de reproducción de episodios.", "en": "FENALIX is a front-end project aimed at creating a Netflix-like streaming experience focused on anime. Built with HTML, SASS, and Bootstrap, it features a browsable catalog of series and movies (Jujutsu Kaisen, Mushoku Tensei, Demon Slayer, among others), per-title detail pages, responsive design, animate.css and AOS animations, and an episode playback interface.", "pt": "FENALIX e um projeto front-end focado em criar uma experiencia de streaming semelhante a Netflix, mas voltada para anime. Desenvolvido com HTML, SASS e Bootstrap, permite explorar um catalogo de series e filmes (Jujutsu Kaisen, Mushoku Tensei, Demon Slayer, entre outros), com paginas de detalhe por titulo, design responsivo, animacoes com animate.css e AOS e interface de reproducao de episodios." },
     "fechaInicio": "2023-10",
     "fechaFin": "2023-12",
     "cliente": "Proyecto Coderhouse",
-    "rol": { "es": "Desarrollador Frontend", "en": "Frontend Developer" },
+    "rol": { "es": "Desarrollador Frontend", "en": "Frontend Developer", "pt": "Desenvolvedor Frontend" },
     "tecnologias": ["HTML", "SASS", "CSS"],
     "linkDemo": "https://fenalix.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/FENALIX",
@@ -129,7 +187,8 @@
     "colorTexto": "#ffffff",
     "features": {
       "es": ["UI estilo streaming", "Catálogo de series", "Diseño impactante", "Animaciones CSS"],
-      "en": ["Streaming-style UI", "Series catalog", "Striking design", "CSS animations"]
+      "en": ["Streaming-style UI", "Series catalog", "Striking design", "CSS animations"],
+      "pt": ["UI estilo streaming", "Catalogo de series", "Design impactante", "Animacoes CSS"]
     },
     "tipo": "FRONTEND",
     "destacado": false,
@@ -138,12 +197,12 @@
   {
     "id": "hardlab",
     "nombre": "HARDLAB",
-    "descripcionCorta": { "es": "Intranet que recolecta HW/SW de PCs en red y genera un inventario visual dinámico por laboratorio.", "en": "Intranet that collects HW/SW from networked PCs and generates a dynamic visual inventory by lab." },
-    "descripcionLarga": { "es": "HARDLAB es un sistema de inventario para intranet escolar que recopila especificaciones de hardware y software de cada computadora mediante un daemon desarrollado en Python. Identifica cada equipo por su dirección MAC (almacenada en SQL) y lo asigna automáticamente a un laboratorio según su ubicación definida en un JSON. La interfaz web en PHP muestra cada laboratorio como una sección visual con detalle de CPU, RAM, disco y aplicaciones instaladas vs. requeridas.", "en": "HARDLAB is an inventory system for a school intranet that gathers hardware and software specs from each computer via a Python daemon. Each machine is identified by its MAC address (stored in SQL) and automatically assigned to a lab based on its location defined in a JSON file. The PHP web interface displays each lab as a visual section with CPU, RAM, disk, and installed-vs-required application details." },
+    "descripcionCorta": { "es": "Intranet que recolecta HW/SW de PCs en red y genera un inventario visual dinámico por laboratorio.", "en": "Intranet that collects HW/SW from networked PCs and generates a dynamic visual inventory by lab.", "pt": "Intranet que coleta HW/SW de PCs em rede e gera um inventario visual dinamico por laboratorio." },
+    "descripcionLarga": { "es": "HARDLAB es un sistema de inventario para intranet escolar que recopila especificaciones de hardware y software de cada computadora mediante un daemon desarrollado en Python. Identifica cada equipo por su dirección MAC (almacenada en SQL) y lo asigna automáticamente a un laboratorio según su ubicación definida en un JSON. La interfaz web en PHP muestra cada laboratorio como una sección visual con detalle de CPU, RAM, disco y aplicaciones instaladas vs. requeridas.", "en": "HARDLAB is an inventory system for a school intranet that gathers hardware and software specs from each computer via a Python daemon. Each machine is identified by its MAC address (stored in SQL) and automatically assigned to a lab based on its location defined in a JSON file. The PHP web interface displays each lab as a visual section with CPU, RAM, disk, and installed-vs-required application details.", "pt": "HARDLAB e um sistema de inventario para intranet escolar que coleta especificacoes de hardware e software de cada computador por meio de um daemon em Python. Cada maquina e identificada pelo endereco MAC (armazenado em SQL) e atribuida automaticamente a um laboratorio conforme sua localizacao definida em JSON. A interface web em PHP exibe cada laboratorio como uma secao visual com detalhes de CPU, RAM, disco e aplicativos instalados versus requeridos." },
     "fechaInicio": "2023-03",
     "fechaFin": "2023-11",
     "cliente": null,
-    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer" },
+    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer", "pt": "Desenvolvedor Full-Stack" },
     "tecnologias": ["JavaScript", "PHP", "SQL", "Python", "CSS", "JSON"],
     "linkDemo": "",
     "linkGithub": "https://github.com/AlejoMFernandez/HARDLAB",
@@ -155,10 +214,11 @@
     "colorTexto": "#ffffff",
     "features": {
       "es": ["Recolección automática de HW/SW", "Persistencia con clave MAC", "Secciones dinámicas", "Vista agregada por área", "Script Python de inventario", "Base de datos SQL"],
-      "en": ["Automatic HW/SW collection", "MAC-key persistence", "Dynamic sections", "Aggregated area view", "Python inventory script", "SQL database"]
+      "en": ["Automatic HW/SW collection", "MAC-key persistence", "Dynamic sections", "Aggregated area view", "Python inventory script", "SQL database"],
+      "pt": ["Coleta automatica de HW/SW", "Persistencia por chave MAC", "Secoes dinamicas", "Visao agregada por area", "Script Python de inventario", "Banco de dados SQL"]
     },
     "tipo": "INTRANET",
-    "destacado": true,
+    "destacado": false,
     "orden": 3
   }
 ]
