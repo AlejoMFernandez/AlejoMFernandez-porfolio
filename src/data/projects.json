@@ -42,7 +42,7 @@
     "cliente": "Franza Constructora",
     "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer", "pt": "Desenvolvedor Full-Stack" },
     "tecnologias": ["PHP", "Bootstrap", "CSS", "JavaScript", "MySQL"],
-    "linkDemo": "https://Franza.vercel.app/",
+    "linkDemo": "https://Franza.com.ar/",
     "linkGithub": "https://github.com/AlejoMFernandez/Franza",
     "imagenPrincipal": "/images/projects/franzamain.png",
     "logo": "/images/projects/franzalogo.png",
