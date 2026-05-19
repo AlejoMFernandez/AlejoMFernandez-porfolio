@@ -3,6 +3,7 @@ import { RouterView, useRoute } from 'vue-router'
 import { computed } from 'vue'
 import NavBar from './components/NavBar.vue'
 import ParticlesBackground from './components/ParticlesBackground.vue'
+import CustomCursor from './components/CustomCursor.vue'
 
 const route = useRoute()
 
@@ -13,6 +14,9 @@ const showNavBar = computed(() => {
 </script>
 
 <template>
+  <!-- Custom cursor (desktop only via CSS media query) -->
+  <CustomCursor />
+
   <!-- Fondo de partículas sutil -->
   <ParticlesBackground />
   

@@ -8,6 +8,7 @@ import { useLocalized } from '../composables/useLocalized.js'
 import projects from '../data/projects.json'
 import personal from '../data/personal.json'
 import Footer from '../components/Footer.vue'
+import MarqueeStrip from '../components/MarqueeStrip.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,46 +23,70 @@ const featuredProjects = computed(() => {
   return sortedProjects.value.filter(p => p.destacado)
 })
 
-const otherProjects = computed(() => {
-  return sortedProjects.value.filter(p => !p.destacado)
-})
-
 const isLogoMain = (project) => {
   return Boolean(project?.logo && project?.imagenPrincipal && project.imagenPrincipal === project.logo)
 }
 
 const heroRef = ref(null)
 const nameRef = ref(null)
-const descRef = ref(null)
+const heroTopRef = ref(null)
+
+const stats = [
+  { number: '7+', label: { es: 'Proyectos', en: 'Projects', pt: 'Projetos' } },
+  { number: '2+', label: { es: 'Años', en: 'Years', pt: 'Anos' } },
+  { number: '16+', label: { es: 'Tecnologías', en: 'Technologies', pt: 'Tecnologias' } },
+  { number: '3', label: { es: 'Idiomas', en: 'Languages', pt: 'Idiomas' } },
+]
 
 onMounted(() => {
-  // Hero animation
-  const tl = gsap.timeline()
-  tl.from(descRef.value, {
-    y: 30,
+  const tl = gsap.timeline({ delay: 0.1 })
+
+  tl.from(heroTopRef.value.children, {
+    y: 20,
     opacity: 0,
-    duration: 0.9,
+    duration: 0.7,
+    stagger: 0.1,
     ease: 'power3.out'
   })
   .from(nameRef.value.children, {
-    y: 120,
+    y: 130,
     opacity: 0,
     duration: 1.1,
     stagger: 0.1,
     ease: 'power4.out',
     clearProps: 'transform'
-  }, '-=0.5')
+  }, '-=0.4')
+  .from('.hero-carrer', {
+    opacity: 0,
+    y: 16,
+    duration: 0.6,
+    ease: 'power3.out'
+  }, '-=0.6')
 
-  // Other cards scroll reveal
-  gsap.from('.other-grid', {
-    scrollTrigger: {
-      trigger: '.other-grid',
-      start: 'top 88%',
-      toggleActions: 'play none none none'
-    },
-    y: 60,
+  gsap.from('.featured-card', {
+    scrollTrigger: { trigger: '.featured-list', start: 'top 88%', toggleActions: 'play none none none' },
+    y: 80,
+    opacity: 0,
+    duration: 0.9,
+    stagger: 0.15,
+    ease: 'power3.out'
+  })
+
+  gsap.from('.stat-item', {
+    scrollTrigger: { trigger: '.stats-strip', start: 'top 90%', toggleActions: 'play none none none' },
+    y: 40,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.1,
+    ease: 'power3.out'
+  })
+
+  gsap.from('.cta-inner > *', {
+    scrollTrigger: { trigger: '.cta-section', start: 'top 85%', toggleActions: 'play none none none' },
+    y: 40,
     opacity: 0,
     duration: 0.8,
+    stagger: 0.12,
     ease: 'power3.out'
   })
 })
@@ -77,17 +102,21 @@ onUnmounted(() => {
     <!-- ===== HERO ===== -->
     <section ref="heroRef" class="hero">
       <div class="hero-inner">
-        <!-- Top: description + meta -->
-        <div ref="descRef" class="hero-top">
-          <p class="hero-desc">{{ l(personal.subtitulo) }}</p>
+
+        <!-- Top: badge + meta -->
+        <div ref="heroTopRef" class="hero-top">
+          <div class="available-badge">
+            <span class="badge-dot"></span>
+            {{ t('home.available') }}
+          </div>
           <div class="hero-meta">
             <span class="hero-role">{{ l(personal.titulo) }}</span>
-            <span class="hero-dot">·</span>
+            <span class="hero-sep">·</span>
             <span class="hero-location">{{ personal.ubicacion }}</span>
           </div>
         </div>
 
-        <!-- Bottom: massive name -->
+        <!-- Bottom: massive name + sticker -->
         <div class="hero-bottom">
           <h1 ref="nameRef" class="hero-name">
             <span class="name-line">ALEJO M.</span>
@@ -99,20 +128,22 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <!-- Scroll arrow -->
-    <div class="scroll-hint">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
+    <!-- Scroll hint -->
+    <div class="scroll-hint" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20">
         <line x1="12" y1="5" x2="12" y2="19"/>
         <polyline points="19 12 12 19 5 12"/>
       </svg>
     </div>
 
+    <!-- ===== MARQUEE ===== -->
+    <MarqueeStrip :speed="28" />
+
     <!-- ===== PROYECTOS DESTACADOS ===== -->
-    <section class="featured-section" style="margin-top: 120px;">
-      <div class="section-divider">
-        <span class="section-divider-line"></span>
-        <span class="section-divider-label">{{ t('home.featuredTitle').toUpperCase() }}</span>
-        <span class="section-divider-line"></span>
+    <section class="featured-section">
+      <div class="section-header">
+        <span class="section-index">01</span>
+        <h2 class="section-title">{{ t('home.featuredTitle') }}</h2>
       </div>
 
       <div class="featured-list">
@@ -125,6 +156,7 @@ onUnmounted(() => {
         >
           <!-- Info side -->
           <div class="feat-info">
+            <span class="feat-type-badge">{{ project.tipo }}</span>
             <div class="feat-info-body">
               <h3 class="feat-name">{{ project.nombre }}</h3>
               <p class="feat-desc">{{ l(project.descripcionCorta) }}</p>
@@ -133,7 +165,7 @@ onUnmounted(() => {
               <div class="feat-techs">
                 <span v-for="tech in project.tecnologias.slice(0, 4)" :key="tech" class="feat-tech">{{ tech }}</span>
               </div>
-              <span class="feat-arrow">→</span>
+              <span class="feat-cta">{{ t('home.viewProject') }} →</span>
             </div>
           </div>
 
@@ -145,12 +177,13 @@ onUnmounted(() => {
               :alt="project.nombre"
               :class="['feat-image', { 'logo-main': isLogoMain(project) }]"
             />
-            <span class="feat-badge">{{ project.tipo }}</span>
+            <div class="feat-visual-overlay">
+              <span class="feat-view-label">VER PROYECTO →</span>
+            </div>
           </div>
         </RouterLink>
       </div>
 
-      <!-- Ver más CTA -->
       <div class="featured-cta">
         <RouterLink to="/proyectos" class="see-all-btn">
           {{ t('home.seeAll') }}
@@ -162,19 +195,38 @@ onUnmounted(() => {
       </div>
     </section>
 
+    <!-- ===== STATS STRIP ===== -->
+    <section class="stats-strip">
+      <div class="stats-inner">
+        <div
+          v-for="(stat, i) in stats"
+          :key="i"
+          class="stat-item"
+        >
+          <span class="stat-number">{{ stat.number }}</span>
+          <span class="stat-label">{{ l(stat.label) }}</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== CTA FINAL ===== -->
     <section class="cta-section">
       <div class="cta-inner">
         <span class="cta-eyebrow">{{ t('home.ctaEyebrow') }}</span>
-        <h2 class="cta-title">{{ t('home.ctaTitle') }}</h2>
-        <p class="cta-subtitle">{{ t('home.ctaSubtitle') }}</p>
-        <RouterLink to="/contacto" class="cta-link">
-          {{ t('home.ctaBtn') }}
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </RouterLink>
+        <h2 class="cta-headline">
+          <span class="cta-line cta-line--outline">{{ t('home.ctaLine1') }}</span>
+          <span class="cta-line cta-line--fill">{{ t('home.ctaLine2') }}</span>
+        </h2>
+        <div class="cta-footer">
+          <p class="cta-subtitle">{{ t('home.ctaSubtitle') }}</p>
+          <RouterLink to="/contacto" class="cta-link">
+            {{ t('home.ctaBtn') }}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </RouterLink>
+        </div>
       </div>
     </section>
 
@@ -207,82 +259,67 @@ onUnmounted(() => {
   gap: 80px;
 }
 
+/* Available badge */
 .hero-top {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-.hero-desc {
-  font-size: clamp(1rem, 2vw, 1.4rem);
+.available-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  padding: 6px 14px 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--text-secondary);
-  font-weight: 400;
-  line-height: 1.5;
-  max-width: 540px;
-  font-size: 0px;
+  width: fit-content;
+  letter-spacing: 0.01em;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  animation: pulse-badge 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45); }
+  50%       { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
 }
 
 .hero-meta {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-tertiary);
-  font-size: 0px;
+  letter-spacing: 0.01em;
 }
 
-.hero-carrer {
-  margin-left: 10px;
-  color: var(--text-secondary);
-  font-weight: 400;
-  line-height: 1.5;
-}
-
-.hero-dot {
+.hero-sep {
   opacity: 0.4;
 }
 
+.hero-carrer {
+  margin-left: 6px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* Name */
 .hero-bottom {
   overflow: visible;
   position: relative;
-}
-
-.hero-sticker {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: clamp(320px, 42vw, 680px);
-  object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
-  pointer-events: none;
-  user-select: none;
-  transform-origin: bottom right;
-  z-index: -1;
-  animation: sticker-float 4s ease-in-out infinite;
-}
-
-@keyframes sticker-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%       { transform: translateY(-10px) rotate(2deg); }
-}
-
-/* Scroll hint arrow */
-.scroll-hint {
-  position: fixed;
-  bottom: 32px;
-  right: 40px;
-  color: var(--text-tertiary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: scroll-bounce 2s ease-in-out infinite;
-  z-index: 10;
-  pointer-events: none;
-}
-
-@keyframes scroll-bounce {
-  0%, 100% { transform: translateY(0); opacity: 0.5; }
-  50%       { transform: translateY(7px); opacity: 1; }
 }
 
 .hero-name {
@@ -302,71 +339,116 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-/* ===== SECTION DIVIDER ===== */
-.section-divider {
+.hero-sticker {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(300px, 40vw, 660px);
+  object-fit: contain;
+  filter: drop-shadow(0 8px 28px rgba(0,0,0,0.3));
+  pointer-events: none;
+  user-select: none;
+  transform-origin: bottom right;
+  z-index: -1;
+  animation: sticker-float 4s ease-in-out infinite;
+}
+
+@keyframes sticker-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-12px) rotate(1.5deg); }
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: fixed;
+  bottom: 32px;
+  right: 40px;
+  color: var(--text-tertiary);
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  animation: scroll-bounce 2.2s ease-in-out infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.45; }
+  50%       { transform: translateY(8px); opacity: 1; }
+}
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
   padding: 0 48px;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
 }
 
-.section-divider-line {
-  flex: 1;
-  height: 1px;
-  background: var(--border-color);
+.section-index {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--accent-color);
+  font-variant-numeric: tabular-nums;
 }
 
-.section-divider-label {
-  font-size: 0.9rem;
+.section-title {
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  white-space: nowrap;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
 }
 
 /* ===== FEATURED SECTION ===== */
 .featured-section {
-  padding-bottom: 80px;
+  padding: 80px 0 80px;
 }
 
 .featured-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   padding: 0 48px;
-  max-width: 1080px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .featured-card {
   display: grid;
-  grid-template-columns: 500px 1fr;
-  height: 300px;
-  border-radius: 22px;
+  grid-template-columns: 1fr 480px;
+  height: 340px;
+  border-radius: 24px;
   overflow: hidden;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   text-decoration: none;
   color: inherit;
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.3s ease;
+  transition:
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease;
   will-change: transform;
 }
 
 .featured-card.reverse {
-  direction: rtl;
+  grid-template-columns: 480px 1fr;
 }
 
-.featured-card.reverse > * {
-  direction: ltr;
+.featured-card.reverse .feat-info {
+  order: 2;
+}
+
+.featured-card.reverse .feat-visual {
+  order: 1;
 }
 
 .featured-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.2);
-  border-color: rgba(56, 189, 248, 0.28);
+  transform: translateY(-6px) scale(1.005);
+  box-shadow: 0 32px 72px rgba(0, 0, 0, 0.22);
+  border-color: rgba(56, 189, 248, 0.22);
 }
 
 /* Info side */
@@ -377,6 +459,20 @@ onUnmounted(() => {
   justify-content: space-between;
 }
 
+.feat-type-badge {
+  display: inline-block;
+  width: fit-content;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 4px 10px;
+  border-radius: 50px;
+}
+
 .feat-info-body {
   display: flex;
   flex-direction: column;
@@ -384,7 +480,7 @@ onUnmounted(() => {
 }
 
 .feat-name {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -392,16 +488,17 @@ onUnmounted(() => {
 }
 
 .feat-desc {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 260px;
+  max-width: 280px;
 }
 
 .feat-info-foot {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .feat-techs {
@@ -413,168 +510,90 @@ onUnmounted(() => {
 .feat-tech {
   background: var(--bg-tertiary);
   color: var(--text-tertiary);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  padding: 4px 10px;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
   border-radius: 50px;
   text-transform: uppercase;
 }
 
-.feat-arrow {
-  font-size: 1.4rem;
+.feat-cta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--text-tertiary);
-  transition: transform 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  transition: color 0.3s ease, transform 0.3s ease;
   flex-shrink: 0;
 }
 
-.featured-card:hover .feat-arrow {
-  transform: translate(4px, -4px);
+.featured-card:hover .feat-cta {
   color: var(--accent-color);
+  transform: translate(4px, -3px);
 }
 
 /* Visual side */
 .feat-visual {
   position: relative;
   overflow: hidden;
-  min-height: 300px;
 }
 
 .feat-image {
-  position: absolute; 
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .feat-image.logo-main {
   object-fit: contain;
   object-position: center;
-  padding: 24px;
+  padding: 32px;
 }
 
 .featured-card:hover .feat-image {
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 
-.feat-badge {
+.feat-visual-overlay {
   position: absolute;
-  bottom: 16px;
-  right: 16px;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-/* ===== OTHER PROJECTS ===== */
-.other-section {
-  padding-bottom: 40px;
-}
-
-.other-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  padding: 0 48px;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.other-card {
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.55) 100%);
   display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.3s ease;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 28px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.other-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-  border-color: rgba(56, 189, 248, 0.2);
+.featured-card:hover .feat-visual-overlay {
+  opacity: 1;
 }
 
-.other-image-wrap {
-  position: relative;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-}
-
-.other-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.other-card:hover .other-image {
-  transform: scale(1.06);
-}
-
-.other-badge {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.feat-view-label {
   color: #fff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 5px 11px;
-  border-radius: 7px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.25);
 }
 
-.other-info {
-  padding: 20px 22px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.other-name {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-}
-
-.other-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* ===== VER TODOS BOTÓN ===== */
+/* ===== VER TODOS ===== */
 .featured-cta {
   display: flex;
   justify-content: center;
   padding: 48px 48px 0;
-  max-width: 1080px;
+  max-width: 1100px;
   margin: 0 auto;
   width: 100%;
 }
@@ -583,22 +602,26 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 32px;
+  padding: 13px 30px;
   border-radius: 50px;
   border: 1.5px solid var(--border-color);
-  color: var(--text-primary);
-  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease,
-              background 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
 }
 
 .see-all-btn:hover {
   border-color: var(--accent-color);
   color: var(--accent-color);
   transform: translateX(4px);
+  background: rgba(56, 189, 248, 0.05);
 }
 
 .see-all-btn svg {
@@ -608,65 +631,136 @@ onUnmounted(() => {
   transform: translateX(4px);
 }
 
-/* ===== CTA SECTION ===== */
-.cta-section {
-  padding: 120px 48px;
+/* ===== STATS STRIP ===== */
+.stats-strip {
+  margin: 100px 0 0;
   border-top: 1px solid var(--border-color);
-  margin-top: 80px;
+  border-bottom: 1px solid var(--border-color);
+  padding: 60px 48px;
 }
 
-.cta-inner {
-  max-width: 760px;
+.stats-inner {
+  max-width: 1100px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.stat-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  gap: 8px;
+  padding: 0 32px 0 0;
+  border-right: 1px solid var(--border-color);
 }
 
-.cta-eyebrow {
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent-color);
+.stat-item:last-child {
+  border-right: none;
+  padding-right: 0;
 }
 
-.cta-title {
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
+.stat-number {
+  font-size: clamp(2.4rem, 4vw, 4rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1;
   color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+}
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  padding: 120px 48px 100px;
+}
+
+.cta-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cta-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 28px;
+}
+
+.cta-headline {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(3.5rem, 8vw, 9rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  margin-bottom: 48px;
+}
+
+.cta-line--outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.cta-headline:hover .cta-line--outline {
+  color: var(--text-primary);
+  -webkit-text-stroke: 1.5px transparent;
+}
+
+.cta-line--fill {
+  color: var(--text-primary);
+}
+
+.cta-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
 }
 
 .cta-subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   line-height: 1.7;
   color: var(--text-secondary);
-  max-width: 520px;
+  max-width: 480px;
 }
 
 .cta-link {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 12px;
+  flex-shrink: 0;
   padding: 16px 36px;
   border-radius: 14px;
-  background: var(--accent-color);
-  color: #000;
-  font-size: 1rem;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   text-decoration: none;
-  box-shadow: 0 4px 24px rgba(56, 189, 248, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .cta-link:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(56, 189, 248, 0.5);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.22);
+  background: var(--accent-color);
+  color: #000;
 }
 
 .cta-link svg {
@@ -678,8 +772,12 @@ onUnmounted(() => {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1100px) {
-  .featured-card {
-    grid-template-columns: 260px 1fr;
+  .featured-card,
+  .featured-card.reverse {
+    grid-template-columns: 1fr 380px;
+  }
+  .featured-card.reverse {
+    grid-template-columns: 380px 1fr;
   }
 }
 
@@ -688,31 +786,48 @@ onUnmounted(() => {
     padding: 110px 24px 48px;
   }
 
-  .section-divider {
-    padding: 0 24px;
+  .section-header,
+  .featured-list,
+  .featured-cta {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
-  .featured-list {
-    padding: 0 24px;
-  }
-
-  .featured-card {
+  .featured-card,
+  .featured-card.reverse {
     grid-template-columns: 1fr;
+    grid-template-rows: auto 240px;
+    height: auto;
   }
+
+  .featured-card.reverse .feat-info { order: 1; }
+  .featured-card.reverse .feat-visual { order: 2; }
 
   .feat-visual {
-    aspect-ratio: 16/9;
-    min-height: 220px;
+    min-height: 240px;
   }
 
-  .feat-name {
-    font-size: 2rem;
+  .stats-strip {
+    padding: 48px 24px;
   }
 
-  .other-grid {
-    padding: 0 24px;
+  .stats-inner {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 32px;
+  }
+
+  .stat-item {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cta-section {
+    padding: 80px 24px;
+  }
+
+  .cta-footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -725,40 +840,32 @@ onUnmounted(() => {
     font-size: clamp(3rem, 13vw, 5rem);
   }
 
+  .hero-sticker {
+    position: relative;
+    order: -1;
+    right: auto;
+    bottom: auto;
+    width: 68vw;
+    align-self: center;
+    margin-top: 12px;
+    margin-bottom: -60px;
+    z-index: 0;
+  }
+
   .hero-bottom {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .hero-sticker {
-    position: relative;
-    order: -1;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    width: 68vw;
-    align-self: center;
-    margin-top: 12px;
-    margin-bottom: -60px;
+  .section-header {
+    padding: 0 20px;
   }
 
-  .hero-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .hero-dot {
-    display: none;
-  }
-
-  .other-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .feat-info {
-    padding: 24px 24px;
+  .featured-list,
+  .featured-cta {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .feat-visual {
@@ -766,7 +873,21 @@ onUnmounted(() => {
   }
 
   .featured-card {
+    grid-template-rows: auto;
     height: auto;
+  }
+
+  .stats-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .cta-headline {
+    font-size: clamp(2.8rem, 12vw, 5rem);
+  }
+
+  .cta-line--outline {
+    -webkit-text-stroke-width: 1px;
   }
 }
 </style>
