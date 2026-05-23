@@ -108,6 +108,14 @@ ul, ol {
   color: white;
 }
 
+/* ===== Smooth will-change hints ===== */
+.featured-card,
+.project-row,
+.bento-card,
+.glass-card {
+  will-change: transform, opacity;
+}
+
 /* ===== Scrollbar ===== */
 ::-webkit-scrollbar {
   width: 10px;

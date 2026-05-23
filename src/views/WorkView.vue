@@ -1,25 +1,86 @@
 ﻿<script setup>
-import { computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLocalized } from '../composables/useLocalized.js'
 import projects from '../data/projects.json'
 import Footer from '../components/Footer.vue'
 
+gsap.registerPlugin(ScrollTrigger)
+
 const { t } = useI18n()
 const { l } = useLocalized()
+
+const workRef = ref(null)
 
 const allProjects = computed(() =>
   [...projects].sort((a, b) => (a.orden ?? 99) - (b.orden ?? 99))
 )
 
+let ctx
+
 onMounted(() => {
-  gsap.from('.project-row', { y: 24, opacity: 0, duration: 0.6, stagger: 0.07, ease: 'power3.out', delay: 0.15 })
+  ctx = gsap.context(() => {
+    // ─── Section label reveal (whole element, no SplitText) ───────────────
+    const labelEl = workRef.value?.querySelector('.section-divider-label')
+    if (labelEl) {
+      gsap.from(labelEl, {
+        autoAlpha: 0,
+        y: 12,
+        duration: 0.6,
+        ease: 'power3.out',
+        delay: 0.1
+      })
+      gsap.from(workRef.value.querySelectorAll('.section-divider-line'), {
+        scaleX: 0,
+        transformOrigin: 'left center',
+        duration: 0.9,
+        stagger: 0.15,
+        ease: 'power3.inOut',
+        delay: 0.1
+      })
+    }
+
+    // ─── Project rows: ScrollTrigger.batch stagger reveal ─────────────────
+    ScrollTrigger.batch('.project-row', {
+      onEnter: (batch) => gsap.fromTo(batch,
+        { autoAlpha: 0, x: -40 },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power3.out',
+          overwrite: true
+        }
+      ),
+      start: 'top 92%',
+      once: true
+    })
+
+    // ─── Progress line on each row hover ─────────────────────────────────
+    workRef.value.querySelectorAll('.project-link').forEach(link => {
+      const line = link.querySelector('.row-progress-line')
+      if (!line) return
+      link.addEventListener('mouseenter', () => {
+        gsap.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: 'power3.out' })
+      })
+      link.addEventListener('mouseleave', () => {
+        gsap.to(line, { scaleX: 0, duration: 0.3, ease: 'power3.in', transformOrigin: 'right center' })
+      })
+    })
+
+  }, workRef.value)
+})
+
+onUnmounted(() => {
+  ctx?.revert()
 })
 </script>
 
 <template>
-  <div class="work-view">
+  <div ref="workRef" class="work-view">
     <div class="work-inner">
 
       <section class="projects-section">
@@ -50,6 +111,8 @@ onMounted(() => {
               <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
                 <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
               </svg>
+              <!-- Animated progress line on hover -->
+              <span class="row-progress-line"></span>
             </RouterLink>
           </li>
         </ul>
@@ -102,6 +165,8 @@ onMounted(() => {
 
 .project-row {
   border-bottom: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
 }
 .project-row:last-child {
   border-bottom: none;
@@ -196,6 +261,19 @@ onMounted(() => {
   color: var(--text-tertiary);
   flex-shrink: 0;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s;
+}
+
+/* Animated hover line */
+.row-progress-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color), #818cf8);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
 }
 
 /* ===== RESPONSIVE ===== */

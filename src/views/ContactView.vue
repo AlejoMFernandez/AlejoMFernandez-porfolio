@@ -2,10 +2,13 @@
 import { ref, onMounted, onUnmounted, computed, useTemplateRef, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import personal from '../data/personal.json'
 import { useLocalized } from '../composables/useLocalized.js'
 import Footer from '../components/Footer.vue'
 import ServiceWizard from '../components/ServiceWizard.vue'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const { t, tm } = useI18n()
 const { l } = useLocalized()
@@ -82,15 +85,59 @@ async function handleSubmit() {
 onMounted(() => {
   const leftChildren = contactLeft.value ? Array.from(contactLeft.value.children) : []
   const rightChildren = contactRight.value ? Array.from(contactRight.value.children) : []
+
+  // ─── Heading whole-element reveal ───────────────────────────────────
+  const headingEl = contactLeft.value?.querySelector('.contact-heading')
+  if (headingEl) {
+    gsap.from(headingEl, {
+      y: 40,
+      autoAlpha: 0,
+      duration: 0.85,
+      ease: 'power3.out',
+      delay: 0.05
+    })
+  }
+
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-  if (leftChildren.length)  tl.from(leftChildren,  { y: 70, opacity: 0, duration: 0.9, stagger: 0.13 })
-  if (rightChildren.length) tl.from(rightChildren, { y: 60, opacity: 0, duration: 0.85, stagger: 0.1 }, '-=0.55')
+  const leftRest = leftChildren.filter(el => !el.classList.contains('contact-heading'))
+  if (leftRest.length) tl.from(leftRest, { y: 50, autoAlpha: 0, duration: 0.8, stagger: 0.1 }, 0.3)
+  // Right: form fields clip up
+  if (rightChildren.length) {
+    tl.from(rightChildren, {
+      y: 55,
+      autoAlpha: 0,
+      duration: 0.75,
+      stagger: 0.09,
+      clipPath: 'inset(0 0 100% 0)'
+    }, '-=0.45')
+  }
   triggers.push(tl)
+
+  // ─── Form field focus line animation ──────────────────────────────
+  document.querySelectorAll('.field-wrap input, .field-wrap textarea').forEach(field => {
+    field.addEventListener('focus', () => {
+      gsap.to(field.closest('.field-wrap')?.querySelector('.field-line'), {
+        scaleX: 1,
+        duration: 0.35,
+        ease: 'power3.out'
+      })
+    })
+    field.addEventListener('blur', () => {
+      gsap.to(field.closest('.field-wrap')?.querySelector('.field-line'), {
+        scaleX: 0,
+        duration: 0.3,
+        ease: 'power3.in',
+        transformOrigin: 'right center'
+      })
+    })
+  })
+
   document.addEventListener('click', handleClickOutside)
 })
 
 onUnmounted(() => {
   triggers.forEach(t => t.kill())
+  ScrollTrigger.getAll().forEach(t => t.kill())
   document.removeEventListener('click', handleClickOutside)
 })
 </script>

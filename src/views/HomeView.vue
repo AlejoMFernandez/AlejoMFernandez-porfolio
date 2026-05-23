@@ -14,65 +14,174 @@ gsap.registerPlugin(ScrollTrigger)
 const { t } = useI18n()
 const { l } = useLocalized()
 
-const sortedProjects = computed(() => {
-  return [...projects].sort((a, b) => a.orden - b.orden)
-})
-
-const featuredProjects = computed(() => {
-  return sortedProjects.value.filter(p => p.destacado)
-})
-
-const otherProjects = computed(() => {
-  return sortedProjects.value.filter(p => !p.destacado)
-})
+const sortedProjects = computed(() => [...projects].sort((a, b) => a.orden - b.orden))
+const featuredProjects = computed(() => sortedProjects.value.filter(p => p.destacado))
+const otherProjects = computed(() => sortedProjects.value.filter(p => !p.destacado))
 
 const isLogoMain = (project) => {
   return Boolean(project?.logo && project?.imagenPrincipal && project.imagenPrincipal === project.logo)
 }
 
+const homeRef = ref(null)
 const heroRef = ref(null)
 const nameRef = ref(null)
 const descRef = ref(null)
 
-onMounted(() => {
-  // Hero animation
-  const tl = gsap.timeline()
-  tl.from(descRef.value, {
-    y: 30,
-    opacity: 0,
-    duration: 0.9,
-    ease: 'power3.out'
-  })
-  .from(nameRef.value.children, {
-    y: 120,
-    opacity: 0,
-    duration: 1.1,
-    stagger: 0.1,
-    ease: 'power4.out',
-    clearProps: 'transform'
-  }, '-=0.5')
+let ctx
 
-  // Other cards scroll reveal
-  gsap.from('.other-grid', {
-    scrollTrigger: {
-      trigger: '.other-grid',
-      start: 'top 88%',
-      toggleActions: 'play none none none'
-    },
-    y: 60,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power3.out'
-  })
+onMounted(() => {
+  ctx = gsap.context(() => {
+    // ─── 1. Hero name: each .name-line slides up from clip ────────────────
+    // .name-line already has overflow:hidden so this is a true clip reveal
+    const tl = gsap.timeline({ delay: 0.05 })
+
+    // Hero top meta/desc fades in (parent container)
+    tl.from(descRef.value, {
+      y: 28,
+      autoAlpha: 0,
+      duration: 0.75,
+      ease: 'power3.out'
+    })
+    // Name lines clip-up reveal (no SplitText — avoid vertical stacking)
+    .from(nameRef.value.children, {
+      yPercent: 105,
+      autoAlpha: 0,
+      duration: 1.0,
+      stagger: 0.12,
+      ease: 'power4.out',
+      clearProps: 'all'
+    }, '-=0.45')
+    // Sticker springs in
+    .from('.hero-sticker', {
+      scale: 0.55,
+      autoAlpha: 0,
+      rotation: -14,
+      duration: 0.95,
+      ease: 'back.out(2)'
+    }, '-=0.65')
+    // Career label slides in
+    .from('.hero-carrer', {
+      x: -18,
+      autoAlpha: 0,
+      duration: 0.5,
+      ease: 'power3.out'
+    }, '-=0.35')
+
+    // ─── 2. Scroll hint fades out as user scrolls ─────────────────────────
+    gsap.to('.scroll-hint', {
+      autoAlpha: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: '+=180',
+        scrub: 1
+      }
+    })
+
+    // ─── 3. Hero parallax on scroll ───────────────────────────────────────
+    gsap.to(heroRef.value, {
+      yPercent: 12,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1.2
+      }
+    })
+
+    // ─── 4. Section divider animated lines ────────────────────────────────
+    gsap.utils.toArray('.section-divider').forEach(divider => {
+      const lines = divider.querySelectorAll('.section-divider-line')
+      const label = divider.querySelector('.section-divider-label')
+      gsap.from(lines, {
+        scrollTrigger: { trigger: divider, start: 'top 92%', toggleActions: 'play none none none' },
+        scaleX: 0,
+        transformOrigin: 'left center',
+        duration: 0.9,
+        stagger: 0.15,
+        ease: 'power3.inOut'
+      })
+      gsap.from(label, {
+        scrollTrigger: { trigger: divider, start: 'top 92%', toggleActions: 'play none none none' },
+        autoAlpha: 0,
+        y: 8,
+        duration: 0.6,
+        delay: 0.2,
+        ease: 'power3.out'
+      })
+    })
+
+    // ─── 5. Featured cards: clip-path wipe in via ScrollTrigger.batch ─────
+    ScrollTrigger.batch('.featured-card', {
+      onEnter: (batch) => gsap.fromTo(batch,
+        { autoAlpha: 0, y: 70, clipPath: 'inset(0 0 100% 0 round 22px)' },
+        {
+          autoAlpha: 1,
+          y: 0,
+          clipPath: 'inset(0 0 0% 0 round 22px)',
+          duration: 1.05,
+          stagger: 0.18,
+          ease: 'expo.out',
+          overwrite: true
+        }
+      ),
+      start: 'top 87%',
+      once: true
+    })
+
+    // ─── 6. Other cards: staggered scale + fade ───────────────────────────
+    ScrollTrigger.batch('.other-card', {
+      onEnter: (batch) => gsap.fromTo(batch,
+        { autoAlpha: 0, y: 45, scale: 0.93 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+          overwrite: true
+        }
+      ),
+      start: 'top 90%',
+      once: true
+    })
+
+    // ─── 7. See-all button reveal ─────────────────────────────────────────
+    gsap.from('.see-all-btn', {
+      scrollTrigger: { trigger: '.see-all-btn', start: 'top 95%', toggleActions: 'play none none none' },
+      scale: 0.88,
+      autoAlpha: 0,
+      duration: 0.55,
+      ease: 'back.out(2)'
+    })
+
+    // ─── 8. CTA section reveal ────────────────────────────────────────────
+    const ctaTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.cta-section',
+        start: 'top 78%',
+        toggleActions: 'play none none none'
+      }
+    })
+    ctaTl
+      .from('.cta-eyebrow', { y: 18, autoAlpha: 0, duration: 0.5, ease: 'power3.out' })
+      .from('.cta-title', { y: 50, autoAlpha: 0, duration: 0.8, ease: 'power3.out' }, '-=0.2')
+      .from('.cta-subtitle', { y: 22, autoAlpha: 0, duration: 0.65, ease: 'power3.out' }, '-=0.4')
+      .from('.cta-link', { scale: 0.88, autoAlpha: 0, duration: 0.55, ease: 'back.out(2)' }, '-=0.2')
+
+  }, homeRef.value)
 })
 
 onUnmounted(() => {
-  ScrollTrigger.getAll().forEach(t => t.kill())
+  ctx?.revert()
 })
 </script>
 
 <template>
-  <div class="home">
+  <div ref="homeRef" class="home">
 
     <!-- ===== HERO ===== -->
     <section ref="heroRef" class="hero">
@@ -251,7 +360,7 @@ onUnmounted(() => {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: clamp(320px, 42vw, 680px);
+  width: clamp(220px, 28vw, 460px);
   object-fit: contain;
   filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
   pointer-events: none;
@@ -349,7 +458,7 @@ onUnmounted(() => {
   border: 1px solid var(--border-color);
   text-decoration: none;
   color: inherit;
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
               border-color 0.3s ease;
   will-change: transform;
@@ -365,7 +474,7 @@ onUnmounted(() => {
 
 .featured-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 32px 72px rgba(0, 0, 0, 0.22);
   border-color: rgba(56, 189, 248, 0.28);
 }
 

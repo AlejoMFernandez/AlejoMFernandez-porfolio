@@ -4,6 +4,7 @@ import ProjectView from '../views/ProjectView.vue'
 import InfoView from '../views/InfoView.vue'
 import ContactView from '../views/ContactView.vue'
 import WorkView from '../views/WorkView.vue'
+import LabView from '../views/LabView.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/contacto',
     name: 'contact',
     component: ContactView
+  },
+  {
+    path: '/lab',
+    name: 'lab',
+    component: LabView
   },
 ]
 

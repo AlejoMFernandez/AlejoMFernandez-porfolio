@@ -2,9 +2,12 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLocalized } from '../composables/useLocalized.js'
 import personal from '../data/personal.json'
 import Footer from '../components/Footer.vue'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const { t } = useI18n()
 const { l } = useLocalized()
@@ -30,19 +33,82 @@ const photos = personal.fotosAboutMe.galeria
 const prevPhoto = () => { carouselIndex.value = (carouselIndex.value - 1 + photos.length) % photos.length }
 const nextPhoto = () => { carouselIndex.value = (carouselIndex.value + 1) % photos.length }
 
+const infoRef = ref(null)
+let ctx
+
 onMounted(() => {
-  gsap.from('.about-container > *', {
-    y: 60, opacity: 0, duration: 1, stagger: 0.15, ease: 'power3.out', delay: 0.15
-  })
+  ctx = gsap.context(() => {
+    // ─── Heading reveal (whole element) ────────────────────────────────────
+    const heading = infoRef.value?.querySelector('.about-heading')
+    if (heading) {
+      gsap.from(heading, {
+        y: 30,
+        autoAlpha: 0,
+        duration: 0.75,
+        ease: 'power3.out',
+        delay: 0.1
+      })
+    }
+
+    // ─── Bento cards scroll reveal ────────────────────────────────────────
+    ScrollTrigger.batch('.bento-card, .glass-card', {
+      onEnter: (batch) => gsap.fromTo(batch,
+        { autoAlpha: 0, y: 50, scale: 0.96 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+          overwrite: true
+        }
+      ),
+      start: 'top 88%',
+      once: true
+    })
+
+    // ─── Skill pills staggered in ─────────────────────────────────────────
+    gsap.from('.skill-pill', {
+      scrollTrigger: {
+        trigger: '.skills-card',
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      scale: 0,
+      autoAlpha: 0,
+      duration: 0.45,
+      stagger: { amount: 0.6, from: 'random' },
+      ease: 'back.out(2)'
+    })
+
+    // ─── Blurb paragraphs slide up ────────────────────────────────────────
+    gsap.utils.toArray('.blurb').forEach((blurb, i) => {
+      gsap.from(blurb, {
+        scrollTrigger: {
+          trigger: blurb,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        y: 24,
+        autoAlpha: 0,
+        duration: 0.6,
+        delay: i * 0.05,
+        ease: 'power3.out'
+      })
+    })
+
+  }, infoRef.value)
 })
 
 onUnmounted(() => {
   if (audioEl.value) { audioEl.value.pause(); audioEl.value.src = '' }
+  ctx?.revert()
 })
 </script>
 
 <template>
-  <div class="info-view">
+  <div ref="infoRef" class="info-view">
 
     <!-- ===== ABOUT BENTO ===== -->
     <section class="about-section">

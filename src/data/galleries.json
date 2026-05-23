@@ -1,4 +1,20 @@
 {
+  "inkmanager": [
+    "/images/projects/inkmanager/inkmanager-01.png",
+    "/images/projects/inkmanager/inkmanager-02.png",
+    "/images/projects/inkmanager/inkmanager-03.png",
+    "/images/projects/inkmanager/inkmanager-04.png",
+    "/images/projects/inkmanager/inkmanager-05.png",
+    "/images/projects/inkmanager/inkmanager-06.png"
+  ],
+  "hearth-and-hall": [
+    "/images/projects/hearth-and-hall/hearth-and-hall-01.png",
+    "/images/projects/hearth-and-hall/hearth-and-hall-02.png",
+    "/images/projects/hearth-and-hall/hearth-and-hall-03.png",
+    "/images/projects/hearth-and-hall/hearth-and-hall-04.png",
+    "/images/projects/hearth-and-hall/hearth-and-hall-05.png",
+    "/images/projects/hearth-and-hall/hearth-and-hall-06.png"
+  ],
   "franza": [
     "/images/projects/franza/franza-01.png",
     "/images/projects/franza/franza-02.png",

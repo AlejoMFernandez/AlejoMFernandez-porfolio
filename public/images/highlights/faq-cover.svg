@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <rect width="1080" height="1080" fill="#080808"/>
+
+  <!-- Glow -->
+  <circle cx="540" cy="520" r="280" fill="#38bdf8" opacity="0.06"/>
+  <circle cx="540" cy="520" r="180" fill="#38bdf8" opacity="0.05"/>
+
+  <!-- Question mark -->
+  <text
+    x="540"
+    y="650"
+    text-anchor="middle"
+    font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="560"
+    fill="#38bdf8"
+    letter-spacing="-20"
+  >?</text>
+</svg>

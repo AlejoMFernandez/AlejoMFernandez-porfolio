@@ -3,10 +3,13 @@ import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLocalized } from '../composables/useLocalized.js'
 import projects from '../data/projects.json'
 import galleries from '../data/galleries.json'
 import Footer from '../components/Footer.vue'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const { t, locale } = useI18n()
 const { l } = useLocalized()
@@ -82,33 +85,67 @@ const goBack = () => {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKey)
+  ScrollTrigger.getAll().forEach(t => t.kill())
 })
 
 onMounted(() => {
   window.addEventListener('keydown', handleKey)
-  // Animación de entrada
+
+  // ─── Back button ─────────────────────────────────────────────────────
   gsap.from('.back-button-fixed', {
-    opacity: 0,
-    x: -20,
-    duration: 0.5,
+    autoAlpha: 0,
+    x: -24,
+    duration: 0.55,
     ease: 'power3.out'
   })
-  
+
+  // ─── Project hero: clip-path wipe reveal ─────────────────────────────
   gsap.from('.project-hero', {
-    opacity: 0,
-    y: 60,
-    duration: 0.8,
-    ease: 'power3.out',
-    delay: 0.1
+    clipPath: 'inset(0 100% 0 0)',
+    autoAlpha: 0,
+    duration: 1.1,
+    ease: 'expo.inOut',
+    delay: 0.15
   })
-  
-  gsap.from('.project-content > *', {
-    opacity: 0,
+
+  // ─── Project title: whole-element slide up ─────────────────────────────
+  const titleEl = document.querySelector('.project-title, .bento-project-name, h1')
+  if (titleEl) {
+    gsap.from(titleEl, {
+      y: 40,
+      autoAlpha: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      delay: 0.3
+    })
+  }
+
+  // ─── Content elements stagger up ─────────────────────────────────────
+  gsap.from('.project-content > *, .bento-cell', {
+    autoAlpha: 0,
     y: 40,
-    duration: 0.6,
-    stagger: 0.1,
+    duration: 0.65,
+    stagger: 0.08,
     ease: 'power3.out',
-    delay: 0.3
+    delay: 0.4
+  })
+
+  // ─── Gallery images: ScrollTrigger.batch ─────────────────────────────
+  ScrollTrigger.batch('.gallery-item, .project-gallery img', {
+    onEnter: (batch) => gsap.fromTo(batch,
+      { autoAlpha: 0, scale: 0.94, y: 30 },
+      {
+        autoAlpha: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power3.out',
+        overwrite: true
+      }
+    ),
+    start: 'top 90%',
+    once: true
   })
 })
 </script>

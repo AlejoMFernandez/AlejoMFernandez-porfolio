@@ -1,5 +1,137 @@
 [
   {
+    "id": "inkmanager",
+    "nombre": "InkManager",
+    "descripcionCorta": {
+      "es": "Sistema de gestión para estudios de tatuaje con body map 3D rotable donde se marcan los tatuajes en su posición exacta.",
+      "en": "Tattoo studio management system with a rotatable 3D body map to pin every tattoo at its exact location.",
+      "pt": "Sistema de gestão para estúdios de tatuagem com body map 3D rotacionável para marcar cada tatuagem na posição exata."
+    },
+    "descripcionLarga": {
+      "es": "InkManager es un sistema operativo digital para estudios de tatuaje. Su diferencial es un body map 3D construido con Three.js: el tatuador hace click sobre un modelo humano rotable y queda marcado el tatuaje en la posición exacta del cuerpo, con foto, estilo, fecha y notas. Incluye CRM de clientes con búsqueda y paginación, calendario drag & drop con FullCalendar para reagendar turnos, dashboard con KPIs animados, identidad de marca completa (splash intro, tipografía editorial Bebas Neue + Inter, monograma SVG animado) y auth segura con CSRF + bcrypt. Construido en PHP 8.2 vanilla con MVC propio, sin frameworks ni Composer, y deployado en Railway con MySQL.",
+      "en": "InkManager is a digital operating system for tattoo studios. Its key differentiator is a 3D body map built with Three.js: the artist clicks on a rotatable human model and the tattoo gets pinned at the exact body position, with photo, style, date and notes. Includes a customer CRM with search and pagination, a drag & drop FullCalendar to reschedule sessions, a dashboard with animated KPIs, full brand identity (animated splash intro, editorial typography Bebas Neue + Inter, animated SVG monogram), and secure auth with CSRF + bcrypt. Built in vanilla PHP 8.2 with a custom MVC — no framework, no Composer — and deployed on Railway with MySQL.",
+      "pt": "InkManager é um sistema operacional digital para estúdios de tatuagem. Seu diferencial é um body map 3D construído com Three.js: o tatuador clica sobre um modelo humano rotacionável e a tatuagem fica marcada na posição exata do corpo, com foto, estilo, data e anotações. Inclui CRM de clientes com busca e paginação, calendário drag & drop com FullCalendar para reagendar sessões, dashboard com KPIs animados, identidade de marca completa (splash intro animado, tipografia editorial Bebas Neue + Inter, monograma SVG animado) e auth segura com CSRF + bcrypt. Construído em PHP 8.2 vanilla com MVC próprio, sem framework nem Composer, e deployado no Railway com MySQL."
+    },
+    "fechaInicio": "2026-05",
+    "fechaFin": "Actualidad",
+    "cliente": null,
+    "rol": {
+      "es": "Desarrollador Full-Stack",
+      "en": "Full-Stack Developer",
+      "pt": "Desenvolvedor Full-Stack"
+    },
+    "tecnologias": ["PHP", "MySQL", "Three.js", "JavaScript", "Tailwind CSS", "FullCalendar", "Railway"],
+    "linkDemo": "https://inkmanager.up.railway.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/InkManager",
+    "imagenPrincipal": "/images/projects/inkmanagermain.svg",
+    "logo": "/images/projects/inkmanagerlogo.svg",
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #0a0a0a 0%, #1a0606 55%, #2a0808 100%)",
+    "colorTexto": "#ffffff",
+    "features": {
+      "es": [
+        "Body map 3D rotable con raycaster click-to-mark",
+        "Markers persistentes anclados a posición + normal del cuerpo",
+        "CRM de clientes con búsqueda y paginación",
+        "Calendario drag & drop con 4 estados de turno",
+        "Dashboard con KPIs y animaciones de números",
+        "Identidad de marca completa (splash, tipografía, monograma)",
+        "Auth segura con CSRF, bcrypt y cookies HTTPS-aware",
+        "Upload de fotos con validación MIME real (finfo)"
+      ],
+      "en": [
+        "Rotatable 3D body map with raycaster click-to-mark",
+        "Persistent markers anchored to body position + normal",
+        "Customer CRM with search and pagination",
+        "Drag & drop calendar with 4 appointment states",
+        "Dashboard with KPI counter animations",
+        "Full brand identity (splash, typography, monogram)",
+        "Secure auth with CSRF, bcrypt and HTTPS-aware cookies",
+        "Photo upload with real MIME validation (finfo)"
+      ],
+      "pt": [
+        "Body map 3D rotacionável com raycaster click-to-mark",
+        "Markers persistentes ancorados à posição + normal do corpo",
+        "CRM de clientes com busca e paginação",
+        "Calendário drag & drop com 4 estados de turno",
+        "Dashboard com KPIs e animações de números",
+        "Identidade de marca completa (splash, tipografia, monograma)",
+        "Auth segura com CSRF, bcrypt e cookies HTTPS-aware",
+        "Upload de fotos com validação MIME real (finfo)"
+      ]
+    },
+    "tipo": "WEBAPP",
+    "destacado": true,
+    "orden": 1
+  },
+  {
+    "id": "hearth-and-hall",
+    "nombre": "Hearth & Hall",
+    "descripcionCorta": {
+      "es": "Template visual de tienda online medieval-cozy con cuatro salas tematizadas, hero cinematográfico y micro-interacciones artesanales.",
+      "en": "Medieval-cozy storefront template with four themed halls, a cinematic hero and hand-tuned micro-interactions.",
+      "pt": "Template visual de loja medieval-cozy com quatro salas tematicas, hero cinematografico e microinteracoes artesanais."
+    },
+    "descripcionLarga": {
+      "es": "Hearth & Hall es un template de tienda online para una marca ficticia de muebles artesanales. No es un ecommerce funcional: el foco está 100% en la dirección visual, las transiciones cinematográficas y la atmósfera. Las cuatro categorías están enmarcadas como salas de un castillo (Throne Room, Banquet Hall, Workshop, Hearth), con tipografía editorial (Cormorant Garamond + Spectral + Cinzel), placeholders atmosféricos en SVG mientras no haya imagen real, cursor candle custom, loading screen de pergamino que se desenrolla con vela animada y audio ambient toggleable (taberna + crepitar de fuego). El hero usa parallax con GSAP ScrollTrigger, el smooth scroll lo maneja Lenis y todos los CTAs llevan un sello de cera con el monograma H&H.",
+      "en": "Hearth & Hall is a storefront template for a fictional handcrafted-furniture brand. It is not a functional ecommerce — the entire focus is the visual direction, cinematic transitions and atmosphere. The four categories are framed as castle halls (Throne Room, Banquet Hall, Workshop, Hearth), with editorial typography (Cormorant Garamond + Spectral + Cinzel), atmospheric SVG placeholders for missing imagery, a custom candle cursor, a parchment-unroll loading screen with an animated candle and a toggleable ambient audio layer (tavern + hearth crackling). The hero uses GSAP ScrollTrigger parallax, Lenis drives the inertial smooth scroll and every CTA carries a wax-seal H&H monogram.",
+      "pt": "Hearth & Hall e um template de loja online para uma marca ficticia de moveis artesanais. Nao e um ecommerce funcional: o foco esta 100% na direcao visual, nas transicoes cinematograficas e na atmosfera. As quatro categorias estao enquadradas como salas de um castelo (Throne Room, Banquet Hall, Workshop, Hearth), com tipografia editorial (Cormorant Garamond + Spectral + Cinzel), placeholders atmosfericos em SVG enquanto nao houver imagem real, cursor candle custom, loading screen de pergaminho que se desenrola com vela animada e audio ambient toggleable (taberna + crepitar de fogo). O hero usa parallax com GSAP ScrollTrigger, o smooth scroll e feito com Lenis e todos os CTAs carregam um selo de cera com o monograma H&H."
+    },
+    "fechaInicio": "2026-05",
+    "fechaFin": "2026-05",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": ["React", "TypeScript", "Vite", "Tailwind CSS", "React Router", "GSAP", "Lenis"],
+    "linkDemo": "https://hearth-and-hall.vercel.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/hearth-and-hall",
+    "imagenPrincipal": "/images/projects/hearth-and-hallmain.svg",
+    "logo": "/images/projects/hearth-and-halllogo.svg",
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #2A2520 0%, #3D2914 45%, #5C3A1F 75%, #E8A04F 100%)",
+    "colorTexto": "#F4EAD5",
+    "features": {
+      "es": [
+        "Cuatro salas tematizadas como un castillo (Throne Room, Banquet Hall, Workshop, Hearth)",
+        "Hero cinematográfico con parallax GSAP + ScrollTrigger",
+        "Loading screen de pergamino con vela animada",
+        "Cursor candle custom que se enciende sobre los links",
+        "Audio ambient toggleable (taberna + crepitar de fuego) con fade in/out",
+        "CTA con sello de cera (wax seal) y monograma H&H",
+        "Placeholders atmosféricos en SVG para imágenes faltantes",
+        "Mobile-first responsive con drawer fullscreen estilo carta"
+      ],
+      "en": [
+        "Four castle-themed halls (Throne Room, Banquet Hall, Workshop, Hearth)",
+        "Cinematic hero with GSAP + ScrollTrigger parallax",
+        "Parchment loading screen with an animated candle",
+        "Custom candle cursor that ignites on link hover",
+        "Toggleable ambient audio (tavern + hearth crackling) with fade in/out",
+        "Wax-seal CTA with H&H monogram",
+        "Atmospheric SVG placeholders for missing imagery",
+        "Mobile-first responsive with a full-screen letter-style drawer"
+      ],
+      "pt": [
+        "Quatro salas tematicas como um castelo (Throne Room, Banquet Hall, Workshop, Hearth)",
+        "Hero cinematografico com parallax GSAP + ScrollTrigger",
+        "Loading screen de pergaminho com vela animada",
+        "Cursor candle custom que acende sobre os links",
+        "Audio ambient toggleable (taberna + crepitar de fogo) com fade in/out",
+        "CTA com selo de cera (wax seal) e monograma H&H",
+        "Placeholders atmosfericos em SVG para imagens faltantes",
+        "Mobile-first responsivo com drawer fullscreen estilo carta"
+      ]
+    },
+    "tipo": "FRONTEND",
+    "destacado": false,
+    "orden": 2
+  },
+  {
     "id": "goaldemy",
     "nombre": "GOALDEMY",
     "descripcionCorta": { "es": "App web de minijuegos de fútbol con rachas, logros y tablas de posición gamificadas.", "en": "Football-themed gaming app with streaks, achievements, and gamified leaderboards.", "pt": "Aplicativo web de minijogos de futebol com sequencias, conquistas e rankings gamificados." },
@@ -25,7 +157,7 @@
     },
     "tipo": "WEBAPP",
     "destacado": true,
-    "orden": 1,
+    "orden": 3,
     "gallery": [
       "/images/projects/goaldemy/gallery1.png",
       "/images/projects/goaldemy/gallery2.png",
@@ -57,7 +189,7 @@
     },
     "tipo": "ABM",
     "destacado": true,
-    "orden": 2
+    "orden": 4
   },
   {
     "id": "champions-dle",
@@ -84,7 +216,7 @@
     },
     "tipo": "PWA",
     "destacado": false,
-    "orden": 6
+    "orden": 8
   },
   {
     "id": "italnet",
@@ -111,7 +243,7 @@
     },
     "tipo": "LANDING",
     "destacado": false,
-    "orden": 4
+    "orden": 6
   },
   {
     "id": "arianadeviaje",
@@ -138,7 +270,7 @@
     },
     "tipo": "WEBAPP",
     "destacado": false,
-    "orden": 7
+    "orden": 9
   },
   {
     "id": "puraa",
@@ -165,7 +297,7 @@
     },
     "tipo": "WORDPRESS",
     "destacado": true,
-    "orden": 8
+    "orden": 10
   },
   {
     "id": "fenalix",
@@ -192,7 +324,7 @@
     },
     "tipo": "FRONTEND",
     "destacado": false,
-    "orden": 5
+    "orden": 7
   },
   {
     "id": "hardlab",
@@ -219,6 +351,6 @@
     },
     "tipo": "INTRANET",
     "destacado": false,
-    "orden": 3
+    "orden": 5
   }
 ]
