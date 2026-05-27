@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#050810"/>
+      <stop offset="45%"  stop-color="#0C1422"/>
+      <stop offset="100%" stop-color="#14202E"/>
+    </linearGradient>
+    <radialGradient id="ember-glow" cx="0.34" cy="0.74" r="0.38">
+      <stop offset="0%"   stop-color="#E08D3C" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#E08D3C" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="moon-halo" cx="0.82" cy="0.13" r="0.14">
+      <stop offset="0%"   stop-color="#D8ECF5" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#D8ECF5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.72">
+      <stop offset="55%"  stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.55"/>
+    </radialGradient>
+    <filter id="blur-stars">
+      <feGaussianBlur stdDeviation="0.6"/>
+    </filter>
+    <filter id="blur-smoke">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- ===== LEFT PANEL — LANDSCAPE ===== -->
+  <clipPath id="left-clip">
+    <rect width="800" height="1000"/>
+  </clipPath>
+  <g clip-path="url(#left-clip)">
+
+    <!-- Sky -->
+    <rect width="800" height="1000" fill="url(#sky)"/>
+
+    <!-- Moon -->
+    <circle cx="655" cy="118" r="38" fill="#E8F2F8" opacity="0.07"/>
+    <circle cx="655" cy="118" r="30" fill="#EDF4F9" opacity="0.10"/>
+    <rect width="800" height="1000" fill="url(#moon-halo)"/>
+
+    <!-- Stars -->
+    <g filter="url(#blur-stars)">
+      <circle cx="38"  cy="72"  r="1.1" fill="white" opacity="0.75"/>
+      <circle cx="95"  cy="40"  r="0.8" fill="white" opacity="0.90"/>
+      <circle cx="178" cy="98"  r="1.0" fill="white" opacity="0.60"/>
+      <circle cx="288" cy="55"  r="1.3" fill="white" opacity="0.80"/>
+      <circle cx="345" cy="28"  r="0.9" fill="white" opacity="0.70"/>
+      <circle cx="430" cy="82"  r="1.2" fill="white" opacity="0.85"/>
+      <circle cx="510" cy="22"  r="0.7" fill="white" opacity="0.65"/>
+      <circle cx="598" cy="65"  r="1.0" fill="white" opacity="0.80"/>
+      <circle cx="720" cy="44"  r="0.9" fill="white" opacity="0.90"/>
+      <circle cx="760" cy="105" r="1.1" fill="white" opacity="0.70"/>
+      <circle cx="68"  cy="175" r="0.9" fill="white" opacity="0.55"/>
+      <circle cx="155" cy="195" r="1.0" fill="white" opacity="0.65"/>
+      <circle cx="240" cy="148" r="0.7" fill="white" opacity="0.60"/>
+      <circle cx="418" cy="162" r="1.0" fill="white" opacity="0.75"/>
+      <circle cx="560" cy="135" r="0.8" fill="white" opacity="0.70"/>
+      <circle cx="690" cy="182" r="1.2" fill="white" opacity="0.60"/>
+      <circle cx="490" cy="210" r="0.7" fill="white" opacity="0.50"/>
+      <circle cx="120" cy="260" r="0.9" fill="white" opacity="0.45"/>
+      <circle cx="330" cy="232" r="0.8" fill="white" opacity="0.50"/>
+    </g>
+
+    <!-- Far mountains (darkest, back layer) -->
+    <path d="M0 820 L70 580 L160 640 L240 510 L360 620 L430 490 L520 580 L620 500 L700 550 L800 520 L800 1000 L0 1000 Z"
+          fill="#0C1520" opacity="0.95"/>
+
+    <!-- Mid mountains with snow -->
+    <!-- Peak 1 — center-left, tallest -->
+    <path d="M80 1000 L255 345 L430 1000 Z" fill="#192030"/>
+    <path d="M255 345 L220 430 L255 412 L290 430 Z" fill="#D2E4EE" opacity="0.80"/>
+
+    <!-- Peak 2 — right, medium -->
+    <path d="M360 1000 L510 438 L660 1000 Z" fill="#141C2A"/>
+    <path d="M510 438 L482 508 L510 492 L538 508 Z" fill="#D2E4EE" opacity="0.72"/>
+
+    <!-- Peak 3 — far left, low -->
+    <path d="M-60 1000 L55 598 L175 1000 Z" fill="#111820"/>
+
+    <!-- Peak 4 — far right, partial -->
+    <path d="M680 1000 L780 530 L880 1000 Z" fill="#141C2A" opacity="0.85"/>
+
+    <!-- Forest treeline (dark pine silhouette) -->
+    <path d="
+      M0 838
+      L18 792 L36 838
+      L50 778 L68 838
+      L82 768 L100 838
+      L116 780 L134 838
+      L148 770 L166 838
+      L182 775 L200 838
+      L218 762 L238 838
+      L256 774 L274 838
+      L292 764 L312 838
+      L332 778 L350 838
+      L368 765 L386 838
+      L404 772 L422 838
+      L440 762 L458 838
+      L476 775 L494 838
+      L512 768 L530 838
+      L548 778 L566 838
+      L584 762 L602 838
+      L620 775 L638 838
+      L656 765 L674 838
+      L692 778 L710 838
+      L728 766 L746 838
+      L764 772 L782 838
+      L800 838
+      L800 1000 L0 1000 Z"
+      fill="#0C1A10" opacity="0.97"/>
+
+    <!-- Lodge building -->
+    <g transform="translate(268, 616)">
+      <!-- Foundation -->
+      <rect x="-8" y="122" width="210" height="12" fill="#0E0A06" rx="1"/>
+      <!-- Main body -->
+      <rect x="0" y="0" width="193" height="125" fill="#1E1208" rx="2"/>
+      <!-- A-frame roof -->
+      <path d="M-18 2 L96 -72 L210 2 Z" fill="#140E08"/>
+      <!-- Roof outline -->
+      <path d="M-18 2 L96 -72 L210 2" stroke="#2A1C0E" stroke-width="1.5" fill="none"/>
+      <!-- Chimney -->
+      <rect x="148" y="-78" width="18" height="38" fill="#1C1208" rx="1"/>
+      <!-- Chimney cap -->
+      <rect x="144" y="-80" width="26" height="5" fill="#241810" rx="1"/>
+      <!-- Smoke -->
+      <g filter="url(#blur-smoke)" opacity="0.28">
+        <path d="M157 -84 Q163 -98 157 -114 Q151 -128 159 -144"
+              stroke="#9AA8A8" stroke-width="3" fill="none"/>
+        <path d="M162 -86 Q170 -102 163 -118 Q156 -132 165 -150"
+              stroke="#9AA8A8" stroke-width="2.5" fill="none"/>
+      </g>
+      <!-- Window left (warm amber light) -->
+      <rect x="18" y="22" width="42" height="34" fill="#F2B060" opacity="0.92" rx="2"/>
+      <line x1="39" y1="22" x2="39" y2="56" stroke="#1E1208" stroke-width="1.5"/>
+      <line x1="18" y1="39" x2="60" y2="39" stroke="#1E1208" stroke-width="1.5"/>
+      <!-- Window right -->
+      <rect x="133" y="22" width="42" height="34" fill="#F0AA58" opacity="0.88" rx="2"/>
+      <line x1="154" y1="22" x2="154" y2="56" stroke="#1E1208" stroke-width="1.5"/>
+      <line x1="133" y1="39" x2="175" y2="39" stroke="#1E1208" stroke-width="1.5"/>
+      <!-- Door -->
+      <rect x="80" y="58" width="32" height="52" fill="#E8A040" opacity="0.70" rx="2"/>
+      <!-- Door knob -->
+      <circle cx="107" cy="84" r="2.5" fill="#F2B060" opacity="0.8"/>
+      <!-- Snow on roof -->
+      <path d="M-18 2 L25 -26 L96 -72 L167 -26 L210 2"
+            stroke="#D5E8F2" stroke-width="2" fill="none" opacity="0.65"/>
+      <!-- Deck/porch -->
+      <rect x="70" y="110" width="52" height="8" fill="#2A1C0E" rx="1"/>
+      <line x1="78" y1="110" x2="78" y2="122" stroke="#341F0A" stroke-width="1.5"/>
+      <line x1="113" y1="110" x2="113" y2="122" stroke="#341F0A" stroke-width="1.5"/>
+    </g>
+
+    <!-- Ground snow patches -->
+    <ellipse cx="350" cy="748" rx="90" ry="10" fill="#C5D8E8" opacity="0.12"/>
+    <ellipse cx="520" cy="755" rx="60" ry="8"  fill="#C5D8E8" opacity="0.09"/>
+    <ellipse cx="210" cy="758" rx="50" ry="7"  fill="#C5D8E8" opacity="0.10"/>
+
+    <!-- Ember glow from lodge windows -->
+    <rect width="800" height="1000" fill="url(#ember-glow)"/>
+
+    <!-- Vignette -->
+    <rect width="800" height="1000" fill="url(#vignette)"/>
+
+    <!-- Panel separator -->
+    <line x1="800" y1="0" x2="800" y2="1000" stroke="#E08D3C" stroke-width="1" opacity="0.25"/>
+  </g>
+
+  <!-- ===== RIGHT PANEL — BRANDING ===== -->
+  <rect x="800" y="0" width="800" height="1000" fill="#08090D"/>
+
+  <!-- Subtle radial glow right -->
+  <radialGradient id="rg-right" cx="0.5" cy="0.5" r="0.55">
+    <stop offset="0%"   stop-color="#E08D3C" stop-opacity="0.07"/>
+    <stop offset="100%" stop-color="#E08D3C" stop-opacity="0"/>
+  </radialGradient>
+  <rect x="800" y="0" width="800" height="1000" fill="url(#rg-right)"/>
+
+  <!-- Eyebrow label -->
+  <text
+    x="1528" y="292"
+    text-anchor="end"
+    font-family="'SF Mono','Fira Code',monospace"
+    font-size="16"
+    letter-spacing="6"
+    fill="#E08D3C"
+    opacity="0.88"
+  >LANDING · REACT + TS · 2026</text>
+
+  <!-- Wordmark "Refugio" -->
+  <text
+    x="1528" y="468"
+    text-anchor="end"
+    font-family="Georgia,'Times New Roman',serif"
+    font-style="italic"
+    font-weight="300"
+    font-size="130"
+    letter-spacing="-2"
+    fill="#F5F0E8"
+  >Refugio</text>
+
+  <!-- Wordmark "del Cóndor" -->
+  <text
+    x="1528" y="604"
+    text-anchor="end"
+    font-family="Georgia,'Times New Roman',serif"
+    font-style="italic"
+    font-weight="300"
+    font-size="130"
+    letter-spacing="-2"
+    fill="#F5F0E8"
+  >del Cóndor</text>
+
+  <!-- Ember divider -->
+  <line x1="840" y1="648" x2="1528" y2="648" stroke="#E08D3C" stroke-width="1.5" opacity="0.55"/>
+
+  <!-- Subtitle -->
+  <text
+    x="1528" y="690"
+    text-anchor="end"
+    font-family="'Inter','Helvetica Neue',sans-serif"
+    font-weight="600"
+    font-size="17"
+    letter-spacing="10"
+    fill="#6B6B6B"
+  >PATAGONIA · BARILOCHE · ARGENTINA</text>
+
+  <!-- Description lines -->
+  <text x="840" y="782" font-family="'Inter','Helvetica Neue',sans-serif" font-size="21" fill="#F5F0E8" opacity="0.70">Landing cinematográfica para un lodge de montaña.</text>
+  <text x="840" y="814" font-family="'Inter','Helvetica Neue',sans-serif" font-size="21" fill="#F5F0E8" opacity="0.52">Parallax · hotspot pulsante · galería masonry.</text>
+  <text x="840" y="846" font-family="'Inter','Helvetica Neue',sans-serif" font-size="21" fill="#F5F0E8" opacity="0.52">Animaciones CSS puras sin flicker en loop infinito.</text>
+
+  <!-- Stack line -->
+  <line x1="840" y1="916" x2="1528" y2="916" stroke="#333333" stroke-width="1" opacity="0.8"/>
+  <text
+    x="1528" y="952"
+    text-anchor="end"
+    font-family="'SF Mono','Fira Code',monospace"
+    font-size="14"
+    letter-spacing="6"
+    fill="#6B6B6B"
+    opacity="0.75"
+  >REACT · TYPESCRIPT · TAILWIND CSS · FRAMER MOTION</text>
+</svg>

@@ -56,6 +56,9 @@
     "contact": "Let's work together",
     "contactSubtitle": "I'm available for freelance projects and job opportunities"
   },
+  "work": {
+    "totalProjects": "selected projects"
+  },
   "footer": {
     "version": "Version",
     "localTime": "Local time",

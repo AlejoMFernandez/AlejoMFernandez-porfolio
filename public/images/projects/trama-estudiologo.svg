@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#2D2520"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%"   stop-color="#D4634A" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#D4634A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+
+  <!-- Wordmark centered -->
+  <text
+    x="800" y="560"
+    text-anchor="middle"
+    font-family="'Inter','Helvetica Neue',sans-serif"
+    font-weight="700"
+    font-size="230"
+    letter-spacing="-8"
+    fill="#F5F1EA"
+  >TRAMA</text>
+
+  <!-- Terracota dot — aligned to end of wordmark -->
+  <circle cx="1126" cy="516" r="20" fill="#D4634A"/>
+
+  <!-- Divider line -->
+  <line x1="320" y1="618" x2="1280" y2="618" stroke="#D4634A" stroke-width="2" opacity="0.7"/>
+
+  <!-- Tagline -->
+  <text
+    x="800" y="672"
+    text-anchor="middle"
+    font-family="'Inter','Helvetica Neue',sans-serif"
+    font-weight="600"
+    font-size="22"
+    letter-spacing="12"
+    fill="#6B6B6B"
+  >ESTUDIO DE ARQUITECTURA</text>
+</svg>

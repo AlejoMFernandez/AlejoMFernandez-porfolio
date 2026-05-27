@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="halo" cx="0.5" cy="0.55" r="0.55">
+      <stop offset="0%"   stop-color="#F5C76A" stop-opacity="0.45"/>
+      <stop offset="60%"  stop-color="#E8A04F" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#3D2914" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="vignetteTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="vignetteBottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.5"/>
+    </linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.96
+                             0 0 0 0 0.88
+                             0 0 0 0 0.72
+                             0 0 0 0.07 0"/>
+    </filter>
+  </defs>
+
+  <!-- Plate -->
+  <rect width="1600" height="1000" fill="#3D2914"/>
+  <rect width="1600" height="1000" fill="url(#halo)"/>
+  <rect width="1600" height="1000" fill="url(#vignetteTop)"/>
+  <rect width="1600" height="1000" fill="url(#vignetteBottom)"/>
+  <rect width="1600" height="1000" filter="url(#grain)" opacity="0.55"/>
+
+  <!-- Wax seal monogram, centred -->
+  <g transform="translate(800 480)">
+    <circle r="170" fill="#6B2A2A"/>
+    <circle r="148" fill="none" stroke="rgba(244,234,213,0.32)" stroke-width="2"/>
+    <circle r="132" fill="none" stroke="rgba(244,234,213,0.18)" stroke-width="0.8"/>
+    <ellipse cx="-46" cy="-50" rx="38" ry="20" fill="rgba(244,234,213,0.22)"/>
+    <text
+      x="0" y="50"
+      text-anchor="middle"
+      font-family="'Cormorant Garamond', 'Times New Roman', serif"
+      font-style="italic"
+      font-size="148"
+      font-weight="500"
+      fill="#F4EAD5"
+    >H<tspan fill="#F5C76A">&amp;</tspan>H</text>
+  </g>
+
+  <!-- Caption under the seal -->
+  <text
+    x="800" y="745"
+    text-anchor="middle"
+    font-family="'Cinzel', 'Trajan Pro', serif"
+    font-size="34"
+    letter-spacing="18"
+    fill="#F5C76A"
+  >HEARTH &amp; HALL</text>
+
+  <!-- Subtle stack chip at the bottom -->
+  <line x1="700" y1="830" x2="900" y2="830" stroke="#F5C76A" stroke-opacity="0.4" stroke-width="1"/>
+  <text
+    x="800" y="870"
+    text-anchor="middle"
+    font-family="'Cinzel', 'Trajan Pro', serif"
+    font-size="18"
+    letter-spacing="9"
+    fill="#ECDFBF"
+    opacity="0.75"
+  >ANNO MMXXVI</text>
+</svg>

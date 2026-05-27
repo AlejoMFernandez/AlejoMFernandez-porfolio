@@ -1,5 +1,269 @@
 [
   {
+    "id": "inkmanager",
+    "nombre": "InkManager",
+    "descripcionCorta": {
+      "es": "Sistema de gestión para estudios de tatuaje con body map 3D rotable donde se marcan los tatuajes en su posición exacta.",
+      "en": "Tattoo studio management system with a rotatable 3D body map to pin every tattoo at its exact location.",
+      "pt": "Sistema de gestão para estúdios de tatuagem com body map 3D rotacionável para marcar cada tatuagem na posição exata."
+    },
+    "descripcionLarga": {
+      "es": "InkManager es un sistema operativo digital para estudios de tatuaje. Su diferencial es un body map 3D construido con Three.js: el tatuador hace click sobre un modelo humano rotable y queda marcado el tatuaje en la posición exacta del cuerpo, con foto, estilo, fecha y notas. Incluye CRM de clientes con búsqueda y paginación, calendario drag & drop con FullCalendar para reagendar turnos, dashboard con KPIs animados, identidad de marca completa (splash intro, tipografía editorial Bebas Neue + Inter, monograma SVG animado) y auth segura con CSRF + bcrypt. Construido en PHP 8.2 vanilla con MVC propio, sin frameworks ni Composer, y deployado en Railway con MySQL.",
+      "en": "InkManager is a digital operating system for tattoo studios. Its key differentiator is a 3D body map built with Three.js: the artist clicks on a rotatable human model and the tattoo gets pinned at the exact body position, with photo, style, date and notes. Includes a customer CRM with search and pagination, a drag & drop FullCalendar to reschedule sessions, a dashboard with animated KPIs, full brand identity (animated splash intro, editorial typography Bebas Neue + Inter, animated SVG monogram), and secure auth with CSRF + bcrypt. Built in vanilla PHP 8.2 with a custom MVC — no framework, no Composer — and deployed on Railway with MySQL.",
+      "pt": "InkManager é um sistema operacional digital para estúdios de tatuagem. Seu diferencial é um body map 3D construído com Three.js: o tatuador clica sobre um modelo humano rotacionável e a tatuagem fica marcada na posição exata do corpo, com foto, estilo, data e anotações. Inclui CRM de clientes com busca e paginação, calendário drag & drop com FullCalendar para reagendar sessões, dashboard com KPIs animados, identidade de marca completa (splash intro animado, tipografia editorial Bebas Neue + Inter, monograma SVG animado) e auth segura com CSRF + bcrypt. Construído em PHP 8.2 vanilla com MVC próprio, sem framework nem Composer, e deployado no Railway com MySQL."
+    },
+    "fechaInicio": "2026-05",
+    "fechaFin": "Actualidad",
+    "cliente": null,
+    "rol": {
+      "es": "Desarrollador Full-Stack",
+      "en": "Full-Stack Developer",
+      "pt": "Desenvolvedor Full-Stack"
+    },
+    "tecnologias": ["PHP", "MySQL", "Three.js", "JavaScript", "Tailwind CSS", "FullCalendar", "Railway"],
+    "linkDemo": "https://inkmanager.up.railway.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/InkManager",
+    "imagenPrincipal": "/images/projects/inkmanagermain.svg",
+    "logo": "/images/projects/inkmanagerlogo.svg",
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #0a0a0a 0%, #1a0606 55%, #2a0808 100%)",
+    "colorTexto": "#ffffff",
+    "features": {
+      "es": [
+        "Body map 3D rotable con raycaster click-to-mark",
+        "Markers persistentes anclados a posición + normal del cuerpo",
+        "CRM de clientes con búsqueda y paginación",
+        "Calendario drag & drop con 4 estados de turno",
+        "Dashboard con KPIs y animaciones de números",
+        "Identidad de marca completa (splash, tipografía, monograma)",
+        "Auth segura con CSRF, bcrypt y cookies HTTPS-aware",
+        "Upload de fotos con validación MIME real (finfo)"
+      ],
+      "en": [
+        "Rotatable 3D body map with raycaster click-to-mark",
+        "Persistent markers anchored to body position + normal",
+        "Customer CRM with search and pagination",
+        "Drag & drop calendar with 4 appointment states",
+        "Dashboard with KPI counter animations",
+        "Full brand identity (splash, typography, monogram)",
+        "Secure auth with CSRF, bcrypt and HTTPS-aware cookies",
+        "Photo upload with real MIME validation (finfo)"
+      ],
+      "pt": [
+        "Body map 3D rotacionável com raycaster click-to-mark",
+        "Markers persistentes ancorados à posição + normal do corpo",
+        "CRM de clientes com busca e paginação",
+        "Calendário drag & drop com 4 estados de turno",
+        "Dashboard com KPIs e animações de números",
+        "Identidade de marca completa (splash, tipografia, monograma)",
+        "Auth segura com CSRF, bcrypt e cookies HTTPS-aware",
+        "Upload de fotos com validação MIME real (finfo)"
+      ]
+    },
+    "tipo": "WEBAPP",
+    "destacado": true,
+    "orden": 1
+  },
+  {
+    "id": "trama-estudio",
+    "nombre": "TRAMA Estudio",
+    "descripcionCorta": {
+      "es": "Landing page para un estudio de arquitectura ficticio donde cada sección arranca como boceto a lápiz y se revela en estado final al hacer scroll.",
+      "en": "Landing page for a fictional architecture studio where every section starts as a pencil sketch and reveals its finished state as you scroll.",
+      "pt": "Landing page para um estúdio de arquitetura fictício onde cada seção começa como esboço a lápis e revela seu estado final conforme o usuário rola a página."
+    },
+    "descripcionLarga": {
+      "es": "TRAMA Estudio es una landing page conceptual para un estudio de arquitectura boutique de Buenos Aires. El diferencial visual es la dualidad sketch → final: cada sección tiene dos capas superpuestas (estilo boceto con Caveat + grafito y estado final con Clash Display + crema) reveladas mediante clip-path animado con GSAP ScrollTrigger scrub. El hero abre con el corte arquitectónico de la Casa RD-04 dibujándose a mano mediante Web Animations API (stroke-dashoffset), seguido de una foto con blur-up. Un cursor lápiz SVG custom detecta en qué capa se encuentra mediante elementFromPoint() y cambia de estado en tiempo real. Lenis smooth scroll conectado a ScrollTrigger, responsive mobile-first con soporte prefers-reduced-motion, OG/Twitter meta tags y assets optimizados (PNG → WebP con Sharp).",
+      "en": "TRAMA Estudio is a conceptual landing page for a boutique architecture firm in Buenos Aires. The visual differentiator is the sketch → final duality: each section has two stacked layers (sketch style with Caveat + graphite and finished state with Clash Display + cream) revealed by a clip-path animated with GSAP ScrollTrigger scrub. The hero opens with the Casa RD-04 architectural section drawing itself by hand via the Web Animations API (stroke-dashoffset), followed by a blur-up hero photo. A custom SVG pencil cursor uses elementFromPoint() to detect which layer it's over and switches state in real time. Lenis smooth scroll connected to ScrollTrigger, mobile-first responsive with prefers-reduced-motion support, OG/Twitter meta tags and optimised assets (PNG → WebP via Sharp).",
+      "pt": "TRAMA Estudio é uma landing page conceitual para um estúdio de arquitetura boutique de Buenos Aires. O diferencial visual é a dualidade sketch → final: cada seção tem duas camadas sobrepostas (estilo esboço com Caveat + grafite e estado final com Clash Display + creme) reveladas por clip-path animado com GSAP ScrollTrigger scrub. O hero abre com o corte arquitetônico da Casa RD-04 se desenhando à mão via Web Animations API (stroke-dashoffset), seguido de uma foto com blur-up. Um cursor lápis SVG custom usa elementFromPoint() para detectar em qual camada está e muda de estado em tempo real. Lenis smooth scroll conectado ao ScrollTrigger, responsivo mobile-first com suporte a prefers-reduced-motion, meta tags OG/Twitter e assets otimizados (PNG → WebP com Sharp)."
+    },
+    "fechaInicio": "2026-05",
+    "fechaFin": "2026-05",
+    "cliente": null,
+    "rol": {
+      "es": "Desarrollador Frontend",
+      "en": "Frontend Developer",
+      "pt": "Desenvolvedor Frontend"
+    },
+    "tecnologias": ["Vite", "Vanilla JS", "GSAP", "ScrollTrigger", "Lenis", "Web Animations API", "Sharp"],
+    "linkDemo": "https://trama-ten.vercel.app",
+    "linkGithub": "https://github.com/AlejoMFernandez/TRAMA",
+    "imagenPrincipal": "/images/projects/trama-estudiomain.svg",
+    "logo": "/images/projects/trama-estudiologo.svg",
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #1A1A1A 0%, #2D2520 100%)",
+    "colorTexto": "#F5F1EA",
+    "features": {
+      "es": [
+        "Animación SVG draw-on-load: corte arquitectónico dibujado a mano (Web Animations API)",
+        "Dualidad sketch → final por sección con GSAP ScrollTrigger scrub + clip-path",
+        "Cursor lápiz SVG custom con detección de capa via elementFromPoint()",
+        "Blur-up en foto hero: nitidez progresiva en carga",
+        "Smooth scroll Lenis sincronizado con ScrollTrigger",
+        "Responsive mobile-first con soporte prefers-reduced-motion",
+        "Brand pack completo: logos SVG + PNG, swatch de paleta, BRAND.md",
+        "Assets optimizados PNG → WebP via Sharp (2.6 MB → 213 KB)"
+      ],
+      "en": [
+        "SVG draw-on-load animation: architectural section hand-drawn via Web Animations API",
+        "Per-section sketch → final duality with GSAP ScrollTrigger scrub + clip-path",
+        "Custom SVG pencil cursor with layer detection via elementFromPoint()",
+        "Blur-up hero photo: progressive sharpness on load",
+        "Lenis smooth scroll synced with ScrollTrigger",
+        "Mobile-first responsive with prefers-reduced-motion support",
+        "Full brand pack: SVG + PNG logos, palette swatch, BRAND.md guide",
+        "Optimised assets PNG → WebP via Sharp (2.6 MB → 213 KB)"
+      ],
+      "pt": [
+        "Animação SVG draw-on-load: corte arquitetônico desenhado à mão via Web Animations API",
+        "Dualidade sketch → final por seção com GSAP ScrollTrigger scrub + clip-path",
+        "Cursor lápis SVG custom com detecção de camada via elementFromPoint()",
+        "Blur-up na foto hero: nitidez progressiva no carregamento",
+        "Lenis smooth scroll sincronizado com ScrollTrigger",
+        "Responsivo mobile-first com suporte a prefers-reduced-motion",
+        "Brand pack completo: logos SVG + PNG, swatch de paleta, guia BRAND.md",
+        "Assets otimizados PNG → WebP via Sharp (2,6 MB → 213 KB)"
+      ]
+    },
+    "tipo": "LANDING",
+    "destacado": true,
+    "orden": 2
+  },
+  {
+    "id": "patagonia-refugio",
+    "nombre": "Refugio del Cóndor",
+    "descripcionCorta": {
+      "es": "Landing cinematográfica para un lodge de montaña en Patagonia. Hero con parallax, hotspot pulsante sobre el mapa de la montaña, galería masonry y animaciones CSS puras sin flicker.",
+      "en": "Cinematic landing for a mountain lodge in Patagonia. Parallax hero, pulsing hotspot on the mountain map, masonry gallery, and flicker-free pure CSS animations.",
+      "pt": "Landing cinematográfica para um lodge de montanha na Patagônia. Hero com parallax, hotspot pulsante no mapa da montanha, galeria masonry e animações CSS puras sem flicker."
+    },
+    "descripcionLarga": {
+      "es": "Refugio del Cóndor es una landing page cinematográfica para un lodge de montaña ficticio en Cerro Catedral, Bariloche. El hero ocupa pantalla completa con parallax de imagen, overlay reactivo al scroll y texto alineado bottom-left que respira junto a la foto del lodge. Un hotspot pulsante en el mapa de la montaña marca la ubicación exacta del refugio — animado con CSS @keyframes puro para garantizar cero flicker en loops infinitos (framer-motion dejaba opacity residual ~0.01 perceptible al snap del loop). Las secciones de habitaciones y galería usan Framer Motion con stagger reveal al entrar en viewport. La galería es un grid masonry de 4 columnas con grid-flow-dense y efecto cinematic spotlight: la card hovereada se ilumina y scalea, las demás se desaturan y oscurecen. Todo el diseño usa una paleta oscura editorial (ember #E08D3C / parchment / forest-deep) con tipografía display itálica estilo magazine de lujo.",
+      "en": "Refugio del Cóndor is a cinematic landing page for a fictional mountain lodge at Cerro Catedral, Bariloche. The hero fills the entire screen with image parallax, a scroll-reactive overlay, and bottom-left text that breathes alongside the lodge photo. A pulsing hotspot on the mountain map marks the exact lodge location — animated with pure CSS @keyframes to guarantee zero flicker on infinite loops (framer-motion left residual opacity ~0.01 visible at the loop snap). The rooms and gallery sections use Framer Motion with stagger reveal on viewport entry. The gallery is a 4-column masonry grid with grid-flow-dense and a cinematic spotlight effect: the hovered card illuminates and scales up, the rest desaturate and darken. The entire design uses a dark editorial palette (ember #E08D3C / parchment / forest-deep) with italic display typography in luxury magazine style.",
+      "pt": "Refugio del Cóndor é uma landing page cinematográfica para um lodge de montanha fictício no Cerro Catedral, Bariloche. O hero ocupa a tela completa com parallax de imagem, overlay reativo ao scroll e texto no canto inferior esquerdo que respira junto à foto do lodge. Um hotspot pulsante no mapa da montanha marca a localização exata do refúgio — animado com CSS @keyframes puro para garantir zero flicker em loops infinitos (o framer-motion deixava opacity residual ~0.01 visível no snap do loop). As seções de quartos e galeria usam Framer Motion com stagger reveal ao entrar no viewport. A galeria é um grid masonry de 4 colunas com grid-flow-dense e efeito cinematic spotlight: a card em hover ilumina e escala, as demais dessaturam e escurecem. Todo o design usa uma paleta escura editorial (ember #E08D3C / parchment / forest-deep) com tipografia display itálica estilo magazine de luxo."
+    },
+    "fechaInicio": "2026-05",
+    "fechaFin": "2026-05",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
+    "linkDemo": null,
+    "linkGithub": null,
+    "imagenPrincipal": "/images/projects/patagonia-refugiomain.svg",
+    "logo": "/images/projects/patagonia-refugiologo.svg",
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #050810 0%, #0D1520 55%, #0A1008 100%)",
+    "colorTexto": "#F5F0E8",
+    "features": {
+      "es": [
+        "Hero fullscreen con parallax de imagen y overlay reactivo al scroll",
+        "Hotspot pulsante con CSS @keyframes puros (cero flicker en loop infinito)",
+        "Galería masonry 4 columnas con grid-flow-dense y cinematic spotlight",
+        "Sección de habitaciones con stagger reveal y hover scale + rotate",
+        "Sección de contacto con info cards y CTA de reserva",
+        "Paleta oscura editorial: ember / parchment / forest-deep",
+        "Tipografía display itálica estilo magazine de lujo",
+        "Mobile-first responsive en todas las secciones"
+      ],
+      "en": [
+        "Fullscreen hero with image parallax and scroll-reactive overlay",
+        "Pulsing hotspot with pure CSS @keyframes (zero flicker on infinite loop)",
+        "4-column masonry gallery with grid-flow-dense and cinematic spotlight",
+        "Rooms section with stagger reveal and hover scale + rotate",
+        "Contact section with info cards and booking CTA",
+        "Dark editorial palette: ember / parchment / forest-deep",
+        "Italic display typography in luxury magazine style",
+        "Mobile-first responsive across all sections"
+      ],
+      "pt": [
+        "Hero fullscreen com parallax de imagem e overlay reativo ao scroll",
+        "Hotspot pulsante com CSS @keyframes puros (zero flicker em loop infinito)",
+        "Galeria masonry 4 colunas com grid-flow-dense e cinematic spotlight",
+        "Seção de quartos com stagger reveal e hover scale + rotate",
+        "Seção de contato com info cards e CTA de reserva",
+        "Paleta escura editorial: ember / parchment / forest-deep",
+        "Tipografia display itálica estilo magazine de luxo",
+        "Mobile-first responsivo em todas as seções"
+      ]
+    },
+    "tipo": "LANDING",
+    "destacado": true,
+    "orden": 2.5
+  },
+  {
+    "id": "hearth-and-hall",
+    "nombre": "Hearth & Hall",
+    "descripcionCorta": {
+      "es": "Template visual de tienda online medieval-cozy con cuatro salas tematizadas, hero cinematográfico y micro-interacciones artesanales.",
+      "en": "Medieval-cozy storefront template with four themed halls, a cinematic hero and hand-tuned micro-interactions.",
+      "pt": "Template visual de loja medieval-cozy com quatro salas tematicas, hero cinematografico e microinteracoes artesanais."
+    },
+    "descripcionLarga": {
+      "es": "Hearth & Hall es un template de tienda online para una marca ficticia de muebles artesanales. No es un ecommerce funcional: el foco está 100% en la dirección visual, las transiciones cinematográficas y la atmósfera. Las cuatro categorías están enmarcadas como salas de un castillo (Throne Room, Banquet Hall, Workshop, Hearth), con tipografía editorial (Cormorant Garamond + Spectral + Cinzel), placeholders atmosféricos en SVG mientras no haya imagen real, cursor candle custom, loading screen de pergamino que se desenrolla con vela animada y audio ambient toggleable (taberna + crepitar de fuego). El hero usa parallax con GSAP ScrollTrigger, el smooth scroll lo maneja Lenis y todos los CTAs llevan un sello de cera con el monograma H&H.",
+      "en": "Hearth & Hall is a storefront template for a fictional handcrafted-furniture brand. It is not a functional ecommerce — the entire focus is the visual direction, cinematic transitions and atmosphere. The four categories are framed as castle halls (Throne Room, Banquet Hall, Workshop, Hearth), with editorial typography (Cormorant Garamond + Spectral + Cinzel), atmospheric SVG placeholders for missing imagery, a custom candle cursor, a parchment-unroll loading screen with an animated candle and a toggleable ambient audio layer (tavern + hearth crackling). The hero uses GSAP ScrollTrigger parallax, Lenis drives the inertial smooth scroll and every CTA carries a wax-seal H&H monogram.",
+      "pt": "Hearth & Hall e um template de loja online para uma marca ficticia de moveis artesanais. Nao e um ecommerce funcional: o foco esta 100% na direcao visual, nas transicoes cinematograficas e na atmosfera. As quatro categorias estao enquadradas como salas de um castelo (Throne Room, Banquet Hall, Workshop, Hearth), com tipografia editorial (Cormorant Garamond + Spectral + Cinzel), placeholders atmosfericos em SVG enquanto nao houver imagem real, cursor candle custom, loading screen de pergaminho que se desenrola com vela animada e audio ambient toggleable (taberna + crepitar de fogo). O hero usa parallax com GSAP ScrollTrigger, o smooth scroll e feito com Lenis e todos os CTAs carregam um selo de cera com o monograma H&H."
+    },
+    "fechaInicio": "2026-05",
+    "fechaFin": "2026-05",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": ["React", "TypeScript", "Vite", "Tailwind CSS", "React Router", "GSAP", "Lenis"],
+    "linkDemo": "https://hearth-and-hall.vercel.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/hearth-and-hall",
+    "imagenPrincipal": "/images/projects/hearth-and-hallmain.svg",
+    "logo": "/images/projects/hearth-and-halllogo.svg",
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #2A2520 0%, #3D2914 45%, #5C3A1F 75%, #E8A04F 100%)",
+    "colorTexto": "#F4EAD5",
+    "features": {
+      "es": [
+        "Cuatro salas tematizadas como un castillo (Throne Room, Banquet Hall, Workshop, Hearth)",
+        "Hero cinematográfico con parallax GSAP + ScrollTrigger",
+        "Loading screen de pergamino con vela animada",
+        "Cursor candle custom que se enciende sobre los links",
+        "Audio ambient toggleable (taberna + crepitar de fuego) con fade in/out",
+        "CTA con sello de cera (wax seal) y monograma H&H",
+        "Placeholders atmosféricos en SVG para imágenes faltantes",
+        "Mobile-first responsive con drawer fullscreen estilo carta"
+      ],
+      "en": [
+        "Four castle-themed halls (Throne Room, Banquet Hall, Workshop, Hearth)",
+        "Cinematic hero with GSAP + ScrollTrigger parallax",
+        "Parchment loading screen with an animated candle",
+        "Custom candle cursor that ignites on link hover",
+        "Toggleable ambient audio (tavern + hearth crackling) with fade in/out",
+        "Wax-seal CTA with H&H monogram",
+        "Atmospheric SVG placeholders for missing imagery",
+        "Mobile-first responsive with a full-screen letter-style drawer"
+      ],
+      "pt": [
+        "Quatro salas tematicas como um castelo (Throne Room, Banquet Hall, Workshop, Hearth)",
+        "Hero cinematografico com parallax GSAP + ScrollTrigger",
+        "Loading screen de pergaminho com vela animada",
+        "Cursor candle custom que acende sobre os links",
+        "Audio ambient toggleable (taberna + crepitar de fogo) com fade in/out",
+        "CTA com selo de cera (wax seal) e monograma H&H",
+        "Placeholders atmosfericos em SVG para imagens faltantes",
+        "Mobile-first responsivo com drawer fullscreen estilo carta"
+      ]
+    },
+    "tipo": "FRONTEND",
+    "destacado": false,
+    "orden": 3
+  },
+  {
     "id": "goaldemy",
     "nombre": "GOALDEMY",
     "descripcionCorta": { "es": "App web de minijuegos de fútbol con rachas, logros y tablas de posición gamificadas.", "en": "Football-themed gaming app with streaks, achievements, and gamified leaderboards.", "pt": "Aplicativo web de minijogos de futebol com sequencias, conquistas e rankings gamificados." },
@@ -11,7 +275,7 @@
     "tecnologias": ["Vite", "Vue.js", "Tailwind CSS", "JavaScript", "Supabase", "MongoDB"],
     "linkDemo": "https://goaldemy.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/Goaldemy",
-    "imagenPrincipal": "/images/projects/goaldemymain.png",
+    "imagenPrincipal": "/images/projects/goaldemymain.svg",
     "logo": "/images/projects/goaldemylogo.png",
     "isotipo": "/images/projects/goaldemyisotipo.png",
     "imagenes": [],
@@ -25,7 +289,7 @@
     },
     "tipo": "WEBAPP",
     "destacado": true,
-    "orden": 1,
+    "orden": 4,
     "gallery": [
       "/images/projects/goaldemy/gallery1.png",
       "/images/projects/goaldemy/gallery2.png",
@@ -44,7 +308,7 @@
     "tecnologias": ["PHP", "Bootstrap", "CSS", "JavaScript", "MySQL"],
     "linkDemo": "https://Franza.com.ar/",
     "linkGithub": "https://github.com/AlejoMFernandez/Franza",
-    "imagenPrincipal": "/images/projects/franzamain.png",
+    "imagenPrincipal": "/images/projects/franzamain.svg",
     "logo": "/images/projects/franzalogo.png",
     "imagenes": [],
     "video": null,
@@ -57,7 +321,7 @@
     },
     "tipo": "ABM",
     "destacado": true,
-    "orden": 2
+    "orden": 5
   },
   {
     "id": "champions-dle",
@@ -71,7 +335,7 @@
     "tecnologias": ["PWA", "JavaScript", "API REST", "CSS"],
     "linkDemo": "https://championsdle.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/CHAMPIONS.dle",
-    "imagenPrincipal": "/images/projects/championsdlemain.jpeg",
+    "imagenPrincipal": "/images/projects/championsdlemain.svg",
     "logo": null,
     "imagenes": [],
     "video": null,
@@ -84,7 +348,7 @@
     },
     "tipo": "PWA",
     "destacado": false,
-    "orden": 6
+    "orden": 9
   },
   {
     "id": "italnet",
@@ -98,7 +362,7 @@
     "tecnologias": ["HTML", "CSS"],
     "linkDemo": "https://italnetweb.com.ar/",
     "linkGithub": null,
-    "imagenPrincipal": "/images/projects/italnetmain.jpeg",
+    "imagenPrincipal": "/images/projects/italnetmain.svg",
     "logo": "/images/projects/italnetlogo.png",
     "imagenes": [],
     "video": null,
@@ -111,7 +375,7 @@
     },
     "tipo": "LANDING",
     "destacado": false,
-    "orden": 4
+    "orden": 7
   },
   {
     "id": "arianadeviaje",
@@ -125,7 +389,7 @@
     "tecnologias": ["Vue", "TypeScript", "PLpgSQL", "CSS"],
     "linkDemo": "https://arianadeviaje.com/",
     "linkGithub": "https://github.com/AlejoMFernandez/arianadeviaje",
-    "imagenPrincipal": "/images/projects/arianalogo.png",
+    "imagenPrincipal": "/images/projects/arianamain.svg",
     "logo": "/images/projects/arianalogo.png",
     "imagenes": ["/images/projects/arianamain.png"],
     "video": null,
@@ -138,7 +402,7 @@
     },
     "tipo": "WEBAPP",
     "destacado": false,
-    "orden": 7
+    "orden": 10
   },
   {
     "id": "puraa",
@@ -152,7 +416,7 @@
     "tecnologias": ["WordPress", "Elementor", "WooCommerce", "CSS"],
     "linkDemo": "https://puraa.com.ar/",
     "linkGithub": null,
-    "imagenPrincipal": "/images/projects/puraalogoclaro.png",
+    "imagenPrincipal": "/images/projects/puraamain.svg",
     "logo": "/images/projects/puraalogoclaro.png",
     "imagenes": ["/images/projects/puraamain.png"],
     "video": null,
@@ -165,7 +429,7 @@
     },
     "tipo": "WORDPRESS",
     "destacado": true,
-    "orden": 8
+    "orden": 11
   },
   {
     "id": "fenalix",
@@ -179,7 +443,7 @@
     "tecnologias": ["HTML", "SASS", "CSS"],
     "linkDemo": "https://fenalix.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/FENALIX",
-    "imagenPrincipal": "/images/projects/fenalixmain.jpeg",
+    "imagenPrincipal": "/images/projects/fenalixmain.svg",
     "logo": null,
     "imagenes": [],
     "video": null,
@@ -192,7 +456,7 @@
     },
     "tipo": "FRONTEND",
     "destacado": false,
-    "orden": 5
+    "orden": 8
   },
   {
     "id": "hardlab",
@@ -206,7 +470,7 @@
     "tecnologias": ["JavaScript", "PHP", "SQL", "Python", "CSS", "JSON"],
     "linkDemo": "",
     "linkGithub": "https://github.com/AlejoMFernandez/HARDLAB",
-    "imagenPrincipal": "/images/projects/hardlabmain.png",
+    "imagenPrincipal": "/images/projects/hardlabmain.svg",
     "logo": null,
     "imagenes": [],
     "video": null,
@@ -219,6 +483,6 @@
     },
     "tipo": "INTRANET",
     "destacado": false,
-    "orden": 3
+    "orden": 6
   }
 ]

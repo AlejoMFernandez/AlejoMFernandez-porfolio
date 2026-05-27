@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Goaldemy gamified football platform preview">
+  <defs>
+    <linearGradient id="g-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#03081A"/>
+      <stop offset="100%" stop-color="#162035"/>
+    </linearGradient>
+    <radialGradient id="g-glow" cx="0.3" cy="0.55" r="0.55">
+      <stop offset="0%"  stop-color="#22d3ee" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="g-pitch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#0f3a1d"/>
+      <stop offset="100%" stop-color="#0a2614"/>
+    </linearGradient>
+    <linearGradient id="g-xp" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="g-blur"><feGaussianBlur stdDeviation="0.4"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="1000" fill="url(#g-bg)"/>
+  <rect width="1600" height="1000" fill="url(#g-glow)"/>
+
+  <!-- Grid texture -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="0.6">
+    <line x1="0" y1="120" x2="700" y2="120"/><line x1="0" y1="220" x2="700" y2="220"/>
+    <line x1="0" y1="320" x2="700" y2="320"/><line x1="0" y1="420" x2="700" y2="420"/>
+    <line x1="0" y1="520" x2="700" y2="520"/><line x1="0" y1="620" x2="700" y2="620"/>
+    <line x1="0" y1="720" x2="700" y2="720"/><line x1="0" y1="820" x2="700" y2="820"/>
+  </g>
+
+  <!-- Corner brackets -->
+  <g stroke="#22d3ee" stroke-width="1.5" fill="none" opacity="0.55">
+    <path d="M 40 40 L 80 40 M 40 40 L 40 80"/>
+    <path d="M 1560 40 L 1520 40 M 1560 40 L 1560 80"/>
+    <path d="M 40 960 L 80 960 M 40 960 L 40 920"/>
+    <path d="M 1560 960 L 1520 960 M 1560 960 L 1560 920"/>
+  </g>
+
+  <!-- ───── LEFT: Football pitch top-down ───── -->
+  <g transform="translate(120 200)" filter="url(#g-blur)">
+    <!-- Pitch -->
+    <rect x="0" y="0" width="560" height="620" rx="6" fill="url(#g-pitch)" stroke="#22d3ee" stroke-width="2" opacity="0.95"/>
+    <!-- Center line -->
+    <line x1="0" y1="310" x2="560" y2="310" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+    <!-- Center circle -->
+    <circle cx="280" cy="310" r="68" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="280" cy="310" r="4" fill="#ffffff" opacity="0.7"/>
+    <!-- Top penalty area -->
+    <rect x="180" y="0" width="200" height="80" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+    <rect x="230" y="0" width="100" height="30" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+    <!-- Bottom penalty area -->
+    <rect x="180" y="540" width="200" height="80" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+    <rect x="230" y="590" width="100" height="30" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- Player markers (gamified style) -->
+    <g>
+      <!-- Team A -->
+      <circle cx="120" cy="180" r="14" fill="#22d3ee"/>
+      <text x="120" y="185" text-anchor="middle" font-family="'SF Mono',monospace" font-size="12" font-weight="700" fill="#03081A">9</text>
+      <circle cx="280" cy="220" r="14" fill="#22d3ee"/>
+      <text x="280" y="225" text-anchor="middle" font-family="'SF Mono',monospace" font-size="12" font-weight="700" fill="#03081A">10</text>
+      <circle cx="430" cy="170" r="14" fill="#22d3ee"/>
+      <text x="430" y="175" text-anchor="middle" font-family="'SF Mono',monospace" font-size="12" font-weight="700" fill="#03081A">7</text>
+      <!-- Team B -->
+      <circle cx="180" cy="430" r="14" fill="#f59e0b"/>
+      <text x="180" y="435" text-anchor="middle" font-family="'SF Mono',monospace" font-size="12" font-weight="700" fill="#03081A">4</text>
+      <circle cx="380" cy="450" r="14" fill="#f59e0b"/>
+      <text x="380" y="455" text-anchor="middle" font-family="'SF Mono',monospace" font-size="12" font-weight="700" fill="#03081A">8</text>
+      <!-- Ball -->
+      <circle cx="290" cy="380" r="9" fill="#ffffff"/>
+      <circle cx="290" cy="380" r="9" fill="none" stroke="#03081A" stroke-width="1.2"/>
+    </g>
+
+    <!-- Trail line (mock action) -->
+    <path d="M 280 220 Q 320 280 290 380" fill="none" stroke="#22d3ee" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
+  </g>
+
+  <!-- ───── LEFT-OVERLAY: XP bar + level chip ───── -->
+  <g transform="translate(120 80)">
+    <text x="0" y="0" font-family="'SF Mono','Fira Code',monospace" font-size="13" fill="#22d3ee" letter-spacing="5">LEVEL 12 · STRIKER</text>
+    <rect x="0" y="14" width="380" height="14" rx="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)"/>
+    <rect x="2" y="16" width="265" height="10" rx="5" fill="url(#g-xp)"/>
+    <text x="395" y="25" font-family="'SF Mono',monospace" font-size="12" fill="#94a3b8">2,470 / 3,500 XP</text>
+  </g>
+
+  <!-- ───── LEFT-BOTTOM: Achievement badges row ───── -->
+  <g transform="translate(120 870)">
+    <!-- Badge 1 -->
+    <g>
+      <circle cx="22" cy="22" r="22" fill="#22d3ee" opacity="0.15" stroke="#22d3ee" stroke-width="1.5"/>
+      <text x="22" y="28" text-anchor="middle" font-size="20">⚽</text>
+    </g>
+    <!-- Badge 2 -->
+    <g transform="translate(60 0)">
+      <circle cx="22" cy="22" r="22" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="22" y="28" text-anchor="middle" font-size="20">🏆</text>
+    </g>
+    <!-- Badge 3 -->
+    <g transform="translate(120 0)">
+      <circle cx="22" cy="22" r="22" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="22" y="28" text-anchor="middle" font-size="20">🔥</text>
+    </g>
+    <!-- Badge 4 (locked) -->
+    <g transform="translate(180 0)">
+      <circle cx="22" cy="22" r="22" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="22" y="28" text-anchor="middle" font-size="20" opacity="0.4">🔒</text>
+    </g>
+    <text x="240" y="28" font-family="'SF Mono',monospace" font-size="11" fill="#94a3b8" letter-spacing="3">3 / 4 ACHIEVEMENTS UNLOCKED</text>
+  </g>
+
+  <!-- ───── RIGHT PANEL: branding ───── -->
+  <text x="1480" y="290" text-anchor="end" font-family="'SF Mono','Fira Code',monospace" font-size="18" letter-spacing="5" fill="#22d3ee" opacity="0.9">WEB APP · 2025</text>
+
+  <!-- Wordmark -->
+  <text x="1480" y="510" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="900" font-size="180" letter-spacing="-5" fill="#ffffff">GOALDEMY</text>
+
+  <!-- Accent dot -->
+  <circle cx="1480" cy="474" r="14" fill="#22d3ee"/>
+
+  <line x1="830" y1="555" x2="1480" y2="555" stroke="#22d3ee" stroke-width="1.5" opacity="0.55"/>
+  <text x="1480" y="595" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="600" font-size="22" letter-spacing="8" fill="#94a3b8">GAMIFIED FOOTBALL LEARNING</text>
+
+  <text x="830" y="685" font-family="'Inter','Helvetica Neue',sans-serif" font-size="22" fill="#ffffff" opacity="0.75">8 minijuegos · jugadores, clubes y valores.</text>
+  <text x="830" y="717" font-family="'Inter','Helvetica Neue',sans-serif" font-size="22" fill="#ffffff" opacity="0.55">Rachas, logros desbloqueables y tablas.</text>
+  <text x="830" y="749" font-family="'Inter','Helvetica Neue',sans-serif" font-size="22" fill="#ffffff" opacity="0.55">Auth y data en vivo con Supabase.</text>
+
+  <line x1="830" y1="840" x2="1480" y2="840" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <text x="1480" y="878" text-anchor="end" font-family="'SF Mono','Fira Code',monospace" font-size="16" letter-spacing="6" fill="#94a3b8" opacity="0.7">VUE · VITE · TAILWIND · SUPABASE · CHART.JS</text>
+</svg>

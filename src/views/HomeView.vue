@@ -27,6 +27,17 @@ const isLogoMain = (project) => {
   return Boolean(project?.logo && project?.imagenPrincipal && project.imagenPrincipal === project.logo)
 }
 
+// Detect if the project's main image is a custom-branded SVG cover.
+// Custom covers already contain wordmark + tagline + tech stack baked in,
+// so we keep the overlay minimal. PNG/JPEG legacy projects need a stronger
+// overlay because the image is just a screenshot or logo.
+const isCoverSvg = (project) => Boolean(project?.imagenPrincipal?.endsWith('.svg'))
+
+const formatYear = (dateStr) => {
+  if (!dateStr) return ''
+  return String(dateStr).slice(0, 4)
+}
+
 const heroRef = ref(null)
 const nameRef = ref(null)
 const heroTopRef = ref(null)
@@ -63,12 +74,12 @@ onMounted(() => {
     ease: 'power3.out'
   }, '-=0.6')
 
-  gsap.from('.featured-card', {
-    scrollTrigger: { trigger: '.featured-list', start: 'top 88%', toggleActions: 'play none none none' },
+  gsap.from('.cover-card', {
+    scrollTrigger: { trigger: '.cover-list', start: 'top 85%', toggleActions: 'play none none none' },
     y: 80,
     opacity: 0,
-    duration: 0.9,
-    stagger: 0.15,
+    duration: 1,
+    stagger: 0.18,
     ease: 'power3.out'
   })
 
@@ -146,40 +157,42 @@ onUnmounted(() => {
         <h2 class="section-title">{{ t('home.featuredTitle') }}</h2>
       </div>
 
-      <div class="featured-list">
+      <div class="cover-list">
         <RouterLink
           v-for="(project, index) in featuredProjects"
           :key="project.id"
           :to="`/proyecto/${project.id}`"
-          class="featured-card"
-          :class="{ reverse: index % 2 !== 0 }"
+          class="cover-card"
+          :class="{ 'is-legacy': !isCoverSvg(project) }"
+          :style="{ background: project.colorFondo }"
         >
-          <!-- Info side -->
-          <div class="feat-info">
-            <span class="feat-type-badge">{{ project.tipo }}</span>
-            <div class="feat-info-body">
-              <h3 class="feat-name">{{ project.nombre }}</h3>
-              <p class="feat-desc">{{ l(project.descripcionCorta) }}</p>
-            </div>
-            <div class="feat-info-foot">
-              <div class="feat-techs">
-                <span v-for="tech in project.tecnologias.slice(0, 4)" :key="tech" class="feat-tech">{{ tech }}</span>
-              </div>
-              <span class="feat-cta">{{ t('home.viewProject') }} →</span>
-            </div>
+          <!-- Top-left: index + type -->
+          <div class="cover-top">
+            <span class="cover-index">{{ String(index + 1).padStart(2, '0') }} / {{ String(featuredProjects.length).padStart(2, '0') }}</span>
+            <span class="cover-type">{{ project.tipo }}</span>
           </div>
 
-          <!-- Visual side -->
-          <div class="feat-visual" :style="{ background: project.colorFondo }">
-            <img
-              v-if="project.imagenPrincipal"
-              :src="project.imagenPrincipal"
-              :alt="project.nombre"
-              :class="['feat-image', { 'logo-main': isLogoMain(project) }]"
-            />
-            <div class="feat-visual-overlay">
-              <span class="feat-view-label">VER PROYECTO →</span>
-            </div>
+          <!-- The SVG / image cover (the protagonist) -->
+          <img
+            v-if="project.imagenPrincipal"
+            :src="project.imagenPrincipal"
+            :alt="project.nombre"
+            :class="['cover-image', { 'is-logo': isLogoMain(project) }]"
+            loading="lazy"
+          />
+
+          <!-- Legacy fallback: project name overlay (only for non-SVG covers) -->
+          <div v-if="!isCoverSvg(project)" class="cover-legacy-name">
+            <span>{{ project.nombre }}</span>
+          </div>
+
+          <!-- Bottom bar: year + tech + arrow -->
+          <div class="cover-bottom">
+            <span class="cover-year">{{ formatYear(project.fechaInicio) }}</span>
+            <span class="cover-arrow">
+              <span class="cover-arrow-text">{{ t('home.viewProject') }}</span>
+              <span class="cover-arrow-icon">→</span>
+            </span>
           </div>
         </RouterLink>
       </div>
@@ -402,190 +415,185 @@ onUnmounted(() => {
   color: var(--text-tertiary);
 }
 
-/* ===== FEATURED SECTION ===== */
+/* ===== FEATURED SECTION (cover-first) ===== */
 .featured-section {
   padding: 80px 0 80px;
 }
 
-.featured-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.cover-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
   padding: 0 48px;
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
-.featured-card {
-  display: grid;
-  grid-template-columns: 1fr 480px;
-  height: 340px;
-  border-radius: 24px;
+.cover-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 26px;
   overflow: hidden;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
   text-decoration: none;
   color: inherit;
+  border: 1px solid var(--border-color);
   transition:
-    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.3s ease;
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s ease;
   will-change: transform;
+  isolation: isolate;
 }
 
-.featured-card.reverse {
-  grid-template-columns: 480px 1fr;
+.cover-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
-.featured-card.reverse .feat-info {
-  order: 2;
-}
-
-.featured-card.reverse .feat-visual {
-  order: 1;
-}
-
-.featured-card:hover {
-  transform: translateY(-6px) scale(1.005);
-  box-shadow: 0 32px 72px rgba(0, 0, 0, 0.22);
-  border-color: rgba(56, 189, 248, 0.22);
-}
-
-/* Info side */
-.feat-info {
-  display: flex;
-  flex-direction: column;
-  padding: 32px 36px;
-  justify-content: space-between;
-}
-
-.feat-type-badge {
-  display: inline-block;
-  width: fit-content;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent-color);
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  padding: 4px 10px;
-  border-radius: 50px;
-}
-
-.feat-info-body {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.feat-name {
-  font-size: clamp(2rem, 3.2vw, 2.8rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--text-primary);
-}
-
-.feat-desc {
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: var(--text-secondary);
-  max-width: 280px;
-}
-
-.feat-info-foot {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.feat-techs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.feat-tech {
-  background: var(--bg-tertiary);
-  color: var(--text-tertiary);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 3px 9px;
-  border-radius: 50px;
-  text-transform: uppercase;
-}
-
-.feat-cta {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--text-tertiary);
-  white-space: nowrap;
-  transition: color 0.3s ease, transform 0.3s ease;
-  flex-shrink: 0;
-}
-
-.featured-card:hover .feat-cta {
-  color: var(--accent-color);
-  transform: translate(4px, -3px);
-}
-
-/* Visual side */
-.feat-visual {
-  position: relative;
-  overflow: hidden;
-}
-
-.feat-image {
+/* The SVG/PNG fills the entire card */
+.cover-image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
 }
 
-.feat-image.logo-main {
+.cover-card:hover .cover-image {
+  transform: scale(1.025);
+}
+
+/* Legacy projects (PNG/JPEG screenshots) — image is centered/contained */
+.cover-card.is-legacy .cover-image {
   object-fit: contain;
-  object-position: center;
-  padding: 32px;
+  padding: 8% 12%;
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.35));
 }
 
-.featured-card:hover .feat-image {
-  transform: scale(1.07);
+.cover-image.is-logo {
+  object-fit: contain;
+  padding: 10%;
 }
 
-.feat-visual-overlay {
+/* Top overlay: index + type */
+.cover-top {
+  position: absolute;
+  top: 22px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.cover-index {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.7);
+  font-variant-numeric: tabular-nums;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  mix-blend-mode: difference;
+}
+
+.cover-type {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 5px 11px;
+  border-radius: 50px;
+}
+
+/* Legacy fallback name (only on non-SVG cards, since SVG covers already have wordmark) */
+.cover-legacy-name {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.55) 100%);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  padding-bottom: 28px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cover-legacy-name span {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  padding: 0 24px;
+  text-transform: uppercase;
+}
+
+/* Bottom bar: year + view arrow */
+.cover-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+  z-index: 3;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transform: translateY(8px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
-.featured-card:hover .feat-visual-overlay {
+.cover-card:hover .cover-bottom {
   opacity: 1;
+  transform: translateY(0);
 }
 
-.feat-view-label {
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 800;
+.cover-year {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.85);
+  font-variant-numeric: tabular-nums;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.cover-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 8px 18px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 9px 18px 9px 20px;
   border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.cover-arrow-icon {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cover-card:hover .cover-arrow-icon {
+  transform: translateX(4px);
 }
 
 /* ===== VER TODOS ===== */
@@ -771,40 +779,39 @@ onUnmounted(() => {
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1100px) {
-  .featured-card,
-  .featured-card.reverse {
-    grid-template-columns: 1fr 380px;
-  }
-  .featured-card.reverse {
-    grid-template-columns: 380px 1fr;
-  }
-}
-
 @media (max-width: 900px) {
   .hero {
     padding: 110px 24px 48px;
   }
 
   .section-header,
-  .featured-list,
+  .cover-list,
   .featured-cta {
     padding-left: 24px;
     padding-right: 24px;
   }
 
-  .featured-card,
-  .featured-card.reverse {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 240px;
-    height: auto;
+  .cover-list {
+    gap: 24px;
   }
 
-  .featured-card.reverse .feat-info { order: 1; }
-  .featured-card.reverse .feat-visual { order: 2; }
+  .cover-card {
+    aspect-ratio: 16 / 11;
+    border-radius: 20px;
+  }
 
-  .feat-visual {
-    min-height: 240px;
+  .cover-top {
+    top: 16px;
+    left: 18px;
+    right: 18px;
+  }
+
+  .cover-bottom {
+    padding: 18px;
+    /* On touch devices, show the bottom bar always since there's no hover */
+    opacity: 1;
+    transform: none;
+    background: linear-gradient(to top, rgba(0,0,0,0.65), transparent 75%);
   }
 
   .stats-strip {
@@ -862,19 +869,22 @@ onUnmounted(() => {
     padding: 0 20px;
   }
 
-  .featured-list,
+  .cover-list,
   .featured-cta {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .feat-visual {
+  .cover-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .cover-arrow-text {
     display: none;
   }
 
-  .featured-card {
-    grid-template-rows: auto;
-    height: auto;
+  .cover-legacy-name span {
+    font-size: clamp(1.8rem, 9vw, 3rem);
   }
 
   .stats-inner {

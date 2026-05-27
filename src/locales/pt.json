@@ -56,6 +56,9 @@
     "contact": "Vamos trabalhar juntos?",
     "contactSubtitle": "Estou disponivel para projetos freelance e oportunidades de trabalho"
   },
+  "work": {
+    "totalProjects": "projetos selecionados"
+  },
   "footer": {
     "version": "Versao",
     "localTime": "Hora local",
