@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="HARDLAB hardware/software inventory intranet preview">
+  <defs>
+    <linearGradient id="h-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+    <radialGradient id="h-glow" cx="0.35" cy="0.5" r="0.55">
+      <stop offset="0%"  stop-color="#a78bfa" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="h-screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#0c1f30"/>
+      <stop offset="100%" stop-color="#06121f"/>
+    </linearGradient>
+    <linearGradient id="h-vignette" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#000000" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#h-bg)"/>
+  <rect width="1600" height="1000" fill="url(#h-glow)"/>
+  <rect width="1600" height="1000" fill="url(#h-vignette)"/>
+
+  <!-- Grid texture -->
+  <g opacity="0.05" stroke="#a78bfa" stroke-width="0.5">
+    <line x1="0" y1="100" x2="800" y2="100"/><line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/><line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="500" x2="800" y2="500"/><line x1="0" y1="600" x2="800" y2="600"/>
+    <line x1="0" y1="700" x2="800" y2="700"/><line x1="0" y1="800" x2="800" y2="800"/>
+  </g>
+
+  <!-- ───── LEFT: Network diagram with PC nodes ───── -->
+  <g transform="translate(110 180)">
+
+    <!-- Central switch -->
+    <g transform="translate(330 280)">
+      <rect x="-60" y="-22" width="120" height="44" rx="6" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="2"/>
+      <text x="0" y="-2" text-anchor="middle" font-family="'SF Mono',monospace" font-size="11" font-weight="700" fill="#a78bfa">SWITCH</text>
+      <text x="0" y="14" text-anchor="middle" font-family="'SF Mono',monospace" font-size="9" fill="#c4b5fd" opacity="0.7">192.168.1.1</text>
+      <!-- LEDs -->
+      <circle cx="-44" cy="-12" r="2" fill="#22c55e"/>
+      <circle cx="-36" cy="-12" r="2" fill="#22c55e"/>
+      <circle cx="-28" cy="-12" r="2" fill="#22c55e"/>
+      <circle cx="-20" cy="-12" r="2" fill="#f59e0b"/>
+      <circle cx="-12" cy="-12" r="2" fill="#22c55e"/>
+      <circle cx="-4" cy="-12" r="2" fill="#ef4444"/>
+    </g>
+
+    <!-- Network lines from switch to each PC -->
+    <g stroke="#a78bfa" stroke-width="1.2" fill="none" opacity="0.55" stroke-dasharray="4 4">
+      <path d="M 270 280 L 100 80"/>
+      <path d="M 270 280 L 100 280"/>
+      <path d="M 270 280 L 100 480"/>
+      <path d="M 390 280 L 560 80"/>
+      <path d="M 390 280 L 560 280"/>
+      <path d="M 390 280 L 560 480"/>
+    </g>
+
+    <!-- PC nodes (6 in a grid, like a lab) -->
+    <!-- PC 01 -->
+    <g transform="translate(50 50)">
+      <rect x="0" y="0" width="100" height="68" rx="4" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1.5"/>
+      <rect x="6" y="6" width="88" height="48" rx="2" fill="url(#h-screen)" stroke="#a78bfa" stroke-width="0.5"/>
+      <!-- Mini terminal lines -->
+      <line x1="10" y1="14" x2="60" y2="14" stroke="#22c55e" stroke-width="1"/>
+      <line x1="10" y1="22" x2="78" y2="22" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="30" x2="48" y2="30" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="38" x2="70" y2="38" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="46" x2="34" y2="46" stroke="#22c55e" stroke-width="1"/>
+      <!-- Base -->
+      <rect x="38" y="54" width="24" height="6" fill="#0a0a0a" stroke="#a78bfa" stroke-width="0.8"/>
+      <!-- ID -->
+      <text x="0" y="-4" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" font-weight="700">PC-01</text>
+      <!-- Status dot -->
+      <circle cx="92" cy="-6" r="3" fill="#22c55e"/>
+    </g>
+
+    <!-- PC 02 -->
+    <g transform="translate(50 250)">
+      <rect x="0" y="0" width="100" height="68" rx="4" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1.5"/>
+      <rect x="6" y="6" width="88" height="48" rx="2" fill="url(#h-screen)" stroke="#a78bfa" stroke-width="0.5"/>
+      <line x1="10" y1="14" x2="60" y2="14" stroke="#22c55e" stroke-width="1"/>
+      <line x1="10" y1="22" x2="78" y2="22" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="30" x2="48" y2="30" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="38" x2="70" y2="38" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="46" x2="50" y2="46" stroke="#22c55e" stroke-width="1"/>
+      <rect x="38" y="54" width="24" height="6" fill="#0a0a0a" stroke="#a78bfa" stroke-width="0.8"/>
+      <text x="0" y="-4" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" font-weight="700">PC-02</text>
+      <circle cx="92" cy="-6" r="3" fill="#22c55e"/>
+    </g>
+
+    <!-- PC 03 (warning) -->
+    <g transform="translate(50 450)">
+      <rect x="0" y="0" width="100" height="68" rx="4" fill="#1a1a2e" stroke="#f59e0b" stroke-width="1.5"/>
+      <rect x="6" y="6" width="88" height="48" rx="2" fill="url(#h-screen)" stroke="#f59e0b" stroke-width="0.5"/>
+      <line x1="10" y1="14" x2="60" y2="14" stroke="#f59e0b" stroke-width="1"/>
+      <line x1="10" y1="22" x2="78" y2="22" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="30" x2="48" y2="30" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="38" x2="40" y2="38" stroke="#f59e0b" stroke-width="1"/>
+      <rect x="38" y="54" width="24" height="6" fill="#0a0a0a" stroke="#f59e0b" stroke-width="0.8"/>
+      <text x="0" y="-4" font-family="'SF Mono',monospace" font-size="9" fill="#f59e0b" font-weight="700">PC-03</text>
+      <circle cx="92" cy="-6" r="3" fill="#f59e0b"/>
+    </g>
+
+    <!-- PC 04 -->
+    <g transform="translate(510 50)">
+      <rect x="0" y="0" width="100" height="68" rx="4" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1.5"/>
+      <rect x="6" y="6" width="88" height="48" rx="2" fill="url(#h-screen)" stroke="#a78bfa" stroke-width="0.5"/>
+      <line x1="10" y1="14" x2="60" y2="14" stroke="#22c55e" stroke-width="1"/>
+      <line x1="10" y1="22" x2="78" y2="22" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="30" x2="48" y2="30" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="38" x2="70" y2="38" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="46" x2="56" y2="46" stroke="#22c55e" stroke-width="1"/>
+      <rect x="38" y="54" width="24" height="6" fill="#0a0a0a" stroke="#a78bfa" stroke-width="0.8"/>
+      <text x="0" y="-4" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" font-weight="700">PC-04</text>
+      <circle cx="92" cy="-6" r="3" fill="#22c55e"/>
+    </g>
+
+    <!-- PC 05 (offline) -->
+    <g transform="translate(510 250)" opacity="0.5">
+      <rect x="0" y="0" width="100" height="68" rx="4" fill="#1a1a2e" stroke="#ef4444" stroke-width="1.5"/>
+      <rect x="6" y="6" width="88" height="48" rx="2" fill="#0a0a0a" stroke="#ef4444" stroke-width="0.5"/>
+      <line x1="10" y1="14" x2="20" y2="14" stroke="#ef4444" stroke-width="1"/>
+      <rect x="38" y="54" width="24" height="6" fill="#0a0a0a" stroke="#ef4444" stroke-width="0.8"/>
+      <text x="0" y="-4" font-family="'SF Mono',monospace" font-size="9" fill="#ef4444" font-weight="700">PC-05</text>
+      <circle cx="92" cy="-6" r="3" fill="#ef4444"/>
+    </g>
+
+    <!-- PC 06 -->
+    <g transform="translate(510 450)">
+      <rect x="0" y="0" width="100" height="68" rx="4" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1.5"/>
+      <rect x="6" y="6" width="88" height="48" rx="2" fill="url(#h-screen)" stroke="#a78bfa" stroke-width="0.5"/>
+      <line x1="10" y1="14" x2="60" y2="14" stroke="#22c55e" stroke-width="1"/>
+      <line x1="10" y1="22" x2="78" y2="22" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="30" x2="48" y2="30" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="38" x2="70" y2="38" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+      <line x1="10" y1="46" x2="62" y2="46" stroke="#22c55e" stroke-width="1"/>
+      <rect x="38" y="54" width="24" height="6" fill="#0a0a0a" stroke="#a78bfa" stroke-width="0.8"/>
+      <text x="0" y="-4" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" font-weight="700">PC-06</text>
+      <circle cx="92" cy="-6" r="3" fill="#22c55e"/>
+    </g>
+
+    <!-- LAB Label badges -->
+    <g>
+      <rect x="60" y="-30" width="80" height="22" rx="11" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1"/>
+      <text x="100" y="-15" text-anchor="middle" font-family="'SF Mono',monospace" font-size="9" font-weight="700" fill="#c4b5fd" letter-spacing="2">LAB A</text>
+      <rect x="520" y="-30" width="80" height="22" rx="11" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1"/>
+      <text x="560" y="-15" text-anchor="middle" font-family="'SF Mono',monospace" font-size="9" font-weight="700" fill="#c4b5fd" letter-spacing="2">LAB B</text>
+    </g>
+
+    <!-- Spec details panel (bottom) -->
+    <g transform="translate(220 580)">
+      <rect x="0" y="0" width="240" height="80" rx="4" fill="rgba(167,139,250,0.06)" stroke="#a78bfa" stroke-width="1"/>
+      <text x="12" y="20" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" font-weight="700" letter-spacing="2">PC-01 · INVENTORY</text>
+      <line x1="12" y1="26" x2="228" y2="26" stroke="#a78bfa" stroke-width="0.4" opacity="0.4"/>
+      <text x="12" y="40" font-family="'SF Mono',monospace" font-size="10" fill="#c4b5fd" opacity="0.85">CPU: i5-10400 · 6c/12t</text>
+      <text x="12" y="54" font-family="'SF Mono',monospace" font-size="10" fill="#c4b5fd" opacity="0.85">RAM: 16 GB DDR4</text>
+      <text x="12" y="68" font-family="'SF Mono',monospace" font-size="10" fill="#c4b5fd" opacity="0.85">MAC: AA:BB:CC:DD:EE:01</text>
+    </g>
+  </g>
+
+  <!-- ───── LEFT-TOP: status bar ───── -->
+  <g transform="translate(110 90)">
+    <text x="0" y="0" font-family="'SF Mono','Fira Code',monospace" font-size="13" fill="#a78bfa" letter-spacing="5">/ / INVENTORY · 6 NODES · 4 ONLINE</text>
+  </g>
+
+  <!-- ───── LEFT-BOTTOM: stats row ───── -->
+  <g transform="translate(110 890)">
+    <g>
+      <text x="0" y="0" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" letter-spacing="2">UPTIME</text>
+      <text x="0" y="20" font-family="'Inter',sans-serif" font-weight="900" font-size="22" fill="#ffffff">99.4%</text>
+    </g>
+    <g transform="translate(110 0)">
+      <text x="0" y="0" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" letter-spacing="2">SCANS</text>
+      <text x="0" y="20" font-family="'Inter',sans-serif" font-weight="900" font-size="22" fill="#ffffff">1,247</text>
+    </g>
+    <g transform="translate(220 0)">
+      <text x="0" y="0" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" letter-spacing="2">ALERTS</text>
+      <text x="0" y="20" font-family="'Inter',sans-serif" font-weight="900" font-size="22" fill="#f59e0b">2</text>
+    </g>
+    <g transform="translate(310 0)">
+      <text x="0" y="0" font-family="'SF Mono',monospace" font-size="9" fill="#a78bfa" letter-spacing="2">SQL DB</text>
+      <text x="0" y="20" font-family="'Inter',sans-serif" font-weight="900" font-size="22" fill="#22c55e">OK</text>
+    </g>
+  </g>
+
+  <!-- ───── RIGHT PANEL ───── -->
+  <text x="1480" y="290" text-anchor="end" font-family="'SF Mono','Fira Code',monospace" font-size="18" letter-spacing="5" fill="#a78bfa" opacity="0.95">INTRANET · 2023</text>
+
+  <text x="1480" y="510" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="900" font-size="210" letter-spacing="-6" fill="#ffffff">HARDLAB</text>
+
+  <circle cx="1480" cy="474" r="16" fill="#a78bfa"/>
+
+  <line x1="830" y1="555" x2="1480" y2="555" stroke="#a78bfa" stroke-width="1.5" opacity="0.55"/>
+  <text x="1480" y="595" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="600" font-size="22" letter-spacing="8" fill="#c4b5fd">HW/SW INVENTORY · SCHOOL INTRANET</text>
+
+  <text x="830" y="685" font-family="'Inter','Helvetica Neue',sans-serif" font-size="22" fill="#ffffff" opacity="0.75">Daemon Python recolecta specs vía MAC.</text>
+  <text x="830" y="717" font-family="'Inter','Helvetica Neue',sans-serif" font-size="22" fill="#ffffff" opacity="0.55">UI PHP por laboratorio · CPU, RAM, disco.</text>
+  <text x="830" y="749" font-family="'Inter','Helvetica Neue',sans-serif" font-size="22" fill="#ffffff" opacity="0.55">Apps instaladas vs requeridas en vivo.</text>
+
+  <line x1="830" y1="840" x2="1480" y2="840" stroke="rgba(167,139,250,0.25)" stroke-width="1"/>
+  <text x="1480" y="878" text-anchor="end" font-family="'SF Mono','Fira Code',monospace" font-size="16" letter-spacing="6" fill="#c4b5fd" opacity="0.75">PHP · PYTHON · SQL · JS · JSON</text>
+
+  <!-- Corner brackets -->
+  <g stroke="#a78bfa" stroke-width="1.5" fill="none" opacity="0.5">
+    <path d="M 40 40 L 80 40 M 40 40 L 40 80"/>
+    <path d="M 1560 40 L 1520 40 M 1560 40 L 1560 80"/>
+    <path d="M 40 960 L 80 960 M 40 960 L 40 920"/>
+    <path d="M 1560 960 L 1520 960 M 1560 960 L 1560 920"/>
+  </g>
+</svg>

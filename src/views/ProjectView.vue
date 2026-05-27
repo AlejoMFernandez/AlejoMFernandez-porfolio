@@ -22,6 +22,10 @@ const isLogoMain = computed(() => {
   return Boolean(project.value.logo && project.value.imagenPrincipal === project.value.logo)
 })
 
+const isCoverSvg = computed(() => {
+  return Boolean(project.value?.imagenPrincipal?.endsWith('.svg'))
+})
+
 // Galería: usa imagenes del JSON si están definidas, si no auto-carga desde galleries.json
 const projectGallery = computed(() => {
   if (!project.value) return []
@@ -94,21 +98,31 @@ onMounted(() => {
     ease: 'power3.out'
   })
   
-  gsap.from('.project-hero', {
-    opacity: 0,
-    y: 60,
-    duration: 0.8,
-    ease: 'power3.out',
-    delay: 0.1
-  })
-  
-  gsap.from('.project-content > *', {
+  gsap.from('.cover-hero', {
     opacity: 0,
     y: 40,
+    scale: 0.98,
+    duration: 1,
+    ease: 'power3.out',
+    delay: 0.05
+  })
+
+  gsap.from('.bento-grid .b-cell', {
+    opacity: 0,
+    y: 30,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: 'power3.out',
+    delay: 0.25
+  })
+
+  gsap.from('.b-desc-section, .b-gallery', {
+    opacity: 0,
+    y: 30,
     duration: 0.6,
     stagger: 0.1,
     ease: 'power3.out',
-    delay: 0.3
+    delay: 0.4
   })
 })
 </script>
@@ -123,14 +137,40 @@ onMounted(() => {
       {{ t('project.back') }}
     </button>
     
-    <!-- Bento Dashboard Layout -->
+    <!-- ===== COVER HERO (full-bleed protagonist) ===== -->
+    <section class="cover-hero-wrap">
+      <div
+        class="cover-hero"
+        :class="{ 'is-svg': isCoverSvg, 'is-logo': isLogoMain && !isCoverSvg }"
+        :style="{ background: project.colorFondo }"
+      >
+        <img
+          v-if="project.imagenPrincipal"
+          :src="project.imagenPrincipal"
+          :alt="project.nombre"
+        />
+
+        <!-- Floating top-left index/type -->
+        <div class="cover-hero-top">
+          <span class="cover-hero-index">{{ String(project.orden).padStart(2, '0') }}</span>
+          <span class="cover-hero-type">{{ project.tipo }}</span>
+        </div>
+
+        <!-- Floating bottom-left name (only for legacy where SVG doesn't carry it) -->
+        <div v-if="!isCoverSvg" class="cover-hero-name">
+          {{ project.nombre }}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BENTO META (image cell removed — cover is now the hero) ===== -->
     <div class="bento-container">
       <div class="bento-wrap">
 
-        <!-- Grid bento superior -->
+        <!-- Grid bento -->
         <div class="bento-grid">
 
-          <!-- Celda nombre + tipo: col 1, rows 1+2 -->
+          <!-- Celda nombre + CTA: col 1+2, row 1 -->
           <div class="b-cell b-name-cell" :style="{ background: project.colorFondo }">
             <span class="b-tipo" :style="{ color: project.colorTexto }">
               {{ String(project.orden).padStart(2, '0') }} — {{ project.tipo }}
@@ -141,16 +181,6 @@ onMounted(() => {
               <a v-if="project.linkDemo" :href="project.linkDemo" target="_blank" :style="{ color: project.colorTexto }">{{ t('project.viewSite') }} ↗</a>
               <a v-if="project.linkGithub" :href="project.linkGithub" target="_blank" :style="{ color: project.colorTexto }">GitHub ↗</a>
             </div>
-          </div>
-
-          <!-- Celda imagen: col 2, rows 1+2 -->
-          <div class="b-cell b-img-cell" :style="{ background: project.colorFondo }">
-            <img
-              v-if="project.imagenPrincipal"
-              :src="project.imagenPrincipal"
-              :alt="project.nombre"
-              :class="{ 'b-img-logo': isLogoMain }"
-            />
           </div>
 
           <!-- Celda meta: col 3, row 1 -->
@@ -169,7 +199,7 @@ onMounted(() => {
             </div>
           </div>
 
-          <!-- Celda tecnologías: col 3, row 2 -->
+          <!-- Celda tecnologías: col 1, row 2 -->
           <div class="b-cell b-tech-cell">
             <p class="b-ml">Stack</p>
             <div class="b-techs">
@@ -177,7 +207,7 @@ onMounted(() => {
             </div>
           </div>
 
-          <!-- Celda features: full width row 3 -->
+          <!-- Celda features: col 2+3, row 2 -->
           <div class="b-cell b-feat-cell" v-if="l(project.features)?.length">
             <p class="b-ml">{{ t('project.features') }}</p>
             <ul class="b-features">
@@ -286,9 +316,99 @@ onMounted(() => {
   transform: translateX(-3px);
 }
 
-/* ─── Bento Dashboard ─── */
+/* ─── Cover Hero (full-bleed protagonist) ─── */
+.cover-hero-wrap {
+  padding: 90px 48px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cover-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  isolation: isolate;
+}
+
+.cover-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+/* Legacy projects: logos centered with padding */
+.cover-hero.is-logo img {
+  object-fit: contain;
+  padding: 8% 12%;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.35));
+}
+
+/* Floating top overlay */
+.cover-hero-top {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.cover-hero-index {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.75);
+  font-variant-numeric: tabular-nums;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  mix-blend-mode: difference;
+}
+
+.cover-hero-type {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 5px 12px;
+  border-radius: 50px;
+}
+
+/* Floating name (only for legacy projects without baked-in wordmark) */
+.cover-hero-name {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  z-index: 2;
+  pointer-events: none;
+  padding: 0 24px;
+  text-align: center;
+}
+
+/* ─── Bento Dashboard (image cell removed, restructured) ─── */
 .bento-container {
-  padding: 100px 48px 80px;
+  padding: 28px 48px 80px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -303,7 +423,7 @@ onMounted(() => {
 
 .bento-grid {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: auto auto;
   gap: 12px;
   margin-bottom: 12px;
@@ -316,52 +436,32 @@ onMounted(() => {
   background: var(--bg-secondary);
 }
 
-/* col 1, rows 1+2 */
+/* col 1, row 1: name + tagline + CTAs */
 .b-name-cell {
   grid-column: 1;
-  grid-row: 1 / 3;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-height: 240px;
 }
 
-/* col 2, rows 1+2 */
-.b-img-cell {
-  grid-column: 2;
-  grid-row: 1 / 3;
-  padding: 0;
-  overflow: hidden;
-}
-
-.b-img-cell img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  display: block;
-}
-
-.b-img-cell img.b-img-logo {
-  object-fit: contain;
-  object-position: center;
-  padding: 24px;
-}
-
-/* col 3, row 1 */
+/* col 2, row 1: meta */
 .b-meta-cell {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1;
 }
 
-/* col 3, row 2 */
+/* col 1, row 2: tech */
 .b-tech-cell {
-  grid-column: 3;
+  grid-column: 1;
   grid-row: 2;
 }
 
-/* row 3: full width */
+/* col 2, row 2: features */
 .b-feat-cell {
-  grid-column: 1 / 4;
+  grid-column: 2;
+  grid-row: 2;
   padding: 20px 28px;
 }
 
@@ -520,33 +620,24 @@ onMounted(() => {
 
 /* ─── Responsive ─── */
 @media (max-width: 1024px) {
+  .cover-hero-wrap {
+    padding: 80px 24px 0;
+  }
+
   .bento-container {
-    padding: 80px 24px 60px;
+    padding: 20px 24px 60px;
   }
 
   .bento-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
-  .b-name-cell {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  .b-img-cell {
-    grid-column: 2;
-    grid-row: auto;
-    height: 280px;
-  }
-
+  .b-name-cell,
   .b-meta-cell,
-  .b-tech-cell {
+  .b-tech-cell,
+  .b-feat-cell {
     grid-column: auto;
     grid-row: auto;
-  }
-
-  .b-feat-cell {
-    grid-column: 1 / 3;
   }
 
   .b-gallery {
@@ -555,33 +646,31 @@ onMounted(() => {
 }
 
 @media (max-width: 640px) {
+  .cover-hero-wrap {
+    padding: 70px 16px 0;
+  }
+
+  .cover-hero {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+  }
+
+  .cover-hero-top {
+    top: 14px;
+    left: 16px;
+    right: 16px;
+  }
+
   .bento-container {
-    padding: 70px 16px 48px;
+    padding: 16px 16px 48px;
   }
 
   .bento-wrap {
     padding: 16px;
   }
 
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .b-img-cell {
-    grid-column: auto;
-    height: 200px;
-  }
-
-  .b-img-cell img {
-    object-position: center;
-  }
-
-  .b-img-cell img.b-img-logo {
-    padding: 14px;
-  }
-
-  .b-feat-cell {
-    grid-column: auto;
+  .b-name-cell {
+    min-height: 180px;
   }
 
   .b-gallery {

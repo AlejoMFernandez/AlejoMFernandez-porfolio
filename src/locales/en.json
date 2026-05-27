@@ -11,7 +11,11 @@
     "featuredSubtitle": "A selection of my best work",
     "moreTitle": "More Projects",
     "seeAll": "View all projects",
+    "available": "Available for projects",
+    "viewProject": "View project",
     "ctaEyebrow": "Let's work together",
+    "ctaLine1": "Let's talk.",
+    "ctaLine2": "Hit me up.",
     "ctaTitle": "Got a project in mind?",
     "ctaSubtitle": "I'm available for freelance work and collaborations. Tell me your idea and let's build something great together.",
     "ctaBtn": "Get in touch"
@@ -51,6 +55,9 @@
     "languages": "Languages",
     "contact": "Let's work together",
     "contactSubtitle": "I'm available for freelance projects and job opportunities"
+  },
+  "work": {
+    "totalProjects": "selected projects"
   },
   "footer": {
     "version": "Version",
