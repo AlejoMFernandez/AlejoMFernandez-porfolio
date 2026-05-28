@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Champions.dle UEFA Champions League guessing PWA preview">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Champions.dle UEFA Champions League guessing PWA preview">
   <defs>
     <linearGradient id="c-bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%"  stop-color="#0a1224"/>
@@ -112,7 +112,6 @@
   </g>
 
   <!-- ───── RIGHT PANEL ───── -->
-  <text x="1480" y="290" text-anchor="end" font-family="'SF Mono','Fira Code',monospace" font-size="18" letter-spacing="5" fill="#3b82f6" opacity="0.9">PWA · 2025</text>
 
   <text x="1480" y="490" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="900" font-size="148" letter-spacing="-4" fill="#ffffff">CHAMPIONS</text>
   <text x="1480" y="600" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="900" font-size="148" letter-spacing="-4" fill="#3b82f6">.dle</text>
@@ -121,12 +120,6 @@
 
   <line x1="830" y1="650" x2="1480" y2="650" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
   <text x="1480" y="688" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="600" font-size="20" letter-spacing="7" fill="#93c5fd">UEFA GUESSING GAME</text>
-
-  <text x="830" y="760" font-family="'Inter','Helvetica Neue',sans-serif" font-size="20" fill="#ffffff" opacity="0.75">Top 9 equipos · 3 modos de juego.</text>
-  <text x="830" y="790" font-family="'Inter','Helvetica Neue',sans-serif" font-size="20" fill="#ffffff" opacity="0.55">Rachas, favoritos y soporte offline.</text>
-
-  <line x1="830" y1="850" x2="1480" y2="850" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
-  <text x="1480" y="888" text-anchor="end" font-family="'SF Mono','Fira Code',monospace" font-size="16" letter-spacing="6" fill="#93c5fd" opacity="0.7">PWA · JS · API REST · SERVICE WORKER</text>
 
   <!-- Corner brackets -->
   <g stroke="#3b82f6" stroke-width="1.5" fill="none" opacity="0.5">

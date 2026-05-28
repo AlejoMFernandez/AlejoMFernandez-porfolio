@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propuesta AMF — Sistema Inmobiliario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================
+       AMF Brand Token System
+    ============================ */
+    :root {
+      --bg:          #0a0a0a;
+      --bg-2:        #111113;
+      --bg-card:     #161618;
+      --bg-card-2:   #1c1c1e;
+      --text:        #f5f5f7;
+      --text-2:      #a1a1a6;
+      --text-3:      #6e6e73;
+      --accent:      #38bdf8;
+      --accent-dim:  rgba(56,189,248,0.12);
+      --accent-line: rgba(56,189,248,0.35);
+      --green:       #4ade80;
+      --green-dim:   rgba(74,222,128,0.12);
+      --amber:       #fbbf24;
+      --amber-dim:   rgba(251,191,36,0.12);
+      --violet:      #a78bfa;
+      --violet-dim:  rgba(167,139,250,0.12);
+      --border:      rgba(255,255,255,0.07);
+      --border-2:    rgba(255,255,255,0.12);
+      --font:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --r:           14px;
+      --r-sm:        8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    /* ============================
+       Download Bar (screen only)
+    ============================ */
+    .dl-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .dl-brand {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .dl-brand span { color: var(--text-3); font-weight: 400; margin-left: 8px; letter-spacing: 0; text-transform: none; }
+    .dl-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-dl {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 40px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .btn-dl:hover { opacity: .85; }
+    .btn-dl svg { width: 14px; height: 14px; }
+
+    /* ============================
+       Main Wrapper
+    ============================ */
+    .doc {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 88px 36px 80px;
+    }
+
+    /* ============================
+       Cover Section
+    ============================ */
+    .cover {
+      padding: 72px 0 64px;
+      margin-bottom: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border: 1px solid var(--accent-line);
+      border-radius: 40px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .cover-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .cover-title {
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .cover-title .hl { color: var(--accent); }
+    .cover-subtitle {
+      font-size: 17px;
+      color: var(--text-2);
+      max-width: 560px;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .cover-meta-item {
+      background: var(--bg-card);
+      padding: 18px 20px;
+    }
+    .cover-meta-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 5px;
+    }
+    .cover-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ============================
+       Section
+    ============================ */
+    .section { margin-bottom: 64px; }
+    .section-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .section-tag-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .1em;
+    }
+    .section-tag-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-h {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-lead {
+      color: var(--text-2);
+      font-size: 15px;
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    /* ============================
+       Cards
+    ============================ */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px;
+    }
+    .card + .card { margin-top: 12px; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .card-h {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-icon {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .card-icon.blue  { background: var(--accent-dim); }
+    .card-icon.green { background: var(--green-dim); }
+    .card-icon.amber { background: var(--amber-dim); }
+    .card-icon.violet{ background: var(--violet-dim); }
+
+    /* ============================
+       Feature List
+    ============================ */
+    .feat-list { list-style: none; }
+    .feat-list li {
+      display: flex;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-2);
+      align-items: flex-start;
+    }
+    .feat-list li:last-child { border-bottom: none; }
+    .feat-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .feat-list li strong { color: var(--text); font-weight: 600; }
+
+    /* ============================
+       Tech Table
+    ============================ */
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .tech-table thead tr {
+      border-bottom: 1px solid var(--border-2);
+    }
+    .tech-table th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .tech-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-2);
+      vertical-align: top;
+    }
+    .tech-table td:first-child { color: var(--text); font-weight: 600; }
+    .tech-table tr:last-child td { border-bottom: none; }
+
+    /* ============================
+       Pill / Badge
+    ============================ */
+    .pill {
+      display: inline-flex;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .pill-blue   { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-line); }
+    .pill-green  { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(74,222,128,.3); }
+    .pill-amber  { background: var(--amber-dim);  color: var(--amber);  border: 1px solid rgba(251,191,36,.3); }
+    .pill-violet { background: var(--violet-dim); color: var(--violet); border: 1px solid rgba(167,139,250,.3); }
+
+    /* ============================
+       Social Block
+    ============================ */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 12px;
+    }
+    .social-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px;
+    }
+    .social-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .social-logo {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .social-name { font-size: 14px; font-weight: 700; }
+    .social-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+    /* ============================
+       Pricing
+    ============================ */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 680px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+    .plan {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .plan.featured {
+      border-color: var(--accent-line);
+      background: linear-gradient(145deg, #161618, #0f1a22);
+    }
+    .plan.featured::before {
+      content: 'RECOMENDADO';
+      position: absolute;
+      top: 14px; right: -26px;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      padding: 4px 30px;
+      transform: rotate(35deg);
+    }
+    .plan-name {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .plan.featured .plan-name { color: var(--accent); }
+    .plan-price {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .plan-price sup {
+      font-size: 18px;
+      font-weight: 600;
+      vertical-align: super;
+      margin-right: 2px;
+    }
+    .plan-price sub {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-3);
+      vertical-align: baseline;
+    }
+    .plan-divider {
+      height: 1px;
+      background: var(--border);
+    }
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      flex: 1;
+    }
+    .plan-features li {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-2);
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .plan-features li .check {
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .plan-features li.dimmed { color: var(--text-3); }
+    .plan-features li.dimmed .check { color: var(--text-3); }
+    .plan-delivery {
+      font-size: 12px;
+      color: var(--text-3);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .plan-delivery span { color: var(--amber); font-weight: 600; }
+
+    /* ============================
+       Timeline
+    ============================ */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 90px 1px 1fr;
+      gap: 0 16px;
+      padding-bottom: 28px;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-week {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-3);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding-top: 3px;
+      text-align: right;
+    }
+    .tl-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tl-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .tl-connector {
+      flex: 1;
+      width: 1px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+    .tl-item:last-child .tl-connector { display: none; }
+    .tl-body { padding-top: 2px; }
+    .tl-title { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+    .tl-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+    /* ============================
+       Info Box
+    ============================ */
+    .info-box {
+      border-radius: var(--r-sm);
+      padding: 16px 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .info-box.blue  { background: var(--accent-dim); border: 1px solid var(--accent-line); color: #b3e6fb; }
+    .info-box.amber { background: var(--amber-dim);  border: 1px solid rgba(251,191,36,.3); color: #fcd87a; }
+    .info-box.green { background: var(--green-dim);  border: 1px solid rgba(74,222,128,.3);  color: #86efac; }
+    .info-box-icon  { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ============================
+       About AMF
+    ============================ */
+    .about-amf {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .amf-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #0ea5e9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: #0a0a0a;
+      flex-shrink: 0;
+    }
+    .amf-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .amf-role { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .amf-bio  { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
+    .amf-contacts { display: flex; flex-wrap: wrap; gap: 12px; }
+    .amf-contact {
+      font-size: 13px;
+      color: var(--text-2);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .amf-contact strong { color: var(--text); font-weight: 500; }
+
+    /* ============================
+       Footer
+    ============================ */
+    .doc-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .doc-footer-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .06em;
+    }
+    .doc-footer-note { font-size: 12px; color: var(--text-3); }
+
+    /* ============================
+       2-Column Feature List
+    ============================ */
+    .feat-2col { list-style: none; }
+    .feat-2col li {
+      display: grid;
+      grid-template-columns: 165px 1fr;
+      gap: 0 20px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-2);
+      align-items: flex-start;
+    }
+    .feat-2col li:last-child { border-bottom: none; }
+    .feat-2col .fl { color: var(--text); font-weight: 600; }
+    .feat-2col .fl::before { content: '→  '; color: var(--accent); }
+
+    /* ============================
+       Price Block
+    ============================ */
+    .price-block {
+      background: linear-gradient(145deg, #161618, #0f1a22);
+      border: 1px solid var(--accent-line);
+      border-radius: var(--r);
+      padding: 32px 28px;
+    }
+
+    /* ============================
+       Closing Page
+    ============================ */
+    .closing-page {
+      margin-top: 80px;
+      padding: 80px 40px 60px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .closing-monogram {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--accent);
+      margin-bottom: 28px;
+      line-height: 1;
+    }
+    .closing-heading {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .closing-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      max-width: 480px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+    .closing-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .closing-contact {
+      font-size: 14px;
+      color: var(--text-2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
+    .closing-contact strong { color: var(--text); }
+    .closing-validity {
+      font-size: 12px;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      line-height: 1.7;
+    }
+
+    /* ============================
+       Print / PDF Styles
+    ============================ */
+    @media print {
+      @page {
+        margin: 18mm 20mm;
+        size: A4;
+      }
+
+      .dl-bar { display: none !important; }
+
+      body {
+        background: #fff !important;
+        color: #111 !important;
+        font-size: 12pt;
+      }
+
+      :root {
+        --bg: #fff;
+        --bg-2: #f5f5f5;
+        --bg-card: #f8f8f8;
+        --bg-card-2: #f0f0f0;
+        --text: #111111;
+        --text-2: #444444;
+        --text-3: #888888;
+        --accent: #0284c7;
+        --accent-dim: rgba(2,132,199,0.08);
+        --accent-line: rgba(2,132,199,0.25);
+        --green: #16a34a;
+        --green-dim: rgba(22,163,74,0.08);
+        --amber: #d97706;
+        --amber-dim: rgba(217,119,6,0.1);
+        --violet: #7c3aed;
+        --violet-dim: rgba(124,58,237,0.08);
+        --border: rgba(0,0,0,0.1);
+        --border-2: rgba(0,0,0,0.18);
+      }
+
+      .doc { padding: 0; max-width: 100%; }
+
+      .cover::before { display: none; }
+
+      .card, .social-card, .price-block {
+        border: 1px solid #ddd !important;
+        background: #fafafa !important;
+        break-inside: avoid;
+      }
+
+      .plan.featured { background: #f0f7fe !important; border-color: #0284c7 !important; }
+      .plan.featured::before { display: none; }
+
+      .pricing-grid, .card-grid, .social-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .section { margin-bottom: 40px; }
+
+      .info-box.blue  { background: #e0f2fe !important; border-color: #0284c7 !important; color: #0c4a6e !important; }
+      .info-box.amber { background: #fffbeb !important; border-color: #d97706 !important; color: #78350f !important; }
+      .info-box.green { background: #f0fdf4 !important; border-color: #16a34a !important; color: #14532d !important; }
+
+      .pill-blue   { background: #e0f2fe !important; color: #0284c7 !important; }
+      .pill-green  { background: #dcfce7 !important; color: #16a34a !important; }
+      .pill-amber  { background: #fffbeb !important; color: #d97706 !important; }
+      .pill-violet { background: #ede9fe !important; color: #7c3aed !important; }
+
+      h1, h2, h3 { page-break-after: avoid; }
+      .section { page-break-inside: avoid; }
+      .pricing-grid { page-break-inside: avoid; }
+
+      /* Compact layout for better pagination */
+      .card { padding: 14px 18px; }
+      .feat-list li { padding: 5px 0; }
+      .feat-2col li { padding: 5px 0; }
+      .tech-table td { padding: 7px 12px; }
+      .tech-table th { padding: 7px 12px; }
+      .info-box { padding: 11px 14px; }
+      .section-lead { margin-bottom: 18px; }
+      .card-h { margin-bottom: 7px; }
+
+      /* Closing page — full dedicated last page */
+      .closing-page {
+        page-break-before: always;
+        margin-top: 0;
+        padding: 0;
+        min-height: 85vh;
+        justify-content: center;
+        border-top: none;
+      }
+      .closing-monogram { color: #0284c7; }
+      .closing-heading { color: #111; }
+      .closing-sub { color: #555; }
+      .closing-contact { color: #444; }
+      .closing-validity { color: #888; border-top-color: #ddd; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- ── Download Bar ─────────────────────────────────────────────── -->
+  <div class="dl-bar" id="dlBar">
+    <span class="dl-brand">AMF<span>Propuesta Comercial</span></span>
+    <span style="font-size:11px;color:var(--text-3);flex:1;text-align:center;padding:0 20px;line-height:1.4;">💡 En el diálogo de impresión, desactivar <em>Encabezados y pies de página</em> para quitar la URL y fecha del navegador</span>
+    <div class="dl-actions">
+      <button class="btn-dl" onclick="downloadPDF()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+        Descargar PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Document ──────────────────────────────────────────────────── -->
+  <div class="doc" id="doc">
+
+    <!-- ── COVER ─────────────────────────────────────────────── -->
+    <div class="cover">
+      <div class="cover-badge">Propuesta Comercial</div>
+
+      <h1 class="cover-title">
+        Sistema Web para<br />
+        <span class="hl">Marcelo Torres Propiedades & Negocios</span>
+      </h1>
+
+      <p class="cover-subtitle">
+        Plataforma de gestión de propiedades con publicación automática
+        en redes sociales — diseñada para ser rápida, intuitiva y
+        completamente autónoma para el administrador.
+      </p>
+
+    </div>
+
+    <!-- ── 01 · RESUMEN EJECUTIVO ─────────────────────────────── -->
+    <div class="section">
+      <div class="section-tag">
+        <span class="section-tag-num">01</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-h">Resumen del Proyecto</h2>
+      <p class="section-lead">
+        Una solución completa diseñada para eliminar las fricciones en la gestión y
+        promoción de propiedades inmobiliarias.
+      </p>
+
+      <div class="info-box blue" style="margin-bottom: 20px;">
+        <span class="info-box-icon">💡</span>
+        <div>
+          El objetivo central es simple: <strong>cargar una propiedad una sola vez y que
+          se promocione en múltiples redes con el mínimo esfuerzo posible.</strong>
+          La plataforma se divide en dos mundos: una <em>landing pública</em> para
+          clientes y un <em>panel privado de administración</em> para vos.
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card">
+          <div class="card-h">
+            <span class="card-icon blue">🏠</span>
+            Página Pública
+          </div>
+          <ul class="feat-list">
+            <li>Galería de propiedades con filtros avanzados</li>
+            <li>Página de detalle de cada propiedad</li>
+            <li>Formulario de consulta directo</li>
+            <li>Diseño ultra rápido y mobile-first</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h">
+            <span class="card-icon amber">⚙️</span>
+            Panel de Administración
+          </div>
+          <ul class="feat-list">
+            <li>ABM completo de propiedades</li>
+            <li>Sistema de borradores (publicar / ocultar)</li>
+            <li>Gestión de fotos con previsualización</li>
+            <li>Botones de redes sociales integrados</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h">
+            <span class="card-icon green">📲</span>
+            Redes Sociales
+          </div>
+          <ul class="feat-list">
+            <li>Publicación pre-armada en Facebook</li>
+            <li>Contenido listo para Instagram</li>
+            <li>Generación de material para TikTok</li>
+            <li>Difusión por WhatsApp con un click</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 02 · PANEL DE ADMINISTRACIÓN ──────────────────────── -->
+    <div class="section">
+      <div class="section-tag">
+        <span class="section-tag-num">02</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-h">Panel de Administración</h2>
+      <p class="section-lead">
+        Diseñado para ser tan fácil que no necesite manual. Acceso exclusivo
+        para vos desde cualquier dispositivo.
+      </p>
+
+      <div class="card" style="margin-bottom: 12px;">
+        <div class="card-h">
+          <span class="card-icon blue">📋</span>
+          ABM de Propiedades
+        </div>
+        <ul class="feat-2col">
+          <li><span class="fl">Cargar propiedad</span><span>Formulario con todos los campos: título, tipo, precio, m², habitaciones, baños, descripción, zona</span></li>
+          <li><span class="fl">Fotos</span><span>Subida múltiple con drag &amp; drop, reordenamiento y previsualización. Compresión automática</span></li>
+          <li><span class="fl">Borradores</span><span>Guardá sin publicar. Activá con un switch cuando esté lista</span></li>
+          <li><span class="fl">Editar / Eliminar</span><span>Modificá cualquier dato o dá de baja en segundos</span></li>
+          <li><span class="fl">Listado con búsqueda</span><span>Filtrá y buscá por nombre o código desde el panel</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-h">
+          <span class="card-icon amber">📲</span>
+          Botones de Redes desde el Panel
+        </div>
+        <p style="font-size: 14px; color: var(--text-2); margin-bottom: 14px; line-height: 1.6;">
+          Cada propiedad tendrá un bloque de botones de redes <strong>visible solo para vos</strong> como admin.
+          Con un clic, el sistema genera todo el contenido de la publicación y te lo
+          deja listo para confirmar y publicar en cada red.
+        </p>
+        <ul class="feat-2col">
+          <li><span class="fl">Flujo completo</span><span>Lo que antes llevaba 15–20 min, ahora son menos de 2 minutos</span></li>
+          <li><span class="fl">Texto ya redactado</span><span>Con precio, características y CTA listos para cada red</span></li>
+          <li><span class="fl">Fotos optimizadas</span><span>Formato correcto para cada plataforma, sin trabajo manual</span></li>
+          <li><span class="fl">Hashtags sugeridos</span><span>Según el tipo de propiedad y la red social</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── 03 · INTEGRACIÓN REDES SOCIALES ────────────────────── -->
+    <div class="section">
+      <div class="section-tag">
+        <span class="section-tag-num">03</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-h">Integración con Redes Sociales</h2>
+      <p class="section-lead">
+        Cada plataforma tiene sus propias políticas de API. Acá explico exactamente
+        qué se puede hacer en cada una para que no haya sorpresas.
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:14px;">
+        <div class="social-card">
+          <div class="social-card-head">
+            <div class="social-logo" style="background: #1877f2; color: white;">f</div>
+            <div>
+              <div class="social-name">Facebook</div>
+              <span class="pill pill-green">Alta integración</span>
+            </div>
+          </div>
+          <p class="social-desc">
+            Usando la <strong>Meta Graph API</strong>, el botón abre Facebook
+            con las fotos y el texto de la propiedad pre-cargados.
+            Solo confirmás y publicás en tu página/perfil. El más fluido de todos.
+          </p>
+        </div>
+
+        <div class="social-card">
+          <div class="social-card-head">
+            <div class="social-logo" style="background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:white;">IG</div>
+            <div>
+              <div class="social-name">Instagram</div>
+              <span class="pill pill-amber">Integración asistida</span>
+            </div>
+          </div>
+          <p class="social-desc">
+            Instagram no permite publicación directa desde web por sus políticas.
+            El botón <strong>descarga las fotos optimizadas y copia el caption al portapapeles</strong>.
+            Pegás en tu post/story y listo — proceso de menos de 30 segundos.
+          </p>
+        </div>
+
+        <div class="social-card">
+          <div class="social-card-head">
+            <div class="social-logo" style="background: #010101; color: white;">TT</div>
+            <div>
+              <div class="social-name">TikTok</div>
+              <span class="pill pill-amber">Integración asistida</span>
+            </div>
+          </div>
+          <p class="social-desc">
+            Genera el <strong>texto del video con los datos de la propiedad</strong>
+            y descarga las fotos. Si se habilita la API de TikTok Creator,
+            se puede precargar el borrador directamente en la app.
+          </p>
+        </div>
+
+        <div class="social-card">
+          <div class="social-card-head">
+            <div class="social-logo" style="background: #25d366; color: white;">WA</div>
+            <div>
+              <div class="social-name">WhatsApp</div>
+              <span class="pill pill-green">Integración directa</span>
+            </div>
+          </div>
+          <p class="social-desc">
+            Genera un <strong>mensaje preformateado</strong> con precio, descripción,
+            fotos y link de la propiedad. Abre WhatsApp Web listo para difundir
+            o enviar a contactos.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-box amber">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Nota transparente sobre APIs:</strong> Las restricciones en Instagram y TikTok
+          son impuestas por esas plataformas, no por limitaciones del desarrollo.
+          La solución propuesta minimiza el esfuerzo al máximo dentro de lo que cada plataforma permite.
+          Facebook ofrece la mayor integración técnica.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 04 · PÁGINA PÚBLICA ────────────────────────────────── -->
+    <div class="section">
+      <div class="section-tag">
+        <span class="section-tag-num">04</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-h">Sitio Público — Funcionalidades y Rendimiento</h2>
+      <p class="section-lead">
+        La página pública es el principal punto de contacto con los clientes potenciales.
+        Diseñada con enfoque en rendimiento, funcionalidad y experiencia de usuario.
+      </p>
+
+      <div style="break-inside: avoid; display:flex; flex-direction:column; gap:12px;">
+        <div class="card">
+          <div class="card-h"><span class="card-icon blue">⚡</span> Rendimiento y Optimización de Velocidad</div>
+          <ul class="feat-list">
+            <li><strong>Lazy loading de imágenes</strong> — Solo carga las fotos que el usuario está viendo</li>
+            <li><strong>WebP automático</strong> — Las fotos se convierten al formato más liviano sin perder calidad</li>
+            <li><strong>Caché inteligente</strong> — Configurado en Hostinger para velocidades óptimas</li>
+            <li><strong>Score de PageSpeed 90+</strong> — Objetivo medible de rendimiento</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="card-icon green">🔍</span> Búsqueda y Filtros</div>
+          <ul class="feat-list">
+            <li>Filtro por tipo de propiedad (casa, departamento, local, terreno)</li>
+            <li>Rango de precio con slider interactivo</li>
+            <li>Filtro por zona / barrio</li>
+            <li>Cantidad de habitaciones y baños</li>
+            <li>Operación (venta / alquiler)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="card-icon violet">📌</span> Funcionalidades Adicionales Propuestas</div>
+          <ul class="feat-list">
+            <li><strong>Calculadora hipotecaria</strong> — El visitante ingresa el precio y ve cuánto pagaría en cuotas</li>
+            <li><strong>Flyer PDF por propiedad</strong> — Generás el PDF con datos y fotos con un click</li>
+            <li><strong>Google Maps integrado</strong> — Mapa interactivo en la página de cada propiedad</li>
+            <li><strong>Galería con lightbox</strong> — Ver todas las fotos en pantalla completa con swipe en mobile</li>
+            <li><strong>Comparador</strong> — El visitante puede comparar hasta 3 propiedades lado a lado</li>
+            <li><strong>Botón WhatsApp flotante</strong> — Consulta directa desde cualquier página</li>
+            <li><strong>Schema.org para inmobiliarias</strong> — Metadatos estructurados para Google</li>
+            <li><strong>Diseño mobile-first</strong> — 70% del tráfico inmobiliario es desde el celular</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 05 · STACK TECNOLÓGICO ─────────────────────────────── -->
+    <div class="section">
+      <div class="section-tag">
+        <span class="section-tag-num">05</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-h">Stack Tecnológico</h2>
+      <p class="section-lead">
+        Tecnologías probadas, modernas y con soporte de largo plazo.
+        Hostinger hace que todo esto sea accesible y de bajo costo de mantenimiento.
+      </p>
+
+      <div class="card">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Capa</th>
+              <th>Tecnología</th>
+              <th>¿Por qué?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Backend</td>
+              <td><span class="pill pill-violet">PHP 8.3 / Laravel 11</span></td>
+              <td>El más potente para apps de gestión. Perfecto para Hostinger. Seguro y escalable.</td>
+            </tr>
+            <tr>
+              <td>Frontend</td>
+              <td><span class="pill pill-blue">Blade + Tailwind CSS</span></td>
+              <td>Renders rápidos del lado del servidor. Diseño moderno sin complejidad innecesaria.</td>
+            </tr>
+            <tr>
+              <td>Base de datos</td>
+              <td><span class="pill pill-green">MySQL 8</span></td>
+              <td>Incluida en cualquier plan de Hostinger. Robusta y probada para este tipo de apps.</td>
+            </tr>
+            <tr>
+              <td>Almacenamiento</td>
+              <td><span class="pill pill-amber">Local + compresión automática</span></td>
+              <td>Las fotos se guardan en el servidor y se optimizan automáticamente al subirse.</td>
+            </tr>
+            <tr>
+              <td>Autenticación</td>
+              <td><span class="pill pill-violet">Laravel Breeze + 2FA</span></td>
+              <td>Login seguro para el admin. Opcionalmente con doble factor de autenticación.</td>
+            </tr>
+            <tr>
+              <td>Hosting</td>
+              <td><span class="pill pill-green">Hostinger Business</span></td>
+              <td>~$100 USD/año. SSL incluido, performance sólida, panel fácil de usar.</td>
+            </tr>
+            <tr>
+              <td>SEO</td>
+              <td><span class="pill pill-blue">Meta tags + Schema.org</span></td>
+              <td>Cada propiedad genera sus propias metatags y datos estructurados para Google.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box green" style="margin-top: 14px;">
+        <span class="info-box-icon">✅</span>
+        <div>
+          <strong>Sobre Hostinger:</strong> Con un plan Business (~$100/año) tenés
+          todo lo necesario: dominio, SSL, base de datos MySQL, almacenamiento y
+          soporte 24/7. No se necesitan servidores caros ni configuraciones complejas.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 06 · INVERSIÓN ─────────────────────────────────────────────── -->
+    <div class="section">
+      <div class="section-tag"><span class="section-tag-num">06</span><span class="section-tag-line"></span></div>
+      <h2 class="section-h">Inversión del Proyecto</h2>
+      <p class="section-lead">Precio fijo por el desarrollo completo descripto en este documento. Sin sorpresas ni costos ocultos.</p>
+
+      <div class="price-block" style="margin-bottom: 20px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Precio Total del Proyecto</div>
+        <div style="font-size:60px;font-weight:800;letter-spacing:-0.03em;line-height:1;margin-bottom:8px;">$1.300 <span style="font-size:20px;font-weight:500;color:var(--text-3);">USD</span></div>
+        <div style="font-size:13px;color:var(--text-3);padding-top:12px;border-top:1px solid var(--border);">Precio a confirmar antes del inicio. No incluye el costo de hosting (Hostinger ~$100 USD/año, contratado directamente por el cliente).</div>
+      </div>
+
+      <div class="card" style="margin-bottom: 14px;">
+        <div class="card-h"><span class="card-icon green">✓</span> Todo lo incluido en el precio</div>
+        <ul class="feat-list">
+          <li>Landing pública de propiedades con diseño profesional y mobile-first</li>
+          <li>Panel de administración con ABM completo de propiedades</li>
+          <li>Sistema de borradores (publicar / ocultar propiedades)</li>
+          <li>Gestión de fotos con subida múltiple, drag &amp; drop y compresión automática</li>
+          <li>Botones de redes sociales (Facebook, Instagram, TikTok, WhatsApp)</li>
+          <li>Filtros de búsqueda avanzados en la landing</li>
+          <li>Calculadora hipotecaria interactiva</li>
+          <li>Google Maps integrado en cada propiedad</li>
+          <li>Generador de flyer PDF por propiedad</li>
+          <li>Galería con lightbox y swipe en mobile</li>
+          <li>Dashboard de estadísticas básicas</li>
+          <li>SEO técnico + Schema.org para inmobiliarias</li>
+          <li>Botón WhatsApp flotante en toda la landing</li>
+          <li>SSL configurado y deploy en Hostinger</li>
+          <li>Semana de correcciones post-entrega (ver Sección 08)</li>
+          <li>Capacitación en el uso del panel de administración</li>
+        </ul>
+      </div>
+
+      <div class="info-box blue">
+        <span class="info-box-icon">💳</span>
+        <div><strong>Condiciones de pago:</strong> 50% al inicio del proyecto para arrancar el desarrollo · 50% a la entrega y aprobación final. Ambos pagos en USD.</div>
+      </div>
+
+      <div class="info-box amber" style="margin-top: 14px;">
+        <span class="info-box-icon">💡</span>
+        <div>
+          <strong>Nota sobre el precio:</strong> Este presupuesto incluye el desarrollo de la integración con redes sociales, una funcionalidad técnicamente más compleja que un sistema de gestión básico. Esa complejidad es la razón por la que el precio está por encima de lo que se mencionó inicialmente como referencia — y es lo que justifica la diferencia. <strong>Si preferís una versión sin la integración de redes sociales, puedo ofrecerte un presupuesto alternativo a menor costo.</strong>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── 07 · CRONOGRAMA ────────────────────────────────────── -->
+    <div class="section">
+      <div class="section-tag">
+        <span class="section-tag-num">07</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-h">Cronograma (Plan Profesional)</h2>
+      <p class="section-lead">
+        Proceso ordenado con entregas parciales para que puedas ver el avance en todo momento.
+      </p>
+
+      <div class="card">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-week">Semana 1</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-body">
+              <div class="tl-title">Kick-off y Diseño</div>
+              <div class="tl-desc">Reunión inicial para definir colores, logo, tipografía y estructura de la página. Wireframes del panel admin y de la landing. Configuración del entorno en Hostinger.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-week">Semana 2</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-body">
+              <div class="tl-title">Backend + Base de Datos</div>
+              <div class="tl-desc">Estructura de la base de datos, modelos de propiedades, autenticación del admin, sistema de carga y gestión de fotos, lógica de borradores.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-week">Semana 3</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-body">
+              <div class="tl-title">Panel de Administración</div>
+              <div class="tl-desc">ABM completo, formularios, gestión de fotos, previsualización, sistema de publicar/ocultar. Primera revisión con el cliente.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-week">Semana 4</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-body">
+              <div class="tl-title">Landing Pública</div>
+              <div class="tl-desc">Diseño y desarrollo de la página pública: listado de propiedades, filtros, página de detalle, galería con lightbox, integración de Maps.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-week">Semana 5</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-body">
+              <div class="tl-title">Integración Redes Sociales</div>
+              <div class="tl-desc">Botones de Facebook, Instagram, TikTok y WhatsApp. Generador de texto y descarga de imágenes. Pruebas de flujo completo de publicación.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-week">Semana 6–7</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-body">
+              <div class="tl-title">Extras + Testing + Entrega</div>
+              <div class="tl-desc">Calculadora hipotecaria, flyer PDF, dashboard de estadísticas, SEO, optimización de performance, testing en múltiples dispositivos y entrega final con capacitación.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box amber" style="margin-top: 14px;">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Nota:</strong> Las fechas indicadas son estimaciones orientativas.
+          El cronograma puede ajustarse según prioridades acordadas entre las partes,
+          complejidades técnicas no previstas o tiempos de respuesta del cliente.
+          Cualquier cambio significativo en el alcance o en las fechas será comunicado
+          con anticipación y acordado mutuamente.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 08 · POST ENTREGA ─────────────────────────────────────────────── -->
+    <div class="section">
+      <div class="section-tag"><span class="section-tag-num">08</span><span class="section-tag-line"></span></div>
+      <h2 class="section-h">Post Entrega y Alcance del Presupuesto</h2>
+      <p class="section-lead">Esta sección define con claridad qué está incluido en el precio y qué queda fuera de él, para evitar malentendidos.</p>
+
+      <div class="card" style="margin-bottom: 12px;">
+        <div class="card-h"><span class="card-icon green">✅</span> Semana de Correcciones — Incluida en el precio</div>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.7;">Una vez finalizado el desarrollo y entregado el acceso al sistema, se destina <strong>una semana exclusiva para correcciones</strong>. Se pueden ajustar aspectos visuales o de funcionamiento que no convenzan. Sin costo adicional.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><span class="card-icon amber">⚠️</span> Fuera del Alcance — Nuevas funcionalidades y correcciones tardías</div>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">Una vez finalizada la semana de correcciones, cualquier solicitud adicional <strong>se cotiza por separado</strong>:</p>
+        <ul class="feat-list">
+          <li>Funcionalidades nuevas no contempladas en esta propuesta</li>
+          <li>Cambios de diseño solicitados luego de cerrada la etapa de correcciones</li>
+          <li>Cualquier modificación que implique tiempo de desarrollo adicional</li>
+        </ul>
+        <div class="info-box amber" style="margin-top:16px;">
+          <span class="info-box-icon">📋</span>
+          <div>Esta condición se establece desde el inicio para garantizar transparencia. Si surgieran necesidades nuevas, se cotizan y acuerdan antes de continuar. <strong>El trabajo adicional no queda comprendido en el presupuesto original.</strong></div>
+        </div>
+      </div>
+    </div>
+
+<div class="section">
+      <div class="section-tag">
+        <span class="section-tag-num">09</span>
+        <span class="section-tag-line"></span>
+      </div>
+      <h2 class="section-h">Preguntas Frecuentes</h2>
+
+      <div class="card" style="margin-bottom: 12px;">
+        <div class="card-h">¿Voy a necesitar saber programar para usarlo?</div>
+        <p style="font-size: 14px; color: var(--text-2); line-height: 1.6;">
+          Para nada. El panel admin está diseñado para ser tan intuitivo como usar
+          Instagram. Formularios claros, botones bien explicados, y si algo no queda
+          claro incluyo una capacitación en la entrega.
+        </p>
+      </div>
+
+      <div class="card" style="margin-bottom: 12px;">
+        <div class="card-h">¿Qué pasa si quiero agregar algo después?</div>
+        <p style="font-size: 14px; color: var(--text-2); line-height: 1.6;">
+          El sistema está construido para escalar. Cualquier funcionalidad nueva se puede
+          agregar después. Podés arrancar con el plan Esencial y sumar features en el futuro.
+        </p>
+      </div>
+
+      <div class="card" style="margin-bottom: 12px;">
+        <div class="card-h">¿Cuánto sale el hosting?</div>
+        <p style="font-size: 14px; color: var(--text-2); line-height: 1.6;">
+          Hostinger Business sale aproximadamente <strong>$100 USD/año</strong>
+          (varía según el plan y promociones). Incluye SSL, dominio, base de datos
+          y todo lo necesario. Va aparte del precio del desarrollo.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-h">¿Puedo publicar en redes directamente sin entrar al panel?</div>
+        <p style="font-size: 14px; color: var(--text-2); line-height: 1.6;">
+          Para publicar en redes necesitás entrar al panel admin (que es tu herramienta
+          de gestión), ir a la propiedad que querés promocionar y tocar el botón
+          de la red. Es el flujo más simple y seguro posible.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── CLOSING PAGE ──────────────────────────────────────── -->
+    <div class="closing-page">
+      <div class="closing-monogram">AMF</div>
+      <h2 class="closing-heading">Gracias por tu tiempo.</h2>
+      <p class="closing-sub">
+        Estoy disponible para responder cualquier duda, ajustar lo que necesites
+        o preparar una propuesta alternativa según tus prioridades.
+      </p>
+      <div class="closing-contacts">
+        <div class="closing-contact"><span>✉️</span> <strong>fernandezmalejo@gmail.com</strong></div>
+        <div class="closing-contact"><span>📱</span> <strong>+54 11 2523-7915</strong></div>
+        <div class="closing-contact"><span>🌐</span> <strong>alejomf.dev</strong></div>
+      </div>
+      <div class="closing-validity">
+        Preparada por Alejo M. Fernandez · Abril 2026
+      </div>
+    </div>
+
+  </div><!-- /doc -->
+
+  <script>
+    function downloadPDF() {
+      window.print();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Puraa natural cosmetics e-commerce preview">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Puraa natural cosmetics e-commerce preview">
   <defs>
     <linearGradient id="p-bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%"  stop-color="#1a3328"/>
@@ -36,7 +36,7 @@
     <circle cx="350" cy="380" r="260" fill="none" stroke="rgba(244,232,208,0.08)" stroke-width="1" stroke-dasharray="2 8"/>
 
     <!-- BOTTLE in center -->
-    <g transform="translate(290 270)">
+    <g transform="translate(218 80) scale(2.2)">
       <!-- Cap -->
       <rect x="42" y="0" width="36" height="28" rx="3" fill="#2d2018" stroke="#1a1208" stroke-width="1.2"/>
       <rect x="48" y="-8" width="24" height="10" rx="2" fill="#3a2a18" stroke="#1a1208" stroke-width="1"/>
@@ -60,37 +60,37 @@
 
     <!-- LEAVES around bottle -->
     <!-- Left big leaf -->
-    <g transform="translate(140 300)" fill="rgba(141,181,128,0.7)" stroke="#5d8c4a" stroke-width="1.2">
-      <path d="M 0 0 Q -60 -20 -100 -80 Q -80 -100 -40 -90 Q 0 -60 20 -10 Z"/>
-      <path d="M -10 -10 Q -50 -30 -80 -70" stroke="#3d6a2a" stroke-width="0.8" fill="none"/>
-      <path d="M -30 -20 L -50 -50" stroke="#3d6a2a" stroke-width="0.6" fill="none"/>
-      <path d="M -40 -10 L -65 -40" stroke="#3d6a2a" stroke-width="0.6" fill="none"/>
+    <g transform="translate(60 380)" fill="rgba(141,181,128,0.7)" stroke="#5d8c4a" stroke-width="1.5">
+      <path d="M 0 0 Q -80 -30 -130 -110 Q -100 -130 -50 -115 Q 0 -80 25 -12 Z"/>
+      <path d="M -12 -12 Q -65 -40 -105 -90" stroke="#3d6a2a" stroke-width="1" fill="none"/>
+      <path d="M -38 -25 L -65 -65" stroke="#3d6a2a" stroke-width="0.8" fill="none"/>
+      <path d="M -55 -12 L -85 -52" stroke="#3d6a2a" stroke-width="0.8" fill="none"/>
     </g>
 
     <!-- Right leaf -->
-    <g transform="translate(560 300)" fill="rgba(141,181,128,0.7)" stroke="#5d8c4a" stroke-width="1.2">
-      <path d="M 0 0 Q 60 -20 100 -80 Q 80 -100 40 -90 Q 0 -60 -20 -10 Z"/>
-      <path d="M 10 -10 Q 50 -30 80 -70" stroke="#3d6a2a" stroke-width="0.8" fill="none"/>
-      <path d="M 30 -20 L 50 -50" stroke="#3d6a2a" stroke-width="0.6" fill="none"/>
+    <g transform="translate(660 360)" fill="rgba(141,181,128,0.7)" stroke="#5d8c4a" stroke-width="1.5">
+      <path d="M 0 0 Q 80 -30 130 -110 Q 100 -130 50 -115 Q 0 -80 -25 -12 Z"/>
+      <path d="M 12 -12 Q 65 -40 105 -90" stroke="#3d6a2a" stroke-width="1" fill="none"/>
+      <path d="M 38 -25 L 65 -65" stroke="#3d6a2a" stroke-width="0.8" fill="none"/>
     </g>
 
     <!-- Bottom leaves (cascade) -->
-    <g transform="translate(180 530)" fill="rgba(141,181,128,0.55)" stroke="#5d8c4a" stroke-width="1">
-      <path d="M 0 0 Q 30 -40 80 -30 Q 90 0 60 30 Q 20 30 0 0 Z"/>
+    <g transform="translate(130 680)" fill="rgba(141,181,128,0.55)" stroke="#5d8c4a" stroke-width="1.2">
+      <path d="M 0 0 Q 40 -55 110 -40 Q 120 0 80 40 Q 28 40 0 0 Z"/>
     </g>
-    <g transform="translate(450 540)" fill="rgba(141,181,128,0.55)" stroke="#5d8c4a" stroke-width="1">
-      <path d="M 0 0 Q -30 -40 -80 -30 Q -90 0 -60 30 Q -20 30 0 0 Z"/>
+    <g transform="translate(590 690)" fill="rgba(141,181,128,0.55)" stroke="#5d8c4a" stroke-width="1.2">
+      <path d="M 0 0 Q -40 -55 -110 -40 Q -120 0 -80 40 Q -28 40 0 0 Z"/>
     </g>
 
     <!-- Small floating leaves / petals -->
     <g fill="rgba(212,224,155,0.6)" stroke="#a8c47a" stroke-width="0.8">
-      <ellipse cx="80" cy="160" rx="14" ry="6" transform="rotate(30 80 160)"/>
-      <ellipse cx="640" cy="180" rx="14" ry="6" transform="rotate(-25 640 180)"/>
-      <ellipse cx="120" cy="640" rx="12" ry="5" transform="rotate(20 120 640)"/>
-      <ellipse cx="600" cy="650" rx="12" ry="5" transform="rotate(-15 600 650)"/>
-      <circle cx="60" cy="450" r="4" fill="#d4e09b"/>
-      <circle cx="690" cy="430" r="4" fill="#d4e09b"/>
-      <circle cx="340" cy="80" r="4" fill="#d4e09b"/>
+      <ellipse cx="90" cy="200" rx="18" ry="8" transform="rotate(30 90 200)"/>
+      <ellipse cx="640" cy="220" rx="18" ry="8" transform="rotate(-25 640 220)"/>
+      <ellipse cx="110" cy="760" rx="15" ry="6" transform="rotate(20 110 760)"/>
+      <ellipse cx="620" cy="770" rx="15" ry="6" transform="rotate(-15 620 770)"/>
+      <circle cx="55" cy="520" r="5" fill="#d4e09b"/>
+      <circle cx="690" cy="500" r="5" fill="#d4e09b"/>
+      <circle cx="360" cy="85" r="5" fill="#d4e09b"/>
     </g>
 
     <!-- Roots/branches subtle bottom -->
@@ -101,33 +101,8 @@
     </g>
   </g>
 
-  <!-- ───── LEFT-TOP: ethical badges ───── -->
-  <g transform="translate(110 90)">
-    <text x="0" y="0" font-family="'Inter',sans-serif" font-style="italic" font-size="14" fill="#d4e09b" letter-spacing="4">ALQUIMIA VEGETAL · COSMÉTICA NATURAL</text>
-  </g>
-
-  <!-- ───── LEFT-BOTTOM: ingredient stamps ───── -->
-  <g transform="translate(110 880)">
-    <g>
-      <circle cx="20" cy="20" r="20" fill="rgba(212,224,155,0.15)" stroke="#d4e09b" stroke-width="1.2"/>
-      <text x="20" y="25" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9" font-weight="700" fill="#d4e09b">100%</text>
-    </g>
-    <g transform="translate(50 0)">
-      <rect x="0" y="2" width="80" height="36" rx="18" fill="rgba(244,232,208,0.08)" stroke="#f4e8d0" stroke-width="1"/>
-      <text x="40" y="25" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9" font-weight="700" fill="#f4e8d0" letter-spacing="2">VEGAN</text>
-    </g>
-    <g transform="translate(140 0)">
-      <rect x="0" y="2" width="110" height="36" rx="18" fill="rgba(244,232,208,0.08)" stroke="#f4e8d0" stroke-width="1"/>
-      <text x="55" y="25" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9" font-weight="700" fill="#f4e8d0" letter-spacing="2">CRUELTY-FREE</text>
-    </g>
-    <g transform="translate(260 0)">
-      <rect x="0" y="2" width="120" height="36" rx="18" fill="rgba(244,232,208,0.08)" stroke="#f4e8d0" stroke-width="1"/>
-      <text x="60" y="25" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9" font-weight="700" fill="#f4e8d0" letter-spacing="2">PLANT-BASED</text>
-    </g>
-  </g>
 
   <!-- ───── RIGHT PANEL ───── -->
-  <text x="1480" y="290" text-anchor="end" font-family="'SF Mono','Fira Code',monospace" font-size="18" letter-spacing="5" fill="#d4e09b" opacity="0.95">WORDPRESS · 2026</text>
 
   <text x="1480" y="510" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="900" font-size="220" letter-spacing="-7" fill="#f4e8d0">PURAA</text>
 
@@ -136,12 +111,7 @@
   <line x1="830" y1="555" x2="1480" y2="555" stroke="#d4e09b" stroke-width="1.5" opacity="0.55"/>
   <text x="1480" y="595" text-anchor="end" font-family="'Inter',sans-serif" font-style="italic" font-weight="500" font-size="24" letter-spacing="6" fill="#d4e09b">bioconciencia · alquimia vegetal</text>
 
-  <text x="830" y="685" font-family="'Inter',sans-serif" font-size="22" fill="#f4e8d0" opacity="0.8">Cosmética natural con propósito.</text>
-  <text x="830" y="717" font-family="'Inter',sans-serif" font-size="22" fill="#f4e8d0" opacity="0.6">Procesos artesanales · respeto biológico.</text>
-  <text x="830" y="749" font-family="'Inter',sans-serif" font-size="22" fill="#f4e8d0" opacity="0.6">Consumo consciente · bienestar integral.</text>
 
-  <line x1="830" y1="840" x2="1480" y2="840" stroke="rgba(244,232,208,0.25)" stroke-width="1"/>
-  <text x="1480" y="878" text-anchor="end" font-family="'SF Mono','Fira Code',monospace" font-size="16" letter-spacing="6" fill="#d4e09b" opacity="0.75">WORDPRESS · ELEMENTOR · WOOCOMMERCE</text>
 
   <!-- Corner brackets -->
   <g stroke="#d4e09b" stroke-width="1.5" fill="none" opacity="0.5">

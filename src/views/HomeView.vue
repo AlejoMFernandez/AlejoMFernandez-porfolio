@@ -9,6 +9,7 @@ import projects from '../data/projects.json'
 import personal from '../data/personal.json'
 import Footer from '../components/Footer.vue'
 import MarqueeStrip from '../components/MarqueeStrip.vue'
+import FranzaCover from '../components/covers/FranzaCover.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -166,15 +167,17 @@ onUnmounted(() => {
           :class="{ 'is-legacy': !isCoverSvg(project) }"
           :style="{ background: project.colorFondo }"
         >
-          <!-- Top-left: index + type -->
+          <!-- Top-right: project type -->
           <div class="cover-top">
-            <span class="cover-index">{{ String(index + 1).padStart(2, '0') }} / {{ String(featuredProjects.length).padStart(2, '0') }}</span>
             <span class="cover-type">{{ project.tipo }}</span>
           </div>
 
+          <!-- Animated Vue cover components (per project) -->
+          <FranzaCover v-if="project.id === 'franza'" />
+
           <!-- The SVG / image cover (the protagonist) -->
           <img
-            v-if="project.imagenPrincipal"
+            v-else-if="project.imagenPrincipal"
             :src="project.imagenPrincipal"
             :alt="project.nombre"
             :class="['cover-image', { 'is-logo': isLogoMain(project) }]"
@@ -484,23 +487,12 @@ onUnmounted(() => {
 .cover-top {
   position: absolute;
   top: 22px;
-  left: 28px;
   right: 28px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   z-index: 3;
   pointer-events: none;
-}
-
-.cover-index {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.7);
-  font-variant-numeric: tabular-nums;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  mix-blend-mode: difference;
 }
 
 .cover-type {

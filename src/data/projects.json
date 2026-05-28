@@ -128,7 +128,7 @@
       ]
     },
     "tipo": "LANDING",
-    "destacado": true,
+    "destacado": false,
     "orden": 2
   },
   {
@@ -401,7 +401,7 @@
       "pt": ["Design orientado a marca", "Experiencia mobile-first", "Arquitetura de conteudo clara", "Otimizacao para conversao"]
     },
     "tipo": "WEBAPP",
-    "destacado": false,
+    "destacado": true,
     "orden": 10
   },
   {

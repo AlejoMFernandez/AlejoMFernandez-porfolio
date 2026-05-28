@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>AMF — Generar fondo IG</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 24px;
+      font-family: Inter, -apple-system, sans-serif;
+      color: #f5f5f7;
+    }
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #38bdf8;
+      letter-spacing: 0.05em;
+    }
+    p {
+      font-size: 13px;
+      color: #a1a1a6;
+    }
+    .canvases {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .canvas-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .canvas-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .canvas-label.dark  { color: #a1a1a6; }
+    .canvas-label.light { color: #38bdf8; }
+    canvas {
+      /* Preview a escala reducida */
+      width: 216px;
+      height: 270px;
+    }
+    #canvas-dark  { border: 1px solid rgba(255,255,255,0.08); }
+    #canvas-light { border: 1px solid rgba(0,0,0,0.15); }
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    button {
+      background: #38bdf8;
+      color: #0a0a0a;
+      border: none;
+      padding: 12px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.03em;
+    }
+    button:hover { background: #0ea5e9; }
+    button.secondary {
+      background: transparent;
+      color: #38bdf8;
+      border: 1px solid #38bdf8;
+    }
+    button.secondary:hover { background: rgba(56,189,248,0.08); }
+    .info {
+      font-size: 12px;
+      color: #6e6e73;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AMF · Background Generator</h1>
+  <p>1080 × 1350px — Fondo para posts de Instagram</p>
+
+  <div class="canvases">
+    <div class="canvas-col">
+      <p class="canvas-label dark">⬛ Oscuro</p>
+      <canvas id="canvas-dark"  width="1080" height="1350"></canvas>
+      <button onclick="download('dark')">⬇ Descargar oscuro</button>
+    </div>
+    <div class="canvas-col">
+      <p class="canvas-label light">⬜ Claro</p>
+      <canvas id="canvas-light" width="1080" height="1350"></canvas>
+      <button onclick="download('light')">⬇ Descargar claro</button>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="secondary" onclick="generateAll()">🔄 Regenerar ambos</button>
+  </div>
+
+  <p class="info">Cada regeneración produce una variación única. Descargá la que más te guste.</p>
+
+  <script>
+    const MODES = {
+      dark: {
+        canvas: null,
+        bg: '#0a0a0a',
+        particleColor: '136, 136, 136',  // gris sobre negro
+        count: 160,
+        minSize: 1.5,
+        maxSize: 4,
+        minOpacity: 0.25,
+        maxOpacity: 0.75,
+        filename: 'amf-bg-oscuro.png',
+      },
+      light: {
+        canvas: null,
+        bg: '#f5f5f7',
+        particleColor: '30, 30, 35',     // casi negro sobre blanco
+        count: 160,
+        minSize: 1.5,
+        maxSize: 4,
+        minOpacity: 0.45,
+        maxOpacity: 0.85,
+        filename: 'amf-bg-claro.png',
+      }
+    }
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min
+    }
+
+    function generate(mode) {
+      const cfg    = MODES[mode]
+      const canvas = cfg.canvas
+      const ctx    = canvas.getContext('2d')
+      const { width, height } = canvas
+
+      ctx.fillStyle = cfg.bg
+      ctx.fillRect(0, 0, width, height)
+
+      for (let i = 0; i < cfg.count; i++) {
+        const x      = rand(0, width)
+        const y      = rand(0, height)
+        const radius = rand(cfg.minSize, cfg.maxSize) / 2
+        const opacity = rand(cfg.minOpacity, cfg.maxOpacity)
+
+        ctx.beginPath()
+        ctx.arc(x, y, radius, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(${cfg.particleColor}, ${opacity})`
+        ctx.fill()
+      }
+    }
+
+    function generateAll() {
+      generate('dark')
+      generate('light')
+    }
+
+    function download(mode) {
+      const cfg  = MODES[mode]
+      const link = document.createElement('a')
+      link.download = cfg.filename
+      link.href = cfg.canvas.toDataURL('image/png')
+      link.click()
+    }
+
+    // Init
+    MODES.dark.canvas  = document.getElementById('canvas-dark')
+    MODES.light.canvas = document.getElementById('canvas-light')
+    generateAll()
+  </script>
+
+</body>
+</html>
