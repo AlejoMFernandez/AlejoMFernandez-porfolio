@@ -36,3 +36,20 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## Google Analytics 4 (GA4)
+
+This project includes GA4 tracking for SPA route changes.
+
+1. Copy `.env.example` to `.env`.
+2. Set your measurement ID:
+
+```sh
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+3. Restart the dev server if it is running.
+
+Notes:
+- Route changes are tracked as `page_view` events.
+- If `VITE_GA_MEASUREMENT_ID` is empty, analytics is disabled automatically.

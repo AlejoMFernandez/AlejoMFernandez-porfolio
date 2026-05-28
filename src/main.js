@@ -5,9 +5,11 @@ import i18n from './locales'
 import Particles from '@tsparticles/vue3'
 import { loadSlim } from '@tsparticles/slim'
 import { vMagnetic } from './composables/useMagnetic'
+import { initAnalytics } from './services/analytics'
 import './assets/main.css'
 
 const app = createApp(App)
+initAnalytics()
 app.use(router)
 app.use(i18n)
 app.use(Particles, {

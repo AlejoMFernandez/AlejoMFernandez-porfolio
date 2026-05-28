@@ -4,6 +4,7 @@ import ProjectView from '../views/ProjectView.vue'
 import InfoView from '../views/InfoView.vue'
 import ContactView from '../views/ContactView.vue'
 import WorkView from '../views/WorkView.vue'
+import { trackPageView } from '../services/analytics'
 
 const routes = [
   {
@@ -43,6 +44,10 @@ const router = createRouter({
       return { top: 0, behavior: 'smooth' }
     }
   }
+})
+
+router.afterEach((to) => {
+  trackPageView(to.fullPath)
 })
 
 export default router
