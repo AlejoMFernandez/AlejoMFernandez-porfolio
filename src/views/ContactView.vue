@@ -129,7 +129,7 @@ onUnmounted(() => {
             <a v-if="personal.redes?.github"    :href="personal.redes.github"    target="_blank" class="social-pill">GitHub</a>
             <a v-if="personal.redes?.linkedin"  :href="personal.redes.linkedin"  target="_blank" class="social-pill">LinkedIn</a>
             <a v-if="personal.redes?.instagram" :href="personal.redes.instagram" target="_blank" class="social-pill">Instagram</a>
-            <a v-if="personal.redes?.upwork"    :href="personal.redes.upwork"    target="_blank" class="social-pill">Upwork</a>
+            <a v-if="personal.redes?.tiktok"    :href="personal.redes.tiktok"    target="_blank" class="social-pill">TikTok</a>
           </div>
         </div>
 

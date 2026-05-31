@@ -1,4 +1,4 @@
-﻿<script setup>
+<script setup>
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -13,20 +13,14 @@ const { l } = useLocalized()
 const route = useRoute()
 const router = useRouter()
 
-const project = computed(() => {
-  return projects.find(p => p.id === route.params.id)
-})
+const project = computed(() => projects.find(p => p.id === route.params.id))
 
+const isCoverSvg = computed(() => Boolean(project.value?.imagenPrincipal?.endsWith('.svg')))
 const isLogoMain = computed(() => {
   if (!project.value) return false
   return Boolean(project.value.logo && project.value.imagenPrincipal === project.value.logo)
 })
 
-const isCoverSvg = computed(() => {
-  return Boolean(project.value?.imagenPrincipal?.endsWith('.svg'))
-})
-
-// Galería: usa imagenes del JSON si están definidas, si no auto-carga desde galleries.json
 const projectGallery = computed(() => {
   if (!project.value) return []
   const manual = project.value.imagenes
@@ -34,21 +28,15 @@ const projectGallery = computed(() => {
   return galleries[project.value.id] || []
 })
 
-// Si no existe el proyecto, redirigir a home
-watch(project, (newProject) => {
-  if (!newProject) {
-    router.push('/')
-  }
-}, { immediate: true })
+watch(project, (p) => { if (!p) router.push('/') }, { immediate: true })
 
 const formatDate = (dateStr) => {
   if (!dateStr) return ''
-  if (dateStr === 'Actualidad' || dateStr === 'Present') {
-    return t('common.present')
-  }
+  if (dateStr === 'Actualidad' || dateStr === 'Present') return t('common.present')
   const [year, month] = dateStr.split('-')
-  const monthsEs = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-  const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  if (!month) return year
+  const monthsEs = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+  const monthsEn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
   const months = locale.value === 'es' ? monthsEs : monthsEn
   return `${months[parseInt(month) - 1]} ${year}`
 }
@@ -57,10 +45,8 @@ const selectedIndex = ref(null)
 const selectedImage = computed(() =>
   selectedIndex.value !== null ? projectGallery.value[selectedIndex.value] : null
 )
-
-const openLightbox = (index) => { selectedIndex.value = index }
+const openLightbox  = (i) => { selectedIndex.value = i }
 const closeLightbox = () => { selectedIndex.value = null }
-
 const prevImage = () => {
   if (selectedIndex.value === null) return
   selectedIndex.value = (selectedIndex.value - 1 + projectGallery.value.length) % projectGallery.value.length
@@ -71,76 +57,46 @@ const nextImage = () => {
 }
 
 const handleKey = (e) => {
-  if (e.key === 'Escape') closeLightbox()
-  if (e.key === 'ArrowLeft') prevImage()
-  if (e.key === 'ArrowRight') nextImage()
+  if (e.key === 'Escape')      closeLightbox()
+  if (e.key === 'ArrowLeft')   prevImage()
+  if (e.key === 'ArrowRight')  nextImage()
 }
 
 const goBack = () => {
-  if (window.history.state?.back) {
-    router.back()
-  } else {
-    router.push('/proyectos')
-  }
+  window.history.state?.back ? router.back() : router.push('/proyectos')
 }
-
-onUnmounted(() => {
-  window.removeEventListener('keydown', handleKey)
-})
 
 onMounted(() => {
   window.addEventListener('keydown', handleKey)
-  // Animación de entrada
-  gsap.from('.back-button-fixed', {
-    opacity: 0,
-    x: -20,
-    duration: 0.5,
-    ease: 'power3.out'
+  gsap.from('.back-btn', { opacity: 0, x: -14, duration: 0.45, ease: 'power3.out' })
+  gsap.from('.pv-cover', { opacity: 0, y: 36, duration: 0.9, ease: 'power3.out', delay: 0.05 })
+  gsap.from('.pv-head',  { opacity: 0, y: 20, duration: 0.65, ease: 'power3.out', delay: 0.3 })
+  gsap.from('.pv-tagline', { opacity: 0, y: 14, duration: 0.55, ease: 'power3.out', delay: 0.4 })
+  gsap.from(['.pv-meta', '.pv-desc-col'], {
+    opacity: 0, y: 22, duration: 0.65, stagger: 0.12, ease: 'power3.out', delay: 0.5
   })
-  
-  gsap.from('.cover-hero', {
-    opacity: 0,
-    y: 40,
-    scale: 0.98,
-    duration: 1,
-    ease: 'power3.out',
-    delay: 0.05
-  })
+})
 
-  gsap.from('.bento-grid .b-cell', {
-    opacity: 0,
-    y: 30,
-    duration: 0.6,
-    stagger: 0.08,
-    ease: 'power3.out',
-    delay: 0.25
-  })
-
-  gsap.from('.b-desc-section, .b-gallery', {
-    opacity: 0,
-    y: 30,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power3.out',
-    delay: 0.4
-  })
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKey)
 })
 </script>
 
 <template>
   <div class="project-view" v-if="project">
-    <!-- Back button fijo -->
-    <button @click="goBack" class="back-button-fixed">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+
+    <!-- ===== BACK BUTTON ===== -->
+    <button @click="goBack" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
       {{ t('project.back') }}
     </button>
-    
-    <!-- ===== COVER HERO (full-bleed protagonist) ===== -->
-    <section class="cover-hero-wrap">
+
+    <!-- ===== COVER ===== -->
+    <section class="pv-cover-wrap">
       <div
-        class="cover-hero"
+        class="pv-cover"
         :class="{ 'is-svg': isCoverSvg, 'is-logo': isLogoMain && !isCoverSvg }"
         :style="{ background: project.colorFondo }"
       >
@@ -149,128 +105,137 @@ onMounted(() => {
           :src="project.imagenPrincipal"
           :alt="project.nombre"
         />
-
-        <!-- Floating top-left index/type -->
-        <div class="cover-hero-top">
-          <span class="cover-hero-index">{{ String(project.orden).padStart(2, '0') }}</span>
-          <span class="cover-hero-type">{{ project.tipo }}</span>
-        </div>
-
-        <!-- Floating bottom-left name (only for legacy where SVG doesn't carry it) -->
-        <div v-if="!isCoverSvg" class="cover-hero-name">
-          {{ project.nombre }}
-        </div>
+        <div v-if="!isCoverSvg" class="pv-cover-name">{{ project.nombre }}</div>
       </div>
     </section>
 
-    <!-- ===== BENTO META (image cell removed — cover is now the hero) ===== -->
-    <div class="bento-container">
-      <div class="bento-wrap">
+    <!-- ===== MASTHEAD ===== -->
+    <div class="pv-inner">
+      <div class="pv-rule"></div>
+      <div class="pv-head">
+        <h1 class="pv-name">{{ project.nombre }}</h1>
+        <span class="pv-tipo">{{ project.tipo }}</span>
+      </div>
+      <p class="pv-tagline">{{ l(project.descripcionCorta) }}</p>
+      <div class="pv-rule"></div>
+    </div>
 
-        <!-- Grid bento -->
-        <div class="bento-grid">
+    <!-- ===== BODY GRID: meta + description ===== -->
+    <section class="pv-body">
+      <div class="pv-inner">
+        <div class="pv-body-grid">
 
-          <!-- Celda nombre + CTA: col 1+2, row 1 -->
-          <div class="b-cell b-name-cell" :style="{ background: project.colorFondo }">
-            <span class="b-tipo" :style="{ color: project.colorTexto }">
-              {{ String(project.orden).padStart(2, '0') }} — {{ project.tipo }}
-            </span>
-            <h1 class="b-title" :style="{ color: project.colorTexto }">{{ project.nombre }}</h1>
-            <p class="b-tagline" :style="{ color: project.colorTexto }">{{ l(project.descripcionCorta) }}</p>
-            <div class="b-links">
-              <a v-if="project.linkDemo" :href="project.linkDemo" target="_blank" :style="{ color: project.colorTexto }">{{ t('project.viewSite') }} ↗</a>
-              <a v-if="project.linkGithub" :href="project.linkGithub" target="_blank" :style="{ color: project.colorTexto }">GitHub ↗</a>
-            </div>
-          </div>
+          <!-- Meta sidebar -->
+          <aside class="pv-meta">
 
-          <!-- Celda meta: col 3, row 1 -->
-          <div class="b-cell b-meta-cell">
-            <div v-if="project.cliente">
-              <p class="b-ml">{{ t('project.client') }}</p>
-              <p class="b-mv">{{ project.cliente }}</p>
+            <div v-if="project.cliente" class="pv-meta-item">
+              <p class="pv-meta-label">{{ t('project.client') }}</p>
+              <p class="pv-meta-value">{{ project.cliente }}</p>
             </div>
-            <div>
-              <p class="b-ml" :style="project.cliente ? 'margin-top:16px' : ''">Período</p>
-              <p class="b-mv">{{ formatDate(project.fechaInicio) }} — {{ formatDate(project.fechaFin) }}</p>
-            </div>
-            <div>
-              <p class="b-ml" style="margin-top:16px">Rol</p>
-              <p class="b-mv">{{ l(project.rol) }}</p>
-            </div>
-          </div>
 
-          <!-- Celda tecnologías: col 1, row 2 -->
-          <div class="b-cell b-tech-cell">
-            <p class="b-ml">Stack</p>
-            <div class="b-techs">
-              <span v-for="tech in project.tecnologias" :key="tech">{{ tech }}</span>
+            <div class="pv-meta-item">
+              <p class="pv-meta-label">Período</p>
+              <p class="pv-meta-value">
+                {{ formatDate(project.fechaInicio) }}
+                <span v-if="project.fechaFin"> → {{ formatDate(project.fechaFin) }}</span>
+              </p>
             </div>
-          </div>
 
-          <!-- Celda features: col 2+3, row 2 -->
-          <div class="b-cell b-feat-cell" v-if="l(project.features)?.length">
-            <p class="b-ml">{{ t('project.features') }}</p>
-            <ul class="b-features">
+            <div class="pv-meta-item">
+              <p class="pv-meta-label">{{ t('project.role') }}</p>
+              <p class="pv-meta-value">{{ l(project.rol) }}</p>
+            </div>
+
+            <div class="pv-meta-item">
+              <p class="pv-meta-label">Stack</p>
+              <div class="pv-stack">
+                <span v-for="tech in project.tecnologias" :key="tech" class="pv-tech">{{ tech }}</span>
+              </div>
+            </div>
+
+            <div class="pv-links">
+              <a
+                v-if="project.linkDemo"
+                :href="project.linkDemo"
+                target="_blank"
+                rel="noopener"
+                class="pv-link pv-link--primary"
+              >
+                {{ t('project.viewSite') }}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+              <a
+                v-if="project.linkGithub"
+                :href="project.linkGithub"
+                target="_blank"
+                rel="noopener"
+                class="pv-link"
+              >
+                GitHub
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+
+          </aside>
+
+          <!-- Description -->
+          <div class="pv-desc-col">
+            <p class="pv-desc">{{ l(project.descripcionLarga) }}</p>
+
+            <ul v-if="l(project.features)?.length" class="pv-features">
               <li v-for="feature in l(project.features)" :key="feature">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <span class="pv-feature-dash" aria-hidden="true">—</span>
                 {{ feature }}
               </li>
             </ul>
           </div>
 
         </div>
+      </div>
+    </section>
 
-        <!-- Descripción -->
-        <div class="b-desc-section">
-          <h3 class="b-block-title">{{ t('project.about') }}</h3>
-          <p class="b-desc">{{ l(project.descripcionLarga) }}</p>
-        </div>
-
-        <!-- Galería masonry -->
-        <div v-if="projectGallery.length">
-          <h3 class="b-block-title">{{ t('project.gallery') }}</h3>
-          <div class="b-gallery">
-            <div
-              v-for="(img, index) in projectGallery"
-              :key="index"
-              class="b-gallery-item"
-              @click="openLightbox(index)"
-            >
-              <img :src="img" :alt="`Screenshot ${index + 1}`" />
-            </div>
+    <!-- ===== GALLERY ===== -->
+    <section v-if="projectGallery.length" class="pv-gallery-section">
+      <div class="pv-inner">
+        <div class="pv-rule"></div>
+        <div class="pv-gallery">
+          <div
+            v-for="(img, i) in projectGallery"
+            :key="i"
+            class="pv-gallery-item"
+            @click="openLightbox(i)"
+            role="button"
+            :aria-label="`Screenshot ${i + 1}`"
+          >
+            <img :src="img" :alt="`${project.nombre} screenshot ${i + 1}`" />
           </div>
         </div>
-
       </div>
-    </div><!-- end bento-container -->
+    </section>
 
     <Footer />
 
-    <!-- Lightbox -->
+    <!-- ===== LIGHTBOX ===== -->
     <Teleport to="body">
-      <div v-if="selectedImage" class="lightbox" @click.self="closeLightbox">
-        <button class="lightbox-close" @click="closeLightbox">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-        <button class="lightbox-prev" @click="prevImage">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="15 18 9 12 15 6"/>
-          </svg>
-        </button>
-        <img :src="selectedImage" @click.stop />
-        <button class="lightbox-next" @click="nextImage">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="9 18 15 12 9 6"/>
-          </svg>
-        </button>
-        <div class="lightbox-counter">{{ selectedIndex + 1 }} / {{ projectGallery.length }}</div>
-      </div>
+      <Transition name="lb">
+        <div v-if="selectedImage !== null" class="lightbox" @click.self="closeLightbox">
+          <button class="lb-close" @click="closeLightbox" aria-label="Cerrar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <button v-if="projectGallery.length > 1" class="lb-nav lb-prev" @click="prevImage" aria-label="Anterior">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <img :src="selectedImage" @click.stop />
+          <button v-if="projectGallery.length > 1" class="lb-nav lb-next" @click="nextImage" aria-label="Siguiente">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <p class="lb-counter">{{ selectedIndex + 1 }} / {{ projectGallery.length }}</p>
+        </div>
+      </Transition>
     </Teleport>
+
   </div>
 </template>
 
@@ -279,61 +244,66 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-/* ─── Back button fijo ─── */
-.back-button-fixed {
+/* ===== BACK BUTTON ===== */
+.back-btn {
   position: fixed;
   top: 24px;
   left: 24px;
-  z-index: 1000;
-  display: flex;
+  z-index: 200;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--bg-primary);
+  background: var(--bg-primary-alpha);
   border: 1px solid var(--border-color);
-  padding: 12px 20px;
+  padding: 10px 18px;
   border-radius: 50px;
-  color: var(--text-primary);
-  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.86rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition:
+    color 0.2s var(--ease-out),
+    background 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out);
 }
 
-.back-button-fixed:hover {
-  background: var(--bg-secondary);
-  transform: translateX(-4px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+.back-btn:active {
+  transform: scale(0.96);
+  transition-duration: 0.08s;
 }
 
-.back-button-fixed svg {
-  transition: transform 0.3s ease;
+@media (hover: hover) and (pointer: fine) {
+  .back-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+  }
 }
 
-.back-button-fixed:hover svg {
-  transform: translateX(-3px);
+/* ===== COVER ===== */
+.pv-cover-wrap {
+  padding: 92px 48px 0;
 }
 
-/* ─── Cover Hero (full-bleed protagonist) ─── */
-.cover-hero-wrap {
-  padding: 90px 48px 0;
+.pv-inner {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 48px;
 }
 
-.cover-hero {
+.pv-cover {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  border-radius: 22px;
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid var(--border-color);
   isolation: isolate;
 }
 
-.cover-hero img {
+.pv-cover img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -343,351 +313,264 @@ onMounted(() => {
   z-index: 1;
 }
 
-/* Legacy projects: logos centered with padding */
-.cover-hero.is-logo img {
+.pv-cover.is-logo img {
   object-fit: contain;
-  padding: 8% 12%;
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.35));
+  padding: 8% 14%;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
 }
 
-/* Floating top overlay */
-.cover-hero-top {
-  position: absolute;
-  top: 24px;
-  left: 28px;
-  right: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.cover-hero-index {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.75);
-  font-variant-numeric: tabular-nums;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  mix-blend-mode: difference;
-}
-
-.cover-hero-type {
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 5px 12px;
-  border-radius: 50px;
-}
-
-/* Floating name (only for legacy projects without baked-in wordmark) */
-.cover-hero-name {
+.pv-cover-name {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-  text-transform: uppercase;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   z-index: 2;
   pointer-events: none;
-  padding: 0 24px;
   text-align: center;
+  padding: 0 24px;
 }
 
-/* ─── Bento Dashboard (image cell removed, restructured) ─── */
-.bento-container {
-  padding: 28px 48px 80px;
-  max-width: 1400px;
-  margin: 0 auto;
+/* ===== MASTHEAD ===== */
+.pv-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--border-color);
 }
 
-.bento-wrap {
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  overflow: hidden;
-  background: var(--bg-primary);
-  padding: 32px;
+.pv-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 0 16px;
+  flex-wrap: wrap;
 }
 
-.bento-grid {
+.pv-name {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text-primary);
+}
+
+.pv-tipo {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.pv-tagline {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 760px;
+  padding-bottom: 28px;
+}
+
+/* ===== BODY GRID ===== */
+.pv-body {
+  padding: 56px 0 72px;
+}
+
+.pv-body-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 12px;
-  margin-bottom: 12px;
+  grid-template-columns: 220px 1fr;
+  gap: 72px;
+  align-items: start;
 }
 
-.b-cell {
-  border-radius: 14px;
-  padding: 28px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-secondary);
-}
-
-/* col 1, row 1: name + tagline + CTAs */
-.b-name-cell {
-  grid-column: 1;
-  grid-row: 1;
+/* Meta sidebar */
+.pv-meta {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-height: 240px;
+  gap: 28px;
+  position: sticky;
+  top: 96px;
 }
 
-/* col 2, row 1: meta */
-.b-meta-cell {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-/* col 1, row 2: tech */
-.b-tech-cell {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-/* col 2, row 2: features */
-.b-feat-cell {
-  grid-column: 2;
-  grid-row: 2;
-  padding: 20px 28px;
-}
-
-.b-tipo {
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.65;
-}
-
-.b-title {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  margin: 4px 0 8px;
-}
-
-.b-tagline {
-  font-size: 0.85rem;
-  opacity: 0.75;
-  line-height: 1.55;
-  flex: 1;
-}
-
-.b-links {
+.pv-meta-item {
   display: flex;
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  flex-direction: column;
+  gap: 5px;
 }
 
-.b-links a {
-  flex: 1;
-  text-align: center;
-  padding: 9px;
-  border-radius: 8px;
+.pv-meta-label {
   font-size: 0.78rem;
   font-weight: 600;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: background 0.2s;
-}
-
-.b-links a:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.b-ml {
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--text-tertiary);
-  margin-bottom: 3px;
 }
 
-.b-mv {
-  font-size: 0.88rem;
-  color: var(--text-primary);
+.pv-meta-value {
+  font-size: 0.92rem;
   font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
 }
 
-.b-techs {
+.pv-stack {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 8px;
+  margin-top: 2px;
 }
 
-.b-techs span {
-  font-size: 0.7rem;
-  font-weight: 600;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-color);
+.pv-tech {
+  font-size: 0.78rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  padding: 3px 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 4px 12px;
   border-radius: 50px;
+  transition:
+    color 0.18s var(--ease-out),
+    background 0.18s var(--ease-out);
 }
 
-.b-features {
+.pv-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.pv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 10px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition:
+    color 0.2s var(--ease-out),
+    background 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out);
+}
+
+.pv-link:active {
+  transform: scale(0.97);
+  transition-duration: 0.08s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pv-link:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+  }
+}
+
+.pv-link--primary {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pv-link--primary:hover {
+    opacity: 0.85;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+  }
+}
+
+/* Description */
+.pv-desc-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.pv-desc {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+.pv-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   list-style: none;
   padding: 0;
-  margin: 8px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
-}
-
-.b-features li {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.b-features svg {
-  color: var(--accent-color);
-  flex-shrink: 0;
-}
-
-.b-desc-section {
-  padding: 32px 0 24px;
   border-top: 1px solid var(--border-color);
-  margin-top: 20px;
+  padding-top: 28px;
 }
 
-.b-block-title {
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  margin-bottom: 14px;
-}
-
-.b-desc {
-  font-size: 1rem;
-  line-height: 1.75;
+.pv-features li {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 0.92rem;
   color: var(--text-secondary);
-  max-width: 760px;
+  line-height: 1.5;
 }
 
-/* Galería masonry */
-.b-gallery {
-  columns: 4;
-  column-gap: 8px;
-  margin-top: 12px;
-  margin-bottom: 8px;
+.pv-feature-dash {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  font-weight: 300;
 }
 
-.b-gallery-item {
-  break-inside: avoid;
-  margin-bottom: 8px;
-  border-radius: 8px;
+/* ===== GALLERY ===== */
+.pv-gallery-section {
+  padding: 0 0 72px;
+}
+
+.pv-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.pv-gallery-item {
+  border-radius: 6px;
   overflow: hidden;
-  cursor: zoom-in;
   background: var(--bg-secondary);
+  cursor: zoom-in;
 }
 
-.b-gallery-item img {
+.pv-gallery-item img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.4s, filter 0.4s;
+  transition: transform 0.45s var(--ease-out);
 }
 
-.b-gallery-item:hover img {
-  transform: scale(1.03);
-  filter: brightness(1.08);
+.pv-gallery-item:active {
+  opacity: 0.85;
+  transition-duration: 0.08s;
 }
 
-/* ─── Responsive ─── */
-@media (max-width: 1024px) {
-  .cover-hero-wrap {
-    padding: 80px 24px 0;
-  }
-
-  .bento-container {
-    padding: 20px 24px 60px;
-  }
-
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .b-name-cell,
-  .b-meta-cell,
-  .b-tech-cell,
-  .b-feat-cell {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .b-gallery {
-    columns: 3;
+@media (hover: hover) and (pointer: fine) {
+  .pv-gallery-item:hover img {
+    transform: scale(1.03);
   }
 }
 
-@media (max-width: 640px) {
-  .cover-hero-wrap {
-    padding: 70px 16px 0;
-  }
-
-  .cover-hero {
-    aspect-ratio: 4 / 3;
-    border-radius: 16px;
-  }
-
-  .cover-hero-top {
-    top: 14px;
-    left: 16px;
-    right: 16px;
-  }
-
-  .bento-container {
-    padding: 16px 16px 48px;
-  }
-
-  .bento-wrap {
-    padding: 16px;
-  }
-
-  .b-name-cell {
-    min-height: 180px;
-  }
-
-  .b-gallery {
-    columns: 2;
-  }
-}
-
-/* ─── Lightbox ─── */
+/* ===== LIGHTBOX ===== */
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 1000;
+  background: rgba(0, 0, 0, 0.96);
+  z-index: 9000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 48px;
   cursor: zoom-out;
 }
 
@@ -695,67 +578,115 @@ onMounted(() => {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: default;
 }
 
-.lightbox-close {
+.lb-close {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  padding: 12px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.lightbox-prev,
-.lightbox-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 14px;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.18s var(--ease-out), color 0.18s var(--ease-out);
 }
 
-.lightbox-prev { left: 24px; }
-.lightbox-next { right: 24px; }
+.lb-close:active { transform: scale(0.9); transition-duration: 0.08s; }
 
-.lightbox-prev:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-50%) translateX(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .lb-close:hover { background: rgba(255, 255, 255, 0.18); color: #fff; }
 }
 
-.lightbox-next:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-50%) translateX(2px);
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.18s var(--ease-out),
+    color 0.18s var(--ease-out),
+    transform 0.18s var(--ease-out);
 }
 
-.lightbox-counter {
+.lb-nav:active { opacity: 0.7; transition-duration: 0.08s; }
+
+@media (hover: hover) and (pointer: fine) {
+  .lb-nav:hover { background: rgba(255, 255, 255, 0.18); color: #fff; }
+}
+
+.lb-prev { left: 20px; }
+.lb-next { right: 20px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .lb-prev:hover { transform: translateY(-50%) translateX(-2px); }
+  .lb-next:hover { transform: translateY(-50%) translateX(2px); }
+}
+
+.lb-counter {
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Lightbox transition */
+.lb-enter-active,
+.lb-leave-active { transition: opacity 0.22s var(--ease-out); }
+.lb-enter-from,
+.lb-leave-to { opacity: 0; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .pv-body-grid {
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pv-cover-wrap { padding: 88px 24px 0; }
+  .pv-inner { padding: 0 24px; }
+  .pv-body { padding: 40px 0 56px; }
+  .pv-gallery-section { padding: 0 0 56px; }
+  .pv-body-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .pv-meta { position: static; flex-direction: row; flex-wrap: wrap; gap: 20px 32px; }
+  .pv-meta-item { min-width: 120px; }
+  .pv-links { flex-direction: row; flex-wrap: wrap; }
+}
+
+@media (max-width: 520px) {
+  .pv-cover-wrap { padding: 80px 16px 0; }
+  .pv-inner { padding: 0 16px; }
+  .pv-cover { aspect-ratio: 4 / 3; border-radius: 6px; }
+  .pv-body { padding: 32px 0 48px; }
+  .pv-gallery-section { padding: 0 0 48px; }
+  .pv-gallery { grid-template-columns: 1fr; }
+  .pv-meta { flex-direction: column; }
+  .lb-prev { left: 10px; }
+  .lb-next { right: 10px; }
+  .lightbox { padding: 32px 12px; }
 }
 </style>

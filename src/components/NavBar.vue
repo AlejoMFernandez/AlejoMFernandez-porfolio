@@ -200,7 +200,11 @@ onUnmounted(() => {
   right: 0;
   z-index: 100;
   padding: 28px 40px;
-  transition: all 0.3s ease;
+  transition:
+    background 0.28s var(--ease-out),
+    backdrop-filter 0.28s var(--ease-out),
+    padding 0.28s var(--ease-out),
+    box-shadow 0.28s var(--ease-out);
 }
 
 .navbar.scrolled {
@@ -262,12 +266,21 @@ onUnmounted(() => {
   font-weight: 500;
   padding: 10px 20px;
   border-radius: 50px;
-  transition: all 0.3s ease;
+  transition:
+    color 0.2s var(--ease-out),
+    background 0.2s var(--ease-out);
   position: relative;
 }
 
-.nav-link:hover {
-  color: var(--text-primary);
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover {
+    color: var(--text-primary);
+  }
+}
+
+.nav-link:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
 }
 
 .nav-link.active {
@@ -296,16 +309,23 @@ onUnmounted(() => {
   font-weight: 500;
   padding: 8px 12px;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: background 0.2s var(--ease-out);
 }
 
-.lang-toggle:hover {
-  background: var(--bg-secondary);
+@media (hover: hover) and (pointer: fine) {
+  .lang-toggle:hover {
+    background: var(--bg-secondary);
+  }
+}
+
+.lang-toggle:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
 }
 
 .lang-option {
   color: var(--text-tertiary);
-  transition: color 0.3s ease;
+  transition: color 0.2s var(--ease-out);
 }
 
 .lang-option.active {
@@ -331,7 +351,12 @@ onUnmounted(() => {
   cursor: pointer;
   gap: 5px;
   z-index: 101;
-  transition: all 0.3s ease;
+  transition: background 0.2s var(--ease-out), transform 0.15s var(--ease-out);
+}
+
+.menu-button:active {
+  transform: scale(0.93);
+  transition-duration: 0.1s;
 }
 
 .menu-line {
@@ -339,7 +364,7 @@ onUnmounted(() => {
   height: 2px;
   background: var(--text-primary);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: transform 0.28s var(--ease-out), opacity 0.2s var(--ease-out);
 }
 
 .menu-button.open .menu-line:first-child {
@@ -393,10 +418,16 @@ onUnmounted(() => {
   font-size: clamp(2rem, 8vw, 4rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  transition: color 0.3s ease;
+  transition: color 0.2s var(--ease-out);
 }
 
-.menu-link:hover .menu-link-text {
+@media (hover: hover) and (pointer: fine) {
+  .menu-link:hover .menu-link-text {
+    color: var(--accent-color);
+  }
+}
+
+.menu-link:active .menu-link-text {
   color: var(--accent-color);
 }
 
@@ -418,7 +449,12 @@ onUnmounted(() => {
   padding: 14px 24px;
   border-radius: 50px;
   color: var(--text-tertiary);
-  transition: all 0.3s ease;
+  transition: background 0.2s var(--ease-out), transform 0.15s var(--ease-out);
+}
+
+.lang-toggle-mobile:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
 }
 
 .lang-toggle-mobile span.active {

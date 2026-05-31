@@ -64,27 +64,27 @@ onUnmounted(() => {
             >
               LinkedIn
             </a>
-            <a 
-              v-if="personal.redes.twitter"
-              :href="personal.redes.twitter" 
+            <a
+              v-if="personal.redes.instagram"
+              :href="personal.redes.instagram"
               target="_blank"
               class="footer-link"
             >
-              Twitter
+              Instagram
             </a>
-            <a 
-              v-if="personal.redes.upwork"
-              :href="personal.redes.upwork" 
+            <a
+              v-if="personal.redes.tiktok"
+              :href="personal.redes.tiktok"
               target="_blank"
-              class="footer-link footer-link--upwork"
+              class="footer-link"
             >
-              UpWork
+              TikTok
             </a>
-            <a 
+            <a
               v-if="personal.redes.whatsapp"
-              :href="personal.redes.whatsapp" 
+              :href="personal.redes.whatsapp"
               target="_blank"
-              class="footer-link footer-link--whatsapp"
+              class="footer-link"
             >
               WhatsApp
             </a>
