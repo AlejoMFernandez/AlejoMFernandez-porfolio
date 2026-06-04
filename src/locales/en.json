@@ -48,6 +48,7 @@
     "skillsDev": "WEB Development",
     "downloadCV": "Download CV",
     "letsConnect": "Let's connect",
+    "skillsTools": "Tools & Deploy",
     "skillsInfra": "Infrastructure",
     "experience": "Experience",
     "education": "Education",
@@ -57,7 +58,11 @@
     "contactSubtitle": "I'm available for freelance projects and job opportunities"
   },
   "work": {
-    "totalProjects": "selected projects"
+    "totalProjects": "selected projects",
+    "allTypes": "All",
+    "sortNewest": "Newest first",
+    "sortOldest": "Oldest first",
+    "projects": "projects"
   },
   "footer": {
     "version": "Version",

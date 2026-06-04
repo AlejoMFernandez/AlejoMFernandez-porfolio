@@ -14,6 +14,7 @@ import GoaldemyCover   from '../components/covers/GoaldemyCover.vue'
 import PatagoniaCover  from '../components/covers/PatagoniaCover.vue'
 import InkmanagerCover from '../components/covers/InkmanagerCover.vue'
 import PuraaCover      from '../components/covers/PuraaCover.vue'
+import PolyfuseCover   from '../components/covers/PolyfuseCover.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -234,6 +235,7 @@ onUnmounted(() => {
           >
             <span class="cover-type-tag">{{ project.tipo }}</span>
             <FranzaCover      v-if="project.id === 'franza'" />
+            <PolyfuseCover    v-else-if="project.id === 'polyfuse'" />
             <ArianaCover      v-else-if="project.id === 'arianadeviaje'" />
             <GoaldemyCover    v-else-if="project.id === 'goaldemy'" />
             <PatagoniaCover   v-else-if="project.id === 'patagonia-refugio'" />

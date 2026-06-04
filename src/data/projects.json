@@ -66,6 +66,72 @@
     "orden": 1
   },
   {
+    "id": "polyfuse",
+    "nombre": "POLYFUSE",
+    "descripcionCorta": {
+      "es": "Puzzle minimalista de fusión de polígonos: deslizá, fusioná formas iguales y sumá lados hasta llegar al círculo. Tablero 100% SVG animado.",
+      "en": "Minimalist polygon-fusion puzzle: slide, merge matching shapes and add sides until you reach the circle. A 100% animated SVG board.",
+      "pt": "Puzzle minimalista de fusão de polígonos: deslize, funda formas iguais e some lados até chegar ao círculo. Tabuleiro 100% SVG animado."
+    },
+    "descripcionLarga": {
+      "es": "POLYFUSE es un puzzle geométrico al estilo 2048 donde, en vez de números, fusionás polígonos: dos triángulos forman un cuadrado, dos cuadrados un pentágono, y así hasta llegar al círculo (el infinito). Todo el tablero está renderizado en SVG puro y animado con GSAP —sin canvas, sin imágenes— con una rampa de color en OKLCH que va del índigo al magenta y termina en el dorado de la meta. Incluye cuatro modos de juego (Clásico, Contrarreloj, Zen con deshacer, y un Diario determinístico con RNG sembrado que reparte el mismo tablero a todos cada día), cuatro mapas con celdas bloqueadas y paredes que cambian la estrategia, sonido sintetizado con Howler y persistencia de récords y ajustes en localStorage. Pensado mobile-first con control por teclado (flechas/WASD) y gestos swipe, y accesible: respeta prefers-reduced-motion y nunca se traba gracias a watchdogs que fuerzan el estado final si la pestaña queda en segundo plano.",
+      "en": "POLYFUSE is a 2048-style geometric puzzle where, instead of numbers, you merge polygons: two triangles make a square, two squares a pentagon, all the way up to the circle (infinity). The whole board is rendered in pure SVG and animated with GSAP —no canvas, no images— with an OKLCH color ramp that runs from indigo to magenta and ends in the gold of the goal. It ships four game modes (Classic, Time Attack, Zen with undo, and a deterministic Daily driven by a seeded RNG that deals everyone the same board each day), four maps with blocked cells and walls that reshape the strategy, synthesized sound via Howler, and record/settings persistence in localStorage. Built mobile-first with keyboard (arrows/WASD) and swipe controls, and accessible: it respects prefers-reduced-motion and never soft-locks thanks to watchdogs that force the final state if the tab is backgrounded.",
+      "pt": "POLYFUSE é um puzzle geométrico no estilo 2048 onde, em vez de números, você funde polígonos: dois triângulos formam um quadrado, dois quadrados um pentágono, e assim por diante até chegar ao círculo (o infinito). Todo o tabuleiro é renderizado em SVG puro e animado com GSAP —sem canvas, sem imagens— com uma rampa de cor em OKLCH que vai do índigo ao magenta e termina no dourado da meta. Inclui quatro modos de jogo (Clássico, Contrarrelógio, Zen com desfazer e um Diário determinístico com RNG semeado que distribui o mesmo tabuleiro para todos a cada dia), quatro mapas com células bloqueadas e paredes que mudam a estratégia, som sintetizado com Howler e persistência de recordes e ajustes em localStorage. Pensado mobile-first com controle por teclado (setas/WASD) e gestos de swipe, e acessível: respeita prefers-reduced-motion e nunca trava graças a watchdogs que forçam o estado final se a aba ficar em segundo plano."
+    },
+    "fechaInicio": "2026-06",
+    "fechaFin": "2026-06",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": ["TypeScript", "Vite", "SVG", "GSAP", "Howler"],
+    "linkDemo": "https://polyfusegame.vercel.app",
+    "linkGithub": "https://github.com/AlejoMFernandez/POLYFUSE",
+    "imagenPrincipal": "/images/projects/polyfusemain.svg",
+    "logo": null,
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #0A0A14 0%, #1A1240 55%, #2E1A5C 100%)",
+    "colorTexto": "#ffffff",
+    "features": {
+      "es": [
+        "Fusión de polígonos estilo 2048: triángulo → cuadrado → … → círculo",
+        "Tablero 100% SVG animado con GSAP (sin canvas ni imágenes)",
+        "Rampa de color en OKLCH del índigo al magenta y dorado de la meta",
+        "4 modos: Clásico, Contrarreloj, Zen (con deshacer) y Diario",
+        "Modo Diario determinístico con RNG sembrado (mismo tablero para todos)",
+        "4 mapas con celdas bloqueadas y paredes que cambian la estrategia",
+        "Control por teclado (flechas/WASD) y gestos swipe, mobile-first",
+        "Accesible: prefers-reduced-motion + persistencia en localStorage"
+      ],
+      "en": [
+        "2048-style polygon fusion: triangle → square → … → circle",
+        "100% SVG board animated with GSAP (no canvas, no images)",
+        "OKLCH color ramp from indigo to magenta to goal gold",
+        "4 modes: Classic, Time Attack, Zen (with undo) and Daily",
+        "Deterministic Daily mode with seeded RNG (same board for everyone)",
+        "4 maps with blocked cells and walls that reshape strategy",
+        "Keyboard (arrows/WASD) and swipe controls, mobile-first",
+        "Accessible: prefers-reduced-motion + localStorage persistence"
+      ],
+      "pt": [
+        "Fusão de polígonos estilo 2048: triângulo → quadrado → … → círculo",
+        "Tabuleiro 100% SVG animado com GSAP (sem canvas nem imagens)",
+        "Rampa de cor em OKLCH do índigo ao magenta e dourado da meta",
+        "4 modos: Clássico, Contrarrelógio, Zen (com desfazer) e Diário",
+        "Modo Diário determinístico com RNG semeado (mesmo tabuleiro para todos)",
+        "4 mapas com células bloqueadas e paredes que mudam a estratégia",
+        "Controle por teclado (setas/WASD) e gestos de swipe, mobile-first",
+        "Acessível: prefers-reduced-motion + persistência em localStorage"
+      ]
+    },
+    "tipo": "GAME",
+    "destacado": true,
+    "orden": 1.5
+  },
+  {
     "id": "trama-estudio",
     "nombre": "TRAMA Estudio",
     "descripcionCorta": {
@@ -130,6 +196,72 @@
     "tipo": "LANDING",
     "destacado": false,
     "orden": 2
+  },
+  {
+    "id": "caleido",
+    "nombre": "Caleido",
+    "descripcionCorta": {
+      "es": "Estudio de arte geométrico generativo: creá mandalas, espirógrafos y campos de flujo, o dibujá en un caleidoscopio vivo donde un trazo se refleja mil veces. Todo en SVG.",
+      "en": "Generative geometric art studio: craft mandalas, spirographs and flow fields, or draw inside a living kaleidoscope where one stroke reflects a thousand times. All in SVG.",
+      "pt": "Estúdio de arte geométrico generativo: crie mandalas, espirógrafos e campos de fluxo, ou desenhe num caleidoscópio vivo onde um traço se reflete mil vezes. Tudo em SVG."
+    },
+    "descripcionLarga": {
+      "es": "Caleido es un estudio de arte geométrico generativo construido en React 19 y SVG puro. Reúne cuatro modos creativos: Dibujar (un caleidoscopio vivo con simetría radial, en rejilla, en espiral o espejada, pinceles, formas, goma, brillo y auto-pintado guiado por un campo de flujo), Mandala (rosetones radiales hipnóticos), Espirógrafo (curvas epicicloidales) y Campo de flujo (líneas que siguen ruido tipo Perlin). Cada obra se genera a partir de una semilla con RNG sembrado, así que el resultado es reproducible y compartible por URL. Incluye paletas curadas en OKLCH, exportación a SVG vectorial y PNG 2000px, grabación de la sesión de dibujo con exportación a GIF, una galería persistente en localStorage, onboarding guiado y respeto por prefers-reduced-motion. La interfaz —tema oscuro de galería con un único acento lima— está animada con Motion y maquetada con Tailwind v4 (tokens OKLCH, sin archivo de config).",
+      "en": "Caleido is a generative geometric art studio built with React 19 and pure SVG. It brings together four creative modes: Draw (a living kaleidoscope with radial, grid, spiral or mirror symmetry, brushes, shapes, eraser, glow and flow-field-guided auto-painting), Mandala (hypnotic radial rosettes), Spirograph (epicycloid curves) and Flow Field (lines following Perlin-like noise). Every piece is generated from a seed via a seeded RNG, so results are reproducible and shareable by URL. It ships curated OKLCH palettes, export to vector SVG and 2000px PNG, drawing-session recording with GIF export, a persistent localStorage gallery, guided onboarding and prefers-reduced-motion support. The interface —a dark gallery theme with a single lime accent— is animated with Motion and laid out with Tailwind v4 (OKLCH tokens, no config file).",
+      "pt": "Caleido é um estúdio de arte geométrico generativo construído com React 19 e SVG puro. Reúne quatro modos criativos: Desenhar (um caleidoscópio vivo com simetria radial, em grade, em espiral ou espelhada, pincéis, formas, borracha, brilho e auto-pintura guiada por um campo de fluxo), Mandala (rosetões radiais hipnóticos), Espirógrafo (curvas epicicloidais) e Campo de fluxo (linhas que seguem ruído tipo Perlin). Cada obra é gerada a partir de uma semente com RNG semeado, então o resultado é reproduzível e compartilhável por URL. Inclui paletas curadas em OKLCH, exportação para SVG vetorial e PNG 2000px, gravação da sessão de desenho com exportação para GIF, uma galeria persistente em localStorage, onboarding guiado e respeito por prefers-reduced-motion. A interface —tema escuro de galeria com um único acento lima— é animada com Motion e construída com Tailwind v4 (tokens OKLCH, sem arquivo de config)."
+    },
+    "fechaInicio": "2026-06",
+    "fechaFin": "2026-06",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": ["React", "Vite", "Tailwind CSS", "Motion", "SVG"],
+    "linkDemo": "https://caleidodraw.vercel.app",
+    "linkGithub": "https://github.com/AlejoMFernandez/Caleido",
+    "imagenPrincipal": "/images/projects/caleidomain.svg",
+    "logo": null,
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #07090D 0%, #0E1119 55%, #161B26 100%)",
+    "colorTexto": "#F6F7F9",
+    "features": {
+      "es": [
+        "Cuatro modos: Dibujar, Mandala, Espirógrafo y Campo de flujo",
+        "Caleidoscopio vivo: simetría radial, rejilla, espiral o espejo en tiempo real",
+        "Pinceles, formas (línea, rect, elipse, polígono, estrella), goma, brillo y auto-pintado por campo de flujo",
+        "Generación determinística con RNG sembrado: cada semilla es reproducible y compartible por URL",
+        "Paletas curadas en OKLCH y modos de color (ciclo, degradado, sólido)",
+        "Exportación a SVG vectorial y PNG 2000px",
+        "Grabación de la sesión de dibujo y exportación a GIF",
+        "Galería en localStorage, onboarding guiado y prefers-reduced-motion"
+      ],
+      "en": [
+        "Four modes: Draw, Mandala, Spirograph and Flow Field",
+        "Living kaleidoscope: radial, grid, spiral or mirror symmetry in real time",
+        "Brushes, shapes (line, rect, ellipse, polygon, star), eraser, glow and flow-field auto-painting",
+        "Deterministic generation with seeded RNG: every seed is reproducible and shareable by URL",
+        "Curated OKLCH palettes and color modes (cycle, gradient, solid)",
+        "Export to vector SVG and 2000px PNG",
+        "Drawing-session recording with GIF export",
+        "localStorage gallery, guided onboarding and prefers-reduced-motion"
+      ],
+      "pt": [
+        "Quatro modos: Desenhar, Mandala, Espirógrafo e Campo de fluxo",
+        "Caleidoscópio vivo: simetria radial, grade, espiral ou espelho em tempo real",
+        "Pincéis, formas (linha, retângulo, elipse, polígono, estrela), borracha, brilho e auto-pintura por campo de fluxo",
+        "Geração determinística com RNG semeado: cada semente é reproduzível e compartilhável por URL",
+        "Paletas curadas em OKLCH e modos de cor (ciclo, degradê, sólido)",
+        "Exportação para SVG vetorial e PNG 2000px",
+        "Gravação da sessão de desenho com exportação para GIF",
+        "Galeria em localStorage, onboarding guiado e prefers-reduced-motion"
+      ]
+    },
+    "tipo": "WEBAPP",
+    "destacado": false,
+    "orden": 2.2
   },
   {
     "id": "patagonia-refugio",

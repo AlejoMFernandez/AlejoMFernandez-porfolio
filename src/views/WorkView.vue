@@ -6,42 +6,116 @@ import { useLocalized } from '../composables/useLocalized.js'
 import projects from '../data/projects.json'
 import Footer from '../components/Footer.vue'
 
+// Square graphic-only animated tiles for the grid view
+import InkmanagerTile from '../components/covers/InkmanagerTile.vue'
+import PolyfuseTile from '../components/covers/PolyfuseTile.vue'
+import PatagoniaTile from '../components/covers/PatagoniaTile.vue'
+import GoaldemyTile from '../components/covers/GoaldemyTile.vue'
+import FranzaTile from '../components/covers/FranzaTile.vue'
+import ArianaTile from '../components/covers/ArianaTile.vue'
+import PuraaTile from '../components/covers/PuraaTile.vue'
+import TramaTile from '../components/covers/TramaTile.vue'
+import CaleidoTile from '../components/covers/CaleidoTile.vue'
+import HearthTile from '../components/covers/HearthTile.vue'
+import ChampionsTile from '../components/covers/ChampionsTile.vue'
+import ItalnetTile from '../components/covers/ItalnetTile.vue'
+import FenalixTile from '../components/covers/FenalixTile.vue'
+import HardlabTile from '../components/covers/HardlabTile.vue'
+
 const { t } = useI18n()
 const { l } = useLocalized()
 
-// 'grid' = new default square-graphic view | 'list' = original list view
+// 'grid' = square-graphic view | 'list' = default list view
 const viewMode = ref('list')
+
+// 'desc' = newest year first | 'asc' = oldest year first
+const sortOrder = ref('desc')
 
 const allProjects = computed(() =>
   [...projects].sort((a, b) => (a.orden ?? 99) - (b.orden ?? 99))
 )
 
+// Group projects by year (from fechaInicio), year buckets sorted by sortOrder.
+// Within each year, items keep their orden ranking.
+const groupedProjects = computed(() => {
+  const byYear = new Map()
+  for (const p of allProjects.value) {
+    const year = String(p.fechaInicio || '').slice(0, 4) || '----'
+    if (!byYear.has(year)) byYear.set(year, [])
+    byYear.get(year).push(p)
+  }
+  const years = [...byYear.keys()].sort((a, b) =>
+    sortOrder.value === 'desc' ? Number(b) - Number(a) : Number(a) - Number(b)
+  )
+  return years.map((year) => ({ year, items: byYear.get(year) }))
+})
+
+const toggleSort = () => {
+  sortOrder.value = sortOrder.value === 'desc' ? 'asc' : 'desc'
+}
+
+// Map project id -> animated square tile (image fallback when none)
+const tileMap = {
+  inkmanager: InkmanagerTile,
+  polyfuse: PolyfuseTile,
+  'patagonia-refugio': PatagoniaTile,
+  goaldemy: GoaldemyTile,
+  franza: FranzaTile,
+  arianadeviaje: ArianaTile,
+  puraa: PuraaTile,
+  'trama-estudio': TramaTile,
+  caleido: CaleidoTile,
+  'hearth-and-hall': HearthTile,
+  'champions-dle': ChampionsTile,
+  italnet: ItalnetTile,
+  fenalix: FenalixTile,
+  hardlab: HardlabTile
+}
+const tileFor = (id) => tileMap[id] || null
+
 const isCoverSvg = (p) => Boolean(p?.imagenPrincipal?.endsWith('.svg'))
 const isLogoMain = (p) => Boolean(p?.logo && p?.imagenPrincipal === p.logo)
 
-const formatYear = (dateStr) => {
-  if (!dateStr) return ''
-  return String(dateStr).slice(0, 4)
+// Respect the user's reduced-motion preference for all JS-driven motion
+const prefersReduced = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+// Staggered reveal of the current layout's items
+const staggerIn = (items, isGrid) => {
+  if (!items || !items.length || prefersReduced()) return
+  gsap.from(items, {
+    y: isGrid ? 14 : 32,
+    opacity: 0,
+    duration: isGrid ? 0.5 : 0.7,
+    stagger: isGrid ? 0.04 : 0.08,
+    ease: 'power3.out'
+  })
 }
 
-const animateList = () => {
-  gsap.from('.project-row', { y: 32, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out', delay: 0.1 })
+// List <-> grid swap: CSS handles the leave fade; the incoming layout
+// staggers in here. Firing from the Transition @enter hook guarantees the
+// new section is in the DOM (pre-paint) under mode="out-in", so no flash.
+const onViewEnter = (el, done) => {
+  const isGrid = viewMode.value === 'grid'
+  staggerIn(el.querySelectorAll(isGrid ? '.grid-card' : '.project-row'), isGrid)
+  done()
 }
 
-const animateGrid = () => {
-  gsap.from('.grid-card', { scale: 0.94, opacity: 0, duration: 0.5, stagger: 0.04, ease: 'power3.out', delay: 0.05 })
+// Sort flips keep the same section mounted, so re-stagger in place
+const runEntrance = () => {
+  requestAnimationFrame(() => {
+    const isGrid = viewMode.value === 'grid'
+    const root = document.querySelector(isGrid ? '.projects-grid-section' : '.projects-section')
+    if (root) staggerIn(root.querySelectorAll(isGrid ? '.grid-card' : '.project-row'), isGrid)
+  })
 }
 
-watch(viewMode, (v) => {
-  if (v === 'list') {
-    requestAnimationFrame(() => animateList())
-  } else {
-    requestAnimationFrame(() => animateGrid())
-  }
-})
+watch(sortOrder, runEntrance)
 
 onMounted(() => {
-  animateList()
+  staggerIn(document.querySelectorAll('.project-row'), false)
 })
 </script>
 
@@ -57,103 +131,155 @@ onMounted(() => {
             <h1 class="work-title">Selected work.</h1>
             <p class="work-sub">{{ allProjects.length }} {{ t('work.totalProjects') }}</p>
           </div>
-          <!-- View toggle -->
-          <div class="view-toggle" role="group" aria-label="View mode">
+
+          <div class="header-controls">
+            <!-- Sort by year toggle -->
             <button
-              class="toggle-btn"
-              :class="{ 'is-active': viewMode === 'grid' }"
-              @click="viewMode = 'grid'"
-              aria-label="Grid view"
+              class="sort-btn"
+              @click="toggleSort"
+              :aria-label="sortOrder === 'desc' ? t('work.sortNewest') : t('work.sortOldest')"
             >
-              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
-                <rect x="2"  y="2"  width="7" height="7" rx="1.5"/>
-                <rect x="11" y="2"  width="7" height="7" rx="1.5"/>
-                <rect x="2"  y="11" width="7" height="7" rx="1.5"/>
-                <rect x="11" y="11" width="7" height="7" rx="1.5"/>
+              <svg
+                class="sort-icon"
+                :class="{ 'is-asc': sortOrder === 'asc' }"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                width="14"
+                height="14"
+                aria-hidden="true"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <polyline points="19 12 12 19 5 12"/>
               </svg>
+              <span class="sort-label">
+                {{ sortOrder === 'desc' ? t('work.sortNewest') : t('work.sortOldest') }}
+              </span>
             </button>
-            <button
-              class="toggle-btn"
-              :class="{ 'is-active': viewMode === 'list' }"
-              @click="viewMode = 'list'"
-              aria-label="List view"
-            >
-              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
-                <rect x="2" y="4"  width="16" height="2.5" rx="1.2"/>
-                <rect x="2" y="9"  width="16" height="2.5" rx="1.2"/>
-                <rect x="2" y="14" width="16" height="2.5" rx="1.2"/>
-              </svg>
-            </button>
+
+            <!-- View toggle -->
+            <div class="view-toggle" role="group" aria-label="View mode">
+              <button
+                class="toggle-btn"
+                :class="{ 'is-active': viewMode === 'grid' }"
+                @click="viewMode = 'grid'"
+                aria-label="Grid view"
+              >
+                <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+                  <rect x="2"  y="2"  width="7" height="7" rx="1.5"/>
+                  <rect x="11" y="2"  width="7" height="7" rx="1.5"/>
+                  <rect x="2"  y="11" width="7" height="7" rx="1.5"/>
+                  <rect x="11" y="11" width="7" height="7" rx="1.5"/>
+                </svg>
+              </button>
+              <button
+                class="toggle-btn"
+                :class="{ 'is-active': viewMode === 'list' }"
+                @click="viewMode = 'list'"
+                aria-label="List view"
+              >
+                <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+                  <rect x="2" y="4"  width="16" height="2.5" rx="1.2"/>
+                  <rect x="2" y="9"  width="16" height="2.5" rx="1.2"/>
+                  <rect x="2" y="14" width="16" height="2.5" rx="1.2"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
-      <!-- ── GRID VIEW (default) ── -->
-      <section v-if="viewMode === 'grid'" class="projects-grid-section">
-        <div class="grid-3">
-          <RouterLink
-            v-for="project in allProjects"
-            :key="project.id"
-            :to="`/proyecto/${project.id}`"
-            class="grid-card"
-            :style="{ background: project.colorFondo }"
-          >
-            <img
-              v-if="project.imagenPrincipal"
-              :src="project.imagenPrincipal"
-              :alt="project.nombre"
-              class="grid-cover"
-              loading="lazy"
-            />
-            <!-- Hover overlay: project name -->
-            <div class="grid-overlay">
-              <span class="grid-name">{{ project.nombre }}</span>
-              <span class="grid-tipo">{{ project.tipo }}</span>
-            </div>
-          </RouterLink>
-        </div>
-      </section>
+      <Transition name="view" mode="out-in" @enter="onViewEnter">
 
-      <!-- ── LIST VIEW ── -->
-      <section v-else class="projects-section">
-        <ul class="projects-list">
-          <li
-            v-for="(project, i) in allProjects"
-            :key="project.id"
-            class="project-row"
+        <!-- ── GRID VIEW ── -->
+        <section v-if="viewMode === 'grid'" key="grid" class="projects-grid-section">
+          <div
+            v-for="group in groupedProjects"
+            :key="group.year"
+            class="year-group"
           >
-            <RouterLink :to="`/proyecto/${project.id}`" class="project-link">
-              <span class="project-index">{{ String(i + 1).padStart(2, '0') }}</span>
-              <div class="project-center">
-                <h3 class="project-name">{{ project.nombre }}</h3>
-                <p class="project-desc">{{ l(project.descripcionCorta) }}</p>
-                <div class="project-meta-row">
-                  <span class="project-tipo">{{ project.tipo }}</span>
-                  <span class="project-sep">·</span>
-                  <span class="project-year">{{ formatYear(project.fechaInicio) }}</span>
-                  <span class="project-sep">·</span>
-                  <span class="project-techs">{{ project.tecnologias.slice(0, 3).join(' / ') }}</span>
-                </div>
-              </div>
-              <div
-                class="project-cover"
-                :class="{ 'is-svg': isCoverSvg(project), 'is-logo': isLogoMain(project) && !isCoverSvg(project) }"
+            <header class="year-header">
+              <h2 class="year-title">{{ group.year }}</h2>
+              <span class="year-count">{{ group.items.length }} {{ t('work.projects') }}</span>
+            </header>
+            <div class="grid-3">
+              <RouterLink
+                v-for="project in group.items"
+                :key="project.id"
+                :to="`/proyecto/${project.id}`"
+                class="grid-card"
                 :style="{ background: project.colorFondo }"
               >
+                <div v-if="tileFor(project.id)" class="grid-tile">
+                  <component :is="tileFor(project.id)" />
+                </div>
                 <img
-                  v-if="project.imagenPrincipal"
+                  v-else-if="project.imagenPrincipal"
                   :src="project.imagenPrincipal"
                   :alt="project.nombre"
+                  class="grid-cover"
                   loading="lazy"
                 />
-              </div>
-              <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
-                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-              </svg>
-            </RouterLink>
-          </li>
-        </ul>
-      </section>
+                <div class="grid-overlay">
+                  <span class="grid-name">{{ project.nombre }}</span>
+                  <span class="grid-tipo">{{ project.tipo }}</span>
+                </div>
+              </RouterLink>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── LIST VIEW ── -->
+        <section v-else key="list" class="projects-section">
+          <div
+            v-for="group in groupedProjects"
+            :key="group.year"
+            class="year-group"
+          >
+            <header class="year-header">
+              <h2 class="year-title">{{ group.year }}</h2>
+              <span class="year-count">{{ group.items.length }} {{ t('work.projects') }}</span>
+            </header>
+            <ul class="projects-list">
+              <li
+                v-for="(project, i) in group.items"
+                :key="project.id"
+                class="project-row"
+              >
+                <RouterLink :to="`/proyecto/${project.id}`" class="project-link">
+                  <span class="project-index">{{ String(i + 1).padStart(2, '0') }}</span>
+                  <div class="project-center">
+                    <h3 class="project-name">{{ project.nombre }}</h3>
+                    <p class="project-desc">{{ l(project.descripcionCorta) }}</p>
+                    <div class="project-meta-row">
+                      <span class="project-tipo">{{ project.tipo }}</span>
+                      <span class="project-sep">·</span>
+                      <span class="project-techs">{{ project.tecnologias.slice(0, 3).join(' / ') }}</span>
+                    </div>
+                  </div>
+                  <div
+                    class="project-cover"
+                    :class="{ 'is-svg': isCoverSvg(project), 'is-logo': isLogoMain(project) && !isCoverSvg(project) }"
+                    :style="{ background: project.colorFondo }"
+                  >
+                    <img
+                      v-if="project.imagenPrincipal"
+                      :src="project.imagenPrincipal"
+                      :alt="project.nombre"
+                      loading="lazy"
+                    />
+                  </div>
+                  <svg class="project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                  </svg>
+                </RouterLink>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+      </Transition>
 
     </div>
     <Footer />
@@ -173,7 +299,7 @@ onMounted(() => {
 
 /* ---- Page header ---- */
 .work-header {
-  margin-bottom: 48px;
+  margin-bottom: 64px;
 }
 
 .work-header-top {
@@ -181,6 +307,62 @@ onMounted(() => {
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-bottom: 6px;
+}
+
+/* ---- Sort by year toggle ---- */
+.sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.12s var(--ease-out);
+}
+
+.sort-icon {
+  flex-shrink: 0;
+  color: var(--accent-color);
+  transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sort-icon.is-asc {
+  transform: rotate(180deg);
+}
+
+.sort-label {
+  display: inline-block;
+}
+
+.sort-btn:active {
+  transform: scale(0.96);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sort-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+  }
 }
 
 /* ---- View toggle ---- */
@@ -193,7 +375,6 @@ onMounted(() => {
   border-radius: 10px;
   padding: 4px;
   flex-shrink: 0;
-  margin-bottom: 6px; /* align with sub text baseline */
 }
 
 .toggle-btn {
@@ -207,13 +388,17 @@ onMounted(() => {
   background: transparent;
   color: var(--text-tertiary);
   cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s var(--ease-out);
 }
 
 .toggle-btn.is-active {
   background: var(--bg-primary);
   color: var(--text-primary);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.toggle-btn:active {
+  transform: scale(0.94);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -223,9 +408,76 @@ onMounted(() => {
   }
 }
 
+/* ---- Page header text ---- */
+.work-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--accent-color);
+}
+
+.work-title {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.work-sub {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Year group ---- */
+.year-group {
+  margin-bottom: 72px;
+}
+
+.year-group:last-child {
+  margin-bottom: 0;
+}
+
+.year-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.year-title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.year-count {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- List / grid view swap ---- */
+.view-leave-active {
+  transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+.view-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
 /* ---- Grid view ---- */
 .projects-grid-section {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .grid-3 {
@@ -253,8 +505,16 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Show the left (graphic) half of each 1600×1000 SVG cover */
   object-position: 0% 50%;
+  transition: transform 0.40s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.grid-tile {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   transition: transform 0.40s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
@@ -297,7 +557,8 @@ onMounted(() => {
     transform: translateY(-4px);
     box-shadow: 0 18px 48px -8px rgba(0, 0, 0, 0.35);
   }
-  .grid-card:hover .grid-cover {
+  .grid-card:hover .grid-cover,
+  .grid-card:hover .grid-tile {
     transform: scale(1.05);
   }
   .grid-card:hover .grid-overlay {
@@ -310,7 +571,6 @@ onMounted(() => {
   transition-duration: 0.1s;
 }
 
-/* Mobile: always show overlay label */
 @media (hover: none) {
   .grid-overlay {
     opacity: 1;
@@ -319,30 +579,6 @@ onMounted(() => {
     padding-bottom: 16px;
   }
   .grid-tipo { display: none; }
-}
-
-/* ---- Page header continued ---- */
-
-.work-eyebrow {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  color: var(--accent-color);
-}
-
-.work-title {
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: var(--text-primary);
-}
-
-.work-sub {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
 }
 
 /* ---- Project list ---- */
@@ -448,11 +684,6 @@ onMounted(() => {
   opacity: 0.35;
 }
 
-.project-year {
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
-
 .project-techs {
   font-weight: 500;
 }
@@ -481,12 +712,10 @@ onMounted(() => {
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* SVG covers: fill perfectly */
 .project-cover.is-svg img {
   object-fit: cover;
 }
 
-/* Logo-as-main (legacy): show centered with padding */
 .project-cover.is-logo img {
   object-fit: contain;
   padding: 12%;
@@ -510,8 +739,17 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .work-header-top { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .view-toggle { margin-bottom: 0; }
+  .work-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .header-controls { margin-bottom: 0; }
+
+  .year-group { margin-bottom: 56px; }
+  .year-header { margin-bottom: 22px; }
+  .year-title { font-size: clamp(2rem, 7vw, 2.6rem); }
+
   .project-link {
     grid-template-columns: 40px 1fr 130px 24px;
     gap: 20px;
@@ -532,5 +770,9 @@ onMounted(() => {
   .project-index { font-size: 0.7rem; }
   .project-meta-row { font-size: 0.65rem; }
   .grid-3 { gap: 8px; }
+
+  .sort-btn { padding: 0 12px; height: 38px; font-size: 0.62rem; }
+  .sort-label { display: none; }
+  .year-group { margin-bottom: 44px; }
 }
 </style>
