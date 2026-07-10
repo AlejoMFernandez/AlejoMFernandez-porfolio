@@ -6,35 +6,28 @@ brand
 
 ## Users
 
-Recruiters, potential freelance clients, and fellow developers. They browse quickly on desktop, expect to be stopped by something they haven't seen before, and decide in the first 10 seconds whether to stay. They are pattern-matching for "generic AI portfolio" and will close immediately if they find one.
+Potential clients — business owners, brands, and people who need a website or web app built. They are NOT technical recruiters. They browse on mobile as much as desktop, they scan the work fast, and they decide whether to reach out based on whether the projects look professional and relevant to their need. Success is a WhatsApp message or email.
 
 ## Product Purpose
 
-A developer portfolio for Alejo Martin Fernandez — web developer from Villa Bosch, Argentina. Demonstrates technical range (Vue.js, Laravel, PHP, infrastructure) and design sensibility through the projects themselves. The SVG project covers are the differentiator; the layout exists to serve them. Success means a visitor contacts Alejo or saves the URL.
+A freelance web-development landing page for Alejo Martin Fernandez — web developer from Villa Bosch, Argentina. The goal is to sell services: show real work clearly, make it obvious what Alejo can build, and make contacting him effortless. The project SVG covers are the visual hook; the layout exists to present the work and drive contact.
+
+The job-hunting version of this portfolio (full SPA with home A/B/C, animated covers, particles, i18n) is preserved in the `portfolio-empleo` git branch and the `v1-portfolio-empleo` tag.
 
 ## Brand Personality
 
 Precise. Restless. Honest.
 
-No agency voice. No buzzwords. The work speaks; the copy supports. Argentine in spirit: direct, warm when needed, unafraid of personality.
-
-## Anti-references
-
-- Generic AI-generated portfolios: cream or white backgrounds, Inter font, massive centred hero name, identical bento grid cards with icon+heading+text, "Let's collaborate on something amazing" CTAs.
-- Over-designed editorial portfolios that prioritise aesthetic over communication: Cormorant italic everywhere, broadsheet grids, drop caps for no reason.
-- The hero-metric template: big number, small label, supporting stat, gradient accent repeated in a 4-column strip.
-- Numbered section scaffolding (01 / 02 / 03 above every heading).
-- Tiny all-caps tracked eyebrows above every section.
-- Ghost-card pattern: 1px border + soft wide shadow on the same element.
+No agency voice. No buzzwords. The work speaks; the copy supports. Argentine in spirit: direct, warm, unafraid of personality.
 
 ## Design Principles
 
-1. **Work first.** The SVG project covers are the differentiator. Show them immediately and at scale. The grid layout should make them breathe.
-2. **Editorial over widget.** Layout choices should feel like decisions, not defaults. Variable-width grid rows, not identical 2-column clones.
-3. **Confident restraint.** Strong typography and clear hierarchy, no decoration for decoration's sake. One accent colour, used intentionally.
-4. **Animate with purpose.** Entrance choreography on load, intentional reveals on scroll, responsive press states on every interactive element. Under 300ms for UI, custom cubic-bezier easings throughout.
-5. **Honest copy.** Alejo's voice, not a template. No buzzwords. No "seamless" or "cutting-edge". No em dashes.
+1. **Simple and fast.** One scrolling page: hero, projects grid, contact. No routing, no animation libraries, no particles or custom cursors. Static SVG covers only — the previous version was slowed down by animation, so keep the page light.
+2. **Work first.** Show every project with its graphic SVG cover at scale, a short plain-language description, the tech, and links to the live site and code.
+3. **Contact is the goal.** WhatsApp and email are always one tap away. Copy speaks to clients ("¿Tenés un proyecto en mente?"), not to recruiters.
+4. **Confident restraint.** Strong typography, clear hierarchy, one accent colour. Subtle hover states only, guarded behind pointer:fine. No decoration for its own sake.
+5. **Honest copy.** Alejo's voice in Spanish. No buzzwords, no "seamless" or "cutting-edge".
 
 ## Accessibility & Inclusion
 
-WCAG AA minimum. prefers-reduced-motion supported globally (already implemented in main.css). Hover effects guarded behind pointer:fine media query for touch devices. All interactive elements have :active press states.
+WCAG AA minimum. prefers-reduced-motion supported globally. Hover effects guarded behind pointer:fine for touch devices. All interactive elements have :active press states. Images are lazy-loaded.

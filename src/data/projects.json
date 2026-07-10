@@ -1,18 +1,18 @@
 [
   {
-    "id": "inkmanager",
-    "nombre": "InkManager",
+    "id": "goaldemy",
+    "nombre": "GOALDEMY",
     "descripcionCorta": {
-      "es": "Sistema de gestión para estudios de tatuaje con body map 3D rotable donde se marcan los tatuajes en su posición exacta.",
-      "en": "Tattoo studio management system with a rotatable 3D body map to pin every tattoo at its exact location.",
-      "pt": "Sistema de gestão para estúdios de tatuagem com body map 3D rotacionável para marcar cada tatuagem na posição exata."
+      "es": "App web de minijuegos de fútbol con rachas, logros y tablas de posición gamificadas.",
+      "en": "Football-themed gaming app with streaks, achievements, and gamified leaderboards.",
+      "pt": "Aplicativo web de minijogos de futebol com sequencias, conquistas e rankings gamificados."
     },
     "descripcionLarga": {
-      "es": "InkManager es un sistema operativo digital para estudios de tatuaje. Su diferencial es un body map 3D construido con Three.js: el tatuador hace click sobre un modelo humano rotable y queda marcado el tatuaje en la posición exacta del cuerpo, con foto, estilo, fecha y notas. Incluye CRM de clientes con búsqueda y paginación, calendario drag & drop con FullCalendar para reagendar turnos, dashboard con KPIs animados, identidad de marca completa (splash intro, tipografía editorial Bebas Neue + Inter, monograma SVG animado) y auth segura con CSRF + bcrypt. Construido en PHP 8.2 vanilla con MVC propio, sin frameworks ni Composer, y deployado en Railway con MySQL.",
-      "en": "InkManager is a digital operating system for tattoo studios. Its key differentiator is a 3D body map built with Three.js: the artist clicks on a rotatable human model and the tattoo gets pinned at the exact body position, with photo, style, date and notes. Includes a customer CRM with search and pagination, a drag & drop FullCalendar to reschedule sessions, a dashboard with animated KPIs, full brand identity (animated splash intro, editorial typography Bebas Neue + Inter, animated SVG monogram), and secure auth with CSRF + bcrypt. Built in vanilla PHP 8.2 with a custom MVC — no framework, no Composer — and deployed on Railway with MySQL.",
-      "pt": "InkManager é um sistema operacional digital para estúdios de tatuagem. Seu diferencial é um body map 3D construído com Three.js: o tatuador clica sobre um modelo humano rotacionável e a tatuagem fica marcada na posição exata do corpo, com foto, estilo, data e anotações. Inclui CRM de clientes com busca e paginação, calendário drag & drop com FullCalendar para reagendar sessões, dashboard com KPIs animados, identidade de marca completa (splash intro animado, tipografia editorial Bebas Neue + Inter, monograma SVG animado) e auth segura com CSRF + bcrypt. Construído em PHP 8.2 vanilla com MVC próprio, sem framework nem Composer, e deployado no Railway com MySQL."
+      "es": "Goaldemy es una plataforma de aprendizaje gamificada centrada en el fútbol. Incluye 8 minijuegos únicos para poner a prueba tu conocimiento (jugadores, clubes, posiciones y valores de mercado), un sistema de rachas y logros desbloqueables, tablas de posición competitivas y perfiles públicos. La autenticación y los datos en tiempo real están gestionados por Supabase, con estadísticas visualizadas mediante Chart.js.",
+      "en": "Goaldemy is a gamified learning platform centered around football. It features 8 unique mini-games to test your knowledge (players, clubs, positions, and market values), a streaks and unlockable achievements system, competitive leaderboards, and public profiles. Authentication and real-time data are managed by Supabase, with statistics visualized via Chart.js.",
+      "pt": "Goaldemy e uma plataforma de aprendizado gamificada focada em futebol. Inclui 8 minijogos unicos para testar seu conhecimento (jogadores, clubes, posicoes e valores de mercado), um sistema de sequencias e conquistas desbloqueaveis, rankings competitivos e perfis publicos. A autenticacao e os dados em tempo real sao gerenciados pelo Supabase, com estatisticas exibidas com Chart.js."
     },
-    "fechaInicio": "2026-05",
+    "fechaInicio": "2025-09",
     "fechaFin": "Actualidad",
     "cliente": null,
     "rol": {
@@ -20,50 +20,462 @@
       "en": "Full-Stack Developer",
       "pt": "Desenvolvedor Full-Stack"
     },
-    "tecnologias": ["PHP", "MySQL", "Three.js", "JavaScript", "Tailwind CSS", "FullCalendar", "Railway"],
-    "linkDemo": "https://inkmanager.up.railway.app/",
-    "linkGithub": "https://github.com/AlejoMFernandez/InkManager",
-    "imagenPrincipal": "/images/projects/inkmanagermain.svg",
-    "logo": "/images/projects/inkmanagerlogo.svg",
+    "tecnologias": [
+      "Vite",
+      "Vue.js",
+      "Tailwind CSS",
+      "JavaScript",
+      "Supabase",
+      "MongoDB"
+    ],
+    "linkDemo": "https://goaldemy.vercel.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/Goaldemy",
+    "imagenPrincipal": "/images/projects/goaldemymain.svg",
+    "logo": "/images/projects/goaldemylogo.png",
+    "isotipo": "/images/projects/goaldemyisotipo.png",
     "imagenes": [],
     "video": null,
-    "colorFondo": "linear-gradient(135deg, #0a0a0a 0%, #1a0606 55%, #2a0808 100%)",
+    "colorFondo": "linear-gradient(135deg, #03081A 0%, #162035 100%)",
     "colorTexto": "#ffffff",
     "features": {
       "es": [
-        "Body map 3D rotable con raycaster click-to-mark",
-        "Markers persistentes anclados a posición + normal del cuerpo",
-        "CRM de clientes con búsqueda y paginación",
-        "Calendario drag & drop con 4 estados de turno",
-        "Dashboard con KPIs y animaciones de números",
-        "Identidad de marca completa (splash, tipografía, monograma)",
-        "Auth segura con CSRF, bcrypt y cookies HTTPS-aware",
-        "Upload de fotos con validación MIME real (finfo)"
+        "Sistema de misiones y XP",
+        "Logros desbloqueables",
+        "Sistema de niveles",
+        "Estadísticas de progreso",
+        "Recordatorios personalizados",
+        "Gamificación completa"
       ],
       "en": [
-        "Rotatable 3D body map with raycaster click-to-mark",
-        "Persistent markers anchored to body position + normal",
-        "Customer CRM with search and pagination",
-        "Drag & drop calendar with 4 appointment states",
-        "Dashboard with KPI counter animations",
-        "Full brand identity (splash, typography, monogram)",
-        "Secure auth with CSRF, bcrypt and HTTPS-aware cookies",
-        "Photo upload with real MIME validation (finfo)"
+        "Mission and XP system",
+        "Unlockable achievements",
+        "Level system",
+        "Progress statistics",
+        "Custom reminders",
+        "Full gamification"
       ],
       "pt": [
-        "Body map 3D rotacionável com raycaster click-to-mark",
-        "Markers persistentes ancorados à posição + normal do corpo",
-        "CRM de clientes com busca e paginação",
-        "Calendário drag & drop com 4 estados de turno",
-        "Dashboard com KPIs e animações de números",
-        "Identidade de marca completa (splash, tipografia, monograma)",
-        "Auth segura com CSRF, bcrypt e cookies HTTPS-aware",
-        "Upload de fotos com validação MIME real (finfo)"
+        "Sistema de missoes e XP",
+        "Conquistas desbloqueaveis",
+        "Sistema de niveis",
+        "Estatisticas de progresso",
+        "Lembretes personalizados",
+        "Gamificacao completa"
       ]
     },
     "tipo": "WEBAPP",
     "destacado": true,
-    "orden": 1
+    "orden": 1,
+    "gallery": [
+      "/images/projects/goaldemy/gallery1.png",
+      "/images/projects/goaldemy/gallery2.png",
+      "/images/projects/goaldemy/gallery3.png"
+    ]
+  },
+  {
+    "id": "puraa",
+    "nombre": "PURAA",
+    "descripcionCorta": {
+      "es": "E-commerce/landing de cosmética natural con enfoque en bienestar integral, bioconsciencia y alquimia vegetal.",
+      "en": "Natural cosmetics e-commerce/landing focused on holistic wellness, bio-consciousness, and plant-based alchemy.",
+      "pt": "E-commerce/landing de cosmetica natural com foco em bem-estar integral, bioconsciencia e alquimia vegetal."
+    },
+    "descripcionLarga": {
+      "es": "PURAA nace desde una búsqueda personal y profesional para crear productos que acompañen el cuidado del cuerpo y el bienestar integral. El sitio comunica una propuesta centrada en cosmética natural, alquimia vegetal y consumo consciente, resaltando calidad artesanal, respeto por la biología y procesos realizados con intención y presencia.",
+      "en": "PURAA was born from a personal and professional journey to create products that support body care and holistic well-being. The website communicates a proposal centered on natural cosmetics, plant-based alchemy, and conscious consumption, highlighting artisanal quality, respect for biology, and mindful production processes.",
+      "pt": "PURAA nasceu de uma busca pessoal e profissional para criar produtos que acompanhem o cuidado do corpo e o bem-estar integral. O site comunica uma proposta centrada em cosmetica natural, alquimia vegetal e consumo consciente, destacando qualidade artesanal, respeito pela biologia e processos realizados com intencao e presenca."
+    },
+    "fechaInicio": "2026-03",
+    "fechaFin": "2026-04",
+    "cliente": "PURAA",
+    "rol": {
+      "es": "Desarrollador Web Freelance",
+      "en": "Freelance Web Developer",
+      "pt": "Desenvolvedor Web Freelance"
+    },
+    "tecnologias": [
+      "WordPress",
+      "Elementor",
+      "WooCommerce",
+      "CSS"
+    ],
+    "linkDemo": "https://puraa.com.ar/",
+    "linkGithub": null,
+    "imagenPrincipal": "/images/projects/puraamain.svg",
+    "logo": "/images/projects/puraalogoclaro.png",
+    "imagenes": [
+      "/images/projects/puraamain.png"
+    ],
+    "video": null,
+    "colorFondo": "#2d6a4f",
+    "colorTexto": "#ffffff",
+    "features": {
+      "es": [
+        "Branding natural y holístico",
+        "Estructura de contenido educativa",
+        "Comunicación de valores de marca",
+        "Diseño visual limpio y orgánico"
+      ],
+      "en": [
+        "Natural and holistic branding",
+        "Educational content structure",
+        "Brand-value communication",
+        "Clean and organic visual design"
+      ],
+      "pt": [
+        "Branding natural e holistico",
+        "Estrutura de conteudo educativa",
+        "Comunicacao dos valores da marca",
+        "Design visual limpo e organico"
+      ]
+    },
+    "tipo": "WORDPRESS",
+    "destacado": true,
+    "orden": 2
+  },
+  {
+    "id": "franza",
+    "nombre": "FRANZA",
+    "descripcionCorta": {
+      "es": "Sistema web MVC para gestionar el portfolio de obras de una constructora con más de 15 años de experiencia.",
+      "en": "MVC web system to manage a construction company's project portfolio with over 15 years of experience.",
+      "pt": "Sistema web MVC para gerenciar o portfolio de obras de uma construtora com mais de 15 anos de experiencia."
+    },
+    "descripcionLarga": {
+      "es": "FRANZA es un sistema de gestión desarrollado en PHP nativo con arquitectura MVC para una empresa constructora con más de 15 años de experiencia en obras civiles e industriales. Incluye un panel de administración completo con ABM de obras (imágenes, galerías, descripción y ubicación), autenticación con roles, protección CSRF mediante tokens, URLs amigables con Apache mod_rewrite y contacto directo vía WhatsApp para solicitar presupuestos.",
+      "en": "FRANZA is a management system built in native PHP with MVC architecture for a construction company with over 15 years of experience in civil and industrial projects. It includes a full admin panel with project CRUD (images, galleries, description, and location), role-based authentication, CSRF token protection, clean URLs via Apache mod_rewrite, and direct WhatsApp contact for budget requests.",
+      "pt": "FRANZA e um sistema de gestao desenvolvido em PHP nativo com arquitetura MVC para uma empresa de construcao com mais de 15 anos de experiencia em obras civis e industriais. Inclui um painel administrativo completo com CRUD de obras (imagens, galerias, descricao e localizacao), autenticacao por papeis, protecao CSRF com tokens, URLs amigaveis com Apache mod_rewrite e contato direto por WhatsApp para solicitar orcamentos."
+    },
+    "fechaInicio": "2025-03",
+    "fechaFin": "2025-05",
+    "cliente": "Franza Constructora",
+    "rol": {
+      "es": "Desarrollador Full-Stack",
+      "en": "Full-Stack Developer",
+      "pt": "Desenvolvedor Full-Stack"
+    },
+    "tecnologias": [
+      "PHP",
+      "Bootstrap",
+      "CSS",
+      "JavaScript",
+      "MySQL"
+    ],
+    "linkDemo": "https://Franza.com.ar/",
+    "linkGithub": "https://github.com/AlejoMFernandez/Franza",
+    "imagenPrincipal": "/images/projects/franzamain.svg",
+    "logo": "/images/projects/franzalogo.png",
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #b38838 0%, #d4af37 100%)",
+    "colorTexto": "#ffffff",
+    "features": {
+      "es": [
+        "Generación automática de páginas",
+        "Sistema de banco de fotos",
+        "Portfolio de obras dinámico",
+        "Panel de administración",
+        "Diseño responsive"
+      ],
+      "en": [
+        "Automatic page generation",
+        "Photo bank system",
+        "Dynamic project portfolio",
+        "Admin panel",
+        "Responsive design"
+      ],
+      "pt": [
+        "Geracao automatica de paginas",
+        "Sistema de banco de fotos",
+        "Portfolio dinamico de obras",
+        "Painel administrativo",
+        "Design responsivo"
+      ]
+    },
+    "tipo": "ABM",
+    "destacado": true,
+    "orden": 3
+  },
+  {
+    "id": "granozero",
+    "nombre": "Grano Zero",
+    "descripcionCorta": {
+      "es": "App de aprendizaje sobre café de especialidad, con fuerte identidad visual: métodos, orígenes y niveles de tueste explicados de forma simple.",
+      "en": "Specialty coffee learning app with strong visual identity: brewing methods, origins and roast levels explained simply.",
+      "pt": "App de aprendizado sobre café especial com forte identidade visual: métodos, origens e níveis de torra explicados de forma simples."
+    },
+    "descripcionLarga": {
+      "es": "Grano Zero es una aplicación web para aprender sobre café de especialidad desde cero. Combina una identidad visual cálida y editorial con contenido educativo sobre métodos de preparación, orígenes del grano y niveles de tueste, presentado de forma progresiva y accesible para que cualquier persona pueda iniciarse en el mundo del café.",
+      "en": "Grano Zero is a web app to learn about specialty coffee from scratch. It combines a warm, editorial visual identity with educational content about brewing methods, bean origins and roast levels, presented progressively and accessibly so anyone can get started in the world of coffee.",
+      "pt": "Grano Zero é um aplicativo web para aprender sobre café especial do zero. Combina uma identidade visual quente e editorial com conteúdo educativo sobre métodos de preparo, origens do grão e níveis de torra, apresentado de forma progressiva e acessível."
+    },
+    "fechaInicio": "2026-06",
+    "fechaFin": "2026-07",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": [
+      "Vue",
+      "Vite",
+      "JavaScript",
+      "CSS"
+    ],
+    "linkDemo": "https://granozerocafe.vercel.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/GranoZeroIA",
+    "imagenPrincipal": "/images/projects/granozeromain.svg",
+    "logo": null,
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #1a0e07 0%, #2c1810 55%, #3d2416 100%)",
+    "colorTexto": "#f3e4d0",
+    "features": {
+      "es": [
+        "Identidad visual cálida y editorial",
+        "Contenido sobre métodos de preparación",
+        "Guía de orígenes del grano",
+        "Niveles de tueste explicados",
+        "Aprendizaje progresivo por niveles",
+        "Diseño responsive"
+      ],
+      "en": [
+        "Warm editorial visual identity",
+        "Content on brewing methods",
+        "Bean origin guide",
+        "Roast levels explained",
+        "Progressive level-based learning",
+        "Responsive design"
+      ],
+      "pt": [
+        "Identidade visual quente e editorial",
+        "Conteúdo sobre métodos de preparo",
+        "Guia de origens do grão",
+        "Níveis de torra explicados",
+        "Aprendizado progressivo por níveis",
+        "Design responsivo"
+      ]
+    },
+    "tipo": "WEBAPP",
+    "destacado": true,
+    "orden": 4
+  },
+  {
+    "id": "polyfuse",
+    "nombre": "POLYFUSE",
+    "descripcionCorta": {
+      "es": "Puzzle minimalista de fusión de polígonos: deslizá, fusioná formas iguales y sumá lados hasta llegar al círculo. Tablero 100% SVG animado.",
+      "en": "Minimalist polygon-fusion puzzle: slide, merge matching shapes and add sides until you reach the circle. A 100% animated SVG board.",
+      "pt": "Puzzle minimalista de fusão de polígonos: deslize, funda formas iguais e some lados até chegar ao círculo. Tabuleiro 100% SVG animado."
+    },
+    "descripcionLarga": {
+      "es": "POLYFUSE es un puzzle geométrico al estilo 2048 donde, en vez de números, fusionás polígonos: dos triángulos forman un cuadrado, dos cuadrados un pentágono, y así hasta llegar al círculo (el infinito). Todo el tablero está renderizado en SVG puro y animado con GSAP —sin canvas, sin imágenes— con una rampa de color en OKLCH que va del índigo al magenta y termina en el dorado de la meta. Incluye cuatro modos de juego (Clásico, Contrarreloj, Zen con deshacer, y un Diario determinístico con RNG sembrado que reparte el mismo tablero a todos cada día), cuatro mapas con celdas bloqueadas y paredes que cambian la estrategia, sonido sintetizado con Howler y persistencia de récords y ajustes en localStorage. Pensado mobile-first con control por teclado (flechas/WASD) y gestos swipe, y accesible: respeta prefers-reduced-motion y nunca se traba gracias a watchdogs que fuerzan el estado final si la pestaña queda en segundo plano.",
+      "en": "POLYFUSE is a 2048-style geometric puzzle where, instead of numbers, you merge polygons: two triangles make a square, two squares a pentagon, all the way up to the circle (infinity). The whole board is rendered in pure SVG and animated with GSAP —no canvas, no images— with an OKLCH color ramp that runs from indigo to magenta and ends in the gold of the goal. It ships four game modes (Classic, Time Attack, Zen with undo, and a deterministic Daily driven by a seeded RNG that deals everyone the same board each day), four maps with blocked cells and walls that reshape the strategy, synthesized sound via Howler, and record/settings persistence in localStorage. Built mobile-first with keyboard (arrows/WASD) and swipe controls, and accessible: it respects prefers-reduced-motion and never soft-locks thanks to watchdogs that force the final state if the tab is backgrounded.",
+      "pt": "POLYFUSE é um puzzle geométrico no estilo 2048 onde, em vez de números, você funde polígonos: dois triângulos formam um quadrado, dois quadrados um pentágono, e assim por diante até chegar ao círculo (o infinito). Todo o tabuleiro é renderizado em SVG puro e animado com GSAP —sem canvas, sem imagens— com uma rampa de cor em OKLCH que vai do índigo ao magenta e termina no dourado da meta. Inclui quatro modos de jogo (Clássico, Contrarrelógio, Zen com desfazer e um Diário determinístico com RNG semeado que distribui o mesmo tabuleiro para todos a cada dia), quatro mapas com células bloqueadas e paredes que mudam a estratégia, som sintetizado com Howler e persistência de recordes e ajustes em localStorage. Pensado mobile-first com controle por teclado (setas/WASD) e gestos de swipe, e acessível: respeita prefers-reduced-motion e nunca trava graças a watchdogs que forçam o estado final se a aba ficar em segundo plano."
+    },
+    "fechaInicio": "2026-06",
+    "fechaFin": "2026-06",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": [
+      "TypeScript",
+      "Vite",
+      "SVG",
+      "GSAP",
+      "Howler"
+    ],
+    "linkDemo": "https://polyfusegame.vercel.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/POLYFUSE",
+    "imagenPrincipal": "/images/projects/polyfusemain.svg",
+    "logo": null,
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #0A0A14 0%, #1A1240 55%, #2E1A5C 100%)",
+    "colorTexto": "#ffffff",
+    "features": {
+      "es": [
+        "Fusión de polígonos estilo 2048: triángulo → cuadrado → … → círculo",
+        "Tablero 100% SVG animado con GSAP (sin canvas ni imágenes)",
+        "Rampa de color en OKLCH del índigo al magenta y dorado de la meta",
+        "4 modos: Clásico, Contrarreloj, Zen (con deshacer) y Diario",
+        "Modo Diario determinístico con RNG sembrado (mismo tablero para todos)",
+        "4 mapas con celdas bloqueadas y paredes que cambian la estrategia",
+        "Control por teclado (flechas/WASD) y gestos swipe, mobile-first",
+        "Accesible: prefers-reduced-motion + persistencia en localStorage"
+      ],
+      "en": [
+        "2048-style polygon fusion: triangle → square → … → circle",
+        "100% SVG board animated with GSAP (no canvas, no images)",
+        "OKLCH color ramp from indigo to magenta to goal gold",
+        "4 modes: Classic, Time Attack, Zen (with undo) and Daily",
+        "Deterministic Daily mode with seeded RNG (same board for everyone)",
+        "4 maps with blocked cells and walls that reshape strategy",
+        "Keyboard (arrows/WASD) and swipe controls, mobile-first",
+        "Accessible: prefers-reduced-motion + localStorage persistence"
+      ],
+      "pt": [
+        "Fusão de polígonos estilo 2048: triângulo → quadrado → … → círculo",
+        "Tabuleiro 100% SVG animado com GSAP (sem canvas nem imagens)",
+        "Rampa de cor em OKLCH do índigo ao magenta e dourado da meta",
+        "4 modos: Clássico, Contrarrelógio, Zen (com desfazer) e Diário",
+        "Modo Diário determinístico com RNG semeado (mesmo tabuleiro para todos)",
+        "4 mapas com células bloqueadas e paredes que mudam a estratégia",
+        "Controle por teclado (setas/WASD) e gestos de swipe, mobile-first",
+        "Acessível: prefers-reduced-motion + persistência em localStorage"
+      ]
+    },
+    "tipo": "GAME",
+    "destacado": true,
+    "orden": 5
+  },
+  {
+    "id": "caleido",
+    "nombre": "Caleido",
+    "descripcionCorta": {
+      "es": "Estudio de arte geométrico generativo: creá mandalas, espirógrafos y campos de flujo, o dibujá en un caleidoscopio vivo donde un trazo se refleja mil veces. Todo en SVG.",
+      "en": "Generative geometric art studio: craft mandalas, spirographs and flow fields, or draw inside a living kaleidoscope where one stroke reflects a thousand times. All in SVG.",
+      "pt": "Estúdio de arte geométrico generativo: crie mandalas, espirógrafos e campos de fluxo, ou desenhe num caleidoscópio vivo onde um traço se reflete mil vezes. Tudo em SVG."
+    },
+    "descripcionLarga": {
+      "es": "Caleido es un estudio de arte geométrico generativo construido en React 19 y SVG puro. Reúne cuatro modos creativos: Dibujar (un caleidoscopio vivo con simetría radial, en rejilla, en espiral o espejada, pinceles, formas, goma, brillo y auto-pintado guiado por un campo de flujo), Mandala (rosetones radiales hipnóticos), Espirógrafo (curvas epicicloidales) y Campo de flujo (líneas que siguen ruido tipo Perlin). Cada obra se genera a partir de una semilla con RNG sembrado, así que el resultado es reproducible y compartible por URL. Incluye paletas curadas en OKLCH, exportación a SVG vectorial y PNG 2000px, grabación de la sesión de dibujo con exportación a GIF, una galería persistente en localStorage, onboarding guiado y respeto por prefers-reduced-motion. La interfaz —tema oscuro de galería con un único acento lima— está animada con Motion y maquetada con Tailwind v4 (tokens OKLCH, sin archivo de config).",
+      "en": "Caleido is a generative geometric art studio built with React 19 and pure SVG. It brings together four creative modes: Draw (a living kaleidoscope with radial, grid, spiral or mirror symmetry, brushes, shapes, eraser, glow and flow-field-guided auto-painting), Mandala (hypnotic radial rosettes), Spirograph (epicycloid curves) and Flow Field (lines following Perlin-like noise). Every piece is generated from a seed via a seeded RNG, so results are reproducible and shareable by URL. It ships curated OKLCH palettes, export to vector SVG and 2000px PNG, drawing-session recording with GIF export, a persistent localStorage gallery, guided onboarding and prefers-reduced-motion support. The interface —a dark gallery theme with a single lime accent— is animated with Motion and laid out with Tailwind v4 (OKLCH tokens, no config file).",
+      "pt": "Caleido é um estúdio de arte geométrico generativo construído com React 19 e SVG puro. Reúne quatro modos criativos: Desenhar (um caleidoscópio vivo com simetria radial, em grade, em espiral ou espelhada, pincéis, formas, borracha, brilho e auto-pintura guiada por um campo de fluxo), Mandala (rosetões radiais hipnóticos), Espirógrafo (curvas epicicloidais) e Campo de fluxo (linhas que seguem ruído tipo Perlin). Cada obra é gerada a partir de uma semente com RNG semeado, então o resultado é reproduzível e compartilhável por URL. Inclui paletas curadas em OKLCH, exportação para SVG vetorial e PNG 2000px, gravação da sessão de desenho com exportação para GIF, uma galeria persistente em localStorage, onboarding guiado e respeito por prefers-reduced-motion. A interface —tema escuro de galeria com um único acento lima— é animada com Motion e construída com Tailwind v4 (tokens OKLCH, sem arquivo de config)."
+    },
+    "fechaInicio": "2026-06",
+    "fechaFin": "2026-06",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Motion",
+      "SVG"
+    ],
+    "linkDemo": "https://caleidodraw.vercel.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/Caleido",
+    "imagenPrincipal": "/images/projects/caleidomain.svg",
+    "logo": null,
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #07090D 0%, #0E1119 55%, #161B26 100%)",
+    "colorTexto": "#F6F7F9",
+    "features": {
+      "es": [
+        "Cuatro modos: Dibujar, Mandala, Espirógrafo y Campo de flujo",
+        "Caleidoscopio vivo: simetría radial, rejilla, espiral o espejo en tiempo real",
+        "Pinceles, formas (línea, rect, elipse, polígono, estrella), goma, brillo y auto-pintado por campo de flujo",
+        "Generación determinística con RNG sembrado: cada semilla es reproducible y compartible por URL",
+        "Paletas curadas en OKLCH y modos de color (ciclo, degradado, sólido)",
+        "Exportación a SVG vectorial y PNG 2000px",
+        "Grabación de la sesión de dibujo y exportación a GIF",
+        "Galería en localStorage, onboarding guiado y prefers-reduced-motion"
+      ],
+      "en": [
+        "Four modes: Draw, Mandala, Spirograph and Flow Field",
+        "Living kaleidoscope: radial, grid, spiral or mirror symmetry in real time",
+        "Brushes, shapes (line, rect, ellipse, polygon, star), eraser, glow and flow-field auto-painting",
+        "Deterministic generation with seeded RNG: every seed is reproducible and shareable by URL",
+        "Curated OKLCH palettes and color modes (cycle, gradient, solid)",
+        "Export to vector SVG and 2000px PNG",
+        "Drawing-session recording with GIF export",
+        "localStorage gallery, guided onboarding and prefers-reduced-motion"
+      ],
+      "pt": [
+        "Quatro modos: Desenhar, Mandala, Espirógrafo e Campo de fluxo",
+        "Caleidoscópio vivo: simetria radial, grade, espiral ou espelho em tempo real",
+        "Pincéis, formas (linha, retângulo, elipse, polígono, estrela), borracha, brilho e auto-pintura por campo de fluxo",
+        "Geração determinística com RNG semeado: cada semente é reproduzível e compartilhável por URL",
+        "Paletas curadas em OKLCH e modos de cor (ciclo, degradê, sólido)",
+        "Exportação para SVG vetorial e PNG 2000px",
+        "Gravação da sessão de desenho com exportação para GIF",
+        "Galeria em localStorage, onboarding guiado e prefers-reduced-motion"
+      ]
+    },
+    "tipo": "WEBAPP",
+    "destacado": false,
+    "orden": 6
+  },
+  {
+    "id": "patagonia-refugio",
+    "nombre": "Refugio del Cóndor",
+    "descripcionCorta": {
+      "es": "Landing cinematográfica para un lodge de montaña en Patagonia. Hero con parallax, hotspot pulsante sobre el mapa de la montaña, galería masonry y animaciones CSS puras sin flicker.",
+      "en": "Cinematic landing for a mountain lodge in Patagonia. Parallax hero, pulsing hotspot on the mountain map, masonry gallery, and flicker-free pure CSS animations.",
+      "pt": "Landing cinematográfica para um lodge de montanha na Patagônia. Hero com parallax, hotspot pulsante no mapa da montanha, galeria masonry e animações CSS puras sem flicker."
+    },
+    "descripcionLarga": {
+      "es": "Refugio del Cóndor es una landing page cinematográfica para un lodge de montaña ficticio en Cerro Catedral, Bariloche. El hero ocupa pantalla completa con parallax de imagen, overlay reactivo al scroll y texto alineado bottom-left que respira junto a la foto del lodge. Un hotspot pulsante en el mapa de la montaña marca la ubicación exacta del refugio — animado con CSS @keyframes puro para garantizar cero flicker en loops infinitos (framer-motion dejaba opacity residual ~0.01 perceptible al snap del loop). Las secciones de habitaciones y galería usan Framer Motion con stagger reveal al entrar en viewport. La galería es un grid masonry de 4 columnas con grid-flow-dense y efecto cinematic spotlight: la card hovereada se ilumina y scalea, las demás se desaturan y oscurecen. Todo el diseño usa una paleta oscura editorial (ember #E08D3C / parchment / forest-deep) con tipografía display itálica estilo magazine de lujo.",
+      "en": "Refugio del Cóndor is a cinematic landing page for a fictional mountain lodge at Cerro Catedral, Bariloche. The hero fills the entire screen with image parallax, a scroll-reactive overlay, and bottom-left text that breathes alongside the lodge photo. A pulsing hotspot on the mountain map marks the exact lodge location — animated with pure CSS @keyframes to guarantee zero flicker on infinite loops (framer-motion left residual opacity ~0.01 visible at the loop snap). The rooms and gallery sections use Framer Motion with stagger reveal on viewport entry. The gallery is a 4-column masonry grid with grid-flow-dense and a cinematic spotlight effect: the hovered card illuminates and scales up, the rest desaturate and darken. The entire design uses a dark editorial palette (ember #E08D3C / parchment / forest-deep) with italic display typography in luxury magazine style.",
+      "pt": "Refugio del Cóndor é uma landing page cinematográfica para um lodge de montanha fictício no Cerro Catedral, Bariloche. O hero ocupa a tela completa com parallax de imagem, overlay reativo ao scroll e texto no canto inferior esquerdo que respira junto à foto do lodge. Um hotspot pulsante no mapa da montanha marca a localização exata do refúgio — animado com CSS @keyframes puro para garantir zero flicker em loops infinitos (o framer-motion deixava opacity residual ~0.01 visível no snap do loop). As seções de quartos e galeria usam Framer Motion com stagger reveal ao entrar no viewport. A galeria é um grid masonry de 4 colunas com grid-flow-dense e efeito cinematic spotlight: a card em hover ilumina e escala, as demais dessaturam e escurecem. Todo o design usa uma paleta escura editorial (ember #E08D3C / parchment / forest-deep) com tipografia display itálica estilo magazine de luxo."
+    },
+    "fechaInicio": "2026-05",
+    "fechaFin": "2026-05",
+    "cliente": null,
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Vite"
+    ],
+    "linkDemo": "https://refugio-condor.vercel.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/RefugioCondor",
+    "imagenPrincipal": "/images/projects/patagonia-refugiomain.svg",
+    "logo": "/images/projects/patagonia-refugiologo.svg",
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #050810 0%, #0D1520 55%, #0A1008 100%)",
+    "colorTexto": "#F5F0E8",
+    "features": {
+      "es": [
+        "Hero fullscreen con parallax de imagen y overlay reactivo al scroll",
+        "Hotspot pulsante con CSS @keyframes puros (cero flicker en loop infinito)",
+        "Galería masonry 4 columnas con grid-flow-dense y cinematic spotlight",
+        "Sección de habitaciones con stagger reveal y hover scale + rotate",
+        "Sección de contacto con info cards y CTA de reserva",
+        "Paleta oscura editorial: ember / parchment / forest-deep",
+        "Tipografía display itálica estilo magazine de lujo",
+        "Mobile-first responsive en todas las secciones"
+      ],
+      "en": [
+        "Fullscreen hero with image parallax and scroll-reactive overlay",
+        "Pulsing hotspot with pure CSS @keyframes (zero flicker on infinite loop)",
+        "4-column masonry gallery with grid-flow-dense and cinematic spotlight",
+        "Rooms section with stagger reveal and hover scale + rotate",
+        "Contact section with info cards and booking CTA",
+        "Dark editorial palette: ember / parchment / forest-deep",
+        "Italic display typography in luxury magazine style",
+        "Mobile-first responsive across all sections"
+      ],
+      "pt": [
+        "Hero fullscreen com parallax de imagem e overlay reativo ao scroll",
+        "Hotspot pulsante com CSS @keyframes puros (zero flicker em loop infinito)",
+        "Galeria masonry 4 colunas com grid-flow-dense e cinematic spotlight",
+        "Seção de quartos com stagger reveal e hover scale + rotate",
+        "Seção de contato com info cards e CTA de reserva",
+        "Paleta escura editorial: ember / parchment / forest-deep",
+        "Tipografia display itálica estilo magazine de luxo",
+        "Mobile-first responsivo em todas as seções"
+      ]
+    },
+    "tipo": "LANDING",
+    "destacado": true,
+    "orden": 7
   },
   {
     "id": "trama-estudio",
@@ -86,8 +498,16 @@
       "en": "Frontend Developer",
       "pt": "Desenvolvedor Frontend"
     },
-    "tecnologias": ["Vite", "Vanilla JS", "GSAP", "ScrollTrigger", "Lenis", "Web Animations API", "Sharp"],
-    "linkDemo": "https://trama-ten.vercel.app",
+    "tecnologias": [
+      "Vite",
+      "Vanilla JS",
+      "GSAP",
+      "ScrollTrigger",
+      "Lenis",
+      "Web Animations API",
+      "Sharp"
+    ],
+    "linkDemo": "https://trama-estudio.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/TRAMA",
     "imagenPrincipal": "/images/projects/trama-estudiomain.svg",
     "logo": "/images/projects/trama-estudiologo.svg",
@@ -129,73 +549,7 @@
     },
     "tipo": "LANDING",
     "destacado": false,
-    "orden": 2
-  },
-  {
-    "id": "patagonia-refugio",
-    "nombre": "Refugio del Cóndor",
-    "descripcionCorta": {
-      "es": "Landing cinematográfica para un lodge de montaña en Patagonia. Hero con parallax, hotspot pulsante sobre el mapa de la montaña, galería masonry y animaciones CSS puras sin flicker.",
-      "en": "Cinematic landing for a mountain lodge in Patagonia. Parallax hero, pulsing hotspot on the mountain map, masonry gallery, and flicker-free pure CSS animations.",
-      "pt": "Landing cinematográfica para um lodge de montanha na Patagônia. Hero com parallax, hotspot pulsante no mapa da montanha, galeria masonry e animações CSS puras sem flicker."
-    },
-    "descripcionLarga": {
-      "es": "Refugio del Cóndor es una landing page cinematográfica para un lodge de montaña ficticio en Cerro Catedral, Bariloche. El hero ocupa pantalla completa con parallax de imagen, overlay reactivo al scroll y texto alineado bottom-left que respira junto a la foto del lodge. Un hotspot pulsante en el mapa de la montaña marca la ubicación exacta del refugio — animado con CSS @keyframes puro para garantizar cero flicker en loops infinitos (framer-motion dejaba opacity residual ~0.01 perceptible al snap del loop). Las secciones de habitaciones y galería usan Framer Motion con stagger reveal al entrar en viewport. La galería es un grid masonry de 4 columnas con grid-flow-dense y efecto cinematic spotlight: la card hovereada se ilumina y scalea, las demás se desaturan y oscurecen. Todo el diseño usa una paleta oscura editorial (ember #E08D3C / parchment / forest-deep) con tipografía display itálica estilo magazine de lujo.",
-      "en": "Refugio del Cóndor is a cinematic landing page for a fictional mountain lodge at Cerro Catedral, Bariloche. The hero fills the entire screen with image parallax, a scroll-reactive overlay, and bottom-left text that breathes alongside the lodge photo. A pulsing hotspot on the mountain map marks the exact lodge location — animated with pure CSS @keyframes to guarantee zero flicker on infinite loops (framer-motion left residual opacity ~0.01 visible at the loop snap). The rooms and gallery sections use Framer Motion with stagger reveal on viewport entry. The gallery is a 4-column masonry grid with grid-flow-dense and a cinematic spotlight effect: the hovered card illuminates and scales up, the rest desaturate and darken. The entire design uses a dark editorial palette (ember #E08D3C / parchment / forest-deep) with italic display typography in luxury magazine style.",
-      "pt": "Refugio del Cóndor é uma landing page cinematográfica para um lodge de montanha fictício no Cerro Catedral, Bariloche. O hero ocupa a tela completa com parallax de imagem, overlay reativo ao scroll e texto no canto inferior esquerdo que respira junto à foto do lodge. Um hotspot pulsante no mapa da montanha marca a localização exata do refúgio — animado com CSS @keyframes puro para garantir zero flicker em loops infinitos (o framer-motion deixava opacity residual ~0.01 visível no snap do loop). As seções de quartos e galeria usam Framer Motion com stagger reveal ao entrar no viewport. A galeria é um grid masonry de 4 colunas com grid-flow-dense e efeito cinematic spotlight: a card em hover ilumina e escala, as demais dessaturam e escurecem. Todo o design usa uma paleta escura editorial (ember #E08D3C / parchment / forest-deep) com tipografia display itálica estilo magazine de luxo."
-    },
-    "fechaInicio": "2026-05",
-    "fechaFin": "2026-05",
-    "cliente": null,
-    "rol": {
-      "es": "Diseño + Desarrollo Frontend",
-      "en": "Design + Frontend Development",
-      "pt": "Design + Desenvolvimento Frontend"
-    },
-    "tecnologias": ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
-    "linkDemo": null,
-    "linkGithub": null,
-    "imagenPrincipal": "/images/projects/patagonia-refugiomain.svg",
-    "logo": "/images/projects/patagonia-refugiologo.svg",
-    "imagenes": [],
-    "video": null,
-    "colorFondo": "linear-gradient(135deg, #050810 0%, #0D1520 55%, #0A1008 100%)",
-    "colorTexto": "#F5F0E8",
-    "features": {
-      "es": [
-        "Hero fullscreen con parallax de imagen y overlay reactivo al scroll",
-        "Hotspot pulsante con CSS @keyframes puros (cero flicker en loop infinito)",
-        "Galería masonry 4 columnas con grid-flow-dense y cinematic spotlight",
-        "Sección de habitaciones con stagger reveal y hover scale + rotate",
-        "Sección de contacto con info cards y CTA de reserva",
-        "Paleta oscura editorial: ember / parchment / forest-deep",
-        "Tipografía display itálica estilo magazine de lujo",
-        "Mobile-first responsive en todas las secciones"
-      ],
-      "en": [
-        "Fullscreen hero with image parallax and scroll-reactive overlay",
-        "Pulsing hotspot with pure CSS @keyframes (zero flicker on infinite loop)",
-        "4-column masonry gallery with grid-flow-dense and cinematic spotlight",
-        "Rooms section with stagger reveal and hover scale + rotate",
-        "Contact section with info cards and booking CTA",
-        "Dark editorial palette: ember / parchment / forest-deep",
-        "Italic display typography in luxury magazine style",
-        "Mobile-first responsive across all sections"
-      ],
-      "pt": [
-        "Hero fullscreen com parallax de imagem e overlay reativo ao scroll",
-        "Hotspot pulsante com CSS @keyframes puros (zero flicker em loop infinito)",
-        "Galeria masonry 4 colunas com grid-flow-dense e cinematic spotlight",
-        "Seção de quartos com stagger reveal e hover scale + rotate",
-        "Seção de contato com info cards e CTA de reserva",
-        "Paleta escura editorial: ember / parchment / forest-deep",
-        "Tipografia display itálica estilo magazine de luxo",
-        "Mobile-first responsivo em todas as seções"
-      ]
-    },
-    "tipo": "LANDING",
-    "destacado": true,
-    "orden": 2.5
+    "orden": 8
   },
   {
     "id": "hearth-and-hall",
@@ -218,7 +572,15 @@
       "en": "Design + Frontend Development",
       "pt": "Design + Desenvolvimento Frontend"
     },
-    "tecnologias": ["React", "TypeScript", "Vite", "Tailwind CSS", "React Router", "GSAP", "Lenis"],
+    "tecnologias": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "React Router",
+      "GSAP",
+      "Lenis"
+    ],
     "linkDemo": "https://hearth-and-hall.vercel.app/",
     "linkGithub": "https://github.com/AlejoMFernandez/hearth-and-hall",
     "imagenPrincipal": "/images/projects/hearth-and-hallmain.svg",
@@ -261,228 +623,143 @@
     },
     "tipo": "FRONTEND",
     "destacado": false,
-    "orden": 3
-  },
-  {
-    "id": "goaldemy",
-    "nombre": "GOALDEMY",
-    "descripcionCorta": { "es": "App web de minijuegos de fútbol con rachas, logros y tablas de posición gamificadas.", "en": "Football-themed gaming app with streaks, achievements, and gamified leaderboards.", "pt": "Aplicativo web de minijogos de futebol com sequencias, conquistas e rankings gamificados." },
-    "descripcionLarga": { "es": "Goaldemy es una plataforma de aprendizaje gamificada centrada en el fútbol. Incluye 8 minijuegos únicos para poner a prueba tu conocimiento (jugadores, clubes, posiciones y valores de mercado), un sistema de rachas y logros desbloqueables, tablas de posición competitivas y perfiles públicos. La autenticación y los datos en tiempo real están gestionados por Supabase, con estadísticas visualizadas mediante Chart.js.", "en": "Goaldemy is a gamified learning platform centered around football. It features 8 unique mini-games to test your knowledge (players, clubs, positions, and market values), a streaks and unlockable achievements system, competitive leaderboards, and public profiles. Authentication and real-time data are managed by Supabase, with statistics visualized via Chart.js.", "pt": "Goaldemy e uma plataforma de aprendizado gamificada focada em futebol. Inclui 8 minijogos unicos para testar seu conhecimento (jogadores, clubes, posicoes e valores de mercado), um sistema de sequencias e conquistas desbloqueaveis, rankings competitivos e perfis publicos. A autenticacao e os dados em tempo real sao gerenciados pelo Supabase, com estatisticas exibidas com Chart.js." },
-    "fechaInicio": "2025-09",
-    "fechaFin": "Actualidad",
-    "cliente": null,
-    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer", "pt": "Desenvolvedor Full-Stack" },
-    "tecnologias": ["Vite", "Vue.js", "Tailwind CSS", "JavaScript", "Supabase", "MongoDB"],
-    "linkDemo": "https://goaldemy.vercel.app/",
-    "linkGithub": "https://github.com/AlejoMFernandez/Goaldemy",
-    "imagenPrincipal": "/images/projects/goaldemymain.svg",
-    "logo": "/images/projects/goaldemylogo.png",
-    "isotipo": "/images/projects/goaldemyisotipo.png",
-    "imagenes": [],
-    "video": null,
-    "colorFondo": "linear-gradient(135deg, #03081A 0%, #162035 100%)",
-    "colorTexto": "#ffffff",
-    "features": {
-      "es": ["Sistema de misiones y XP", "Logros desbloqueables", "Sistema de niveles", "Estadísticas de progreso", "Recordatorios personalizados", "Gamificación completa"],
-      "en": ["Mission and XP system", "Unlockable achievements", "Level system", "Progress statistics", "Custom reminders", "Full gamification"],
-      "pt": ["Sistema de missoes e XP", "Conquistas desbloqueaveis", "Sistema de niveis", "Estatisticas de progresso", "Lembretes personalizados", "Gamificacao completa"]
-    },
-    "tipo": "WEBAPP",
-    "destacado": true,
-    "orden": 4,
-    "gallery": [
-      "/images/projects/goaldemy/gallery1.png",
-      "/images/projects/goaldemy/gallery2.png",
-      "/images/projects/goaldemy/gallery3.png"
-    ]
-  },
-  {
-    "id": "franza",
-    "nombre": "FRANZA",
-    "descripcionCorta": { "es": "Sistema web MVC para gestionar el portfolio de obras de una constructora con más de 15 años de experiencia.", "en": "MVC web system to manage a construction company's project portfolio with over 15 years of experience.", "pt": "Sistema web MVC para gerenciar o portfolio de obras de uma construtora com mais de 15 anos de experiencia." },
-    "descripcionLarga": { "es": "FRANZA es un sistema de gestión desarrollado en PHP nativo con arquitectura MVC para una empresa constructora con más de 15 años de experiencia en obras civiles e industriales. Incluye un panel de administración completo con ABM de obras (imágenes, galerías, descripción y ubicación), autenticación con roles, protección CSRF mediante tokens, URLs amigables con Apache mod_rewrite y contacto directo vía WhatsApp para solicitar presupuestos.", "en": "FRANZA is a management system built in native PHP with MVC architecture for a construction company with over 15 years of experience in civil and industrial projects. It includes a full admin panel with project CRUD (images, galleries, description, and location), role-based authentication, CSRF token protection, clean URLs via Apache mod_rewrite, and direct WhatsApp contact for budget requests.", "pt": "FRANZA e um sistema de gestao desenvolvido em PHP nativo com arquitetura MVC para uma empresa de construcao com mais de 15 anos de experiencia em obras civis e industriais. Inclui um painel administrativo completo com CRUD de obras (imagens, galerias, descricao e localizacao), autenticacao por papeis, protecao CSRF com tokens, URLs amigaveis com Apache mod_rewrite e contato direto por WhatsApp para solicitar orcamentos." },
-    "fechaInicio": "2025-03",
-    "fechaFin": "2025-05",
-    "cliente": "Franza Constructora",
-    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer", "pt": "Desenvolvedor Full-Stack" },
-    "tecnologias": ["PHP", "Bootstrap", "CSS", "JavaScript", "MySQL"],
-    "linkDemo": "https://Franza.com.ar/",
-    "linkGithub": "https://github.com/AlejoMFernandez/Franza",
-    "imagenPrincipal": "/images/projects/franzamain.svg",
-    "logo": "/images/projects/franzalogo.png",
-    "imagenes": [],
-    "video": null,
-    "colorFondo": "linear-gradient(135deg, #b38838 0%, #d4af37 100%)",
-    "colorTexto": "#ffffff",
-    "features": {
-      "es": ["Generación automática de páginas", "Sistema de banco de fotos", "Portfolio de obras dinámico", "Panel de administración", "Diseño responsive"],
-      "en": ["Automatic page generation", "Photo bank system", "Dynamic project portfolio", "Admin panel", "Responsive design"],
-      "pt": ["Geracao automatica de paginas", "Sistema de banco de fotos", "Portfolio dinamico de obras", "Painel administrativo", "Design responsivo"]
-    },
-    "tipo": "ABM",
-    "destacado": true,
-    "orden": 5
-  },
-  {
-    "id": "champions-dle",
-    "nombre": "Champions.dle",
-    "descripcionCorta": { "es": "PWA de juegos interactivos sobre la Champions League con modos de adivinanzas y sistema de rachas.", "en": "Champions League PWA with interactive guessing games and a streak system.", "pt": "PWA de jogos interativos sobre a Champions League com modos de adivinhacao e sistema de sequencias." },
-    "descripcionLarga": { "es": "Champions.dle es una Progressive Web App dedicada a la UEFA Champions League. Incluye exploración de los Top 9 equipos y sus plantillas, tres modos de juego (adivinar jugador por foto, identificar su nombre, y qué jugadores pertenecen a un club), sistema de rachas con best streak, lista de favoritos y soporte offline mediante Service Worker. Totalmente instalable en dispositivos móviles.", "en": "Champions.dle is a Progressive Web App dedicated to the UEFA Champions League. It features Top 9 team and squad exploration, three game modes (guess the player by photo, identify their name, and which players belong to a club), a streak and best-streak system, favorites list, and offline support via Service Worker. Fully installable on mobile devices.", "pt": "Champions.dle e uma Progressive Web App dedicada a UEFA Champions League. Inclui exploracao dos Top 9 times e seus elencos, tres modos de jogo (adivinhar jogador pela foto, identificar seu nome e quais jogadores pertencem a um clube), sistema de sequencias com best streak, lista de favoritos e suporte offline via Service Worker. Totalmente instalavel em dispositivos moveis." },
-    "fechaInicio": "2025-05",
-    "fechaFin": "2025-06",
-    "cliente": null,
-    "rol": { "es": "Desarrollador Frontend", "en": "Frontend Developer", "pt": "Desenvolvedor Frontend" },
-    "tecnologias": ["PWA", "JavaScript", "API REST", "CSS"],
-    "linkDemo": "https://championsdle.vercel.app/",
-    "linkGithub": "https://github.com/AlejoMFernandez/CHAMPIONS.dle",
-    "imagenPrincipal": "/images/projects/championsdlemain.svg",
-    "logo": null,
-    "imagenes": [],
-    "video": null,
-    "colorFondo": "#1a2636",
-    "colorTexto": "#ffffff",
-    "features": {
-      "es": ["Progressive Web App", "Juego diario de adivinanzas", "Exploración de equipos", "Base de datos de jugadores", "Instalable en móvil", "Diseño mobile-first"],
-      "en": ["Progressive Web App", "Daily guessing game", "Team exploration", "Player database", "Mobile installable", "Mobile-first design"],
-      "pt": ["Progressive Web App", "Jogo diario de adivinhacao", "Exploracao de times", "Base de dados de jogadores", "Instalavel no celular", "Design mobile-first"]
-    },
-    "tipo": "PWA",
-    "destacado": false,
     "orden": 9
   },
   {
-    "id": "italnet",
-    "nombre": "Italnet",
-    "descripcionCorta": { "es": "Soluciones informáticas y electrónicas.", "en": "IT and electronic solutions.", "pt": "Solucoes de TI e eletronica." },
-    "descripcionLarga": { "es": "Empresa dedicada a soluciones tecnológicas integrales. Sitio informativo claro y ligero para comunicar servicios y presencia de marca.", "en": "Company dedicated to comprehensive technology solutions. Clean, lightweight informational site to communicate services and brand presence.", "pt": "Empresa dedicada a solucoes tecnologicas integradas. Site informativo claro e leve para comunicar servicos e presenca de marca." },
-    "fechaInicio": "2024-04",
-    "fechaFin": "2024-05",
-    "cliente": "ITALNET",
-    "rol": { "es": "Desarrollador Web", "en": "Web Developer", "pt": "Desenvolvedor Web" },
-    "tecnologias": ["HTML", "CSS"],
-    "linkDemo": "https://italnetweb.com.ar/",
-    "linkGithub": null,
-    "imagenPrincipal": "/images/projects/italnetmain.svg",
-    "logo": "/images/projects/italnetlogo.png",
+    "id": "inkmanager",
+    "nombre": "InkManager",
+    "descripcionCorta": {
+      "es": "Sistema de gestión para estudios de tatuaje con body map 3D rotable donde se marcan los tatuajes en su posición exacta.",
+      "en": "Tattoo studio management system with a rotatable 3D body map to pin every tattoo at its exact location.",
+      "pt": "Sistema de gestão para estúdios de tatuagem com body map 3D rotacionável para marcar cada tatuagem na posição exata."
+    },
+    "descripcionLarga": {
+      "es": "InkManager es un sistema operativo digital para estudios de tatuaje. Su diferencial es un body map 3D construido con Three.js: el tatuador hace click sobre un modelo humano rotable y queda marcado el tatuaje en la posición exacta del cuerpo, con foto, estilo, fecha y notas. Incluye CRM de clientes con búsqueda y paginación, calendario drag & drop con FullCalendar para reagendar turnos, dashboard con KPIs animados, identidad de marca completa (splash intro, tipografía editorial Bebas Neue + Inter, monograma SVG animado) y auth segura con CSRF + bcrypt. Construido en PHP 8.2 vanilla con MVC propio, sin frameworks ni Composer, y deployado en Railway con MySQL.",
+      "en": "InkManager is a digital operating system for tattoo studios. Its key differentiator is a 3D body map built with Three.js: the artist clicks on a rotatable human model and the tattoo gets pinned at the exact body position, with photo, style, date and notes. Includes a customer CRM with search and pagination, a drag & drop FullCalendar to reschedule sessions, a dashboard with animated KPIs, full brand identity (animated splash intro, editorial typography Bebas Neue + Inter, animated SVG monogram), and secure auth with CSRF + bcrypt. Built in vanilla PHP 8.2 with a custom MVC — no framework, no Composer — and deployed on Railway with MySQL.",
+      "pt": "InkManager é um sistema operacional digital para estúdios de tatuagem. Seu diferencial é um body map 3D construído com Three.js: o tatuador clica sobre um modelo humano rotacionável e a tatuagem fica marcada na posição exata do corpo, com foto, estilo, data e anotações. Inclui CRM de clientes com busca e paginação, calendário drag & drop com FullCalendar para reagendar sessões, dashboard com KPIs animados, identidade de marca completa (splash intro animado, tipografia editorial Bebas Neue + Inter, monograma SVG animado) e auth segura com CSRF + bcrypt. Construído em PHP 8.2 vanilla com MVC próprio, sem framework nem Composer, e deployado no Railway com MySQL."
+    },
+    "fechaInicio": "2026-05",
+    "fechaFin": "Actualidad",
+    "cliente": null,
+    "rol": {
+      "es": "Desarrollador Full-Stack",
+      "en": "Full-Stack Developer",
+      "pt": "Desenvolvedor Full-Stack"
+    },
+    "tecnologias": [
+      "PHP",
+      "MySQL",
+      "Three.js",
+      "JavaScript",
+      "Tailwind CSS",
+      "FullCalendar",
+      "Railway"
+    ],
+    "linkDemo": "https://inkmanager.up.railway.app/",
+    "linkGithub": "https://github.com/AlejoMFernandez/InkManager",
+    "imagenPrincipal": "/images/projects/inkmanagermain.svg",
+    "logo": "/images/projects/inkmanagerlogo.svg",
     "imagenes": [],
     "video": null,
-    "colorFondo": "#0b0c11",
+    "colorFondo": "linear-gradient(135deg, #0a0a0a 0%, #1a0606 55%, #2a0808 100%)",
     "colorTexto": "#ffffff",
     "features": {
-      "es": ["Diseño limpio y profesional", "Información de servicios", "Formulario de contacto", "Responsive design"],
-      "en": ["Clean and professional design", "Service information", "Contact form", "Responsive design"],
-      "pt": ["Design limpo e profissional", "Informacoes de servicos", "Formulario de contato", "Design responsivo"]
+      "es": [
+        "Body map 3D rotable con raycaster click-to-mark",
+        "Markers persistentes anclados a posición + normal del cuerpo",
+        "CRM de clientes con búsqueda y paginación",
+        "Calendario drag & drop con 4 estados de turno",
+        "Dashboard con KPIs y animaciones de números",
+        "Identidad de marca completa (splash, tipografía, monograma)",
+        "Auth segura con CSRF, bcrypt y cookies HTTPS-aware",
+        "Upload de fotos con validación MIME real (finfo)"
+      ],
+      "en": [
+        "Rotatable 3D body map with raycaster click-to-mark",
+        "Persistent markers anchored to body position + normal",
+        "Customer CRM with search and pagination",
+        "Drag & drop calendar with 4 appointment states",
+        "Dashboard with KPI counter animations",
+        "Full brand identity (splash, typography, monogram)",
+        "Secure auth with CSRF, bcrypt and HTTPS-aware cookies",
+        "Photo upload with real MIME validation (finfo)"
+      ],
+      "pt": [
+        "Body map 3D rotacionável com raycaster click-to-mark",
+        "Markers persistentes ancorados à posição + normal do corpo",
+        "CRM de clientes com busca e paginação",
+        "Calendário drag & drop com 4 estados de turno",
+        "Dashboard com KPIs e animações de números",
+        "Identidade de marca completa (splash, tipografia, monograma)",
+        "Auth segura com CSRF, bcrypt e cookies HTTPS-aware",
+        "Upload de fotos com validação MIME real (finfo)"
+      ]
     },
-    "tipo": "LANDING",
-    "destacado": false,
-    "orden": 7
+    "tipo": "WEBAPP",
+    "destacado": true,
+    "orden": 10,
+    "enDesarrollo": true
   },
   {
     "id": "arianadeviaje",
     "nombre": "ArianaDeViaje",
-    "descripcionCorta": { "es": "Sitio web de viajes con identidad visual personalizada y enfoque en experiencia mobile-first.", "en": "Travel website with custom visual identity and a mobile-first user experience.", "pt": "Site de viagens com identidade visual personalizada e foco em experiencia mobile-first." },
-    "descripcionLarga": { "es": "ArianaDeViaje es un sitio web orientado a fortalecer la presencia digital de la marca y comunicar su propuesta de valor de forma clara y visual. Se trabajó en una estructura enfocada en conversión, navegación simple y experiencia responsive para facilitar el contacto desde cualquier dispositivo.", "en": "ArianaDeViaje is a website focused on strengthening the brand's digital presence and clearly communicating its value proposition in a visual way. The project was built with a conversion-oriented structure, simple navigation, and a responsive experience to make contact easier from any device.", "pt": "ArianaDeViaje e um site focado em fortalecer a presenca digital da marca e comunicar sua proposta de valor de forma clara e visual. O projeto foi desenvolvido com estrutura orientada a conversao, navegacao simples e experiencia responsiva para facilitar o contato em qualquer dispositivo." },
+    "descripcionCorta": {
+      "es": "Sitio web de viajes con identidad visual personalizada y enfoque en experiencia mobile-first.",
+      "en": "Travel website with custom visual identity and a mobile-first user experience.",
+      "pt": "Site de viagens com identidade visual personalizada e foco em experiencia mobile-first."
+    },
+    "descripcionLarga": {
+      "es": "ArianaDeViaje es un sitio web orientado a fortalecer la presencia digital de la marca y comunicar su propuesta de valor de forma clara y visual. Se trabajó en una estructura enfocada en conversión, navegación simple y experiencia responsive para facilitar el contacto desde cualquier dispositivo.",
+      "en": "ArianaDeViaje is a website focused on strengthening the brand's digital presence and clearly communicating its value proposition in a visual way. The project was built with a conversion-oriented structure, simple navigation, and a responsive experience to make contact easier from any device.",
+      "pt": "ArianaDeViaje e um site focado em fortalecer a presenca digital da marca e comunicar sua proposta de valor de forma clara e visual. O projeto foi desenvolvido com estrutura orientada a conversao, navegacao simples e experiencia responsiva para facilitar o contato em qualquer dispositivo."
+    },
     "fechaInicio": "2026-02",
     "fechaFin": "2026-03",
     "cliente": "ArianaDeViaje",
-    "rol": { "es": "Desarrollador Web Freelance", "en": "Freelance Web Developer", "pt": "Desenvolvedor Web Freelance" },
-    "tecnologias": ["Vue", "TypeScript", "PLpgSQL", "CSS"],
+    "rol": {
+      "es": "Desarrollador Web Freelance",
+      "en": "Freelance Web Developer",
+      "pt": "Desenvolvedor Web Freelance"
+    },
+    "tecnologias": [
+      "Vue",
+      "TypeScript",
+      "PLpgSQL",
+      "CSS"
+    ],
     "linkDemo": "https://arianadeviaje.com/",
     "linkGithub": "https://github.com/AlejoMFernandez/arianadeviaje",
     "imagenPrincipal": "/images/projects/arianamain.svg",
     "logo": "/images/projects/arianalogo.png",
-    "imagenes": ["/images/projects/arianamain.png"],
+    "imagenes": [
+      "/images/projects/arianamain.png"
+    ],
     "video": null,
     "colorFondo": "linear-gradient(135deg, #012526 0%, #02b6b0 100%)",
     "colorTexto": "#ffffff",
     "features": {
-      "es": ["Diseño orientado a marca", "Experiencia mobile-first", "Arquitectura de contenido clara", "Optimización para conversión"],
-      "en": ["Brand-oriented design", "Mobile-first experience", "Clear content architecture", "Conversion-focused optimization"],
-      "pt": ["Design orientado a marca", "Experiencia mobile-first", "Arquitetura de conteudo clara", "Otimizacao para conversao"]
+      "es": [
+        "Diseño orientado a marca",
+        "Experiencia mobile-first",
+        "Arquitectura de contenido clara",
+        "Optimización para conversión"
+      ],
+      "en": [
+        "Brand-oriented design",
+        "Mobile-first experience",
+        "Clear content architecture",
+        "Conversion-focused optimization"
+      ],
+      "pt": [
+        "Design orientado a marca",
+        "Experiencia mobile-first",
+        "Arquitetura de conteudo clara",
+        "Otimizacao para conversao"
+      ]
     },
     "tipo": "WEBAPP",
     "destacado": true,
-    "orden": 10
-  },
-  {
-    "id": "puraa",
-    "nombre": "PURAA",
-    "descripcionCorta": { "es": "E-commerce/landing de cosmética natural con enfoque en bienestar integral, bioconsciencia y alquimia vegetal.", "en": "Natural cosmetics e-commerce/landing focused on holistic wellness, bio-consciousness, and plant-based alchemy.", "pt": "E-commerce/landing de cosmetica natural com foco em bem-estar integral, bioconsciencia e alquimia vegetal." },
-    "descripcionLarga": { "es": "PURAA nace desde una búsqueda personal y profesional para crear productos que acompañen el cuidado del cuerpo y el bienestar integral. El sitio comunica una propuesta centrada en cosmética natural, alquimia vegetal y consumo consciente, resaltando calidad artesanal, respeto por la biología y procesos realizados con intención y presencia.", "en": "PURAA was born from a personal and professional journey to create products that support body care and holistic well-being. The website communicates a proposal centered on natural cosmetics, plant-based alchemy, and conscious consumption, highlighting artisanal quality, respect for biology, and mindful production processes.", "pt": "PURAA nasceu de uma busca pessoal e profissional para criar produtos que acompanhem o cuidado do corpo e o bem-estar integral. O site comunica uma proposta centrada em cosmetica natural, alquimia vegetal e consumo consciente, destacando qualidade artesanal, respeito pela biologia e processos realizados com intencao e presenca." },
-    "fechaInicio": "2026-03",
-    "fechaFin": "2026-04",
-    "cliente": "PURAA",
-    "rol": { "es": "Desarrollador Web Freelance", "en": "Freelance Web Developer", "pt": "Desenvolvedor Web Freelance" },
-    "tecnologias": ["WordPress", "Elementor", "WooCommerce", "CSS"],
-    "linkDemo": "https://puraa.com.ar/",
-    "linkGithub": null,
-    "imagenPrincipal": "/images/projects/puraamain.svg",
-    "logo": "/images/projects/puraalogoclaro.png",
-    "imagenes": ["/images/projects/puraamain.png"],
-    "video": null,
-    "colorFondo": "#2d6a4f",
-    "colorTexto": "#ffffff",
-    "features": {
-      "es": ["Branding natural y holístico", "Estructura de contenido educativa", "Comunicación de valores de marca", "Diseño visual limpio y orgánico"],
-      "en": ["Natural and holistic branding", "Educational content structure", "Brand-value communication", "Clean and organic visual design"],
-      "pt": ["Branding natural e holistico", "Estrutura de conteudo educativa", "Comunicacao dos valores da marca", "Design visual limpo e organico"]
-    },
-    "tipo": "WORDPRESS",
-    "destacado": true,
-    "orden": 11
-  },
-  {
-    "id": "fenalix",
-    "nombre": "FENALIX",
-    "descripcionCorta": { "es": "Frontend de plataforma de streaming de anime con catálogo, diseño responsive y animaciones.", "en": "Anime streaming frontend with catalog, responsive design, and animations.", "pt": "Frontend de plataforma de streaming de anime com catalogo, design responsivo e animacoes." },
-    "descripcionLarga": { "es": "FENALIX es un proyecto front-end orientado a crear una experiencia de streaming similar a Netflix pero enfocada en anime. Desarrollado con HTML, SASS y Bootstrap, permite explorar un catálogo de series y películas (Jujutsu Kaisen, Mushoku Tensei, Demon Slayer, entre otros), con páginas de detalle por título, diseño responsive, animaciones con animate.css y AOS, e interfaz de reproducción de episodios.", "en": "FENALIX is a front-end project aimed at creating a Netflix-like streaming experience focused on anime. Built with HTML, SASS, and Bootstrap, it features a browsable catalog of series and movies (Jujutsu Kaisen, Mushoku Tensei, Demon Slayer, among others), per-title detail pages, responsive design, animate.css and AOS animations, and an episode playback interface.", "pt": "FENALIX e um projeto front-end focado em criar uma experiencia de streaming semelhante a Netflix, mas voltada para anime. Desenvolvido com HTML, SASS e Bootstrap, permite explorar um catalogo de series e filmes (Jujutsu Kaisen, Mushoku Tensei, Demon Slayer, entre outros), com paginas de detalhe por titulo, design responsivo, animacoes com animate.css e AOS e interface de reproducao de episodios." },
-    "fechaInicio": "2023-10",
-    "fechaFin": "2023-12",
-    "cliente": "Proyecto Coderhouse",
-    "rol": { "es": "Desarrollador Frontend", "en": "Frontend Developer", "pt": "Desenvolvedor Frontend" },
-    "tecnologias": ["HTML", "SASS", "CSS"],
-    "linkDemo": "https://fenalix.vercel.app/",
-    "linkGithub": "https://github.com/AlejoMFernandez/FENALIX",
-    "imagenPrincipal": "/images/projects/fenalixmain.svg",
-    "logo": null,
-    "imagenes": [],
-    "video": null,
-    "colorFondo": "#000000",
-    "colorTexto": "#ffffff",
-    "features": {
-      "es": ["UI estilo streaming", "Catálogo de series", "Diseño impactante", "Animaciones CSS"],
-      "en": ["Streaming-style UI", "Series catalog", "Striking design", "CSS animations"],
-      "pt": ["UI estilo streaming", "Catalogo de series", "Design impactante", "Animacoes CSS"]
-    },
-    "tipo": "FRONTEND",
-    "destacado": false,
-    "orden": 8
-  },
-  {
-    "id": "hardlab",
-    "nombre": "HARDLAB",
-    "descripcionCorta": { "es": "Intranet que recolecta HW/SW de PCs en red y genera un inventario visual dinámico por laboratorio.", "en": "Intranet that collects HW/SW from networked PCs and generates a dynamic visual inventory by lab.", "pt": "Intranet que coleta HW/SW de PCs em rede e gera um inventario visual dinamico por laboratorio." },
-    "descripcionLarga": { "es": "HARDLAB es un sistema de inventario para intranet escolar que recopila especificaciones de hardware y software de cada computadora mediante un daemon desarrollado en Python. Identifica cada equipo por su dirección MAC (almacenada en SQL) y lo asigna automáticamente a un laboratorio según su ubicación definida en un JSON. La interfaz web en PHP muestra cada laboratorio como una sección visual con detalle de CPU, RAM, disco y aplicaciones instaladas vs. requeridas.", "en": "HARDLAB is an inventory system for a school intranet that gathers hardware and software specs from each computer via a Python daemon. Each machine is identified by its MAC address (stored in SQL) and automatically assigned to a lab based on its location defined in a JSON file. The PHP web interface displays each lab as a visual section with CPU, RAM, disk, and installed-vs-required application details.", "pt": "HARDLAB e um sistema de inventario para intranet escolar que coleta especificacoes de hardware e software de cada computador por meio de um daemon em Python. Cada maquina e identificada pelo endereco MAC (armazenado em SQL) e atribuida automaticamente a um laboratorio conforme sua localizacao definida em JSON. A interface web em PHP exibe cada laboratorio como uma secao visual com detalhes de CPU, RAM, disco e aplicativos instalados versus requeridos." },
-    "fechaInicio": "2023-03",
-    "fechaFin": "2023-11",
-    "cliente": null,
-    "rol": { "es": "Desarrollador Full-Stack", "en": "Full-Stack Developer", "pt": "Desenvolvedor Full-Stack" },
-    "tecnologias": ["JavaScript", "PHP", "SQL", "Python", "CSS", "JSON"],
-    "linkDemo": "",
-    "linkGithub": "https://github.com/AlejoMFernandez/HARDLAB",
-    "imagenPrincipal": "/images/projects/hardlabmain.svg",
-    "logo": null,
-    "imagenes": [],
-    "video": null,
-    "colorFondo": "#1A1A1A",
-    "colorTexto": "#ffffff",
-    "features": {
-      "es": ["Recolección automática de HW/SW", "Persistencia con clave MAC", "Secciones dinámicas", "Vista agregada por área", "Script Python de inventario", "Base de datos SQL"],
-      "en": ["Automatic HW/SW collection", "MAC-key persistence", "Dynamic sections", "Aggregated area view", "Python inventory script", "SQL database"],
-      "pt": ["Coleta automatica de HW/SW", "Persistencia por chave MAC", "Secoes dinamicas", "Visao agregada por area", "Script Python de inventario", "Banco de dados SQL"]
-    },
-    "tipo": "INTRANET",
-    "destacado": false,
-    "orden": 6
+    "orden": 11,
+    "enDesarrollo": true
   }
 ]

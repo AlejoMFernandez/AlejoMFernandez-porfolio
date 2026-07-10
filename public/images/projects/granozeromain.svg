@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Grano Zero coffee learning app preview">
+  <defs>
+    <linearGradient id="gz-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1a0e07"/>
+      <stop offset="55%" stop-color="#2c1810"/>
+      <stop offset="100%" stop-color="#3d2416"/>
+    </linearGradient>
+    <radialGradient id="gz-glow" cx="0.28" cy="0.5" r="0.6">
+      <stop offset="0%"  stop-color="#d89b5a" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#d89b5a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gz-cup" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#f2e7d8"/>
+      <stop offset="55%" stop-color="#e0cdb4"/>
+      <stop offset="100%" stop-color="#c2a986"/>
+    </linearGradient>
+    <radialGradient id="gz-crema" cx="0.42" cy="0.4" r="0.7">
+      <stop offset="0%"  stop-color="#d9a566"/>
+      <stop offset="60%" stop-color="#9a5f2e"/>
+      <stop offset="100%" stop-color="#6f4320"/>
+    </radialGradient>
+    <radialGradient id="gz-bean" cx="0.4" cy="0.35" r="0.8">
+      <stop offset="0%"  stop-color="#5a3418"/>
+      <stop offset="100%" stop-color="#2e1a0d"/>
+    </radialGradient>
+    <linearGradient id="gz-roast" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#d6a86e"/>
+      <stop offset="100%" stop-color="#4a2c18"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="1000" fill="url(#gz-bg)"/>
+  <rect width="1600" height="1000" fill="url(#gz-glow)"/>
+
+  <!-- Grid texture -->
+  <g opacity="0.04" stroke="#f3e4d0" stroke-width="0.6">
+    <line x1="0" y1="120" x2="760" y2="120"/><line x1="0" y1="220" x2="760" y2="220"/>
+    <line x1="0" y1="320" x2="760" y2="320"/><line x1="0" y1="420" x2="760" y2="420"/>
+    <line x1="0" y1="520" x2="760" y2="520"/><line x1="0" y1="620" x2="760" y2="620"/>
+    <line x1="0" y1="720" x2="760" y2="720"/><line x1="0" y1="820" x2="760" y2="820"/>
+  </g>
+
+  <!-- Corner brackets -->
+  <g stroke="#d89b5a" stroke-width="1.5" fill="none" opacity="0.55">
+    <path d="M 40 40 L 80 40 M 40 40 L 40 80"/>
+    <path d="M 1560 40 L 1520 40 M 1560 40 L 1560 80"/>
+    <path d="M 40 960 L 80 960 M 40 960 L 40 920"/>
+    <path d="M 1560 960 L 1520 960 M 1560 960 L 1560 920"/>
+  </g>
+
+  <!-- ───── TOP-LEFT: learning progress ───── -->
+  <g transform="translate(130 92)">
+    <text x="0" y="0" font-family="'SF Mono','Fira Code',monospace" font-size="13" fill="#d89b5a" letter-spacing="5">NIVEL 3 · BARISTA</text>
+    <rect x="0" y="14" width="360" height="14" rx="7" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)"/>
+    <rect x="2" y="16" width="215" height="10" rx="5" fill="url(#gz-roast)"/>
+    <text x="375" y="25" font-family="'SF Mono',monospace" font-size="12" fill="#b99b82">APRENDIENDO</text>
+  </g>
+
+  <!-- ───── CENTER-LEFT: coffee cup ───── -->
+  <g>
+    <!-- Saucer -->
+    <ellipse cx="420" cy="706" rx="216" ry="40" fill="url(#gz-cup)" stroke="#a98a68" stroke-width="2" opacity="0.96"/>
+    <ellipse cx="420" cy="700" rx="150" ry="24" fill="none" stroke="#a98a68" stroke-width="1.5" opacity="0.55"/>
+
+    <!-- Steam -->
+    <g fill="none" stroke="#f3e4d0" stroke-width="6" stroke-linecap="round" opacity="0.3">
+      <path d="M392 414 C372 378 410 350 392 312 C378 286 402 264 390 236"/>
+      <path d="M426 414 C408 380 445 352 426 312 C413 286 437 264 425 240"/>
+      <path d="M460 414 C442 382 478 356 460 318 C448 292 470 272 458 248"/>
+    </g>
+
+    <!-- Handle -->
+    <path d="M566 502 C648 502 648 604 566 594" fill="none" stroke="#e3d3bd" stroke-width="22" stroke-linecap="round"/>
+    <path d="M566 502 C648 502 648 604 566 594" fill="none" stroke="#a98a68" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Cup body -->
+    <path d="M270 462 C274 545 292 628 336 662 Q420 702 504 662 C548 628 566 545 570 462 Z"
+          fill="url(#gz-cup)" stroke="#a98a68" stroke-width="2"/>
+    <!-- Rim -->
+    <ellipse cx="420" cy="462" rx="152" ry="40" fill="url(#gz-cup)" stroke="#a98a68" stroke-width="2"/>
+    <!-- Coffee surface -->
+    <ellipse cx="420" cy="462" rx="128" ry="31" fill="url(#gz-crema)"/>
+    <ellipse cx="382" cy="452" rx="42" ry="9" fill="#eac48c" opacity="0.4"/>
+  </g>
+
+  <!-- ───── BOTTOM-LEFT: coffee beans ───── -->
+  <g transform="translate(132 878)">
+    <g transform="translate(22 22) rotate(-22)">
+      <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#gz-bean)" stroke="#8a5a30" stroke-width="1.5"/>
+      <path d="M-20 0 C -8 -8 8 8 20 0" fill="none" stroke="#5a3a1e" stroke-width="2"/>
+    </g>
+    <g transform="translate(84 22) rotate(14)">
+      <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#gz-bean)" stroke="#8a5a30" stroke-width="1.5"/>
+      <path d="M-20 0 C -8 -8 8 8 20 0" fill="none" stroke="#5a3a1e" stroke-width="2"/>
+    </g>
+    <g transform="translate(146 22) rotate(-8)">
+      <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#gz-bean)" stroke="#8a5a30" stroke-width="1.5"/>
+      <path d="M-20 0 C -8 -8 8 8 20 0" fill="none" stroke="#5a3a1e" stroke-width="2"/>
+    </g>
+    <text x="196" y="28" font-family="'SF Mono',monospace" font-size="11" fill="#b99b82" letter-spacing="3">MÉTODOS · ORÍGENES · TUESTE</text>
+  </g>
+
+  <!-- ───── RIGHT PANEL: branding ───── -->
+  <!-- Accent bean -->
+  <g transform="translate(1470 300) rotate(-20)">
+    <ellipse cx="0" cy="0" rx="26" ry="16" fill="url(#gz-bean)" stroke="#d89b5a" stroke-width="1.5"/>
+    <path d="M-24 0 C -9 -9 9 9 24 0" fill="none" stroke="#d89b5a" stroke-width="2"/>
+  </g>
+
+  <text x="1500" y="470" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="900" font-size="150" letter-spacing="-4" fill="#f3e4d0">GRANO</text>
+  <text x="1500" y="615" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="900" font-size="150" letter-spacing="-4" fill="#d89b5a">ZERO</text>
+
+  <line x1="900" y1="662" x2="1500" y2="662" stroke="#d89b5a" stroke-width="1.5" opacity="0.5"/>
+  <text x="1500" y="704" text-anchor="end" font-family="'Inter','Helvetica Neue',sans-serif" font-weight="600" font-size="22" letter-spacing="8" fill="#b99b82">APRENDER CAFÉ</text>
+</svg>
