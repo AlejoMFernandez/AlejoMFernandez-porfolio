@@ -262,6 +262,77 @@
     "orden": 4
   },
   {
+    "id": "refugio-del-pintor",
+    "nombre": "Refugio del Pintor",
+    "descripcionCorta": {
+      "es": "Landing editorial para un refugio de pueblo en Tilcara: hospitalidad genuina, reservas directas por WhatsApp y una identidad cálida inspirada en el adobe, la piedra y la madera de la Quebrada.",
+      "en": "Editorial landing for a village refuge in Tilcara: genuine hospitality, direct WhatsApp booking and a warm identity inspired by the adobe, stone and wood of the Quebrada.",
+      "pt": "Landing editorial para um refúgio de povoado em Tilcara: hospitalidade genuína, reservas diretas por WhatsApp e uma identidade quente inspirada no adobe, na pedra e na madeira da Quebrada."
+    },
+    "descripcionLarga": {
+      "es": "Refugio del Pintor es una landing para un alojamiento boutique en Tilcara, Quebrada de Humahuaca, creado por Ricardo Mealla, uno de los iniciadores del turismo en la zona. El sitio traduce su filosofía —integrarse al entorno en vez de imponerse sobre él— en una identidad editorial cálida: tipografía serif elegante, paleta de adobe, piedra y madera, y un tono de hospitalidad genuina sin artificios. Trece habitaciones en dos plantas, galería, promo de temporada y reservas directas por WhatsApp, sin plataformas ni intermediarios.",
+      "en": "Refugio del Pintor is a landing page for a boutique stay in Tilcara, Quebrada de Humahuaca, created by Ricardo Mealla, one of the pioneers of tourism in the area. The site translates his philosophy —blending into the surroundings instead of imposing on them— into a warm editorial identity: elegant serif typography, an adobe/stone/wood palette, and a tone of genuine hospitality without artifice. Thirteen rooms across two floors, a gallery, a seasonal promo and direct WhatsApp booking, no platforms or middlemen.",
+      "pt": "Refugio del Pintor é uma landing page para uma hospedagem boutique em Tilcara, Quebrada de Humahuaca, criada por Ricardo Mealla, um dos pioneiros do turismo na região. O site traduz sua filosofia —integrar-se ao entorno em vez de se impor sobre ele— em uma identidade editorial quente: tipografia serifada elegante, paleta de adobe, pedra e madeira, e um tom de hospitalidade genuína sem artifícios. Treze quartos em dois andares, galeria, promoção de temporada e reservas diretas por WhatsApp, sem plataformas nem intermediários."
+    },
+    "fechaInicio": "2026-06",
+    "fechaFin": "2026-07",
+    "cliente": "Refugio del Pintor",
+    "rol": {
+      "es": "Diseño + Desarrollo Frontend",
+      "en": "Design + Frontend Development",
+      "pt": "Design + Desenvolvimento Frontend"
+    },
+    "tecnologias": [
+      "Vue",
+      "Vite",
+      "GSAP",
+      "CSS"
+    ],
+    "linkDemo": "https://refugio-del-pintor.vercel.app/v3/index.html",
+    "linkGithub": null,
+    "imagenPrincipal": "/images/projects/refugiodelpintormain.svg",
+    "logo": null,
+    "imagenes": [],
+    "video": null,
+    "colorFondo": "linear-gradient(135deg, #f2ede3 0%, #e7dccb 100%)",
+    "colorTexto": "#2a2018",
+    "features": {
+      "es": [
+        "Identidad editorial cálida (serif + adobe, piedra y madera)",
+        "Hero con foto de fachada y tono de marca claro",
+        "Catálogo de 13 habitaciones en dos plantas",
+        "Galería de fotos del lugar",
+        "Promo de temporada destacada",
+        "Reservas directas por WhatsApp, sin intermediarios",
+        "Bilingüe ES/EN",
+        "Diseño responsive"
+      ],
+      "en": [
+        "Warm editorial identity (serif + adobe, stone and wood)",
+        "Hero with facade photo and a clear brand tone",
+        "Catalog of 13 rooms across two floors",
+        "Photo gallery of the place",
+        "Featured seasonal promo",
+        "Direct WhatsApp booking, no middlemen",
+        "Bilingual ES/EN",
+        "Responsive design"
+      ],
+      "pt": [
+        "Identidade editorial quente (serifa + adobe, pedra e madeira)",
+        "Hero com foto da fachada e tom de marca claro",
+        "Catálogo de 13 quartos em dois andares",
+        "Galeria de fotos do lugar",
+        "Promoção de temporada em destaque",
+        "Reservas diretas por WhatsApp, sem intermediários",
+        "Bilíngue ES/EN",
+        "Design responsivo"
+      ]
+    },
+    "tipo": "LANDING",
+    "destacado": true,
+    "orden": 5
+  },
+  {
     "id": "polyfuse",
     "nombre": "POLYFUSE",
     "descripcionCorta": {
@@ -331,7 +402,7 @@
     },
     "tipo": "GAME",
     "destacado": true,
-    "orden": 5
+    "orden": 6
   },
   {
     "id": "caleido",
@@ -403,7 +474,7 @@
     },
     "tipo": "WEBAPP",
     "destacado": false,
-    "orden": 6
+    "orden": 7
   },
   {
     "id": "patagonia-refugio",
@@ -475,7 +546,7 @@
     },
     "tipo": "LANDING",
     "destacado": true,
-    "orden": 7
+    "orden": 8
   },
   {
     "id": "trama-estudio",
@@ -549,7 +620,7 @@
     },
     "tipo": "LANDING",
     "destacado": false,
-    "orden": 8
+    "orden": 9
   },
   {
     "id": "hearth-and-hall",
@@ -623,7 +694,7 @@
     },
     "tipo": "FRONTEND",
     "destacado": false,
-    "orden": 9
+    "orden": 10
   },
   {
     "id": "inkmanager",
@@ -697,7 +768,7 @@
     },
     "tipo": "WEBAPP",
     "destacado": true,
-    "orden": 10,
+    "orden": 11,
     "enDesarrollo": true
   },
   {
@@ -759,7 +830,7 @@
     },
     "tipo": "WEBAPP",
     "destacado": true,
-    "orden": 11,
+    "orden": 12,
     "enDesarrollo": true
   }
 ]
