@@ -10,9 +10,8 @@ interface Props {
 }
 const { heading, subtitle, locale } = Astro.props;
 
-const projects = (await getCollection('projects'))
-  .filter((p) => p.data.locales.includes(locale))
-  .sort((a, b) => a.data.order - b.data.order);
+// Same set of projects for every locale — only the framing/copy differs.
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 
 // CreativeWork schema per visible project.
 const creativeWorks = projects.map((p) => {

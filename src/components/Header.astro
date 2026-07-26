@@ -36,9 +36,9 @@ const cta =
 </header>
 
 <script>
-  // Reveal the fixed header after scrolling past the fold. Pure vanilla, no framework.
+  // Header stays visible; it just gains a solid background once you scroll.
   const header = document.querySelector('[data-header]');
-  const onScroll = () => header?.classList.toggle('header--visible', window.scrollY > 60);
+  const onScroll = () => header?.classList.toggle('header--scrolled', window.scrollY > 40);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 </script>
@@ -50,18 +50,14 @@ const cta =
     left: 0;
     right: 0;
     z-index: 100;
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+  }
+  .header.header--scrolled {
     background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
     backdrop-filter: saturate(180%) blur(16px);
-    border-bottom: 1px solid var(--border-color);
-    transition: transform 0.35s var(--ease-out), opacity 0.35s var(--ease-out);
-  }
-  .header.header--visible {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+    border-bottom-color: var(--border-color);
   }
   .header__inner {
     display: flex;

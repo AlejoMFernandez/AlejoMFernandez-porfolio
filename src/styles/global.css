@@ -163,6 +163,21 @@ section[id] {
   border-color: var(--text-tertiary);
 }
 
+/* ===== Cross-page transitions (incl. language switch) — zero JS ===== */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
 /* ===== Reduced Motion ===== */
 @media (prefers-reduced-motion: reduce) {
   *,

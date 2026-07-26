@@ -16,56 +16,70 @@ const external = (href: string) => href.startsWith('http');
 
 <section id="top" class="hero">
   <div class="container hero__inner">
-    <div class="hero__text">
-      {chip && (
-        <span class="hero__chip"><span class="hero__dot"></span>{chip}</span>
-      )}
-      <h1 class="hero__title">{title}</h1>
-      <p class="hero__lead">{lead}</p>
-      <div class="hero__actions">
-        <a
-          href={ctaPrimary.href}
-          class="btn btn--primary"
-          target={external(ctaPrimary.href) ? '_blank' : undefined}
-          rel="noopener"
-        >
-          {ctaPrimary.label}
-        </a>
-        {ctaSecondary && (
-          <a href={ctaSecondary.href} class="btn btn--ghost">{ctaSecondary.label}</a>
-        )}
-      </div>
-    </div>
-
     <div class="hero__art">
       <Picture
         src={sticker}
         formats={['avif', 'webp']}
-        widths={[400, 700, 1000]}
-        sizes="(max-width: 860px) 55vw, 40vw"
+        widths={[320, 640, 900]}
+        sizes="(max-width: 640px) 45vw, 280px"
         alt=""
         loading="eager"
         fetchpriority="high"
       />
+    </div>
+
+    {chip && (
+      <span class="hero__chip"><span class="hero__dot"></span>{chip}</span>
+    )}
+
+    <h1 class="hero__title">{title}</h1>
+    <p class="hero__lead">{lead}</p>
+
+    <div class="hero__actions">
+      <a
+        href={ctaPrimary.href}
+        class="btn btn--primary"
+        target={external(ctaPrimary.href) ? '_blank' : undefined}
+        rel="noopener"
+      >
+        {ctaPrimary.label}
+      </a>
+      {ctaSecondary && (
+        <a href={ctaSecondary.href} class="btn btn--ghost">{ctaSecondary.label}</a>
+      )}
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    /* Shorter than full-height so the next section peeks and invites scroll. */
-    min-height: min(84svh, 760px);
+    /* Exactly one viewport tall; padding is INSIDE it (border-box) so the
+       whole hero fits without scrolling. Top padding clears the fixed header. */
+    min-height: 100svh;
     display: flex;
     align-items: center;
-    padding-block: clamp(1.5rem, 4vh, 3rem);
+    justify-content: center;
+    text-align: center;
+    padding: 4.5rem 0 1.5rem;
   }
   .hero__inner {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: clamp(1.5rem, 4vw, 3rem);
+    max-width: 780px;
   }
+
+  .hero__art {
+    margin-bottom: 1rem;
+    animation: float 5s ease-in-out infinite;
+  }
+  .hero__art :global(img) {
+    width: auto;
+    max-height: min(22vh, 200px);
+    object-fit: contain;
+    filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.22));
+  }
+
   .hero__chip {
     display: inline-flex;
     align-items: center;
@@ -76,7 +90,7 @@ const external = (href: string) => href.startsWith('http');
     border: 1px solid var(--border-color);
     padding: 0.4rem 0.85rem;
     border-radius: 999px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
   .hero__dot {
     width: 8px;
@@ -85,44 +99,33 @@ const external = (href: string) => href.startsWith('http');
     background: #22c55e;
     box-shadow: 0 0 0 4px color-mix(in srgb, #22c55e 22%, transparent);
   }
+
   .hero__title {
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-size: clamp(2.25rem, 5.5vw, 4rem);
     line-height: 1.05;
   }
   .hero__lead {
-    margin-top: 1.35rem;
+    margin-top: 1rem;
     font-size: clamp(1.05rem, 2vw, 1.25rem);
     color: var(--text-secondary);
-    max-width: 540px;
+    max-width: 560px;
   }
   .hero__actions {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.85rem;
   }
-  .hero__art {
-    display: flex;
-    justify-content: center;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
   }
-  .hero__art :global(img) {
-    width: auto;
-    max-width: 100%;
-    max-height: min(56vh, 500px);
-    object-fit: contain;
-    filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.25));
-  }
-  @media (max-width: 860px) {
-    .hero__inner {
-      grid-template-columns: 1fr;
-      gap: 0.5rem;
-    }
-    .hero__art {
-      order: -1;
-      justify-content: flex-start;
-    }
+
+  @media (max-width: 640px) {
     .hero__art :global(img) {
-      max-height: 28vh;
+      max-height: 20vh;
     }
   }
 </style>
