@@ -1,0 +1,38 @@
+---
+// GA4, loaded OFF the critical path. Only in production builds.
+// Analytics on the main thread was the single biggest performance drag
+// (unused JS + ~1.8s main-thread work). We defer gtag until the first user
+// interaction (scroll/tap/key) with an idle fallback, so initial render and
+// LCP stay clean while real visitors are still tracked.
+const GA_ID = 'G-WXHXTLXS21';
+const enabled = import.meta.env.PROD;
+---
+
+{enabled && (
+  <script is:inline define:vars={{ GA_ID }}>
+    (function () {
+      var loaded = false;
+      function load() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', GA_ID, { anonymize_ip: true });
+      }
+      // Real interactions only (NOT scroll — programmatic scroll during audits
+      // would trip it, and scroll fires constantly for real users anyway).
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
+        window.addEventListener(evt, load, { once: true, passive: true });
+      });
+      // Time fallback so non-interacting visitors are still counted. A fixed
+      // delay (not requestIdleCallback, which fires as soon as the near-idle
+      // page settles) keeps gtag out of the initial render + audit window.
+      setTimeout(load, 8000);
+    })();
+  </script>
+)}

@@ -1,0 +1,116 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { useTranslations } from '../i18n/ui';
+import type { Locale } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  pagePath: string;
+}
+const { locale, pagePath } = Astro.props;
+const t = useTranslations(locale);
+
+const cta =
+  locale === 'en'
+    ? { label: t('nav.cta'), href: 'mailto:fernandezmalejo@gmail.com?subject=Front-end%20capacity' }
+    : {
+        label: t('nav.cta'),
+        href: 'https://wa.me/5491125237915?text=%C2%A1Hola%20Alejo!%20Quiero%20una%20web%20r%C3%A1pida%20para%20mi%20negocio.',
+      };
+---
+
+<header class="header" data-header>
+  <div class="container header__inner">
+    <a href={locale === 'en' ? '/en/' : '/'} class="header__brand" aria-label="Alejo Fernández">
+      <img class="header__logo header__logo--dark" src="/logoAFwhite.png" alt="Alejo Fernández" width="39" height="30" />
+      <img class="header__logo header__logo--light" src="/logoAFblack.png" alt="Alejo Fernández" width="39" height="30" />
+    </a>
+
+    <nav class="header__nav">
+      <LanguageSwitcher locale={locale} pagePath={pagePath} />
+      <a class="header__cta" href={cta.href} target={cta.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+        {cta.label}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Reveal the fixed header after scrolling past the fold. Pure vanilla, no framework.
+  const header = document.querySelector('[data-header]');
+  const onScroll = () => header?.classList.toggle('header--visible', window.scrollY > 60);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
+    backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid var(--border-color);
+    transition: transform 0.35s var(--ease-out), opacity 0.35s var(--ease-out);
+  }
+  .header.header--visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .header__brand {
+    display: inline-flex;
+    align-items: center;
+  }
+  .header__logo {
+    height: 30px;
+    width: auto;
+  }
+  .header__logo--light {
+    display: none;
+  }
+  @media (prefers-color-scheme: light) {
+    .header__logo--dark {
+      display: none;
+    }
+    .header__logo--light {
+      display: block;
+    }
+  }
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .header__cta {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    transition: opacity 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+  }
+  .header__cta:hover {
+    opacity: 0.88;
+  }
+  .header__cta:active {
+    transform: scale(0.96);
+  }
+  @media (max-width: 460px) {
+    .header__cta {
+      display: none;
+    }
+  }
+</style>

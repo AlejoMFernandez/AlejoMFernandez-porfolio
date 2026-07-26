@@ -1,0 +1,62 @@
+{
+  "locale": "en",
+  "seo": {
+    "title": "Alejo Fernández — White-label front-end developer for agencies",
+    "description": "White-label front-end development in React, Vue and Astro. UTC-3, full overlap with US business hours. Available now.",
+    "ogLocale": "en_US",
+    "ogImage": "/og-en.png"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "chip": "Available now",
+      "title": "Front-end development for agencies that need capacity now.",
+      "lead": "White-label React, Vue and Astro. Based in Brazil — one hour from New York. No overnight handoffs, no 3am Slack.",
+      "ctaPrimary": { "label": "Book a call", "href": "mailto:fernandezmalejo@gmail.com?subject=Front-end%20capacity" },
+      "ctaSecondary": { "label": "See the work", "href": "#work" }
+    },
+    {
+      "type": "timezone",
+      "heading": "One hour from New York.",
+      "subtitle": "UTC-3 means full overlap with US business hours — East and West coast.",
+      "note": "Your team asks at 9am, I'm already online. No 12-hour offshore lag."
+    },
+    {
+      "type": "projects",
+      "heading": "Selected work",
+      "subtitle": "What was delivered, in what timeframe, with what stack, and how the handoff looked."
+    },
+    {
+      "type": "howiwork",
+      "heading": "How I work with agencies",
+      "items": [
+        { "title": "White-label under your brand", "body": "I ship under your name. The end client never knows I exist, and never talks to me." },
+        { "title": "Your tools, your process", "body": "Communication happens in your Slack, Jira or Linear. I fit into your workflow, not the other way around." },
+        { "title": "Your repo, your conventions", "body": "Delivery in your repository, following your commit convention and branch strategy. Clean PRs, reviewable diffs." },
+        { "title": "A clean handoff", "body": "Documented, typed and consistent. Your team picks it up without a call to decode what I did." }
+      ]
+    },
+    {
+      "type": "stack",
+      "heading": "Stack",
+      "groups": [
+        { "label": "Frameworks", "items": ["React", "Vue", "Astro"] },
+        { "label": "Language", "items": ["TypeScript", "JavaScript"] },
+        { "label": "Styling", "items": ["Tailwind", "CSS", "GSAP"] },
+        { "label": "Tooling", "items": ["Vite", "Git", "Vercel"] }
+      ]
+    },
+    {
+      "type": "availability",
+      "heading": "Availability",
+      "body": "30+ hours a week open for new agency work, starting immediately. Tell me your timeline and I'll confirm the slots.",
+      "cta": { "label": "Check availability", "href": "mailto:fernandezmalejo@gmail.com?subject=Availability" }
+    },
+    {
+      "type": "contact",
+      "heading": "Need reliable front-end capacity?",
+      "lead": "Tell me what you're building and how your team works. I reply fast.",
+      "ctaPrimary": { "label": "Email me", "href": "mailto:fernandezmalejo@gmail.com?subject=Front-end%20capacity" }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "locale": "es",
+  "seo": {
+    "title": "Alejo Fernández — Desarrollo web rápido para negocios",
+    "description": "Desarrollo sitios web que cargan en menos de un segundo y convierten visitas en consultas. Mirá los casos y hablemos.",
+    "ogLocale": "es_AR",
+    "ogImage": "/og-es.png"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "chip": "Disponible para nuevos proyectos",
+      "title": "Sitios web que cargan en menos de un segundo.",
+      "lead": "Desarrollo web para negocios que están perdiendo consultas por un sitio lento, viejo o que no funciona en el celular.",
+      "ctaPrimary": {
+        "label": "Hablemos por WhatsApp",
+        "href": "https://wa.me/5491125237915?text=%C2%A1Hola%20Alejo!%20Quiero%20una%20web%20r%C3%A1pida%20para%20mi%20negocio."
+      },
+      "ctaSecondary": { "label": "Ver casos", "href": "#casos" }
+    },
+    {
+      "type": "projects",
+      "heading": "Casos",
+      "subtitle": "Sitios y sistemas para clientes reales. Cada uno resolvió un problema concreto de negocio."
+    },
+    {
+      "type": "about",
+      "eyebrow": "Sobre mí",
+      "heading": "Detrás de cada proyecto hay una persona, no una plantilla.",
+      "body": [
+        "Soy Alejo, desarrollador web. Me apasiona construir cosas en la web que se vean bien y funcionen todavía mejor.",
+        "Trabajo como freelance diseñando y desarrollando sitios a medida. Cuido cada detalle y la experiencia de quien los usa, para que tu proyecto no sea uno más, sino uno que se recuerde."
+      ],
+      "cta": {
+        "label": "Trabajemos juntos →",
+        "href": "https://wa.me/5491125237915?text=%C2%A1Hola%20Alejo!%20Quiero%20una%20web%20r%C3%A1pida%20para%20mi%20negocio."
+      }
+    },
+    {
+      "type": "contact",
+      "heading": "¿Tenés un proyecto en mente?",
+      "lead": "Contame qué necesitás y armamos algo juntos. Respondo rápido.",
+      "ctaPrimary": {
+        "label": "Escribime por WhatsApp",
+        "href": "https://wa.me/5491125237915?text=%C2%A1Hola%20Alejo!%20Quiero%20una%20web%20r%C3%A1pida%20para%20mi%20negocio."
+      }
+    }
+  ]
+}

@@ -1,30 +1,29 @@
 /* ===== CSS Variables ===== */
 :root {
-  /* Colors - Light Theme */
   --bg-primary: #ffffff;
   --bg-secondary: #f5f5f7;
   --bg-tertiary: #e8e8ed;
 
   --text-primary: #1d1d1f;
   --text-secondary: #515154;
-  --text-tertiary: #86868b;
+  --text-tertiary: #67676c;
 
-  --accent-color: #0ea5e9;
-  --accent-hover: #0284c7;
+  /* Accent as TEXT (tags, eyebrows) — darker on light bg for AA contrast. */
+  --accent-color: #0369a1;
+  /* Accent as a FILLED button bg — fixed across themes; white text = 5.6:1. */
+  --accent-fill: #0369a1;
+  --accent-fill-hover: #075985;
 
-  --border-color: rgba(0, 0, 0, 0.10);
+  --border-color: rgba(0, 0, 0, 0.1);
 
-  /* Typography */
-  --font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  /* --font-manrope is provided by Astro's Fonts API (self-hosted Manrope). */
+  --font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, sans-serif;
 
-  /* Easing */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-
-  /* Layout */
   --maxw: 1200px;
 }
 
-/* Dark Theme */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-primary: #0a0a0a;
@@ -33,9 +32,12 @@
 
     --text-primary: #f5f5f7;
     --text-secondary: #a1a1a6;
-    --text-tertiary: #6e6e73;
+    --text-tertiary: #909099;
 
-    --border-color: rgba(255, 255, 255, 0.10);
+    /* Brighter accent text on dark bg for AA contrast. */
+    --accent-color: #38bdf8;
+
+    --border-color: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -99,7 +101,7 @@ ul, ol {
   outline-offset: 3px;
 }
 
-/* ===== Shared layout helpers ===== */
+/* ===== Layout helpers ===== */
 .container {
   width: 100%;
   max-width: var(--maxw);
@@ -111,9 +113,54 @@ ul, ol {
   padding-block: clamp(4rem, 10vw, 7rem);
 }
 
-/* Offset anchor targets so the fixed header doesn't cover them */
 section[id] {
   scroll-margin-top: 84px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 0.6rem 1rem;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Shared buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  transition: transform 0.18s var(--ease-out), opacity 0.18s var(--ease-out),
+    background-color 0.18s var(--ease-out), border-color 0.18s var(--ease-out);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn--primary {
+  background: var(--accent-fill);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: var(--accent-fill-hover);
+}
+.btn--ghost {
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+.btn--ghost:hover {
+  border-color: var(--text-tertiary);
 }
 
 /* ===== Reduced Motion ===== */

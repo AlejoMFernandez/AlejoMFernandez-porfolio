@@ -1,0 +1,61 @@
+---
+interface Group { label: string; items: string[] }
+interface Props {
+  heading: string;
+  groups: Group[];
+}
+const { heading, groups } = Astro.props;
+---
+
+<section id="stack" class="section stack">
+  <div class="container">
+    <h2 class="stack__head">{heading}</h2>
+    <div class="stack__grid">
+      {groups.map((g) => (
+        <div class="stack__group">
+          <span class="stack__label">{g.label}</span>
+          <ul class="stack__items">
+            {g.items.map((it) => <li>{it}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack {
+    border-top: 1px solid var(--border-color);
+  }
+  .stack__head {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  .stack__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+  .stack__label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+  }
+  .stack__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .stack__items li {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.4rem 0.8rem;
+  }
+</style>

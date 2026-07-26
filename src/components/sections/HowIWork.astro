@@ -1,0 +1,58 @@
+---
+interface Item { title: string; body: string }
+interface Props {
+  heading: string;
+  items: Item[];
+}
+const { heading, items } = Astro.props;
+---
+
+<section id="how-i-work" class="section howiwork">
+  <div class="container">
+    <h2 class="howiwork__head">{heading}</h2>
+    <div class="howiwork__grid">
+      {items.map((item, i) => (
+        <article class="howiwork__item">
+          <span class="howiwork__num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .howiwork {
+    border-top: 1px solid var(--border-color);
+  }
+  .howiwork__head {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+  .howiwork__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+  .howiwork__item {
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.75rem;
+  }
+  .howiwork__num {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+  }
+  .howiwork__item h3 {
+    font-size: 1.2rem;
+  }
+  .howiwork__item p {
+    margin-top: 0.65rem;
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+  }
+</style>

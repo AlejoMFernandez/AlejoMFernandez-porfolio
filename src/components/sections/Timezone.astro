@@ -1,0 +1,107 @@
+---
+// EN-exclusive. Static SVG: overlap of my workday (UTC-3) with US business hours.
+// Axis is MY local time (UTC-3), 6am → 11pm. No JS.
+interface Props {
+  heading: string;
+  subtitle?: string;
+  note?: string;
+}
+const { heading, subtitle, note } = Astro.props;
+
+// Timeline maps hour 6..23 across the SVG width.
+const START = 6;
+const END = 23;
+const W = 900;
+const PAD_L = 130;
+const PAD_R = 24;
+const track = W - PAD_L - PAD_R;
+const x = (h: number) => PAD_L + ((h - START) / (END - START)) * track;
+
+// Working blocks in MY local time (UTC-3).
+const me = { from: 9, to: 18 };
+const ny = { from: 11, to: 19, label: 'New York · 9am–5pm' }; // EST business hours in my time
+const sf = { from: 14, to: 22, label: 'San Francisco · 9am–5pm' }; // PST business hours in my time
+
+const rows = [
+  { y: 70, ...me, color: 'var(--accent-color)', label: 'Me · UTC-3' },
+  { y: 118, ...ny, color: 'var(--text-secondary)' },
+  { y: 166, ...sf, color: 'var(--text-secondary)' },
+];
+const ticks = [6, 9, 12, 15, 18, 21, 23];
+const fmt = (h: number) => (h === 12 ? '12pm' : h < 12 ? `${h}am` : h === 24 ? '12am' : `${h - 12}pm`);
+---
+
+<section id="timezone" class="section tz">
+  <div class="container">
+    <header class="tz__head">
+      <h2>{heading}</h2>
+      {subtitle && <p>{subtitle}</p>}
+    </header>
+
+    <div class="tz__chart">
+      <svg viewBox={`0 0 ${W} 210`} role="img" aria-label={subtitle ?? heading} preserveAspectRatio="xMidYMid meet">
+        <!-- hour ticks -->
+        {ticks.map((h) => (
+          <>
+            <line x1={x(h)} y1="40" x2={x(h)} y2="196" stroke="var(--border-color)" stroke-width="1" />
+            <text x={x(h)} y="28" text-anchor="middle" class="tz__tick">{fmt(h)}</text>
+          </>
+        ))}
+        <!-- rows -->
+        {rows.map((r) => (
+          <>
+            <text x={PAD_L - 16} y={r.y + 15} text-anchor="end" class="tz__label">{r.label}</text>
+            <rect x={x(r.from)} y={r.y} width={x(r.to) - x(r.from)} height="22" rx="6" fill={r.color} opacity={r.color === 'var(--accent-color)' ? '1' : '0.28'} />
+          </>
+        ))}
+        <!-- overlap band (my workday ∩ SF..NY range) -->
+        <rect x={x(Math.max(me.from, ny.from))} y="58" width={x(Math.min(me.to, sf.to)) - x(Math.max(me.from, ny.from))} height="130" fill="var(--accent-color)" opacity="0.08" />
+      </svg>
+    </div>
+
+    {note && <p class="tz__note">{note}</p>}
+  </div>
+</section>
+
+<style>
+  .tz {
+    border-top: 1px solid var(--border-color);
+  }
+  .tz__head {
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+  .tz__head h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+  .tz__head p {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+  .tz__chart {
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1rem;
+    background: var(--bg-secondary);
+  }
+  .tz__chart svg {
+    width: 100%;
+    height: auto;
+  }
+  .tz__tick {
+    fill: var(--text-tertiary);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .tz__label {
+    fill: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .tz__note {
+    margin-top: 1.25rem;
+    color: var(--text-tertiary);
+    font-size: 0.95rem;
+  }
+</style>

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "puraa",
+    "name": "PURAA",
+    "order": 1,
+    "locales": ["es", "en"],
+    "type": "WORDPRESS",
+    "client": "PURAA",
+    "url": "https://puraa.com.ar/",
+    "repo": null,
+    "tech": ["WordPress", "Elementor", "WooCommerce", "CSS"],
+    "image": "/images/projects/puraamain.svg",
+    "bg": "#2d6a4f",
+    "es": {
+      "summary": "E-commerce de cosmética natural con enfoque en bienestar integral y consumo consciente.",
+      "outcome": "Tienda propia para vender sin depender de redes ni de un marketplace."
+    },
+    "en": {
+      "summary": "Natural cosmetics e-commerce focused on holistic wellness.",
+      "delivered": "WooCommerce store + brand site",
+      "timeframe": "~1 month",
+      "handoff": "self-managed in WordPress"
+    }
+  },
+  {
+    "id": "franza",
+    "name": "FRANZA",
+    "order": 2,
+    "locales": ["es", "en"],
+    "type": "ABM",
+    "client": "Franza Constructora",
+    "url": "https://Franza.com.ar/",
+    "repo": "https://github.com/AlejoMFernandez/Franza",
+    "tech": ["PHP", "Bootstrap", "JavaScript", "MySQL"],
+    "image": "/images/projects/franzamain.svg",
+    "bg": "linear-gradient(135deg, #b38838 0%, #d4af37 100%)",
+    "es": {
+      "summary": "Sistema web MVC para gestionar el portfolio de obras de una constructora con más de 15 años.",
+      "outcome": "Portfolio de obras autogestionable: cargan proyectos sin depender de mí."
+    },
+    "en": {
+      "summary": "MVC web system to manage a construction company's project portfolio.",
+      "delivered": "Custom MVC admin + public portfolio",
+      "timeframe": "~2 months",
+      "handoff": "documented PHP MVC + admin panel"
+    }
+  },
+  {
+    "id": "refugio-del-pintor",
+    "name": "Refugio del Pintor",
+    "order": 3,
+    "locales": ["es", "en"],
+    "type": "LANDING",
+    "client": "Refugio del Pintor",
+    "url": "https://refugio-del-pintor.vercel.app/v3/index.html",
+    "repo": null,
+    "tech": ["Vue", "Vite", "GSAP", "CSS"],
+    "image": "/images/projects/refugiodelpintormain.svg",
+    "bg": "linear-gradient(135deg, #f2ede3 0%, #e7dccb 100%)",
+    "es": {
+      "summary": "Landing editorial para un refugio en Tilcara, con identidad cálida y reservas directas.",
+      "outcome": "Reservas directas por WhatsApp, sin comisiones de plataformas de reserva."
+    },
+    "en": {
+      "summary": "Editorial landing for a boutique stay in Tilcara.",
+      "delivered": "Bilingual editorial landing",
+      "timeframe": "~2 weeks",
+      "handoff": "static build, host-anywhere"
+    }
+  },
+  {
+    "id": "arianadeviaje",
+    "name": "ArianaDeViaje",
+    "order": 4,
+    "locales": ["es", "en"],
+    "type": "WEBAPP",
+    "client": "ArianaDeViaje",
+    "inProgress": true,
+    "url": "https://arianadeviaje.com/",
+    "repo": "https://github.com/AlejoMFernandez/arianadeviaje",
+    "tech": ["Vue", "TypeScript", "CSS"],
+    "image": "/images/projects/arianamain.svg",
+    "bg": "linear-gradient(135deg, #012526 0%, #02b6b0 100%)",
+    "es": {
+      "summary": "Sitio de viajes con identidad visual personalizada y enfoque mobile-first.",
+      "outcome": "Presencia digital propia pensada para que la contacten desde el celular."
+    },
+    "en": {
+      "summary": "Brand travel site with a conversion-focused mobile-first UX.",
+      "delivered": "Brand travel site",
+      "timeframe": "~1 month",
+      "handoff": "Vue + TypeScript repo"
+    }
+  },
+  {
+    "id": "patagonia-refugio",
+    "name": "Refugio del Cóndor",
+    "order": 5,
+    "locales": ["es", "en"],
+    "type": "LANDING",
+    "client": null,
+    "url": "https://refugio-condor.vercel.app/",
+    "repo": "https://github.com/AlejoMFernandez/RefugioCondor",
+    "tech": ["React", "TypeScript", "Tailwind", "Framer Motion"],
+    "image": "/images/projects/patagonia-refugiomain.svg",
+    "bg": "linear-gradient(135deg, #050810 0%, #0D1520 55%, #0A1008 100%)",
+    "es": {
+      "summary": "Landing cinematográfica para un lodge de montaña, con parallax y galería masonry."
+    },
+    "en": {
+      "summary": "Cinematic landing for a mountain lodge.",
+      "delivered": "Cinematic marketing landing",
+      "timeframe": "~1 week",
+      "handoff": "typed React repo"
+    }
+  },
+  {
+    "id": "trama-estudio",
+    "name": "TRAMA Estudio",
+    "order": 6,
+    "locales": ["es", "en"],
+    "type": "LANDING",
+    "client": null,
+    "url": "https://trama-estudio.vercel.app/",
+    "repo": "https://github.com/AlejoMFernandez/TRAMA",
+    "tech": ["Vite", "Vanilla JS", "GSAP", "Lenis"],
+    "image": "/images/projects/trama-estudiomain.svg",
+    "bg": "linear-gradient(135deg, #1A1A1A 0%, #2D2520 100%)",
+    "es": {
+      "summary": "Landing para un estudio de arquitectura donde cada sección se revela al scrollear."
+    },
+    "en": {
+      "summary": "Architecture-studio landing with a sketch-to-final scroll reveal.",
+      "delivered": "Scroll-reveal marketing landing",
+      "timeframe": "~1 week",
+      "handoff": "vanilla JS, optimized assets"
+    }
+  },
+  {
+    "id": "granozero",
+    "name": "Grano Zero",
+    "order": 7,
+    "locales": ["es", "en"],
+    "type": "WEBAPP",
+    "client": null,
+    "url": "https://granozerocafe.vercel.app/",
+    "repo": "https://github.com/AlejoMFernandez/GranoZeroIA",
+    "tech": ["Vue", "Vite", "JavaScript", "CSS"],
+    "image": "/images/projects/granozeromain.svg",
+    "bg": "linear-gradient(135deg, #1a0e07 0%, #2c1810 55%, #3d2416 100%)",
+    "es": {
+      "summary": "App de aprendizaje sobre café de especialidad, con fuerte identidad visual editorial."
+    },
+    "en": {
+      "summary": "Specialty-coffee learning app with an editorial identity.",
+      "delivered": "Editorial learning app",
+      "timeframe": "~2 weeks",
+      "handoff": "componentized Vue"
+    }
+  },
+  {
+    "id": "hearth-and-hall",
+    "name": "Hearth & Hall",
+    "order": 8,
+    "locales": ["es", "en"],
+    "type": "FRONTEND",
+    "client": null,
+    "url": "https://hearth-and-hall.vercel.app/",
+    "repo": "https://github.com/AlejoMFernandez/hearth-and-hall",
+    "tech": ["React", "TypeScript", "Vite", "Tailwind", "GSAP"],
+    "image": "/images/projects/hearth-and-hallmain.svg",
+    "bg": "linear-gradient(135deg, #2A2520 0%, #3D2914 45%, #5C3A1F 75%, #E8A04F 100%)",
+    "es": {
+      "summary": "Template visual de tienda con cuatro salas tematizadas y hero cinematográfico."
+    },
+    "en": {
+      "summary": "Storefront template with four themed halls.",
+      "delivered": "Storefront UI template, 4 views",
+      "timeframe": "~1 week",
+      "handoff": "typed React + Router"
+    }
+  },
+  {
+    "id": "goaldemy",
+    "name": "GOALDEMY",
+    "order": 9,
+    "locales": ["en"],
+    "type": "WEBAPP",
+    "client": null,
+    "url": "https://goaldemy.vercel.app/",
+    "repo": "https://github.com/AlejoMFernandez/Goaldemy",
+    "tech": ["Vue", "Vite", "Tailwind", "Supabase"],
+    "image": "/images/projects/goaldemymain.svg",
+    "bg": "linear-gradient(135deg, #03081A 0%, #162035 100%)",
+    "es": {
+      "summary": "App web de minijuegos de fútbol con rachas, logros y tablas de posición."
+    },
+    "en": {
+      "summary": "Football gaming app with streaks, achievements and leaderboards.",
+      "delivered": "8 mini-games, auth, realtime leaderboards",
+      "timeframe": "ongoing",
+      "handoff": "Supabase backend, componentized Vue"
+    }
+  },
+  {
+    "id": "caleido",
+    "name": "Caleido",
+    "order": 10,
+    "locales": ["en"],
+    "type": "WEBAPP",
+    "client": null,
+    "url": "https://caleidodraw.vercel.app/",
+    "repo": "https://github.com/AlejoMFernandez/Caleido",
+    "tech": ["React", "Vite", "Tailwind", "Motion", "SVG"],
+    "image": "/images/projects/caleidomain.svg",
+    "bg": "linear-gradient(135deg, #07090D 0%, #0E1119 55%, #161B26 100%)",
+    "es": {
+      "summary": "Estudio de arte geométrico generativo en SVG puro."
+    },
+    "en": {
+      "summary": "Generative geometric art studio in pure SVG.",
+      "delivered": "Generative art studio (React 19)",
+      "timeframe": "~1 week",
+      "handoff": "typed React, Tailwind v4"
+    }
+  },
+  {
+    "id": "polyfuse",
+    "name": "POLYFUSE",
+    "order": 11,
+    "locales": ["en"],
+    "type": "GAME",
+    "client": null,
+    "url": "https://polyfusegame.vercel.app/",
+    "repo": "https://github.com/AlejoMFernandez/POLYFUSE",
+    "tech": ["TypeScript", "Vite", "SVG", "GSAP", "Howler"],
+    "image": "/images/projects/polyfusemain.svg",
+    "bg": "linear-gradient(135deg, #0A0A14 0%, #1A1240 55%, #2E1A5C 100%)",
+    "es": {
+      "summary": "Puzzle minimalista de fusión de polígonos con tablero 100% SVG animado."
+    },
+    "en": {
+      "summary": "Minimalist polygon-fusion puzzle, 100% animated SVG.",
+      "delivered": "SVG puzzle game, 4 modes",
+      "timeframe": "~1 week",
+      "handoff": "typed TypeScript, no heavy deps"
+    }
+  },
+  {
+    "id": "inkmanager",
+    "name": "InkManager",
+    "order": 12,
+    "locales": ["en"],
+    "type": "WEBAPP",
+    "client": null,
+    "inProgress": true,
+    "url": "https://inkmanager.up.railway.app/",
+    "repo": "https://github.com/AlejoMFernandez/InkManager",
+    "tech": ["PHP", "MySQL", "Three.js", "Tailwind"],
+    "image": "/images/projects/inkmanagermain.svg",
+    "bg": "linear-gradient(135deg, #0a0a0a 0%, #1a0606 55%, #2a0808 100%)",
+    "es": {
+      "summary": "Gestión para estudios de tatuaje con body map 3D rotable."
+    },
+    "en": {
+      "summary": "Tattoo-studio management with a rotatable 3D body map.",
+      "delivered": "Studio management + 3D body map",
+      "timeframe": "in progress",
+      "handoff": "PHP MVC + MySQL"
+    }
+  }
+]

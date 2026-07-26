@@ -1,0 +1,19 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionRenderer from '../../components/sections/SectionRenderer.astro';
+
+const entry = await getEntry('home', 'en');
+if (!entry) throw new Error('Missing content: src/content/home/en.json');
+const { seo, sections } = entry.data;
+---
+
+<BaseLayout
+  locale="en"
+  title={seo.title}
+  description={seo.description}
+  ogLocale={seo.ogLocale}
+  ogImage={seo.ogImage}
+>
+  {sections.map((section) => <SectionRenderer section={section} locale="en" />)}
+</BaseLayout>

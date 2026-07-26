@@ -1,0 +1,128 @@
+---
+import { Picture } from 'astro:assets';
+import sticker from '../../assets/images/stickersaludando.webp';
+
+interface Cta { label: string; href: string }
+interface Props {
+  chip?: string;
+  title: string;
+  lead: string;
+  ctaPrimary: Cta;
+  ctaSecondary?: Cta;
+}
+const { chip, title, lead, ctaPrimary, ctaSecondary } = Astro.props;
+const external = (href: string) => href.startsWith('http');
+---
+
+<section id="top" class="hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      {chip && (
+        <span class="hero__chip"><span class="hero__dot"></span>{chip}</span>
+      )}
+      <h1 class="hero__title">{title}</h1>
+      <p class="hero__lead">{lead}</p>
+      <div class="hero__actions">
+        <a
+          href={ctaPrimary.href}
+          class="btn btn--primary"
+          target={external(ctaPrimary.href) ? '_blank' : undefined}
+          rel="noopener"
+        >
+          {ctaPrimary.label}
+        </a>
+        {ctaSecondary && (
+          <a href={ctaSecondary.href} class="btn btn--ghost">{ctaSecondary.label}</a>
+        )}
+      </div>
+    </div>
+
+    <div class="hero__art">
+      <Picture
+        src={sticker}
+        formats={['avif', 'webp']}
+        widths={[400, 700, 1000]}
+        sizes="(max-width: 860px) 55vw, 40vw"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    /* Shorter than full-height so the next section peeks and invites scroll. */
+    min-height: min(84svh, 760px);
+    display: flex;
+    align-items: center;
+    padding-block: clamp(1.5rem, 4vh, 3rem);
+  }
+  .hero__inner {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+  .hero__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+  .hero__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 4px color-mix(in srgb, #22c55e 22%, transparent);
+  }
+  .hero__title {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    line-height: 1.05;
+  }
+  .hero__lead {
+    margin-top: 1.35rem;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 540px;
+  }
+  .hero__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+  .hero__art {
+    display: flex;
+    justify-content: center;
+  }
+  .hero__art :global(img) {
+    width: auto;
+    max-width: 100%;
+    max-height: min(56vh, 500px);
+    object-fit: contain;
+    filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.25));
+  }
+  @media (max-width: 860px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .hero__art {
+      order: -1;
+      justify-content: flex-start;
+    }
+    .hero__art :global(img) {
+      max-height: 28vh;
+    }
+  }
+</style>

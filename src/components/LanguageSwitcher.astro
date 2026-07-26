@@ -1,0 +1,49 @@
+---
+import { PUBLISHED_LOCALES, LOCALE_META, localizedPath, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  pagePath: string;
+}
+const { locale, pagePath } = Astro.props;
+---
+
+<div class="lang" role="group" aria-label="Language / Idioma">
+  {PUBLISHED_LOCALES.map((loc) => (
+    <a
+      class:list={['lang__btn', { 'is-active': loc === locale }]}
+      href={localizedPath(loc, pagePath)}
+      hreflang={LOCALE_META[loc].hreflang}
+      aria-current={loc === locale ? 'true' : undefined}
+    >
+      {LOCALE_META[loc].label}
+    </a>
+  ))}
+</div>
+
+<style>
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.2rem;
+  }
+  .lang__btn {
+    color: var(--text-tertiary);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    transition: color 0.16s var(--ease-out), background-color 0.16s var(--ease-out);
+  }
+  .lang__btn:hover {
+    color: var(--text-secondary);
+  }
+  .lang__btn.is-active {
+    color: var(--bg-primary);
+    background: var(--text-primary);
+  }
+</style>

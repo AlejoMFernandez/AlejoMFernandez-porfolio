@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../../i18n/utils';
+import Hero from './Hero.astro';
+import About from './About.astro';
+import Projects from './Projects.astro';
+import Contact from './Contact.astro';
+import Timezone from './Timezone.astro';
+import HowIWork from './HowIWork.astro';
+import Stack from './Stack.astro';
+import Availability from './Availability.astro';
+
+type Section = CollectionEntry<'home'>['data']['sections'][number];
+
+interface Props {
+  section: Section;
+  locale: Locale;
+}
+const { section, locale } = Astro.props;
+---
+
+{section.type === 'hero' && <Hero {...section} />}
+{section.type === 'about' && <About {...section} />}
+{section.type === 'projects' && <Projects {...section} locale={locale} />}
+{section.type === 'contact' && <Contact {...section} />}
+{section.type === 'timezone' && <Timezone {...section} />}
+{section.type === 'howiwork' && <HowIWork {...section} />}
+{section.type === 'stack' && <Stack {...section} />}
+{section.type === 'availability' && <Availability {...section} />}

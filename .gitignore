@@ -43,3 +43,9 @@ __screenshots__/
 
 # Local agent/worktree artifacts
 .claude/
+
+# Astro generated types/cache
+.astro/
+
+# Stray build artifact
+refugio-portfolio-dist.zip
