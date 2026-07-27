@@ -12,15 +12,15 @@ const { heading, subtitle, note } = Astro.props;
 const START = 6;
 const END = 23;
 const W = 900;
-const PAD_L = 130;
+const PAD_L = 160;
 const PAD_R = 24;
 const track = W - PAD_L - PAD_R;
 const x = (h: number) => PAD_L + ((h - START) / (END - START)) * track;
 
 // Working blocks in MY local time (UTC-3).
 const me = { from: 9, to: 18 };
-const ny = { from: 11, to: 19, label: 'New York · 9am–5pm' }; // EST business hours in my time
-const sf = { from: 14, to: 22, label: 'San Francisco · 9am–5pm' }; // PST business hours in my time
+const ny = { from: 11, to: 19, label: 'New York' }; // 9am–5pm EST, in my time
+const sf = { from: 14, to: 22, label: 'San Francisco' }; // 9am–5pm PST, in my time
 
 const rows = [
   { y: 70, ...me, color: 'var(--accent-color)', label: 'Me · UTC-3' },
