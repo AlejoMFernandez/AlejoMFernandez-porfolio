@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://alejomfernandez.com.ar/sitemap-index.xml

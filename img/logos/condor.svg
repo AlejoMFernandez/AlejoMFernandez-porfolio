@@ -1,0 +1,33 @@
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo extendido: mark + wordmark + tagline.
+       Usar para portfolio, redes, materiales de prensa, footers oscuros.
+       Si necesitás versión inversa (fondo claro), cambiá los fills/strokes
+       de #F0E6D2 y #E08D3C por colores oscuros. -->
+
+  <!-- Mark del cóndor (más grande, escalado al canvas) -->
+  <g transform="translate(20, 20) scale(2)">
+    <path d="M 6 21 Q 12 11 16 16 Q 20 11 26 21"
+          fill="none"
+          stroke="#E08D3C"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </g>
+
+  <!-- Wordmark — "Refugio del Cóndor" en serif italic.
+       Cormorant Garamond viene del CSS del site; aquí usamos Georgia
+       como fallback para cuando el SVG se renderiza standalone. -->
+  <text x="100" y="55"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-style="italic"
+        font-size="36"
+        font-weight="300"
+        fill="#F0E6D2">Refugio del Cóndor</text>
+
+  <!-- Tagline -->
+  <text x="102" y="78"
+        font-family="Inter, system-ui, sans-serif"
+        font-size="10"
+        letter-spacing="3.5"
+        fill="#E08D3C">PATAGONIA · BARILOCHE · ARGENTINA</text>
+</svg>
