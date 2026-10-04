@@ -4,3 +4,5 @@ Thumbs.db
 .vscode
 .claude
 .env
+# videos originales (pesados); el sitio usa las versiones livianas de /video
+videos/

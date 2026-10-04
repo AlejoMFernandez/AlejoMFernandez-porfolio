@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
   <link rel="preload" as="image" href="img/alejo.webp">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=12">
   <script>
     document.documentElement.classList.add('js');
     (function () { try {
@@ -44,6 +44,7 @@
     <nav class="hdr__nav" aria-label="Principal">
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
       <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+      <a href="#redes" data-i18n="nav.social">Redes</a>
       <a href="#contacto" data-i18n="nav.contact">Contacto</a>
     </nav>
     <div class="hdr__end">
@@ -121,6 +122,26 @@
       </ul>
     </section>
 
+    <!-- REDES -->
+    <section class="sec social" id="redes" aria-labelledby="social-title">
+      <div class="social__text reveal">
+        <h2 id="social-title" class="sec__title" data-i18n="social.title">Seguime como dev</h2>
+        <p class="social__p" data-i18n="social.p">En Instagram y TikTok muestro cómo armo cada web: diseño, código y animaciones, en videos cortos.</p>
+      </div>
+      <div class="pcard reveal">
+        <div class="pcard__row">
+          <a class="pcard__avatar" href="https://instagram.com/alejomf.dev" target="_blank" rel="noopener" aria-label="Instagram @alejomf.dev"><img src="img/avatar-redes.webp" alt="" width="400" height="400" loading="lazy"></a>
+          <div class="pcard__who"><b>@alejomf.dev</b><span>Alejo Martín Fernández</span></div>
+        </div>
+        <p class="pcard__bio" data-i18n="social.bio">Desarrollo de webs para negocios que quieren crecer. Sitios, tiendas y apps a medida. Buenos Aires.</p>
+        <div class="pcard__posts" id="posts"></div>
+        <div class="pcard__btns">
+          <a class="sbtn sbtn--ig magnetic" href="https://instagram.com/alejomf.dev" target="_blank" rel="noopener">Instagram</a>
+          <a class="sbtn sbtn--tt magnetic" href="https://tiktok.com/@alejomf.dev" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACTO -->
     <section class="contact" id="contacto" aria-labelledby="contact-title">
       <img class="contact__sticker" src="img/sticker.webp" alt="" width="420" height="420" loading="lazy">
@@ -160,8 +181,20 @@
   <!-- PANEL LATERAL -->
   <div class="scrim" id="scrim" hidden></div>
   <aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panel-name" hidden>
+    <button type="button" class="panel__close" id="panel-close"><span data-i18n="panel.close">Cerrar</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="panel__media" id="panel-media" hidden>
+      <div class="phone">
+        <div class="phone__screen">
+          <video id="panel-video" muted loop playsinline preload="none"></video>
+        </div>
+      </div>
+      <div class="panel__mediactl">
+        <button type="button" class="phone__sound" id="panel-sound"></button>
+        <a class="panel__ig" id="panel-ig" target="_blank" rel="noopener" hidden><span class="ig-ico" aria-hidden="true"></span><span data-i18n="panel.ig">Ver el reel en Instagram</span> <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="panel__main" id="panel-main">
     <div class="panel__top" id="panel-top">
-      <button type="button" class="panel__close" id="panel-close"><span data-i18n="panel.close">Cerrar</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
       <img class="panel__logo" id="panel-logo" alt="">
       <span class="panel__textlogo" id="panel-textlogo" hidden></span>
     </div>
@@ -186,11 +219,13 @@
       <button type="button" id="panel-prev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span><small data-i18n="panel.prev">Anterior</small><b id="panel-prev-name"></b></span></button>
       <button type="button" id="panel-next"><span><small data-i18n="panel.next">Siguiente</small><b id="panel-next-name"></b></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     </nav>
+    </div>
   </aside>
+  <button type="button" class="panel__fold" id="panel-fold" aria-controls="panel-media" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 
-  <script src="js/data.js?v=8"></script>
-  <script src="js/main.js?v=8"></script>
-  <script src="js/chat.js?v=8"></script>
-  <script src="js/intro.js?v=8"></script>
+  <script src="js/data.js?v=12"></script>
+  <script src="js/main.js?v=12"></script>
+  <script src="js/chat.js?v=12"></script>
+  <script src="js/intro.js?v=12"></script>
 </body>
 </html>

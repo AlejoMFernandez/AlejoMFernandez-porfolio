@@ -71,6 +71,8 @@
     $('#proj-count').textContent = wall.length;
     $('#cli-count').textContent = clients.length;
     $('#lab-count').textContent = lab.length;
+    const posts = $('#posts');
+    if (posts) posts.innerHTML = (window.POSTS || []).map(po => `<a class="post" href="${po.url}" target="_blank" rel="noopener" style="--brand:${po.brand || '#1a1a1e'}" aria-label="${t('social.post')}">${po.img ? `<img class="post__img" src="${po.img}" alt="" loading="lazy">` : `<img class="post__logo" src="${po.logo}" alt="" loading="lazy">`}<span class="post__ig" aria-hidden="true"></span></a>`).join('');
     bindTiles();
     observeReveals();
   }
@@ -163,6 +165,8 @@
     const body = $('.panel__body');
     body.classList.remove('is-in'); void body.offsetWidth; body.classList.add('is-in');
     body.scrollTop = 0;
+    panel.scrollTop = 0; $('#panel-main').scrollTop = 0;
+    setMedia(p);
   }
 
   function openPanel(id, from) {
@@ -174,12 +178,47 @@
     setTimeout(() => $('#panel-close').focus({ preventScroll: true }), reduce ? 0 : 120);
   }
 
+  /* reel del proyecto (si tiene video): panel ancho con celular */
+  const media = $('#panel-media'), video = $('#panel-video'), soundBtn = $('#panel-sound'), igLink = $('#panel-ig');
+  const icoMuted = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>';
+  const icoSound = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
+  function soundUI() { soundBtn.innerHTML = video.muted ? icoMuted : icoSound; soundBtn.setAttribute('aria-label', t(video.muted ? 'panel.soundOn' : 'panel.soundOff')); }
+  function setMedia(p) {
+    const has = !!(p && p.video);
+    panel.classList.toggle('has-video', has);
+    media.hidden = !has;
+    if (!has) { video.pause(); video.removeAttribute('src'); video.load(); return; }
+    if (video.getAttribute('src') !== p.video) {
+      video.muted = true;
+      if (p.poster) video.poster = p.poster; else video.removeAttribute('poster');
+      video.src = p.video;
+    }
+    igLink.hidden = !p.ig; if (p.ig) igLink.href = p.ig;
+    soundUI();
+    foldUI();
+    if (folded && innerWidth >= 900) return;
+    const pl = video.play(); if (pl && pl.catch) pl.catch(() => {});
+  }
+  /* esconder / mostrar el reel (queda recordado) */
+  const fold = $('#panel-fold');
+  let folded = store.get('reel-folded') === '1';
+  function foldUI() {
+    panel.classList.toggle('is-folded', folded);
+    fold.setAttribute('aria-expanded', String(!folded));
+    fold.setAttribute('aria-label', t(folded ? 'panel.showReel' : 'panel.hideReel'));
+    if (panel.classList.contains('has-video') && innerWidth >= 900) { if (folded) video.pause(); else video.play().catch(() => {}); }
+  }
+  fold.addEventListener('click', () => { folded = !folded; store.set('reel-folded', folded ? '1' : '0'); foldUI(); });
+
+  soundBtn.addEventListener('click', () => { video.muted = !video.muted; soundUI(); if (video.paused) video.play().catch(() => {}); });
+
   function closePanel() {
     if (!current) return;
     document.body.classList.remove('panel-open');
     current = null;
     history.replaceState(null, '', location.pathname + location.search);
-    setTimeout(() => { panel.hidden = true; scrim.hidden = true; }, reduce ? 0 : 520);
+    video.pause();
+    setTimeout(() => { panel.hidden = true; scrim.hidden = true; setMedia(null); }, reduce ? 0 : 520);
     if (opener && opener.focus) opener.focus({ preventScroll: true });
   }
 

@@ -3,8 +3,9 @@
 window.I18N = {
   es: {
     'ui.skip': 'Saltar a los proyectos',
-    'nav.projects': 'Proyectos', 'nav.about': 'Sobre mí', 'nav.contact': 'Contacto', 'nav.talk': 'Hablemos',
+    'nav.projects': 'Proyectos', 'nav.about': 'Sobre mí', 'nav.social': 'Redes', 'nav.contact': 'Contacto', 'nav.talk': 'Hablemos',
     'hero.role2': 'Desarrollador web freelance', 'hero.where': 'Buenos Aires · Argentina y Brasil', 'hero.ribbon': 'Marcas con las que trabajé',
+    'panel.hideReel': 'Ocultar el reel', 'panel.showReel': 'Mostrar el reel', 'panel.ig': 'Ver el reel en Instagram', 'panel.soundOn': 'Activar sonido', 'panel.soundOff': 'Silenciar', 'social.title': 'Seguime como dev', 'social.p': 'En Instagram y TikTok muestro cómo armo cada web: diseño, código y animaciones, en videos cortos.', 'social.bio': 'Desarrollo de webs para negocios que quieren crecer. Sitios, tiendas y apps a medida. Buenos Aires.', 'social.post': 'Ver publicación',
     'hero.status': 'Disponible para proyectos',
     'hero.title': 'Webs a medida|para negocios|con identidad.',
     'hero.sub': 'Diseño y desarrollo sitios únicos para marcas de Argentina y Brasil. Cada web nace de la marca, no de una plantilla.',
@@ -32,8 +33,9 @@ window.I18N = {
   },
   pt: {
     'ui.skip': 'Pular para os projetos',
-    'nav.projects': 'Projetos', 'nav.about': 'Sobre mim', 'nav.contact': 'Contato', 'nav.talk': 'Vamos conversar',
+    'nav.projects': 'Projetos', 'nav.about': 'Sobre mim', 'nav.social': 'Redes', 'nav.contact': 'Contato', 'nav.talk': 'Vamos conversar',
     'hero.role2': 'Desenvolvedor web freelancer', 'hero.where': 'Buenos Aires · Argentina e Brasil', 'hero.ribbon': 'Marcas com que trabalhei',
+    'panel.hideReel': 'Ocultar o reel', 'panel.showReel': 'Mostrar o reel', 'panel.ig': 'Ver o reel no Instagram', 'panel.soundOn': 'Ativar som', 'panel.soundOff': 'Silenciar', 'social.title': 'Me siga como dev', 'social.p': 'No Instagram e no TikTok mostro como crio cada site: design, código e animações, em vídeos curtos.', 'social.bio': 'Desenvolvimento de sites para negócios que querem crescer. Sites, lojas e apps sob medida. Buenos Aires.', 'social.post': 'Ver publicação',
     'hero.status': 'Disponível para projetos',
     'hero.title': 'Sites sob medida|para negócios|com identidade.',
     'hero.sub': 'Crio e desenvolvo sites únicos para marcas da Argentina e do Brasil. Cada site nasce da marca, não de um template.',
@@ -61,8 +63,9 @@ window.I18N = {
   },
   en: {
     'ui.skip': 'Skip to projects',
-    'nav.projects': 'Projects', 'nav.about': 'About', 'nav.contact': 'Contact', 'nav.talk': "Let's talk",
+    'nav.projects': 'Projects', 'nav.about': 'About', 'nav.social': 'Social', 'nav.contact': 'Contact', 'nav.talk': "Let's talk",
     'hero.role2': 'Freelance web developer', 'hero.where': 'Buenos Aires · Argentina and Brazil', 'hero.ribbon': "Brands I've worked with",
+    'panel.hideReel': 'Hide the reel', 'panel.showReel': 'Show the reel', 'panel.ig': 'Watch the reel on Instagram', 'panel.soundOn': 'Turn sound on', 'panel.soundOff': 'Mute', 'social.title': 'Follow me as a dev', 'social.p': 'On Instagram and TikTok I show how I build each site: design, code and animation, in short videos.', 'social.bio': 'Websites for businesses that want to grow. Custom sites, stores and apps. Buenos Aires.', 'social.post': 'View post',
     'hero.status': 'Available for projects',
     'hero.title': 'Custom websites|for businesses|with identity.',
     'hero.sub': 'I design and build one-of-a-kind sites for brands in Argentina and Brazil. Every site starts from the brand, not a template.',
@@ -94,14 +97,24 @@ window.I18N = {
   group: featured | new | client | lab
   logo: versión a color (se ve sobre `brand`). mono: versión para el estado en reposo (opcional; si falta, se usa `logo` en blanco).
   ink: 'light' si el texto sobre `brand` va claro, 'dark' si va oscuro.
+  Reel (opcional): video: 'video/paozito.mp4', poster: 'video/paozito.jpg', ig: 'https://www.instagram.com/reel/...'
+    Si el proyecto tiene `video`, el panel se abre ancho con el celular a la izquierda.
 */
 const MOBILE = { es: 'Versión pensada para celular', pt: 'Versão pensada para celular', en: 'Mobile-first version' };
+
+/* Tres publicaciones de la tarjeta de redes. Cuando tengas las reales:
+   img: captura cuadrada (ej. 'img/posts/1.webp'), url: link a la publicación. */
+window.POSTS = [
+  { url: 'https://instagram.com/alejomf.dev', img: '', brand: '#1E3669', logo: 'img/logos/paozito.webp' },
+  { url: 'https://instagram.com/alejomf.dev', img: '', brand: '#B14F36', logo: 'img/logos/bodega.webp' },
+  { url: 'https://instagram.com/alejomf.dev', img: '', brand: '#EE8FA4', logo: 'img/logos/lpr.webp' }
+];
 
 window.RIBBON = ['fulvo', 'paozito', 'puraa', 'maravela', 'franza', 'bodega', 'pintor', 'lpr', 'ariana', 'weiss', 'oss', 'granozero', 'tramaestudio', 'trama', 'polyfuse', 'condor'];
 
 window.PROJECTS = [
   {
-    id: 'fulvo', name: 'FULVO', group: 'featured', status: ['own'], year: 2026,
+    id: 'fulvo', video: 'video/fulvo.mp4', poster: 'video/fulvo.jpg', name: 'FULVO', group: 'featured', status: ['own'], year: 2026,
     url: 'https://fulvo.com.ar', brand: '#0F172A', ink: 'light', logo: 'img/logos/fulvo.svg',
     kind: { es: 'App de fútbol gamificada', pt: 'App de futebol gamificado', en: 'Gamified football app' },
     place: { es: 'Argentina', pt: 'Argentina', en: 'Argentina' },
@@ -118,7 +131,7 @@ window.PROJECTS = [
     stack: ['Vue', 'Vite', 'Tailwind', 'Supabase']
   },
   {
-    id: 'paozito', name: 'Pãozito', group: 'new', status: ['proposal'], year: 2026,
+    id: 'paozito', video: 'video/paozito.mp4', poster: 'video/paozito.jpg', name: 'Pãozito', group: 'new', status: ['proposal'], year: 2026,
     url: 'https://paozito.vercel.app/', brand: '#1E3669', ink: 'light', logo: 'img/logos/paozito.webp',
     kind: { es: 'Pão delícia', pt: 'Pão delícia', en: 'Pão delícia bakery' },
     place: { es: 'Salvador, Bahía · 3 locales', pt: 'Salvador, Bahia · 3 lojas', en: 'Salvador, Bahia · 3 stores' },
@@ -134,7 +147,7 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'maravela', name: 'Maravela', group: 'new', status: ['proposal'], year: 2026,
+    id: 'maravela', video: 'video/maravela.mp4', poster: 'video/maravela.jpg', name: 'Maravela', group: 'new', status: ['proposal'], year: 2026,
     url: 'https://maravela-iate.vercel.app/', brand: '#144D22', ink: 'light', logo: 'img/logos/maravela.webp',
     kind: { es: 'Cocina autoral', pt: 'Cozinha autoral', en: 'Signature cuisine' },
     place: { es: 'Iate Clube Pajuçara, Maceió', pt: 'Iate Clube Pajuçara, Maceió', en: 'Iate Clube Pajuçara, Maceió' },
@@ -150,7 +163,7 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'bodega', name: 'Bodega do Sertão', group: 'new', status: ['proposal'], year: 2026,
+    id: 'bodega', video: 'video/bodega.mp4', poster: 'video/bodega.jpg', name: 'Bodega do Sertão', group: 'new', status: ['proposal'], year: 2026,
     url: 'https://bodega-do-sertao.vercel.app/', brand: '#B14F36', ink: 'light', logo: 'img/logos/bodega.webp',
     kind: { es: 'Comida nordestina, lojinha y vinos', pt: 'Comida nordestina, lojinha e vinhos', en: 'Northeastern food, shop and wine' },
     place: { es: 'Maceió', pt: 'Maceió', en: 'Maceió' },
@@ -166,7 +179,7 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'lpr', name: 'La Panera Rosa', group: 'new', status: ['proposal'], year: 2026,
+    id: 'lpr', video: 'video/lpr.mp4', poster: 'video/lpr.jpg', name: 'La Panera Rosa', group: 'new', status: ['proposal'], year: 2026,
     url: 'https://la-panera-rosa.vercel.app/', brand: '#EE8FA4', ink: 'dark', logo: 'img/logos/lpr.webp',
     kind: { es: 'Casual dining non stop', pt: 'Casual dining non stop', en: 'Non-stop casual dining' },
     place: { es: 'Buenos Aires + franquicias', pt: 'Buenos Aires + franquias', en: 'Buenos Aires + franchises' },
@@ -182,7 +195,7 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'weiss', name: 'Weiss', group: 'new', status: ['proposal'], year: 2026,
+    id: 'weiss', video: 'video/weiss.mp4', poster: 'video/weiss.jpg', name: 'Weiss', group: 'new', status: ['proposal'], year: 2026,
     url: 'https://weiss-burger.vercel.app/', brand: '#F2ECE1', ink: 'dark', logo: 'img/logos/weiss.webp', mono: 'img/logos/weiss-blanco.webp',
     kind: { es: 'Hamburguesas caseras', pt: 'Hambúrgueres caseiros', en: 'Homemade burgers' },
     place: { es: 'Argentina, Uruguay y México', pt: 'Argentina, Uruguai e México', en: 'Argentina, Uruguay and Mexico' },
@@ -198,7 +211,7 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'oss', name: 'ÖSS Kaffe', group: 'new', status: ['proposal'], year: 2026,
+    id: 'oss', video: 'video/oss.mp4', poster: 'video/oss.jpg', name: 'ÖSS Kaffe', group: 'new', status: ['proposal'], year: 2026,
     url: 'https://oss-kaffe.vercel.app/', brand: '#08090D', ink: 'light', logo: 'img/logos/oss.webp', mono: 'img/logos/oss-mark.svg', round: true,
     kind: { es: 'Café de especialidad', pt: 'Café especial', en: 'Specialty coffee' },
     place: { es: 'Café al paso · varios locales', pt: 'Café para viagem · várias lojas', en: 'Grab-and-go · several locations' },
@@ -216,7 +229,7 @@ window.PROJECTS = [
 
   /* CLIENTES */
   {
-    id: 'puraa', name: 'PURAA', group: 'client', status: ['client'], url: 'https://puraa.com.ar',
+    id: 'puraa', video: 'video/puraa.mp4', poster: 'video/puraa.jpg', name: 'PURAA', group: 'client', status: ['client'], url: 'https://puraa.com.ar',
     brand: '#F1EEE6', ink: 'dark', logo: 'img/logos/puraa.webp',
     kind: { es: 'Cosmética natural y cursos online', pt: 'Cosmética natural e cursos online', en: 'Natural cosmetics and online courses' },
     place: { es: 'Argentina', pt: 'Argentina', en: 'Argentina' },
@@ -249,7 +262,7 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'pintor', name: 'Refugio del Pintor', group: 'client', status: ['client'], url: 'http://elrefugiodelpintor.com/',
+    id: 'pintor', video: 'video/pintor.mp4', poster: 'video/pintor.jpg', name: 'Refugio del Pintor', group: 'client', status: ['client'], url: 'http://elrefugiodelpintor.com/',
     brand: '#FBF6EE', ink: 'dark', logo: 'img/logos/pintor.webp',
     kind: { es: 'Alojamiento', pt: 'Hospedagem', en: 'Lodging' },
     place: { es: 'Tilcara, Jujuy', pt: 'Tilcara, Jujuy', en: 'Tilcara, Jujuy' },

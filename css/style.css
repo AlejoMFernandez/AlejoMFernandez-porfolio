@@ -495,3 +495,87 @@ html.intro-on .hdr__af { opacity: 0; }
 .intro__ring { position: fixed; z-index: 1; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; border: 2px solid var(--fg); pointer-events: none; }
 .intro__skip { position: fixed; right: var(--gutter); bottom: calc(24px + env(safe-area-inset-bottom, 0px)); font-family: var(--mono); font-size: 12px; color: var(--muted); opacity: 0; animation: skipIn .6s ease 1s forwards; }
 @keyframes skipIn { to { opacity: .8; } }
+
+/* =========================================================
+   Panel con reel (celular a la izquierda)
+   ========================================================= */
+.panel__main { display: flex; flex-direction: column; flex: 1 0 auto; min-width: 0; }
+.panel__close { z-index: 6; }
+.panel__top .panel__close { position: absolute; }
+.panel > .panel__close { position: absolute; top: calc(16px + env(safe-area-inset-top, 0px)); right: 16px; }
+.panel.has-video { width: min(940px, 100%); transition: transform .62s var(--ease-io), width .6s var(--ease-io); }
+.panel.has-video.is-folded { width: min(580px, 100%); }
+.panel__media {
+  flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+  padding: 72px 24px 32px;
+  background: radial-gradient(120% 80% at 50% 30%, color-mix(in srgb, var(--brand) 55%, #111114), #111114);
+}
+.phone { position: relative; flex: none; width: min(78vw, 300px, calc((68vh - 120px) * 9 / 16)); border-radius: 38px; background: #050506; padding: 18px 10px 14px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .7), inset 0 0 0 1.5px #2a2a2e; }
+.phone::before { content: ""; position: absolute; top: 7px; left: 50%; width: 22%; height: 5px; margin-left: -11%; background: #1d1d21; border-radius: 99px; }
+.phone__screen { position: relative; width: 100%; aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden; background: var(--brand); }
+.phone__screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.panel__mediactl { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px 16px; }
+.phone__sound { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .18); color: #fff; transition: background .25s, transform .3s var(--ease); }
+.phone__sound:hover { background: rgba(255, 255, 255, .2); transform: scale(1.08); }
+.phone__sound svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.phone__sound svg path:first-child { fill: currentColor; stroke: none; }
+.panel__ig { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: #fff; border-bottom: 1px solid rgba(255, 255, 255, .3); padding-bottom: 2px; transition: border-color .3s; }
+.panel__ig:hover { border-color: #fff; }
+.ig-ico { width: 16px; height: 16px; border-radius: 5px; background: linear-gradient(45deg, #f9a825, #e1306c 50%, #833ab4); display: inline-block; }
+.panel.has-video .panel__close { background: rgba(255, 255, 255, .14); color: #fff; }
+@media (min-width: 900px) {
+  .panel.has-video { flex-direction: row; overflow: hidden; }
+  .panel.has-video .panel__media { width: 360px; height: 100%; padding: 32px 24px; border-right: 1px solid var(--line); overflow: hidden; transition: width .6s var(--ease-io), padding .6s var(--ease-io), opacity .35s ease; }
+  .panel.has-video.is-folded .panel__media { width: 0; padding-left: 0; padding-right: 0; opacity: 0; border-right: 0; }
+  .panel.has-video .panel__media > * { flex: none; }
+  .panel.has-video .panel__main { flex: 1 1 0; height: 100%; overflow-y: auto; overscroll-behavior: contain; }
+  .panel.has-video .phone { width: min(290px, calc((100vh - 170px) * 9 / 16)); }
+  .panel.has-video[data-ink="dark"] .panel__close { background: rgba(0, 0, 0, .08); color: #111; }
+}
+
+/* =========================================================
+   Redes: tarjeta de perfil
+   ========================================================= */
+.social { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.social__p { margin: 20px 0 0; color: var(--muted); font-size: clamp(17px, 1.5vw, 20px); max-width: 40ch; }
+.pcard { background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: clamp(20px, 3vw, 30px); }
+.pcard__row { display: flex; align-items: center; gap: 18px; }
+.pcard__avatar { position: relative; width: 92px; height: 92px; border-radius: 50%; flex: none; padding: 4px; background: conic-gradient(from 210deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #feda75); transition: transform .5s var(--ease); }
+.pcard__avatar:hover { transform: rotate(-6deg) scale(1.05); }
+.pcard__avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #000; border: 3px solid var(--surface); }
+.pcard__who { display: flex; flex-direction: column; min-width: 0; }
+.pcard__who b { font-size: 21px; font-weight: 600; letter-spacing: -.01em; }
+.pcard__who span { color: var(--muted); font-size: 14px; }
+.pcard__bio { margin: 16px 0 18px; font-size: 15px; color: #cfcfd4; line-height: 1.5; }
+.pcard__posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 20px; }
+.post { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--brand); display: grid; place-items: center; }
+.post__img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.post__logo { width: 68%; max-height: 60%; object-fit: contain; transition: transform .6s var(--ease); }
+.post__ig { position: absolute; inset: 0; background: rgba(0, 0, 0, .35) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.8'%3E%3Crect x='3' y='3' width='18' height='18' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Ccircle cx='17.5' cy='6.5' r='1' fill='white'/%3E%3C/svg%3E") center / 30px no-repeat; opacity: 0; transition: opacity .3s; }
+.post:hover .post__ig, .post:focus-visible .post__ig { opacity: 1; }
+.post:hover .post__img, .post:hover .post__logo { transform: scale(1.07); }
+.pcard__btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.sbtn { flex: 1 1 140px; display: inline-flex; align-items: center; justify-content: center; height: 50px; border-radius: 999px; font-weight: 600; font-size: 15px; transition: transform .45s var(--ease), filter .3s; }
+.sbtn:hover { filter: brightness(1.08); }
+.sbtn--ig { background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af); color: #fff; }
+.sbtn--tt { background: #fff; color: #000; box-shadow: -2px -2px 0 #25F4EE, 2px 2px 0 #FE2C55; }
+@media (max-width: 820px) { .social { grid-template-columns: 1fr; } }
+
+/* pestaña para esconder / mostrar el reel: va por fuera, pegada al borde izquierdo del panel */
+.panel__fold { display: none; }
+@media (min-width: 900px) {
+  .panel.has-video + .panel__fold {
+    display: grid; place-items: center; position: fixed; z-index: 71; top: 50%; right: min(940px, 100%); width: 28px; height: 68px; margin-top: -34px;
+    border-radius: 12px 0 0 12px; background: #1c1c20; border: 1px solid var(--line-strong); border-right: 0; color: #fff;
+    box-shadow: -8px 0 24px -10px rgba(0, 0, 0, .6);
+    opacity: 0; pointer-events: none; transform: translateX(12px);
+    transition: right .6s var(--ease-io), opacity .3s ease, transform .4s var(--ease), background .25s, width .3s var(--ease);
+  }
+  .panel-open .panel.has-video + .panel__fold { opacity: 1; pointer-events: auto; transform: none; transition-delay: 0s, .35s, .35s, 0s, 0s; }
+  .panel.has-video.is-folded + .panel__fold { right: min(580px, 100%); }
+  .panel.has-video + .panel__fold:hover { background: #26262b; width: 32px; }
+  .panel__fold svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .5s var(--ease); }
+  .panel.is-folded + .panel__fold svg { transform: rotate(180deg); }
+}
+/* logo redondo (ÖSS): misma caja y centrado en reposo y en hover */
+.tile__logos.is-round .tile__logo--mono { inset: 0; width: 100%; height: 100%; padding: 16% 12%; box-sizing: border-box; }
