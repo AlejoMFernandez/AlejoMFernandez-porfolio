@@ -4,18 +4,18 @@ window.I18N = {
   es: {
     'ui.skip': 'Saltar a los proyectos',
     'nav.projects': 'Proyectos', 'nav.about': 'Sobre mí', 'nav.social': 'Redes', 'nav.contact': 'Contacto', 'nav.talk': 'Hablemos',
-    'hero.role2': 'Desarrollador web freelance', 'hero.where': 'Buenos Aires · Argentina y Brasil', 'hero.ribbon': 'Marcas con las que trabajé',
+    'hero.role2': 'Desarrollador web freelance', 'hero.where': 'Buenos Aires · Argentina y Brasil', 'hero.ribbon': 'Clientes, demos web y proyectos propios',
     'panel.hideReel': 'Ocultar el reel', 'panel.showReel': 'Mostrar el reel', 'panel.ig': 'Ver el reel en Instagram', 'panel.soundOn': 'Activar sonido', 'panel.soundOff': 'Silenciar', 'social.title': 'Seguime como dev', 'social.p': 'En Instagram y TikTok muestro cómo armo cada web: diseño, código y animaciones, en videos cortos.', 'social.bio': 'Desarrollo de webs para negocios que quieren crecer. Sitios, tiendas y apps a medida. Buenos Aires.', 'social.post': 'Ver publicación',
     'hero.status': 'Disponible para proyectos',
     'hero.title': 'Webs a medida|para negocios|con identidad.',
     'hero.sub': 'Diseño y desarrollo sitios únicos para marcas de Argentina y Brasil. Cada web nace de la marca, no de una plantilla.',
     'hero.cta1': 'Ver proyectos', 'hero.cta2': 'Escribime por WhatsApp',
     'hero.role': 'Desarrollador web · Buenos Aires',
-    'proj.title': 'Proyectos', 'proj.lead': 'Tocá una marca para ver el proyecto.',
+    'proj.title': 'Proyectos', 'proj.lead': 'Tocá una marca para ver el proyecto.', 'proj.demoNote': 'Las marcadas como DEMO WEB son propuestas que diseñé por iniciativa propia para negocios reales. No son clientes: son webs que armé para mostrarles cómo podría verse su sitio.', 'panel.demo': 'Demo web · propuesta propia, no es un cliente', 'panel.demoNote': 'Esta web la diseñé por mi cuenta para mostrarle al negocio cómo podría ser su sitio. No fue un encargo.',
     'clients.title': 'Clientes', 'clients.lead': 'Sitios en producción para negocios reales.',
     'lab.title': 'Laboratorio', 'lab.lead': 'Proyectos propios para probar ideas: animación, juegos y apps.',
     'about.title': 'Sobre mí',
-    'about.p1': 'Soy Alejo, desarrollador web de Villa Bosch, Buenos Aires. Hago sitios a medida para negocios con identidad propia: restaurantes, cafés, marcas y emprendimientos.',
+    'about.p1': 'Soy Alejo, desarrollador web de Villa del Parque, Buenos Aires. Hago sitios a medida para negocios con identidad propia: restaurantes, cafés, marcas y emprendimientos.',
     'about.p2': 'Trabajo con clientes de Argentina y Brasil, con comunicación clara y por escrito. Me ocupo de todo: diseño, desarrollo, animaciones y puesta online.',
     'about.cv': 'Descargar CV',
     'svc.1t': 'Webs a medida', 'svc.1d': 'Diseño único para tu marca.',
@@ -29,23 +29,23 @@ window.I18N = {
     'panel.close': 'Cerrar', 'panel.kind': 'Rubro', 'panel.place': 'Lugar', 'panel.did': 'Qué hice', 'panel.stack': 'Tecnología',
     'panel.visit': 'Ver web en vivo', 'panel.soon': 'Todavía no está online', 'panel.prev': 'Anterior', 'panel.next': 'Siguiente',
     'tile.view': 'Ver proyecto', 'tile.featured': 'Proyecto propio destacado', 'row.highlight': 'Destacado',
-    'st.proposal': 'Propuesta', 'st.client': 'Cliente', 'st.own': 'Propio', 'st.dev': 'En desarrollo', 'st.lab': 'Experimento'
+    'st.proposal': 'Demo web', 'st.client': 'Cliente', 'st.own': 'Propio', 'st.dev': 'En desarrollo', 'st.lab': 'Experimento'
   },
   pt: {
     'ui.skip': 'Pular para os projetos',
     'nav.projects': 'Projetos', 'nav.about': 'Sobre mim', 'nav.social': 'Redes', 'nav.contact': 'Contato', 'nav.talk': 'Vamos conversar',
-    'hero.role2': 'Desenvolvedor web freelancer', 'hero.where': 'Buenos Aires · Argentina e Brasil', 'hero.ribbon': 'Marcas com que trabalhei',
+    'hero.role2': 'Desenvolvedor web freelancer', 'hero.where': 'Buenos Aires · Argentina e Brasil', 'hero.ribbon': 'Clientes, demos web e projetos próprios',
     'panel.hideReel': 'Ocultar o reel', 'panel.showReel': 'Mostrar o reel', 'panel.ig': 'Ver o reel no Instagram', 'panel.soundOn': 'Ativar som', 'panel.soundOff': 'Silenciar', 'social.title': 'Me siga como dev', 'social.p': 'No Instagram e no TikTok mostro como crio cada site: design, código e animações, em vídeos curtos.', 'social.bio': 'Desenvolvimento de sites para negócios que querem crescer. Sites, lojas e apps sob medida. Buenos Aires.', 'social.post': 'Ver publicação',
     'hero.status': 'Disponível para projetos',
     'hero.title': 'Sites sob medida|para negócios|com identidade.',
     'hero.sub': 'Crio e desenvolvo sites únicos para marcas da Argentina e do Brasil. Cada site nasce da marca, não de um template.',
     'hero.cta1': 'Ver projetos', 'hero.cta2': 'Fale comigo no WhatsApp',
     'hero.role': 'Desenvolvedor web · Buenos Aires',
-    'proj.title': 'Projetos', 'proj.lead': 'Toque em uma marca para ver o projeto.',
+    'proj.title': 'Projetos', 'proj.lead': 'Toque em uma marca para ver o projeto.', 'proj.demoNote': 'As marcadas como DEMO WEB são propostas que criei por iniciativa própria para negócios reais. Não são clientes: são sites que fiz para mostrar como o site deles poderia ficar.', 'panel.demo': 'Demo web · proposta própria, não é cliente', 'panel.demoNote': 'Criei este site por conta própria para mostrar ao negócio como o site dele poderia ser. Não foi uma encomenda.',
     'clients.title': 'Clientes', 'clients.lead': 'Sites no ar para negócios reais.',
     'lab.title': 'Laboratório', 'lab.lead': 'Projetos próprios para testar ideias: animação, jogos e apps.',
     'about.title': 'Sobre mim',
-    'about.p1': 'Sou o Alejo, desenvolvedor web de Villa Bosch, Buenos Aires. Faço sites sob medida para negócios com identidade própria: restaurantes, cafés, marcas e empreendimentos.',
+    'about.p1': 'Sou o Alejo, desenvolvedor web de Villa del Parque, Buenos Aires. Faço sites sob medida para negócios com identidade própria: restaurantes, cafés, marcas e empreendimentos.',
     'about.p2': 'Trabalho com clientes da Argentina e do Brasil, com comunicação clara e por escrito. Cuido de tudo: design, desenvolvimento, animações e publicação.',
     'about.cv': 'Baixar CV',
     'svc.1t': 'Sites sob medida', 'svc.1d': 'Design único para a sua marca.',
@@ -59,23 +59,23 @@ window.I18N = {
     'panel.close': 'Fechar', 'panel.kind': 'Segmento', 'panel.place': 'Local', 'panel.did': 'O que eu fiz', 'panel.stack': 'Tecnologia',
     'panel.visit': 'Ver site no ar', 'panel.soon': 'Ainda não está no ar', 'panel.prev': 'Anterior', 'panel.next': 'Próximo',
     'tile.view': 'Ver projeto', 'tile.featured': 'Projeto próprio em destaque', 'row.highlight': 'Destaque',
-    'st.proposal': 'Proposta', 'st.client': 'Cliente', 'st.own': 'Próprio', 'st.dev': 'Em desenvolvimento', 'st.lab': 'Experimento'
+    'st.proposal': 'Demo web', 'st.client': 'Cliente', 'st.own': 'Próprio', 'st.dev': 'Em desenvolvimento', 'st.lab': 'Experimento'
   },
   en: {
     'ui.skip': 'Skip to projects',
     'nav.projects': 'Projects', 'nav.about': 'About', 'nav.social': 'Social', 'nav.contact': 'Contact', 'nav.talk': "Let's talk",
-    'hero.role2': 'Freelance web developer', 'hero.where': 'Buenos Aires · Argentina and Brazil', 'hero.ribbon': "Brands I've worked with",
+    'hero.role2': 'Freelance web developer', 'hero.where': 'Buenos Aires · Argentina and Brazil', 'hero.ribbon': 'Clients, demo sites and side projects',
     'panel.hideReel': 'Hide the reel', 'panel.showReel': 'Show the reel', 'panel.ig': 'Watch the reel on Instagram', 'panel.soundOn': 'Turn sound on', 'panel.soundOff': 'Mute', 'social.title': 'Follow me as a dev', 'social.p': 'On Instagram and TikTok I show how I build each site: design, code and animation, in short videos.', 'social.bio': 'Websites for businesses that want to grow. Custom sites, stores and apps. Buenos Aires.', 'social.post': 'View post',
     'hero.status': 'Available for projects',
     'hero.title': 'Custom websites|for businesses|with identity.',
     'hero.sub': 'I design and build one-of-a-kind sites for brands in Argentina and Brazil. Every site starts from the brand, not a template.',
     'hero.cta1': 'See projects', 'hero.cta2': 'Message me on WhatsApp',
     'hero.role': 'Web developer · Buenos Aires',
-    'proj.title': 'Projects', 'proj.lead': 'Tap a brand to see the project.',
+    'proj.title': 'Projects', 'proj.lead': 'Tap a brand to see the project.', 'proj.demoNote': 'Projects tagged DEMO SITE are proposals I designed on my own initiative for real businesses. They are not clients: I built them to show each business what its site could look like.', 'panel.demo': 'Demo site · my own proposal, not a client', 'panel.demoNote': 'I designed this site on my own to show the business what its website could look like. It was not commissioned.',
     'clients.title': 'Clients', 'clients.lead': 'Live sites for real businesses.',
     'lab.title': 'Lab', 'lab.lead': 'Side projects to try ideas: animation, games and apps.',
     'about.title': 'About',
-    'about.p1': "I'm Alejo, a web developer from Villa Bosch, Buenos Aires. I build custom sites for businesses with a real identity: restaurants, cafés, brands and startups.",
+    'about.p1': "I'm Alejo, a web developer from Villa del Parque, Buenos Aires. I build custom sites for businesses with a real identity: restaurants, cafés, brands and startups.",
     'about.p2': 'I work with clients in Argentina and Brazil, with clear, written communication. I handle everything: design, development, animation and launch.',
     'about.cv': 'Download CV',
     'svc.1t': 'Custom websites', 'svc.1d': 'A unique design for your brand.',
@@ -89,7 +89,7 @@ window.I18N = {
     'panel.close': 'Close', 'panel.kind': 'Industry', 'panel.place': 'Location', 'panel.did': 'What I did', 'panel.stack': 'Tech',
     'panel.visit': 'Visit live site', 'panel.soon': 'Not online yet', 'panel.prev': 'Previous', 'panel.next': 'Next',
     'tile.view': 'View project', 'tile.featured': 'Featured own project', 'row.highlight': 'Featured',
-    'st.proposal': 'Proposal', 'st.client': 'Client', 'st.own': 'Own project', 'st.dev': 'In progress', 'st.lab': 'Experiment'
+    'st.proposal': 'Demo site', 'st.client': 'Client', 'st.own': 'Own project', 'st.dev': 'In progress', 'st.lab': 'Experiment'
   }
 };
 
@@ -110,7 +110,7 @@ window.POSTS = [
   { url: 'https://instagram.com/alejomf.dev', img: '', brand: '#EE8FA4', logo: 'img/logos/lpr.webp' }
 ];
 
-window.RIBBON = ['fulvo', 'paozito', 'puraa', 'maravela', 'franza', 'bodega', 'pintor', 'lpr', 'ariana', 'weiss', 'oss', 'granozero', 'tramaestudio', 'trama', 'polyfuse', 'condor'];
+window.RIBBON = ['fulvo', 'paozito', 'puraa', 'maravela', 'franza', 'ocl', 'bodega', 'pintor', 'lpr', 'alacena', 'ariana', 'meat', 'weiss', 'fede', 'oss', 'pepe', 'mundoloco', 'granozero', 'tramaestudio', 'trama', 'polyfuse', 'condor'];
 
 window.PROJECTS = [
   {
@@ -227,6 +227,71 @@ window.PROJECTS = [
     }
   },
 
+  {
+    id: 'alacena', name: 'La Alacena Pastificio', group: 'new', status: ['proposal'], year: 2026,
+    url: 'https://laalacenapastificio.vercel.app/', brand: '#923D14', ink: 'light', logo: 'img/logos/alacena.webp',
+    kind: { es: 'Pastificio y salumería', pt: 'Pastifício e salumeria', en: 'Fresh pasta and deli' },
+    place: { es: 'Buenos Aires', pt: 'Buenos Aires', en: 'Buenos Aires' },
+    desc: {
+      es: 'Casa de pastas frescas con una estética muy cuidada. La web toma su tipografía, sus colores y sus fotos para mostrar el obrador, la carta y el almacén.',
+      pt: 'Casa de massas frescas com uma estética muito cuidada. O site usa a tipografia, as cores e as fotos deles para mostrar a produção, o cardápio e o empório.',
+      en: 'A fresh-pasta house with a carefully crafted look. The site uses their typography, colors and photos to show the workshop, the menu and the deli.'
+    },
+    did: {
+      es: ['Diseño a partir de su identidad', 'Carta y reservas integradas', MOBILE.es],
+      pt: ['Design a partir da identidade deles', 'Cardápio e reservas integrados', MOBILE.pt],
+      en: ['Design built from their identity', 'Menu and bookings built in', MOBILE.en]
+    }
+  },
+  {
+    id: 'meat', name: 'Meat & Grill', group: 'new', status: ['proposal'], year: 2026,
+    url: 'https://meat-and-grill.vercel.app/', brand: '#F51D16', ink: 'light', logo: 'img/logos/meat.webp', mono: 'img/logos/meat-mono.webp',
+    kind: { es: 'Hamburguesas y sánguches', pt: 'Hambúrgueres e sanduíches', en: 'Burgers and sandwiches' },
+    place: { es: 'Retiro, CABA', pt: 'Retiro, Buenos Aires', en: 'Retiro, Buenos Aires' },
+    desc: {
+      es: 'Hamburguesería de estilo yankee en Retiro. Una web ruidosa y divertida, con el rojo ketchup de la marca, sus fotos de producto y el humor de sus publicaciones.',
+      pt: 'Hamburgueria em estilo americano em Retiro. Um site barulhento e divertido, com o vermelho ketchup da marca, as fotos de produto e o humor dos posts.',
+      en: 'An American-style burger joint in Retiro. A loud, fun site with the brand’s ketchup red, their product photos and the humor of their posts.'
+    },
+    did: {
+      es: ['Dirección de arte con su identidad', 'Menú con fotos de producto', MOBILE.es],
+      pt: ['Direção de arte com a identidade deles', 'Cardápio com fotos de produto', MOBILE.pt],
+      en: ['Art direction with their identity', 'Menu with product photos', MOBILE.en]
+    }
+  },
+  {
+    id: 'pepe', name: 'Pepe Di Roma', group: 'new', status: ['proposal'], year: 2026,
+    url: 'https://pepediroma.vercel.app/', brand: '#FFF7F4', ink: 'dark', logo: 'img/logos/pepe.svg',
+    kind: { es: 'Casa de pastas', pt: 'Casa de massas', en: 'Pasta house' },
+    place: { es: 'Buenos Aires', pt: 'Buenos Aires', en: 'Buenos Aires' },
+    desc: {
+      es: 'Casa de pastas con un rojo y una tipografía inconfundibles. La web cuenta cómo se arma cada pasta y lleva directo a reservar por WhatsApp.',
+      pt: 'Casa de massas com um vermelho e uma tipografia inconfundíveis. O site mostra como cada massa é feita e leva direto à reserva pelo WhatsApp.',
+      en: 'A pasta house with an unmistakable red and typeface. The site shows how each pasta is made and goes straight to booking on WhatsApp.'
+    },
+    did: {
+      es: ['Diseño fiel a su marca', 'Carta y paso a paso de la pasta', 'Reservas por WhatsApp'],
+      pt: ['Design fiel à marca', 'Cardápio e passo a passo da massa', 'Reservas pelo WhatsApp'],
+      en: ['An on-brand design', 'Menu and pasta step by step', 'WhatsApp bookings']
+    }
+  },
+  {
+    id: 'mundoloco', name: 'Mundoloco CGI', group: 'new', status: ['proposal', 'dev'], year: 2026,
+    url: 'https://mundolococgi.vercel.app/', brand: '#0C2341', ink: 'light', logo: 'img/logos/mundoloco.svg',
+    kind: { es: 'Estudio de animación', pt: 'Estúdio de animação', en: 'Animation studio' },
+    place: { es: 'Buenos Aires · producciones internacionales', pt: 'Buenos Aires · produções internacionais', en: 'Buenos Aires · international productions' },
+    desc: {
+      es: 'Productora de animación con series y películas para todo el mundo. Una web bilingüe que gira alrededor de su planeta y muestra sus producciones. Todavía en desarrollo.',
+      pt: 'Produtora de animação com séries e filmes para o mundo todo. Um site bilíngue que gira em torno do planeta deles e mostra as produções. Ainda em desenvolvimento.',
+      en: 'An animation studio making series and films for the whole world. A bilingual site built around their planet that shows their productions. Still in progress.'
+    },
+    did: {
+      es: ['Hero animado con su planeta', 'Sitio bilingüe ES / EN', 'Portfolio de producciones'],
+      pt: ['Hero animado com o planeta', 'Site bilíngue ES / EN', 'Portfólio de produções'],
+      en: ['Animated planet hero', 'Bilingual site ES / EN', 'Productions portfolio']
+    }
+  },
+
   /* CLIENTES */
   {
     id: 'puraa', video: 'video/puraa.mp4', poster: 'video/puraa.jpg', name: 'PURAA', group: 'client', status: ['client'], url: 'https://puraa.com.ar',
@@ -247,18 +312,51 @@ window.PROJECTS = [
   },
   {
     id: 'franza', name: 'FRANZA', group: 'client', status: ['client'], url: 'https://franza.com.ar',
-    brand: '#17171A', ink: 'light', logo: 'img/logos/franza.webp',
+    brand: '#141311', ink: 'light', logo: 'img/logos/franza.webp',
     kind: { es: 'Constructora civil e industrial', pt: 'Construtora civil e industrial', en: 'Civil and industrial construction' },
-    place: { es: 'Argentina', pt: 'Argentina', en: 'Argentina' },
+    place: { es: 'CABA y GBA', pt: 'Buenos Aires e região', en: 'Buenos Aires area' },
     desc: {
-      es: 'Web institucional para una constructora, con un panel propio para cargar y editar sus obras.',
-      pt: 'Site institucional para uma construtora, com um painel próprio para cadastrar e editar as obras.',
-      en: 'Corporate site for a construction company, with its own admin panel to add and edit projects.'
+      es: 'Constructora con más de 15 años de oficio. Rediseñé su web con una estética nueva, negro y dorado, donde cada obra se ve con su ficha, sus fotos y su antes y después.',
+      pt: 'Construtora com mais de 15 anos de experiência. Redesenhei o site com uma estética nova, preto e dourado, em que cada obra aparece com ficha, fotos e antes e depois.',
+      en: 'A construction company with over 15 years in the trade. I redesigned their site with a new black-and-gold look, where every project shows its details, photos and before and after.'
     },
     did: {
-      es: ['Sitio institucional', 'Panel de administración (ABM) de obras', 'Puesta online'],
-      pt: ['Site institucional', 'Painel de administração das obras', 'Publicação do site'],
-      en: ['Corporate website', 'Admin panel (CRUD) for projects', 'Launch']
+      es: ['Rediseño completo con nueva estética', 'Fichas de obra con antes y después', 'Panel de administración (ABM) de obras'],
+      pt: ['Redesign completo com nova estética', 'Fichas de obra com antes e depois', 'Painel de administração das obras'],
+      en: ['Full redesign with a new look', 'Project pages with before and after', 'Admin panel (CRUD) for projects']
+    },
+    stack: ['PHP']
+  },
+  {
+    id: 'ocl', name: 'OCL OneCoreLAB', group: 'client', status: ['client'], url: 'https://onecorelab.vercel.app/',
+    brand: '#0B0C0B', ink: 'light', logo: 'img/logos/ocl.webp',
+    kind: { es: 'Fabricación aditiva industrial', pt: 'Manufatura aditiva industrial', en: 'Industrial additive manufacturing' },
+    place: { es: 'Argentina', pt: 'Argentina', en: 'Argentina' },
+    desc: {
+      es: 'Impresión 3D industrial, escaneo 3D e ingeniería inversa para fabricar repuestos y piezas a medida. Amplié su identidad: la línea abierta del logo se vuelve el hilo que recorre toda la web.',
+      pt: 'Impressão 3D industrial, escaneamento 3D e engenharia reversa para fabricar peças de reposição e sob medida. Ampliei a identidade: a linha aberta do logo vira o fio que percorre todo o site.',
+      en: 'Industrial 3D printing, 3D scanning and reverse engineering to make spare and custom parts. I expanded their identity: the open line in the logo becomes the thread running through the whole site.'
+    },
+    did: {
+      es: ['Identidad ampliada a partir del logo', 'Intro animada con la línea del logo', 'Formulario de consultas y presupuestos'],
+      pt: ['Identidade ampliada a partir do logo', 'Intro animada com a linha do logo', 'Formulário de contato e orçamentos'],
+      en: ['Identity expanded from the logo', 'Animated intro with the logo line', 'Enquiry and quote form']
+    }
+  },
+  {
+    id: 'fede', name: 'Federico Fernández', group: 'client', status: ['client'], url: 'https://federicoafernandez.vercel.app',
+    brand: '#141312', ink: 'light', logo: 'img/logos/fede.svg',
+    kind: { es: 'Portfolio · editor de audio', pt: 'Portfólio · editor de áudio', en: 'Portfolio · audio editor' },
+    place: { es: 'Buenos Aires', pt: 'Buenos Aires', en: 'Buenos Aires' },
+    desc: {
+      es: 'Portfolio para un editor y postproductor de audio que trabajó en producciones para Netflix y Mundoloco CGI. Pensado como una hoja de cues, con modo claro y oscuro.',
+      pt: 'Portfólio para um editor e pós-produtor de áudio que trabalhou em produções para a Netflix e a Mundoloco CGI. Pensado como uma folha de cues, com modo claro e escuro.',
+      en: 'Portfolio for an audio editor and post-production pro who has worked on productions for Netflix and Mundoloco CGI. Designed like a cue sheet, with light and dark mode.'
+    },
+    did: {
+      es: ['Diseño a medida, como una hoja de cues', 'Modo claro y oscuro', 'Sitio bilingüe ES / EN'],
+      pt: ['Design sob medida, como uma folha de cues', 'Modo claro e escuro', 'Site bilíngue ES / EN'],
+      en: ['Custom design, like a cue sheet', 'Light and dark mode', 'Bilingual site ES / EN']
     }
   },
   {

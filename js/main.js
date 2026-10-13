@@ -14,15 +14,18 @@
   const t = k => (T[lang] && T[lang][k]) || T.es[k] || k;
   const L = o => (o && (o[lang] || o.es)) || '';
   const statusText = p => p.status.map(s => t('st.' + s)).join(' · ');
+  const isDemo = p => p.status.includes('proposal');
+  const demoBadge = () => `<span class="demo-badge">${t('st.proposal')}</span>`;
+  const restStatus = p => p.status.filter(s => s !== 'proposal').map(s => t('st.' + s)).join(' · ');
 
   /* ---------- render ---------- */
   const arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
   function tileHTML(p) {
     const mono = p.mono || p.logo;
-    return `<button type="button" class="tile${p.group === 'featured' ? ' tile--wide' : ''} reveal" data-id="${p.id}" style="--brand:${p.brand}" data-ink="${p.ink}">
+    return `<button type="button" class="tile${p.group === 'featured' ? ' tile--wide' : ''}${isDemo(p) ? ' tile--demo' : ''} reveal" data-id="${p.id}" style="--brand:${p.brand}" data-ink="${p.ink}">
       <span class="tile__fill" aria-hidden="true"></span>
-      <span class="tile__top"><span class="tile__kind">${p.group === 'featured' ? t('tile.featured') : L(p.kind)}</span><span class="tile__status">${statusText(p)}</span></span>
+      <span class="tile__top"><span class="tile__kind">${p.group === 'featured' ? t('tile.featured') : L(p.kind)}</span><span class="tile__status${isDemo(p) ? ' is-demo' : ''}">${isDemo(p) ? demoBadge() + (restStatus(p) ? ` <span class="tile__substatus">${restStatus(p)}</span>` : '') : statusText(p)}</span></span>
       <span class="tile__logos${p.round ? ' is-round' : ''}" aria-hidden="true">
         <img class="tile__logo tile__logo--mono" src="${mono}" alt="" loading="lazy">
         <img class="tile__logo tile__logo--color" src="${p.logo}" alt="" loading="lazy">
@@ -147,7 +150,10 @@
     const logo = $('#panel-logo'), tl = $('#panel-textlogo');
     if (p.logo) { logo.src = p.logo; logo.alt = p.name; logo.hidden = false; logo.classList.toggle('is-round', !!p.round); tl.hidden = true; }
     else { logo.hidden = true; tl.textContent = p.name; tl.hidden = false; }
-    $('#panel-eyebrow').textContent = [statusText(p), p.year].filter(Boolean).join(' · ');
+    $('#panel-eyebrow').textContent = [isDemo(p) ? restStatus(p) : statusText(p), p.year].filter(Boolean).join(' · ');
+    const demo = $('#panel-demo');
+    demo.hidden = !isDemo(p);
+    if (isDemo(p)) { $('#panel-demo-tag').textContent = t('st.proposal'); $('#panel-demo-txt').textContent = t('panel.demoNote'); }
     $('#panel-name').textContent = p.name;
     $('#panel-desc').textContent = L(p.desc);
     $('#panel-kind').textContent = L(p.kind);
