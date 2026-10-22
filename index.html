@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
   <link rel="preload" as="image" href="img/alejo.webp">
   <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/precios.css?v=4">
   <script>
     document.documentElement.classList.add('js');
     (function () { try {
@@ -44,6 +45,7 @@
     </a>
     <nav class="hdr__nav" aria-label="Principal">
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+      <a href="#precios" data-i18n="nav.prices">Precios</a>
       <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
       <a href="#redes" data-i18n="nav.social">Redes</a>
       <a href="#contacto" data-i18n="nav.contact">Contacto</a>
@@ -96,49 +98,142 @@
         <p class="sec__lead" data-i18n="clients.lead">Sitios en producción para negocios reales.</p>
       </div>
       <ul class="rows" id="clients"></ul>
+      <div class="labx" id="laboratorio">
+        <button type="button" class="labx__toggle" id="labx-toggle" aria-expanded="false" aria-controls="labx-body">
+          <span class="labx__title"><span data-i18n="lab.title">Laboratorio</span> <sup id="lab-count">6</sup></span>
+          <span class="labx__lead" data-i18n="lab.lead">Proyectos propios para probar ideas: animación, juegos y apps.</span>
+          <span class="labx__btn"><span class="labx__more" data-i18n="lab.open">Ver</span><span class="labx__less" data-i18n="lab.close">Ocultar</span><span class="labx__icon" aria-hidden="true"></span></span>
+        </button>
+        <div class="labx__body" id="labx-body" inert>
+          <div class="labx__inner"><ul class="rows rows--lab" id="lab"></ul></div>
+        </div>
+      </div>
     </section>
 
-    <!-- LABORATORIO -->
-    <section class="sec sec--list" id="laboratorio" aria-labelledby="lab-title">
+    <!-- PRECIOS -->
+    <div class="prices-band" id="precios">
+    <section class="sec prices" aria-labelledby="prices-title">
       <div class="sec__head">
-        <h2 id="lab-title" class="sec__title"><span data-i18n="lab.title">Laboratorio</span> <sup id="lab-count">6</sup></h2>
-        <p class="sec__lead" data-i18n="lab.lead">Proyectos propios para probar ideas: animación, juegos y apps.</p>
+        <h2 id="prices-title" class="sec__title" data-i18n="pr.title">Precios</h2>
+        <p class="sec__lead" data-i18n="pr.lead">Un solo pago. Sin mensualidades.</p>
       </div>
-      <ul class="rows rows--lab" id="lab"></ul>
+      <p class="prices__hint" data-i18n="pr.hint"></p>
+      <div class="plans">
+        <article class="plan reveal">
+          <div class="plan__head"><h3 class="plan__name" data-i18n="pr.p1"></h3><p class="plan__desc" data-i18n="pr.p1d"></p></div>
+          <div class="plan__price"><small data-i18n="pr.from">desde</small><b data-i18n="pr.price1">USD 390</b></div>
+          <div>
+          <ul class="feats">
+            <li class="feat" data-pv="identidad"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.identidad"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="secciones"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.secciones"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="carta"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.carta"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="whatsapp"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.whatsapp"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="dominio"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.dominio"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+          </ul>
+          </div>
+          <a class="btn btn--ghost" href="https://wa.me/5491125237915" target="_blank" rel="noopener" data-plan="1" data-i18n="pr.want">Quiero esta</a>
+        </article>
+        <article class="plan plan--pop reveal">
+          <span class="plan__badge" data-i18n="pr.popular">El más elegido</span>
+          <div class="plan__head"><h3 class="plan__name" data-i18n="pr.p2"></h3><p class="plan__desc" data-i18n="pr.p2d"></p></div>
+          <div class="plan__price"><small data-i18n="pr.from">desde</small><b data-i18n="pr.price2">USD 690</b></div>
+          <div>
+          <div class="plan__all"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="pr.allP1"></span></div>
+          <ul class="feats">
+            <li class="feat" data-pv="reservas"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.reservas"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="pedidos"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.pedidos"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="panel"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.panel"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="aviso"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.aviso"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+          </ul>
+          </div>
+          <a class="btn btn--light" href="https://wa.me/5491125237915" target="_blank" rel="noopener" data-plan="2" data-i18n="pr.want">Quiero esta</a>
+        </article>
+        <article class="plan reveal">
+          <div class="plan__head"><h3 class="plan__name" data-i18n="pr.p3"></h3><p class="plan__desc" data-i18n="pr.p3d"></p></div>
+          <div class="plan__price"><small data-i18n="pr.from">desde</small><b data-i18n="pr.price3">USD 990</b></div>
+          <div>
+          <div class="plan__all"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="pr.allP2"></span></div>
+          <ul class="feats">
+            <li class="feat" data-pv="ambos"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.ambos"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="editable"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.editable"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="admin"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.admin"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+            <li class="feat" data-pv="productos"><button type="button" class="feat__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="pr.f.productos"></span><svg class="feat__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></li>
+          </ul>
+          </div>
+          <a class="btn btn--ghost" href="https://wa.me/5491125237915" target="_blank" rel="noopener" data-plan="3" data-i18n="pr.want">Quiero esta</a>
+        </article>
+      </div>
+      <div class="pitch reveal">
+        <p class="pitch__slogan"><span data-i18n="pr.slogan1"></span> <em data-i18n="pr.slogan2"></em></p>
+        <ul class="pitch__vs" aria-label="">
+          <li><s data-i18n="pr.c1"></s><small data-i18n="pr.c1v"></small></li>
+          <li><s data-i18n="pr.c2"></s><small data-i18n="pr.c2v"></small></li>
+          <li><s data-i18n="pr.c3"></s><small data-i18n="pr.c3v"></small></li>
+        </ul>
+        <div class="pitch__once"><b data-i18n="pr.once"></b><small data-i18n="pr.onceTxt"></small></div>
+      </div>
+      <div class="notes">
+        <div class="reveal"><b data-i18n="pr.n1"></b><p data-i18n="pr.n1d"></p></div>
+        <div class="reveal"><b data-i18n="pr.n2"></b><p data-i18n="pr.n2d"></p></div>
+        <div class="reveal"><b data-i18n="pr.n3"></b><p data-i18n="pr.n3d"></p></div>
+      </div>
+      <p class="prices__foot" data-i18n="pr.foot"></p>
     </section>
+    </div>
 
     <!-- SOBRE MI -->
-    <section class="sec about" id="sobre-mi" aria-labelledby="about-title">
-      <div class="about__intro reveal">
-        <h2 id="about-title" class="sec__title" data-i18n="about.title">Sobre mí</h2>
-        <p class="about__big" data-i18n="about.p1">Soy Alejo, desarrollador web de Villa del Parque, Buenos Aires. Hago sitios a medida para negocios con identidad propia: restaurantes, cafés, marcas y emprendimientos.</p>
-        <p class="about__p" data-i18n="about.p2">Trabajo con clientes de Argentina y Brasil, con comunicación clara y por escrito. Me ocupo de todo: diseño, desarrollo, animaciones y puesta online.</p>
-        <a class="link-arrow" href="cv/Alejo-Martin-Fernandez-CV.pdf" target="_blank" rel="noopener"><span data-i18n="about.cv">Descargar CV</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <section class="sec about2" id="sobre-mi" aria-labelledby="about-title">
+      <div class="about2__photo reveal">
+        <div class="about2__frame"><img src="img/avatar-redes.webp" alt="Alejo Martín Fernández" width="400" height="400" loading="lazy"></div>
+        <span class="about2__tag about2__tag--1"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v8M12 5v8M16 5v8"/></svg><span data-i18n="ab.piano">Toco el piano</span></span>
+        <span class="about2__tag about2__tag--2"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></svg><span data-i18n="ab.racing">Hincha de Racing</span></span>
+        <span class="about2__tag about2__tag--3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Villa del Parque · BA</span>
       </div>
-      <ul class="services">
-        <li class="reveal"><span class="services__n">01</span><b data-i18n="svc.1t">Webs a medida</b><span data-i18n="svc.1d">Diseño único para tu marca.</span></li>
-        <li class="reveal"><span class="services__n">02</span><b data-i18n="svc.2t">Landing pages</b><span data-i18n="svc.2d">Una página clara para vender o presentar algo.</span></li>
-        <li class="reveal"><span class="services__n">03</span><b data-i18n="svc.3t">Tiendas online</b><span data-i18n="svc.3d">E-commerce con pagos y gestión de productos.</span></li>
-        <li class="reveal"><span class="services__n">04</span><b data-i18n="svc.4t">Apps web</b><span data-i18n="svc.4d">Paneles, PWAs y juegos a medida.</span></li>
-      </ul>
+      <div class="about2__main">
+        <h2 id="about-title" class="sec__title reveal" data-i18n="about.title">Sobre mí</h2>
+        <p class="about2__big reveal" data-i18n-lines="ab.big">Soy Alejo.|Hago webs que se ven como tu marca|y trabajan para tu negocio.</p>
+        <p class="about2__p reveal" data-i18n="about.p2">Trabajo con clientes de Argentina y Brasil, con comunicación clara y por escrito. Me ocupo de todo: diseño, desarrollo, animaciones y puesta online.</p>
+        <ul class="stats">
+          <li class="reveal"><b>+4</b><span data-i18n="ab.s1">años programando</span></li>
+          <li class="reveal"><b>+20</b><span data-i18n="ab.s2">webs hechas</span></li>
+          <li class="reveal"><b>AR · BR</b><span data-i18n="ab.s3">clientes en 2 países</span></li>
+          <li class="reveal"><b>ES · PT · EN</b><span data-i18n="ab.s4">te atiendo en tu idioma</span></li>
+        </ul>
+        <div class="about2__foot reveal">
+          <span class="about2__edu" data-i18n="ab.edu">Técnico Superior en Diseño y Programación Web · Escuela Da Vinci</span>
+          <a class="link-arrow" href="cv/Alejo-Martin-Fernandez-CV.pdf" target="_blank" rel="noopener"><span data-i18n="about.cv">Descargar CV</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
     </section>
 
     <!-- REDES -->
-    <section class="sec social" id="redes" aria-labelledby="social-title">
-      <div class="social__text reveal">
-        <h2 id="social-title" class="sec__title" data-i18n="social.title">Seguime como dev</h2>
-        <p class="social__p" data-i18n="social.p">En Instagram y TikTok muestro cómo armo cada web: diseño, código y animaciones, en videos cortos.</p>
-      </div>
-      <div class="pcard reveal">
-        <div class="pcard__row">
-          <a class="pcard__avatar" href="https://instagram.com/alejomf.dev" target="_blank" rel="noopener" aria-label="Instagram @alejomf.dev"><img src="img/avatar-redes.webp" alt="" width="400" height="400" loading="lazy"></a>
-          <div class="pcard__who"><b>@alejomf.dev</b><span>Alejo Martín Fernández</span></div>
+    <section class="social2" id="redes" aria-labelledby="social-title">
+      <div class="social2__in">
+        <div class="social2__text">
+          <a class="social2__who reveal" href="https://instagram.com/alejomf.dev" target="_blank" rel="noopener">
+            <span class="social2__avatar"><img src="img/avatar-redes.webp" alt="" width="400" height="400" loading="lazy"></span>
+            <span><b>@alejomf.dev</b><small>Instagram · TikTok</small></span>
+          </a>
+          <h2 id="social-title" class="social2__title reveal" data-i18n-lines="so.title">Mirá cómo|armo cada web.</h2>
+          <p class="social2__p reveal" data-i18n="social.p">En Instagram y TikTok muestro cómo armo cada web: diseño, código y animaciones, en videos cortos.</p>
+          <div class="social2__btns reveal">
+            <a class="sbtn sbtn--ig magnetic" href="https://instagram.com/alejomf.dev" target="_blank" rel="noopener">Instagram</a>
+            <a class="sbtn sbtn--tt magnetic" href="https://tiktok.com/@alejomf.dev" target="_blank" rel="noopener">TikTok</a>
+          </div>
         </div>
-        <p class="pcard__bio" data-i18n="social.bio">Desarrollo de webs para negocios que quieren crecer. Sitios, tiendas y apps a medida. Buenos Aires.</p>
-        <div class="pcard__posts" id="posts"></div>
-        <div class="pcard__btns">
-          <a class="sbtn sbtn--ig magnetic" href="https://instagram.com/alejomf.dev" target="_blank" rel="noopener">Instagram</a>
-          <a class="sbtn sbtn--tt magnetic" href="https://tiktok.com/@alejomf.dev" target="_blank" rel="noopener">TikTok</a>
+        <div class="reels">
+          <a class="reel reel--1 reveal" href="https://www.instagram.com/reel/Deb1II7MpLU/" target="_blank" rel="noopener" aria-label="Reel: Webs por dentro">
+            <img src="img/reels/nuevo-nivel.webp" alt="" width="720" height="960" loading="lazy">
+            <span class="reel__badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Reel</span>
+          </a>
+          <a class="reel reel--2 reveal" href="https://www.instagram.com/reel/DekngqqOc3W/" target="_blank" rel="noopener" aria-label="Reel: FRANZA ya tiene su web">
+            <img src="img/reels/franza.webp" alt="" width="720" height="960" loading="lazy">
+            <span class="reel__badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Reel</span>
+          </a>
+          <a class="reel reel--3 reveal" href="https://www.instagram.com/reel/DeuXQZ2pl9Z/" target="_blank" rel="noopener" aria-label="Reel: Cómo trabajo">
+            <img src="img/reels/como-trabajo.webp" alt="" width="720" height="960" loading="lazy">
+            <span class="reel__badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Reel</span>
+          </a>
         </div>
       </div>
     </section>
@@ -226,6 +321,7 @@
   <button type="button" class="panel__fold" id="panel-fold" aria-controls="panel-media" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 
   <script src="js/data.js?v=14"></script>
+  <script src="js/precios.js?v=3"></script>
   <script src="js/main.js?v=14"></script>
   <script src="js/chat.js?v=14"></script>
   <script src="js/intro.js?v=14"></script>
