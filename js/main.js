@@ -8,9 +8,10 @@
   const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 
   /* ---------- idioma ---------- */
+  /* El idioma NO se deduce del navegador: Googlebot rastrea en en-US y veía la página en inglés.
+     La URL raíz es siempre en español; el visitante elige PT/EN con los botones (queda recordado). */
   const qsLang = new URLSearchParams(location.search).get('lang');
-  const navLang = (navigator.language || 'es').slice(0, 2);
-  let lang = [qsLang, store.get('lang'), navLang].find(l => l && T[l]) || 'es';
+  let lang = [qsLang, store.get('lang')].find(l => l && T[l]) || 'es';
   const t = k => (T[lang] && T[lang][k]) || T.es[k] || k;
   const L = o => (o && (o[lang] || o.es)) || '';
   const statusText = p => p.status.map(s => t('st.' + s)).join(' · ');
@@ -19,11 +20,15 @@
   const restStatus = p => p.status.filter(s => s !== 'proposal').map(s => t('st.' + s)).join(' · ');
 
   /* ---------- render ---------- */
+  /* Cada proyecto tiene su propia página (/proyectos/<id>): el enlace es real para Google y para abrir en pestaña nueva;
+     el clic normal abre el panel lateral sin salir de la home. */
+  const caseUrl = p => `/proyectos/${p.id}`;
+  const plainClick = e => !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1);
   const arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
   function tileHTML(p) {
     const mono = p.mono || p.logo;
-    return `<button type="button" class="tile${p.group === 'featured' ? ' tile--wide' : ''}${isDemo(p) ? ' tile--demo' : ''} reveal" data-id="${p.id}" style="--brand:${p.brand}" data-ink="${p.ink}">
+    return `<a class="tile${p.group === 'featured' ? ' tile--wide' : ''}${isDemo(p) ? ' tile--demo' : ''} reveal" href="${caseUrl(p)}" data-id="${p.id}" style="--brand:${p.brand}" data-ink="${p.ink}">
       <span class="tile__fill" aria-hidden="true"></span>
       <span class="tile__top"><span class="tile__kind">${p.group === 'featured' ? t('tile.featured') : L(p.kind)}</span><span class="tile__status${isDemo(p) ? ' is-demo' : ''}">${isDemo(p) ? demoBadge() + (restStatus(p) ? ` <span class="tile__substatus">${restStatus(p)}</span>` : '') : statusText(p)}</span></span>
       <span class="tile__logos${p.round ? ' is-round' : ''}" aria-hidden="true">
@@ -32,25 +37,25 @@
       </span>
       <span class="tile__name">${p.name}</span>
       <span class="tile__cta"><span>${t('tile.view')}</span>${arrow}</span>
-    </button>`;
+    </a>`;
   }
 
   function rowHTML(p) {
     const logo = p.logo
       ? `<img src="${p.logo}" alt="" loading="lazy">`
       : `<span class="row__textlogo">${p.name}</span>`;
-    return `<li class="reveal"><button type="button" class="row" data-id="${p.id}">
+    return `<li class="reveal"><a class="row" href="${caseUrl(p)}" data-id="${p.id}">
       <span class="row__logo" aria-hidden="true">${logo}</span>
       <span class="row__name">${p.name}${p.highlight ? `<em>${t('row.highlight')}</em>` : ''}</span>
       <span class="row__kind">${L(p.kind)}</span>
       <span class="row__status">${statusText(p)}</span>
       <span class="row__arrow">${arrow}</span>
-    </button></li>`;
+    </a></li>`;
   }
 
   function ribbonHTML() {
     const items = (window.RIBBON || []).map(id => P.find(p => p.id === id)).filter(p => p && p.logo);
-    const one = (p, dup) => `<button type="button" class="ribbon__item" data-id="${p.id}" ${dup ? 'aria-hidden="true" tabindex="-1"' : `aria-label="${p.name}"`}><img src="${p.ribbon || p.mono || p.logo}" alt="" loading="lazy"></button>`;
+    const one = (p, dup) => `<a class="ribbon__item" href="${caseUrl(p)}" data-id="${p.id}" ${dup ? 'aria-hidden="true" tabindex="-1"' : `aria-label="${p.name}"`}><img src="${p.ribbon || p.mono || p.logo}" alt="" loading="lazy"></a>`;
     return items.map(p => one(p)).join('') + items.map(p => one(p, true)).join('');
   }
 
@@ -68,7 +73,7 @@
         const tag = () => { const r = img.naturalWidth / (img.naturalHeight || 1); const it = img.parentElement; it.classList.toggle('is-square', r < 1.3); it.classList.toggle('is-tall', r >= 1.3 && r < 2.2); };
         img.complete ? tag() : img.addEventListener('load', tag);
       });
-      $$('.ribbon__item', rib).forEach(b => b.addEventListener('click', () => openPanel(b.dataset.id, b)));
+      $$('.ribbon__item', rib).forEach(b => b.addEventListener('click', e => { if (!plainClick(e)) return; e.preventDefault(); openPanel(b.dataset.id, b); }));
     }
     const rw = $('#ribbon-wrap'); if (rw) rw.setAttribute('aria-label', t('hero.ribbon'));
     $('#proj-count').textContent = wall.length;
@@ -85,6 +90,10 @@
     window.siteLang = lang;
     document.dispatchEvent(new CustomEvent('langchange'));
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+    if (T[lang] && T[lang]['meta.title']) {
+      document.title = t('meta.title');
+      const md = $('meta[name="description"]'); if (md) md.content = t('meta.desc');
+    }
     $$('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
     const swap = () => {
       $$('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
@@ -118,9 +127,9 @@
       };
       tile.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; pos(e); requestAnimationFrame(() => tile.classList.add('is-on')); });
       tile.addEventListener('pointerleave', e => { if (e.pointerType !== 'mouse') return; pos(e); tile.classList.remove('is-on'); });
-      tile.addEventListener('click', () => openPanel(tile.dataset.id, tile));
+      tile.addEventListener('click', e => { if (!plainClick(e)) return; e.preventDefault(); openPanel(tile.dataset.id, tile); });
     });
-    $$('.row').forEach(row => row.addEventListener('click', () => openPanel(row.dataset.id, row)));
+    $$('.row').forEach(row => row.addEventListener('click', e => { if (!plainClick(e)) return; e.preventDefault(); openPanel(row.dataset.id, row); }));
   }
 
   /* ---------- aparición al scrollear ---------- */
@@ -164,6 +173,7 @@
     const visit = $('#panel-visit');
     visit.hidden = !p.url; $('#panel-soon').hidden = !!p.url;
     if (p.url) visit.href = p.url;
+    const cs = $('#panel-case'); if (cs) cs.href = caseUrl(p);
     const i = order.indexOf(id);
     const prev = P[(i - 1 + P.length) % P.length], next = P[(i + 1) % P.length];
     $('#panel-prev').dataset.id = prev.id; $('#panel-prev-name').textContent = prev.name;

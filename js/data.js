@@ -7,7 +7,9 @@ window.I18N = {
     'hero.role2': 'Desarrollador web freelance', 'hero.where': 'Buenos Aires · Argentina y Brasil', 'hero.ribbon': 'Clientes, demos web y proyectos propios',
     'panel.hideReel': 'Ocultar el reel', 'panel.showReel': 'Mostrar el reel', 'panel.ig': 'Ver el reel en Instagram', 'panel.soundOn': 'Activar sonido', 'panel.soundOff': 'Silenciar', 'social.title': 'Seguime como dev', 'social.p': 'En Instagram y TikTok muestro cómo armo cada web: diseño, código y animaciones, en videos cortos.', 'social.bio': 'Desarrollo de webs para negocios que quieren crecer. Sitios, tiendas y apps a medida. Buenos Aires.', 'social.post': 'Ver publicación',
     'hero.status': 'Disponible para proyectos',
-    'hero.title': 'Webs a medida|para negocios|con identidad.',
+    'hero.title': 'Diseño webs a medida|para negocios|con identidad.',
+    'meta.title': 'Diseño y desarrollo web a medida en Buenos Aires | Alejo Martín Fernández',
+    'meta.desc': 'Desarrollador web freelance en Buenos Aires. Sitios únicos para restaurantes, cafés, hoteles y marcas de Argentina y Brasil, con reservas, pedidos y carta editable. Mirá los proyectos y escribime.',
     'hero.sub': 'Diseño y desarrollo sitios únicos para marcas de Argentina y Brasil. Cada web nace de la marca, no de una plantilla.',
     'hero.cta1': 'Ver proyectos', 'hero.cta2': 'Escribime por WhatsApp',
     'hero.role': 'Desarrollador web · Buenos Aires',
@@ -27,7 +29,7 @@ window.I18N = {
     'contact.copy': 'Copiar', 'contact.copied': 'Copiado',
     'footer.local': 'Hora en Buenos Aires', 'footer.credit': 'Sitio desarrollado por',
     'panel.close': 'Cerrar', 'panel.kind': 'Rubro', 'panel.place': 'Lugar', 'panel.did': 'Qué hice', 'panel.stack': 'Tecnología',
-    'panel.visit': 'Ver web en vivo', 'panel.soon': 'Todavía no está online', 'panel.prev': 'Anterior', 'panel.next': 'Siguiente',
+    'panel.visit': 'Ver web en vivo', 'panel.case': 'Ver la página del proyecto', 'panel.soon': 'Todavía no está online', 'panel.prev': 'Anterior', 'panel.next': 'Siguiente',
     'tile.view': 'Ver proyecto', 'tile.featured': 'Proyecto propio destacado', 'row.highlight': 'Destacado',
     'st.proposal': 'Demo web', 'st.client': 'Cliente', 'st.own': 'Propio', 'st.dev': 'En desarrollo', 'st.lab': 'Experimento'
   },
@@ -37,7 +39,9 @@ window.I18N = {
     'hero.role2': 'Desenvolvedor web freelancer', 'hero.where': 'Buenos Aires · Argentina e Brasil', 'hero.ribbon': 'Clientes, demos web e projetos próprios',
     'panel.hideReel': 'Ocultar o reel', 'panel.showReel': 'Mostrar o reel', 'panel.ig': 'Ver o reel no Instagram', 'panel.soundOn': 'Ativar som', 'panel.soundOff': 'Silenciar', 'social.title': 'Me siga como dev', 'social.p': 'No Instagram e no TikTok mostro como crio cada site: design, código e animações, em vídeos curtos.', 'social.bio': 'Desenvolvimento de sites para negócios que querem crescer. Sites, lojas e apps sob medida. Buenos Aires.', 'social.post': 'Ver publicação',
     'hero.status': 'Disponível para projetos',
-    'hero.title': 'Sites sob medida|para negócios|com identidade.',
+    'hero.title': 'Crio sites sob medida|para negócios|com identidade.',
+    'meta.title': 'Criação de sites sob medida para negócios | Alejo Martín Fernández',
+    'meta.desc': 'Desenvolvedor web freelancer em Buenos Aires que atende o Brasil. Sites únicos para restaurantes, cafés, pousadas e marcas, com reservas, pedidos e cardápio editável. Veja os projetos e fale comigo.',
     'hero.sub': 'Crio e desenvolvo sites únicos para marcas da Argentina e do Brasil. Cada site nasce da marca, não de um template.',
     'hero.cta1': 'Ver projetos', 'hero.cta2': 'Fale comigo no WhatsApp',
     'hero.role': 'Desenvolvedor web · Buenos Aires',
@@ -57,7 +61,7 @@ window.I18N = {
     'contact.copy': 'Copiar', 'contact.copied': 'Copiado',
     'footer.local': 'Horário em Buenos Aires', 'footer.credit': 'Site desenvolvido por',
     'panel.close': 'Fechar', 'panel.kind': 'Segmento', 'panel.place': 'Local', 'panel.did': 'O que eu fiz', 'panel.stack': 'Tecnologia',
-    'panel.visit': 'Ver site no ar', 'panel.soon': 'Ainda não está no ar', 'panel.prev': 'Anterior', 'panel.next': 'Próximo',
+    'panel.visit': 'Ver site no ar', 'panel.case': 'Ver a página do projeto', 'panel.soon': 'Ainda não está no ar', 'panel.prev': 'Anterior', 'panel.next': 'Próximo',
     'tile.view': 'Ver projeto', 'tile.featured': 'Projeto próprio em destaque', 'row.highlight': 'Destaque',
     'st.proposal': 'Demo web', 'st.client': 'Cliente', 'st.own': 'Próprio', 'st.dev': 'Em desenvolvimento', 'st.lab': 'Experimento'
   },
@@ -67,7 +71,9 @@ window.I18N = {
     'hero.role2': 'Freelance web developer', 'hero.where': 'Buenos Aires · Argentina and Brazil', 'hero.ribbon': 'Clients, demo sites and side projects',
     'panel.hideReel': 'Hide the reel', 'panel.showReel': 'Show the reel', 'panel.ig': 'Watch the reel on Instagram', 'panel.soundOn': 'Turn sound on', 'panel.soundOff': 'Mute', 'social.title': 'Follow me as a dev', 'social.p': 'On Instagram and TikTok I show how I build each site: design, code and animation, in short videos.', 'social.bio': 'Websites for businesses that want to grow. Custom sites, stores and apps. Buenos Aires.', 'social.post': 'View post',
     'hero.status': 'Available for projects',
-    'hero.title': 'Custom websites|for businesses|with identity.',
+    'hero.title': 'I build custom websites|for businesses|with identity.',
+    'meta.title': 'Custom website design & development | Alejo Martín Fernández',
+    'meta.desc': 'Freelance web developer in Buenos Aires working with Argentina and Brazil. One-of-a-kind sites for restaurants, cafés, lodges and brands, with bookings, orders and editable menus. See the projects and get in touch.',
     'hero.sub': 'I design and build one-of-a-kind sites for brands in Argentina and Brazil. Every site starts from the brand, not a template.',
     'hero.cta1': 'See projects', 'hero.cta2': 'Message me on WhatsApp',
     'hero.role': 'Web developer · Buenos Aires',
@@ -87,7 +93,7 @@ window.I18N = {
     'contact.copy': 'Copy', 'contact.copied': 'Copied',
     'footer.local': 'Buenos Aires time', 'footer.credit': 'Site developed by',
     'panel.close': 'Close', 'panel.kind': 'Industry', 'panel.place': 'Location', 'panel.did': 'What I did', 'panel.stack': 'Tech',
-    'panel.visit': 'Visit live site', 'panel.soon': 'Not online yet', 'panel.prev': 'Previous', 'panel.next': 'Next',
+    'panel.visit': 'Visit live site', 'panel.case': 'View the project page', 'panel.soon': 'Not online yet', 'panel.prev': 'Previous', 'panel.next': 'Next',
     'tile.view': 'View project', 'tile.featured': 'Featured own project', 'row.highlight': 'Featured',
     'st.proposal': 'Demo site', 'st.client': 'Client', 'st.own': 'Own project', 'st.dev': 'In progress', 'st.lab': 'Experiment'
   }
@@ -360,7 +366,7 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'pintor', video: 'video/pintor.mp4', poster: 'video/pintor.jpg', name: 'Refugio del Pintor', group: 'client', status: ['client'], url: 'http://elrefugiodelpintor.com/',
+    id: 'pintor', video: 'video/pintor.mp4', poster: 'video/pintor.jpg', name: 'Refugio del Pintor', group: 'client', status: ['client'], url: 'https://elrefugiodelpintor.com/',
     brand: '#FBF6EE', ink: 'dark', logo: 'img/logos/pintor.webp',
     kind: { es: 'Alojamiento', pt: 'Hospedagem', en: 'Lodging' },
     place: { es: 'Tilcara, Jujuy', pt: 'Tilcara, Jujuy', en: 'Tilcara, Jujuy' },
