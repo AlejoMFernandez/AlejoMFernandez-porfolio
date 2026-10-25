@@ -147,9 +147,9 @@ function shell({ title, desc, url, image, body, jsonld, bodyClass = '', lang = '
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="/css/style.css?v=15">
-  <link rel="stylesheet" href="/css/pagina.css?v=1">
+  <link rel="stylesheet" href="/css/pagina.css?v=2">
 ${jsonld ? `  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>\n` : ''}</head>
-<body class="is-loaded ${bodyClass}">
+<body class="${bodyClass}">
   <a class="skip" href="#contenido">Saltar al contenido</a>
   <header class="hdr is-scrolled" id="hdr">
     <a class="hdr__brand" href="/" aria-label="Alejo Martín Fernández, inicio">${AF}<span class="hdr__name"><span>Alejo Martín Fernández</span></span></a>
@@ -169,11 +169,7 @@ ${body}
     <div class="ftr__col"><span class="ftr__label">© ${new Date().getFullYear()}</span><span class="ftr__val">Villa del Parque, Buenos Aires</span></div>
     <p class="ftr__credit">Sitio desarrollado por <a href="https://alejomfernandez.com.ar">Alejo Martín Fernández</a></p>
   </footer>
-  <script>
-    (function(){var c=document.getElementById('clock');if(!c)return;var f=new Intl.DateTimeFormat('es-AR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/Argentina/Buenos_Aires'});function k(){c.textContent=f.format(new Date())+' GMT-3'}k();setInterval(k,20000)})();
-    (function(){var h=document.getElementById('hdr'),y=scrollY;addEventListener('scroll',function(){var s=scrollY;h.classList.toggle('is-hidden',s>300&&s>y);y=s},{passive:true})})();
-    document.querySelectorAll('video[autoplay]').forEach(function(v){var p=v.play();if(p&&p.catch)p.catch(function(){})});
-  </script>
+  <script src="/js/pagina.js?v=1" defer></script>
 </body>
 </html>
 `;
@@ -199,8 +195,17 @@ function buildCase(p, i) {
   const image = p.poster && exists(p.poster) ? p.poster : 'img/og.jpg';
   const eyebrow = [isDemo(p) ? 'Demo web' : statusText(p), L(p.place), p.year].filter(Boolean).join(' · ');
   const waText = encodeURIComponent(`Hola Alejo! Vi el proyecto de ${p.name} en tu portfolio y quiero algo así para mi negocio. ¿Podemos hablar?`);
+  const hasVideo = !!(p.video && exists(p.video));
+  const heroRight = hasVideo
+    ? `<div class="caso__phonewrap">
+        ${p.logo ? `<img class="caso__logo" src="/${p.logo}" alt="" aria-hidden="true">` : ''}
+        <div class="phone" style="--brand:${p.brand}"><div class="phone__screen"><video src="/${p.video}" ${p.poster ? `poster="/${p.poster}"` : ''} muted loop playsinline autoplay preload="metadata" aria-label="Recorrido por la web de ${attr(p.name)} en celular"></video></div></div>
+        <button type="button" class="phone__sound" aria-label="Activar sonido"></button>
+      </div>`
+    : brandBlock(p, 'caso');
   const body = `
-  <article class="pg caso">
+  <article class="pg caso" style="--brand:${p.brand}">
+    <div class="caso__glow" aria-hidden="true"></div>
     ${crumbs([['Inicio', '/'], ['Proyectos', '/proyectos'], [p.name]])}
     <div class="caso__hero">
       <div>
@@ -208,39 +213,32 @@ function buildCase(p, i) {
         <h1 class="pg__title">${esc(p.name)}</h1>
         <p class="pg__lead">${esc(desc)}</p>
         <div class="caso__ctas">
-          ${p.url ? `<a class="btn btn--light" href="${attr(p.url)}" target="_blank" rel="noopener"><span>Ver web en vivo</span>${arrowOut}</a>` : `<span class="btn btn--ghost" aria-disabled="true">Todavía no está online</span>`}
-          <a class="btn btn--ghost" href="${WA}?text=${waText}" target="_blank" rel="noopener">Quiero una web así</a>
+          ${p.url ? `<a class="btn btn--light magnetic" href="${attr(p.url)}" target="_blank" rel="noopener"><span>Ver web en vivo</span>${arrowOut}</a>` : `<span class="btn btn--ghost" aria-disabled="true">Todavía no está online</span>`}
+          <a class="btn btn--ghost magnetic" href="${WA}?text=${waText}" target="_blank" rel="noopener">Quiero una web así</a>
         </div>
+        ${p.ig ? `<a class="link-arrow" href="${attr(p.ig)}" target="_blank" rel="noopener">Ver el reel en Instagram ${arrowOut}</a>` : ''}
       </div>
-      ${brandBlock(p, 'caso')}
+      ${heroRight}
     </div>
-    ${isDemo(p) ? `<p class="demo-note"><span class="demo-badge">Demo web</span><span>${esc(t('panel.demoNote'))} Si sos de ${esc(p.name)} y te interesa, <a class="inl" href="${WA}" target="_blank" rel="noopener">escribime</a>: la web ya está diseñada.</span></p>` : ''}
-    <dl class="meta">
+    ${isDemo(p) ? `<p class="demo-note reveal"><span class="demo-badge">Demo web</span><span>${esc(t('panel.demoNote'))} Si sos de ${esc(p.name)} y te interesa, <a class="inl" href="${WA}" target="_blank" rel="noopener">escribime</a>: la web ya está diseñada.</span></p>` : ''}
+    <dl class="meta reveal">
       <div><dt>Rubro</dt><dd>${esc(L(p.kind))}</dd></div>
       <div><dt>Lugar</dt><dd>${esc(L(p.place))}</dd></div>
       <div><dt>Estado</dt><dd>${statusText(p)}</dd></div>
       ${p.year ? `<div><dt>Año</dt><dd>${p.year}</dd></div>` : ''}
       ${p.stack ? `<div><dt>Tecnología</dt><dd>${p.stack.map(esc).join(', ')}</dd></div>` : ''}
     </dl>
-    ${(L(p.did) || []).length ? `<h2>Qué hice</h2><ul class="panel__did" style="--brand:${p.brand}">${L(p.did).map(d => `<li>${esc(d)}</li>`).join('')}</ul>` : ''}
-    ${p.video && exists(p.video) ? `
-    <section class="caso__video" aria-label="Versión para celular">
-      <div>
-        <h2 style="margin-top:0">Así se ve en el celular</h2>
-        <p>La mayoría de los clientes de un negocio llegan desde Instagram o Google Maps, en el teléfono. Cada web la diseño primero para esa pantalla.</p>
-        ${p.ig ? `<a class="link-arrow" href="${attr(p.ig)}" target="_blank" rel="noopener">Ver el reel en Instagram ${arrowOut}</a>` : ''}
-      </div>
-      <div class="caso__phone"><div class="phone" style="--brand:${p.brand}"><div class="phone__screen"><video src="/${p.video}" ${p.poster ? `poster="/${p.poster}"` : ''} muted loop playsinline autoplay preload="metadata" aria-label="Recorrido por la web de ${attr(p.name)} en celular"></video></div></div></div>
-    </section>` : ''}
+    ${(L(p.did) || []).length ? `<h2 class="reveal">Qué hice</h2><ul class="panel__did">${L(p.did).map(d => `<li class="reveal">${esc(d)}</li>`).join('')}</ul>` : ''}
+    ${hasVideo ? `<p class="reveal" style="color:var(--muted);max-width:60ch">La mayoría de los clientes de un negocio llegan desde Instagram o Google Maps, con el celular en la mano. Por eso cada web la diseño primero para esa pantalla: lo que ves arriba es la versión real en un teléfono.</p>` : ''}
     <nav class="prevnext" aria-label="Otros proyectos">
-      <a href="${caseUrl(prev)}"><small>Anterior</small><b>${esc(prev.name)}</b></a>
-      <a href="${caseUrl(next)}"><small>Siguiente</small><b>${esc(next.name)}</b></a>
+      <a class="reveal" href="${caseUrl(prev)}"><small>Anterior</small><b>${esc(prev.name)}</b></a>
+      <a class="reveal" href="${caseUrl(next)}"><small>Siguiente</small><b>${esc(next.name)}</b></a>
     </nav>
-    <section class="cta-band">
+    <section class="cta-band reveal">
       <h2>¿Tenés un negocio con identidad? Armemos su web.</h2>
       <p>Contame qué hacés y te respondo a la brevedad. Un solo pago, sin mensualidades, desde USD 390.</p>
-      <a class="btn btn--light" href="${WA}?text=${waText}" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn btn--ghost" href="/#precios">Ver precios</a>
+      <a class="btn btn--light magnetic" href="${WA}?text=${waText}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn--ghost magnetic" href="/#precios">Ver precios</a>
     </section>
   </article>`;
   const jsonld = {
@@ -270,7 +268,7 @@ function buildCase(p, i) {
 
 /* ---------- 4. Listado /proyectos ---------- */
 function cardHTML(p) {
-  return `<li><a class="card" href="${caseUrl(p)}">
+  return `<li class="reveal"><a class="card" href="${caseUrl(p)}">
     <div class="card__brand${p.round ? ' is-round' : ''}" style="--brand:${p.brand}" data-ink="${p.ink}">${p.logo ? `<img src="/${p.logo}" alt="" loading="lazy">` : `<span>${esc(p.name)}</span>`}</div>
     <div class="card__body"><span class="card__kind">${esc(L(p.kind))}</span><span class="card__name">${esc(p.name)}</span><span class="card__status">${statusText(p)} · ${esc(L(p.place))}</span></div>
   </a></li>`;
@@ -288,7 +286,7 @@ function buildIndex() {
     <h1 class="pg__title">Webs para restaurantes, cafés, hoteles y marcas con identidad</h1>
     <p class="pg__lead">Cada sitio nace de la marca, no de una plantilla. Acá están los que hice para clientes, las demos que diseñé para negocios que me gustan y los experimentos propios. Tocá uno para ver qué hice y cómo se ve en el celular.</p>
     ${groups.map(([h, lead, list]) => `<h2>${h} <sup style="font-family:var(--mono);font-size:13px;font-weight:400;color:var(--muted)">${list.length}</sup></h2><p style="color:var(--muted);margin-top:-6px">${lead}</p><ul class="grid">${list.map(cardHTML).join('')}</ul>`).join('')}
-    <section class="cta-band">
+    <section class="cta-band reveal">
       <h2>¿Querés ver cómo se vería la web de tu negocio?</h2>
       <p>Contame el rubro y te muestro ejemplos parecidos. Sin compromiso.</p>
       <a class="btn btn--light" href="${WA}" target="_blank" rel="noopener">WhatsApp</a>

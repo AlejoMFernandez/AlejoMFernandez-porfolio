@@ -596,7 +596,7 @@ html.intro-on .hdr__af { opacity: 0; }
 }
 
 /* ---------- enlace a la página del proyecto (panel) ---------- */
-.panel__case { margin-top: 18px; font-size: 14px; color: var(--muted); }
+.panel__case { display: flex; width: fit-content; margin-top: 22px; font-size: 14px; color: var(--muted); }
 .panel__case:hover { color: var(--fg); }
 /* tiles, filas y cinta ahora son <a>: mismo aspecto que antes */
 .tile, .row { display: grid; color: inherit; }

@@ -7,7 +7,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
     const media = p.poster && exists(p.poster)
       ? `<img src="/${p.poster}" alt="Web de ${attr(p.name)} en celular" loading="lazy" width="720" height="900">`
       : `<div class="brand${p.round ? ' is-round' : ''}" style="--brand:${p.brand}" data-ink="${p.ink}">${p.logo ? `<img src="/${p.logo}" alt="" loading="lazy">` : `<span>${esc(p.name)}</span>`}</div>`;
-    return `<li><a href="${caseUrl(p)}"><figure style="margin:0">${media}<figcaption>${esc(p.name)}<small>${esc(L(p.kind))} · ${esc(L(p.place))}</small></figcaption></figure></a></li>`;
+    return `<li class="reveal"><a href="${caseUrl(p)}"><figure style="margin:0">${media}<figcaption>${esc(p.name)}<small>${esc(L(p.kind))} · ${esc(L(p.place))}</small></figcaption></figure></a></li>`;
   }).join('')}</ul>`;
   const faqHTML = qs => `<ul class="faq">${qs.map(([q, a]) => `<li><details><summary>${esc(q)}</summary><p>${a}</p></details></li>`).join('')}</ul>`;
   const faqLd = qs => ({ '@type': 'FAQPage', mainEntity: qs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })) });
@@ -38,7 +38,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
         <h1 class="pg__title">Páginas web para restaurantes que se ven como tu cocina</h1>
         <p class="pg__lead">Una web con <strong>tu identidad</strong>, la <strong>carta siempre actualizada</strong>, <strong>reservas</strong> y <strong>pedidos</strong> adentro. Sin plantillas, sin mensualidades: pagás una vez y es tuya.</p>
         <div class="caso__ctas">
-          <a class="btn btn--light" href="${waT('Hola Alejo! Tengo un restaurante y quiero ver cómo podría ser su web.')}" target="_blank" rel="noopener">Contame de tu restaurante</a>
+          <a class="btn btn--light magnetic" href="${waT('Hola Alejo! Tengo un restaurante y quiero ver cómo podría ser su web.')}" target="_blank" rel="noopener">Contame de tu restaurante</a>
           <a class="btn btn--ghost" href="#ejemplos">Ver ejemplos</a>
         </div>
       </div>
@@ -60,7 +60,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
     <p><a class="link-arrow" href="/proyectos">Ver todos los proyectos ${arrowOut}</a></p>
 
     <h2>Qué incluye, según lo que necesite tu restaurante</h2>
-    <ul class="plans-inline">
+    <ul class="plans-inline reveal">
       <li><small>Identidad</small><b>desde USD 390</b><p>Diseño a medida con tu marca, hasta 5 secciones, carta o menú para mostrar, botón de WhatsApp y publicación con tu dominio.</p></li>
       <li><small>Funcional · el más elegido</small><b>desde USD 690</b><p>Todo lo anterior más reservas online o pedidos con carrito y Mercado Pago, panel para ver lo que entra y aviso en cada reserva o pedido.</p></li>
       <li><small>Completa</small><b>desde USD 990</b><p>Reservas y pedidos, carta editable para cambiar precios vos, panel de administración propio y carga de hasta 40 productos.</p></li>
@@ -68,7 +68,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
     <p style="color:var(--muted);font-size:14px">Un solo pago. Hoy un restaurante suele pagar aparte una tienda online, un sistema de reservas y una carta QR, todos los meses. Acá las tres cosas viven en tu propio sitio, sin comisiones por pedido. <a class="inl" href="/#precios">Ver el detalle de los planes</a>.</p>
 
     <h2>Cómo trabajamos</h2>
-    <ol class="steps">
+    <ol class="steps reveal">
       <li><b>Charlamos</b><span>Me contás qué querés, qué no, y cómo es tu marca. Por WhatsApp o por escrito, como prefieras.</span></li>
       <li><b>Propuesta</b><span>Alcance, etapas por semana y precio, por escrito, antes de empezar.</span></li>
       <li><b>Diseño y desarrollo</b><span>Seguís el avance en un link en vivo. Primero la versión para celular.</span></li>
@@ -78,10 +78,10 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
     <h2>Preguntas frecuentes</h2>
     ${faqHTML(restoFaq)}
 
-    <section class="cta-band">
+    <section class="cta-band reveal">
       <h2>¿Querés ver cómo se vería la web de tu restaurante?</h2>
       <p>Mandame el Instagram de tu local y te respondo con ideas concretas. Sin compromiso.</p>
-      <a class="btn btn--light" href="${waT('Hola Alejo! Tengo un restaurante y quiero ver cómo podría ser su web.')}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn--light magnetic" href="${waT('Hola Alejo! Tengo un restaurante y quiero ver cómo podría ser su web.')}" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn btn--ghost" href="mailto:fernandezmalejo@gmail.com">Mail</a>
     </section>
   </div>`,
