@@ -237,7 +237,7 @@ function buildCase(p, i) {
     </nav>
     <section class="cta-band reveal">
       <h2>¿Tenés un negocio con identidad? Armemos su web.</h2>
-      <p>Contame qué hacés y te respondo a la brevedad. Un solo pago, sin mensualidades, desde USD 390.</p>
+      <p>Contame qué hacés y te respondo a la brevedad. Pago inicial desde USD 390 + abono mensual con hosting y mantenimiento.</p>
       <a class="btn btn--light magnetic" href="${WA}?text=${waText}" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn btn--ghost magnetic" href="/#precios">Ver precios</a>
     </section>

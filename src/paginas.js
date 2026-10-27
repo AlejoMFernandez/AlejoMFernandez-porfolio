@@ -15,7 +15,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
 
   /* ---------------- Restaurantes ---------------- */
   const restoFaq = [
-    ['¿Cuánto cuesta una página web para un restaurante?', 'Desde USD 390 una web con tu identidad, carta para mostrar y botón de WhatsApp. Desde USD 690 si querés que reciba reservas o pedidos con Mercado Pago. Es un solo pago, sin mensualidades: la web es tuya.'],
+    ['¿Cuánto cuesta una página web para un restaurante?', 'Desde USD 390 una web con tu identidad, carta para mostrar y botón de WhatsApp. Desde USD 690 si querés que reciba reservas o pedidos con Mercado Pago. Es un pago inicial más un abono mensual que cubre hosting, base de datos y mantenimiento, sin comisiones por pedido.'],
     ['¿Cuánto tarda?', 'Una web de presentación suele estar lista en 1 o 2 semanas. Con reservas, pedidos o carta editable, entre 3 y 5 semanas según el contenido. Seguís el avance en un link en vivo desde el primer día.'],
     ['¿Puedo cambiar la carta y los precios yo mismo?', 'Sí. En los planes Funcional y Completa tenés una carta editable: cambiás precios, platos y fotos desde un panel simple, sin tocar código ni depender de nadie.'],
     ['¿Sirve si ya tengo Instagram?', 'Instagram trae gente; la web la convierte. Cuando alguien busca en Google "restaurante en Devoto" o toca el link de tu bio, necesita ver la carta, la ubicación, los horarios y reservar en dos toques. Eso Instagram no lo hace.'],
@@ -27,7 +27,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
     slug: 'diseno-web-restaurantes',
     url: '/diseno-web-restaurantes',
     title: 'Diseño web para restaurantes: carta, reservas y pedidos | Alejo Martín Fernández',
-    desc: 'Páginas web a medida para restaurantes y casas de comida en Argentina y Brasil. Carta editable, reservas online y pedidos con Mercado Pago en una web con tu identidad. Un solo pago, desde USD 390.',
+    desc: 'Páginas web a medida para restaurantes y casas de comida en Argentina y Brasil. Carta editable, reservas online y pedidos con Mercado Pago en una web con tu identidad. Pago inicial desde USD 390.',
     image: 'video/maravela.jpg',
     body: `
   <div class="pg">
@@ -36,7 +36,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
       <div>
         <p class="pg__eyebrow">Diseño web · Restaurantes y casas de comida</p>
         <h1 class="pg__title">Páginas web para restaurantes que se ven como tu cocina</h1>
-        <p class="pg__lead">Una web con <strong>tu identidad</strong>, la <strong>carta siempre actualizada</strong>, <strong>reservas</strong> y <strong>pedidos</strong> adentro. Sin plantillas, sin mensualidades: pagás una vez y es tuya.</p>
+        <p class="pg__lead">Una web con <strong>tu identidad</strong>, la <strong>carta siempre actualizada</strong>, <strong>reservas</strong> y <strong>pedidos</strong> adentro. Sin plantillas y sin comisiones por pedido: un pago inicial y un solo abono que la mantiene andando.</p>
         <div class="caso__ctas">
           <a class="btn btn--light magnetic" href="${waT('Hola Alejo! Tengo un restaurante y quiero ver cómo podría ser su web.')}" target="_blank" rel="noopener">Contame de tu restaurante</a>
           <a class="btn btn--ghost" href="#ejemplos">Ver ejemplos</a>
@@ -65,7 +65,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
       <li><small>Funcional · el más elegido</small><b>desde USD 690</b><p>Todo lo anterior más reservas online o pedidos con carrito y Mercado Pago, panel para ver lo que entra y aviso en cada reserva o pedido.</p></li>
       <li><small>Completa</small><b>desde USD 990</b><p>Reservas y pedidos, carta editable para cambiar precios vos, panel de administración propio y carga de hasta 40 productos.</p></li>
     </ul>
-    <p style="color:var(--muted);font-size:14px">Un solo pago. Hoy un restaurante suele pagar aparte una tienda online, un sistema de reservas y una carta QR, todos los meses. Acá las tres cosas viven en tu propio sitio, sin comisiones por pedido. <a class="inl" href="/#precios">Ver el detalle de los planes</a>.</p>
+    <p style="color:var(--muted);font-size:14px">Un abono, no tres. Hoy un restaurante suele pagar aparte una tienda online, un sistema de reservas y una carta QR, todos los meses. Acá las tres cosas viven en tu propio sitio, con un solo abono (hosting, base de datos y mantenimiento) y sin comisiones por pedido. <a class="inl" href="/#precios">Ver el detalle de los planes</a>.</p>
 
     <h2>Cómo trabajamos</h2>
     <ol class="steps reveal">
@@ -92,7 +92,7 @@ module.exports = ({ P, L, esc, attr, WA, exists, caseUrl, crumbs, breadcrumbLd, 
           '@type': 'Service',
           name: 'Diseño web para restaurantes',
           serviceType: 'Diseño y desarrollo de sitios web para restaurantes',
-          description: 'Páginas web a medida para restaurantes: carta editable, reservas online y pedidos con Mercado Pago en una web con identidad propia. Un solo pago.',
+          description: 'Páginas web a medida para restaurantes: carta editable, reservas online y pedidos con Mercado Pago en una web con identidad propia. Pago inicial + abono mensual.',
           provider: PERSON,
           areaServed: [{ '@type': 'Country', name: 'Argentina' }, { '@type': 'Country', name: 'Brasil' }],
           url: 'https://alejomfernandez.com.ar/diseno-web-restaurantes',
