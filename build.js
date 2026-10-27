@@ -119,7 +119,8 @@ function buildHome() {
 
 /* ---------- 2. Cascarón de subpágina ---------- */
 function shell({ title, desc, url, image, body, jsonld, bodyClass = '', lang = 'es' }) {
-  const img = abs(image || 'img/og.jpg');
+  const img = image ? abs(image) : abs('img/og.jpg') + '?v=2';
+  const imgMeta = image ? '' : `\n  <meta property="og:image:type" content="image/jpeg">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="630">`;
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -136,7 +137,7 @@ function shell({ title, desc, url, image, body, jsonld, bodyClass = '', lang = '
   <meta property="og:url" content="${abs(url)}">
   <meta property="og:title" content="${attr(title)}">
   <meta property="og:description" content="${attr(desc)}">
-  <meta property="og:image" content="${img}">
+  <meta property="og:image" content="${img}">${imgMeta}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${attr(title)}">
   <meta name="twitter:description" content="${attr(desc)}">
