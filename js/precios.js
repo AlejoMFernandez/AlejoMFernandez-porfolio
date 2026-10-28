@@ -36,6 +36,7 @@
     'pr.f.reservas': 'Un módulo a elección: reservas online…', 'pr.f.pedidos': '…o pedidos con carrito y Mercado Pago',
     'pr.f.panel': 'Panel para ver lo que entra', 'pr.f.aviso': 'Aviso en cada reserva o pedido',
     'pr.f.ambos': 'Reservas y pedidos, los dos', 'pr.f.editable': 'Carta editable: cambiás precios vos',
+    'pr.f.qr': 'QR en las mesas que abre tu carta', 'pr.f.imprimible': 'Carta para imprimir en PDF o JPG, con tu estética y siempre al día',
     'pr.f.admin': 'Panel de administración propio', 'pr.f.productos': 'Te cargo hasta 40 productos',
     'pr.n1': 'Abono mensual', 'pr.n1d': 'Incluye hosting, base de datos y mantenimiento, para que tu web siga andando.',
     'pr.n2': 'Funciones nuevas a medida', 'pr.n2d': 'Cambios grandes o funciones nuevas se cotizan aparte, solo si los necesitás.',
@@ -77,7 +78,7 @@
     'pr.f.dominio': 'No ar com o seu domínio',
     'pr.f.reservas': 'Um módulo à escolha: reservas online…', 'pr.f.pedidos': '…ou pedidos com carrinho e pagamento online',
     'pr.f.panel': 'Painel para ver o que chega', 'pr.f.aviso': 'Aviso a cada reserva ou pedido',
-    'pr.f.ambos': 'Reservas e pedidos, os dois', 'pr.f.editable': 'Cardápio editável: você muda os preços',
+    'pr.f.ambos': 'Reservas e pedidos, os dois', 'pr.f.editable': 'Cardápio editável: você muda os preços', 'pr.f.qr': 'QR nas mesas que abre o seu cardápio', 'pr.f.imprimible': 'Cardápio para imprimir em PDF ou JPG, com a sua estética e sempre atualizado',
     'pr.f.admin': 'Painel de administração próprio', 'pr.f.productos': 'Eu cadastro até 40 produtos',
     'pr.n1': 'Mensalidade', 'pr.n1d': 'Inclui hospedagem, banco de dados e manutenção, para o seu site continuar funcionando.',
     'pr.n2': 'Funções novas sob medida', 'pr.n2d': 'Mudanças grandes ou funções novas são orçadas à parte, só se precisar.',
@@ -119,7 +120,7 @@
     'pr.f.dominio': 'Live on your own domain',
     'pr.f.reservas': 'One module of your choice: online bookings…', 'pr.f.pedidos': '…or orders with cart and online payment',
     'pr.f.panel': 'Dashboard to see what comes in', 'pr.f.aviso': 'Alert on every booking or order',
-    'pr.f.ambos': 'Bookings and orders, both', 'pr.f.editable': 'Editable menu: you change the prices',
+    'pr.f.ambos': 'Bookings and orders, both', 'pr.f.editable': 'Editable menu: you change the prices', 'pr.f.qr': 'Table QR codes that open your menu', 'pr.f.imprimible': 'Printable menu as PDF or JPG, in your style and always up to date',
     'pr.f.admin': 'Your own admin dashboard', 'pr.f.productos': 'I load up to 40 products for you',
     'pr.n1': 'Monthly plan', 'pr.n1d': 'Includes hosting, database and maintenance, so your site keeps running.',
     'pr.n2': 'Custom new features', 'pr.n2d': 'Big changes or new features are quoted separately, only if you need them.',
@@ -167,6 +168,26 @@
       <div class="pv__row pv__row--ed is-off"><span>Flan casero</span><i class="wait">Sin stock</i></div>`],
     productos: ['tunegocio.com.ar/carta', `<div class="pv__tiles">${['#fed7aa', '', '#fde68a', '', '', '#bbf7d0', '', '#fecaca', '#bfdbfe', '', '#fed7aa'].map(c => `<i${c ? ` style="background:${c}"` : ''}></i>`).join('')}<i class="more">+28</i></div>`]
   };
+  /* QR de mentira (patrón fijo, con los tres ojos) */
+  const qr = (() => {
+    const n = 21, eye = (x, y) => `<path d="M${x} ${y}h7v7h-7zM${x + 1} ${y + 1}v5h5v-5zM${x + 2} ${y + 2}h3v3h-3z" fill-rule="evenodd"/>`;
+    let seed = 7, d = '';
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const inEye = (x < 8 && y < 8) || (x > 12 && y < 8) || (x < 8 && y > 12);
+      if (!inEye && rnd() > .52) d += `M${x} ${y}h1v1h-1z`;
+    }
+    return `<svg class="pv__qrcode" viewBox="-1 -1 23 23" aria-hidden="true"><rect x="-1" y="-1" width="23" height="23" fill="#fff"/>${eye(0, 0)}${eye(14, 0)}${eye(0, 14)}<path d="${d}"/></svg>`;
+  })();
+  PV.qr = ['Mesa 4', `<div class="pv__qr">
+      <div class="pv__tent"><small class="pv__cap">TU MARCA</small>${qr}<b>Escaneá y<br>mirá la carta</b></div>
+      <span class="pv__arrow">→</span>
+      <div class="pv__mini"><small class="pv__cap">CARTA</small>${line('Provoleta', '$9.800')}${line('Bife', '$26.000')}${line('Flan', '$5.500')}</div>
+    </div>`];
+  PV.imprimible = ['carta-tu-marca.pdf', `<div class="pv__print">
+      <div class="pv__sheet"><b>TU MARCA</b><small class="pv__cap">— CARTA —</small>${line('Provoleta', '$9.800')}${line('Bife de chorizo', '$26.000')}${line('Flan casero', '$5.500')}</div>
+      <div class="pv__exp"><span class="pv__go">PDF</span><span class="pv__go pv__go--alt">JPG</span><small>${ico.check}Se actualiza sola cuando cambiás un precio</small></div>
+    </div>`];
   PV.ambos = PV.pedidos;
   PV.admin = PV.panel;
 
