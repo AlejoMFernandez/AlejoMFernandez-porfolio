@@ -42,6 +42,12 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const attr = esc;
 const statusText = p => p.status.map(s => t('st.' + s)).join(' · ');
 const isDemo = p => p.status.includes('proposal');
+const IG_SVG = '<svg class="soc-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4C15.5 4 15.1 4 12 4Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 8a3.1 3.1 0 1 0 0-6.2 3.1 3.1 0 0 0 0 6.2Zm6.3-8.2a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0Z"/></svg>';
+const TT_SVG = '<svg class="soc-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.6 1.5V6.8a4.6 4.6 0 0 1-4.6-4.6V2Z"/></svg>';
+const socialBtns = p => !p.social ? '' : [
+  p.social.ig ? `<a class="btn btn--light magnetic" href="${p.social.ig}" target="_blank" rel="noopener">${IG_SVG}<span>Instagram</span></a>` : '',
+  p.social.tiktok ? `<a class="btn btn--light magnetic" href="${p.social.tiktok}" target="_blank" rel="noopener">${TT_SVG}<span>TikTok</span></a>` : ''
+].join('');
 const restStatus = p => p.status.filter(s => s !== 'proposal').map(s => t('st.' + s)).join(' · ');
 const caseUrl = p => `/proyectos/${p.id}`;
 const abs = u => (u.startsWith('http') ? u : SITE + (u.startsWith('/') ? u : '/' + u));
@@ -71,7 +77,7 @@ function rowHTML(p) {
   const logo = p.logo ? `<img src="${p.logo}" alt="" loading="lazy">` : `<span class="row__textlogo">${esc(p.name)}</span>`;
   return `<li class="reveal"><a class="row" href="${caseUrl(p)}" data-id="${p.id}">
       <span class="row__logo" aria-hidden="true">${logo}</span>
-      <span class="row__name">${esc(p.name)}${p.highlight ? `<em>${t('row.highlight')}</em>` : ''}</span>
+      <span class="row__name">${esc(p.name)}${p.highlight ? `<em>${t('row.highlight')}</em>` : ''}${p.wip ? `<span class="wip-badge wip-badge--sm"><i></i>${t('panel.wipRow')}</span>` : ''}</span>
       <span class="row__kind">${esc(L(p.kind))}</span>
       <span class="row__status">${statusText(p)}</span>
       <span class="row__arrow">${arrow}</span>
@@ -147,8 +153,8 @@ function shell({ title, desc, url, image, body, jsonld, bodyClass = '', lang = '
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/css/style.css?v=15">
-  <link rel="stylesheet" href="/css/pagina.css?v=2">
+  <link rel="stylesheet" href="/css/style.css?v=16">
+  <link rel="stylesheet" href="/css/pagina.css?v=3">
 ${jsonld ? `  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>\n` : ''}</head>
 <body class="${bodyClass}">
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -213,8 +219,9 @@ function buildCase(p, i) {
         <p class="pg__eyebrow">${esc(eyebrow)}</p>
         <h1 class="pg__title">${esc(p.name)}</h1>
         <p class="pg__lead">${esc(desc)}</p>
+        ${p.wip ? `<div class="wip"><span class="wip-badge"><i></i>${t('panel.wip')}</span><p>${esc(t('panel.wipTxt'))}</p><div class="social-btns">${socialBtns(p)}</div></div>` : ''}
         <div class="caso__ctas">
-          ${p.url ? `<a class="btn btn--light magnetic" href="${attr(p.url)}" target="_blank" rel="noopener"><span>Ver web en vivo</span>${arrowOut}</a>` : `<span class="btn btn--ghost" aria-disabled="true">Todavía no está online</span>`}
+          ${p.url ? `<a class="btn btn--light magnetic" href="${attr(p.url)}" target="_blank" rel="noopener"><span>Ver web en vivo</span>${arrowOut}</a>` : p.wip ? '' : `<span class="btn btn--ghost" aria-disabled="true">Todavía no está online</span>`}
           <a class="btn btn--ghost magnetic" href="${WA}?text=${waText}" target="_blank" rel="noopener">Quiero una web así</a>
         </div>
         ${p.ig ? `<a class="link-arrow" href="${attr(p.ig)}" target="_blank" rel="noopener">Ver el reel en Instagram ${arrowOut}</a>` : ''}
@@ -271,7 +278,7 @@ function buildCase(p, i) {
 function cardHTML(p) {
   return `<li class="reveal"><a class="card" href="${caseUrl(p)}">
     <div class="card__brand${p.round ? ' is-round' : ''}" style="--brand:${p.brand}" data-ink="${p.ink}">${p.logo ? `<img src="/${p.logo}" alt="" loading="lazy">` : `<span>${esc(p.name)}</span>`}</div>
-    <div class="card__body"><span class="card__kind">${esc(L(p.kind))}</span><span class="card__name">${esc(p.name)}</span><span class="card__status">${statusText(p)} · ${esc(L(p.place))}</span></div>
+    <div class="card__body"><span class="card__kind">${esc(L(p.kind))}</span><span class="card__name">${esc(p.name)}</span>${p.wip ? `<span class="wip-badge wip-badge--sm"><i></i>${t('panel.wipRow')}</span>` : ''}<span class="card__status">${statusText(p)} · ${esc(L(p.place))}</span></div>
   </a></li>`;
 }
 function buildIndex() {

@@ -29,7 +29,7 @@ window.I18N = {
     'contact.copy': 'Copiar', 'contact.copied': 'Copiado',
     'footer.local': 'Hora en Buenos Aires', 'footer.credit': 'Sitio desarrollado por',
     'panel.close': 'Cerrar', 'panel.kind': 'Rubro', 'panel.place': 'Lugar', 'panel.did': 'Qué hice', 'panel.stack': 'Tecnología',
-    'panel.visit': 'Ver web en vivo', 'panel.case': 'Ver la página del proyecto', 'panel.soon': 'Todavía no está online', 'panel.prev': 'Anterior', 'panel.next': 'Siguiente',
+    'panel.visit': 'Ver web en vivo', 'panel.case': 'Ver la página del proyecto', 'panel.soon': 'Todavía no está online', 'panel.wip': 'En desarrollo', 'panel.wipTxt': 'La web todavía no está online. Mientras tanto, seguilos en sus redes:', 'panel.wipRow': 'En desarrollo', 'panel.prev': 'Anterior', 'panel.next': 'Siguiente',
     'tile.view': 'Ver proyecto', 'tile.featured': 'Proyecto propio destacado', 'row.highlight': 'Destacado',
     'st.proposal': 'Demo web', 'st.client': 'Cliente', 'st.own': 'Propio', 'st.dev': 'En desarrollo', 'st.lab': 'Experimento'
   },
@@ -61,7 +61,7 @@ window.I18N = {
     'contact.copy': 'Copiar', 'contact.copied': 'Copiado',
     'footer.local': 'Horário em Buenos Aires', 'footer.credit': 'Site desenvolvido por',
     'panel.close': 'Fechar', 'panel.kind': 'Segmento', 'panel.place': 'Local', 'panel.did': 'O que eu fiz', 'panel.stack': 'Tecnologia',
-    'panel.visit': 'Ver site no ar', 'panel.case': 'Ver a página do projeto', 'panel.soon': 'Ainda não está no ar', 'panel.prev': 'Anterior', 'panel.next': 'Próximo',
+    'panel.visit': 'Ver site no ar', 'panel.case': 'Ver a página do projeto', 'panel.soon': 'Ainda não está no ar', 'panel.wip': 'Em desenvolvimento', 'panel.wipTxt': 'O site ainda não está no ar. Enquanto isso, siga nas redes:', 'panel.wipRow': 'Em desenvolvimento', 'panel.prev': 'Anterior', 'panel.next': 'Próximo',
     'tile.view': 'Ver projeto', 'tile.featured': 'Projeto próprio em destaque', 'row.highlight': 'Destaque',
     'st.proposal': 'Demo web', 'st.client': 'Cliente', 'st.own': 'Próprio', 'st.dev': 'Em desenvolvimento', 'st.lab': 'Experimento'
   },
@@ -93,7 +93,7 @@ window.I18N = {
     'contact.copy': 'Copy', 'contact.copied': 'Copied',
     'footer.local': 'Buenos Aires time', 'footer.credit': 'Site developed by',
     'panel.close': 'Close', 'panel.kind': 'Industry', 'panel.place': 'Location', 'panel.did': 'What I did', 'panel.stack': 'Tech',
-    'panel.visit': 'Visit live site', 'panel.case': 'View the project page', 'panel.soon': 'Not online yet', 'panel.prev': 'Previous', 'panel.next': 'Next',
+    'panel.visit': 'Visit live site', 'panel.case': 'View the project page', 'panel.soon': 'Not online yet', 'panel.wip': 'In progress', 'panel.wipTxt': "The site isn't live yet. Meanwhile, follow them on social media:", 'panel.wipRow': 'In progress', 'panel.prev': 'Previous', 'panel.next': 'Next',
     'tile.view': 'View project', 'tile.featured': 'Featured own project', 'row.highlight': 'Featured',
     'st.proposal': 'Demo site', 'st.client': 'Client', 'st.own': 'Own project', 'st.dev': 'In progress', 'st.lab': 'Experiment'
   }
@@ -116,7 +116,7 @@ window.POSTS = [
   { url: 'https://instagram.com/alejomf.dev', img: '', brand: '#EE8FA4', logo: 'img/logos/lpr.webp' }
 ];
 
-window.RIBBON = ['fulvo', 'paozito', 'puraa', 'maravela', 'franza', 'ocl', 'bodega', 'pintor', 'lpr', 'alacena', 'ariana', 'meat', 'weiss', 'fede', 'oss', 'pepe', 'mundoloco', 'granozero', 'tramaestudio', 'trama', 'polyfuse', 'condor'];
+window.RIBBON = ['fulvo', 'paozito', 'puraa', 'maravela', 'franza', 'ocl', 'bodega', 'pintor', 'lpr', 'alacena', 'ariana', 'meat', 'weiss', 'fede', 'oss', 'pepe', 'bodegon', 'granozero', 'tramaestudio', 'trama', 'polyfuse', 'condor'];
 
 window.PROJECTS = [
   {
@@ -282,19 +282,19 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'mundoloco', name: 'Mundoloco CGI', group: 'new', status: ['proposal', 'dev'], year: 2026,
-    url: 'https://mundolococgi.vercel.app/', brand: '#0C2341', ink: 'light', logo: 'img/logos/mundoloco.svg',
-    kind: { es: 'Estudio de animación', pt: 'Estúdio de animação', en: 'Animation studio' },
-    place: { es: 'Buenos Aires · producciones internacionales', pt: 'Buenos Aires · produções internacionais', en: 'Buenos Aires · international productions' },
+    id: 'bodegon', name: 'Bodegón Devoto', group: 'new', status: ['proposal'], year: 2026,
+    url: 'https://bodegon-devoto.vercel.app/', brand: '#7A0331', ink: 'light', logo: 'img/logos/bodegon.svg', mono: 'img/logos/bodegon-mono.svg',
+    kind: { es: 'Bodegón porteño', pt: 'Bodegão portenho', en: 'Classic Buenos Aires bodegón' },
+    place: { es: 'Villa Devoto, Buenos Aires', pt: 'Villa Devoto, Buenos Aires', en: 'Villa Devoto, Buenos Aires' },
     desc: {
-      es: 'Productora de animación con series y películas para todo el mundo. Una web bilingüe que gira alrededor de su planeta y muestra sus producciones. Todavía en desarrollo.',
-      pt: 'Produtora de animação com séries e filmes para o mundo todo. Um site bilíngue que gira em torno do planeta deles e mostra as produções. Ainda em desenvolvimento.',
-      en: 'An animation studio making series and films for the whole world. A bilingual site built around their planet that shows their productions. Still in progress.'
+      es: 'Bodegón de barrio con una identidad muy marcada: el mozo de su sello, las mesas bordó y el rosa viejo. La web lleva todo eso a la pantalla y suma la carta completa y reservas online.',
+      pt: 'Bodegão de bairro com uma identidade muito marcante: o garçom do selo, as mesas bordô e o rosa antigo. O site leva tudo isso para a tela, com o cardápio completo e reservas online.',
+      en: 'A neighborhood bodegón with a very distinct identity: the waiter from its seal, the burgundy tables and dusty pink. The site brings all of that to the screen, with the full menu and online bookings.'
     },
     did: {
-      es: ['Hero animado con su planeta', 'Sitio bilingüe ES / EN', 'Portfolio de producciones'],
-      pt: ['Hero animado com o planeta', 'Site bilíngue ES / EN', 'Portfólio de produções'],
-      en: ['Animated planet hero', 'Bilingual site ES / EN', 'Productions portfolio']
+      es: ['Su sello y su mozo como hilo de la web', 'Carta completa, sin PDFs', 'Reservas online'],
+      pt: ['O selo e o garçom como fio condutor', 'Cardápio completo, sem PDFs', 'Reservas online'],
+      en: ['Their seal and waiter as the common thread', 'Full menu, no PDFs', 'Online bookings']
     }
   },
 
@@ -382,8 +382,9 @@ window.PROJECTS = [
     }
   },
   {
-    id: 'ariana', name: 'ArianaDeViaje', group: 'client', status: ['client', 'dev'], url: 'https://arianadeviaje.com',
-    brand: '#1F3A5F', ink: 'light', logo: 'img/logos/ariana.webp',
+    id: 'ariana', name: 'ArianaDeViaje', group: 'client', status: ['client', 'dev'], url: '', wip: true,
+    social: { ig: 'https://www.instagram.com/arianadeviaje', tiktok: 'https://www.tiktok.com/@arianadeviaje' },
+    brand: '#02B6B0', ink: 'light', logo: 'img/logos/ariana.webp',
     kind: { es: 'Agencia de viajes', pt: 'Agência de viagens', en: 'Travel agency' },
     place: { es: 'Argentina', pt: 'Argentina', en: 'Argentina' },
     desc: {

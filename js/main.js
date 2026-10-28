@@ -17,6 +17,12 @@
   const statusText = p => p.status.map(s => t('st.' + s)).join(' · ');
   const isDemo = p => p.status.includes('proposal');
   const demoBadge = () => `<span class="demo-badge">${t('st.proposal')}</span>`;
+  const IG_SVG = '<svg class="soc-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4C15.5 4 15.1 4 12 4Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 8a3.1 3.1 0 1 0 0-6.2 3.1 3.1 0 0 0 0 6.2Zm6.3-8.2a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0Z"/></svg>';
+  const TT_SVG = '<svg class="soc-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.6 1.5V6.8a4.6 4.6 0 0 1-4.6-4.6V2Z"/></svg>';
+  const socialBtns = p => !p.social ? '' : [
+    p.social.ig ? `<a class="btn btn--light magnetic" href="${p.social.ig}" target="_blank" rel="noopener">${IG_SVG}<span>Instagram</span></a>` : '',
+    p.social.tiktok ? `<a class="btn btn--light magnetic" href="${p.social.tiktok}" target="_blank" rel="noopener">${TT_SVG}<span>TikTok</span></a>` : ''
+  ].join('');
   const restStatus = p => p.status.filter(s => s !== 'proposal').map(s => t('st.' + s)).join(' · ');
 
   /* ---------- render ---------- */
@@ -46,7 +52,7 @@
       : `<span class="row__textlogo">${p.name}</span>`;
     return `<li class="reveal"><a class="row" href="${caseUrl(p)}" data-id="${p.id}">
       <span class="row__logo" aria-hidden="true">${logo}</span>
-      <span class="row__name">${p.name}${p.highlight ? `<em>${t('row.highlight')}</em>` : ''}</span>
+      <span class="row__name">${p.name}${p.highlight ? `<em>${t('row.highlight')}</em>` : ''}${p.wip ? `<span class="wip-badge wip-badge--sm"><i></i>${t('panel.wipRow')}</span>` : ''}</span>
       <span class="row__kind">${L(p.kind)}</span>
       <span class="row__status">${statusText(p)}</span>
       <span class="row__arrow">${arrow}</span>
@@ -171,7 +177,9 @@
     $('#panel-stackwrap').hidden = !p.stack;
     $('#panel-stack').innerHTML = (p.stack || []).map(s => `<li>${s}</li>`).join('');
     const visit = $('#panel-visit');
-    visit.hidden = !p.url; $('#panel-soon').hidden = !!p.url;
+    visit.hidden = !p.url; $('#panel-soon').hidden = !!p.url || !!p.wip;
+    $('#panel-wip').hidden = !p.wip;
+    $('#panel-social').innerHTML = socialBtns(p);
     if (p.url) visit.href = p.url;
     const cs = $('#panel-case'); if (cs) cs.href = caseUrl(p);
     const i = order.indexOf(id);

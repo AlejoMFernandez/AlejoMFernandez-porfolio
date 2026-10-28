@@ -13,6 +13,7 @@
     { "source": "/pt/:path*", "destination": "/?lang=pt", "permanent": true },
     { "source": "/es", "destination": "/", "permanent": true },
     { "source": "/es/:path*", "destination": "/", "permanent": true },
+    { "source": "/proyectos/mundoloco", "destination": "/proyectos", "permanent": false },
     { "source": "/proyectos/:id/", "destination": "/proyectos/:id", "permanent": true },
     { "source": "/precios", "destination": "/#precios", "permanent": false },
     { "source": "/contacto", "destination": "/#contacto", "permanent": false },

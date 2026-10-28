@@ -602,3 +602,18 @@ html.intro-on .hdr__af { opacity: 0; }
 .tile, .row { display: grid; color: inherit; }
 .tile { display: block; }
 .ribbon__item { color: inherit; }
+
+/* ---------- en desarrollo (wip) + botones de redes ---------- */
+.wip { margin-top: 28px; padding: 18px 20px; border-radius: 16px; border: 1px dashed rgba(245, 197, 24, .6); background: repeating-linear-gradient(-45deg, rgba(245, 197, 24, .09) 0 12px, transparent 12px 24px); }
+.wip p { margin: 12px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--fg); opacity: .85; }
+.wip-badge { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border-radius: 999px; background: #f5c518; color: #141414; font-family: var(--mono); font-size: 12.5px; font-weight: 600; line-height: 1; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.wip-badge i { width: 8px; height: 8px; border-radius: 50%; background: #141414; animation: wipPulse 1.4s ease-in-out infinite; }
+.wip-badge--sm { padding: 4px 9px; gap: 6px; font-size: 10.5px; letter-spacing: .08em; }
+.wip-badge--sm i { width: 6px; height: 6px; }
+.card__body .wip-badge--sm { align-self: flex-start; margin-top: 6px; }
+@keyframes wipPulse { 50% { opacity: .2; } }
+@media (prefers-reduced-motion: reduce) { .wip-badge i { animation: none; } }
+.social-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.social-btns:empty { display: none; }
+.btn svg.soc-ico { width: 18px; height: 18px; fill: currentColor; stroke: none; }
+.btn:hover svg.soc-ico { transform: none; }
